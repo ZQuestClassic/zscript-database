@@ -1,0 +1,16 @@
+{
+  "name": "Memory matching card puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "08 Jun 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "5",
+  "info": "Made as part of SkyFlare`s research project.",
+  "description": "A deck of cards is shuffled and laid down forming table face down. Stand on a card and press EX1. If two flipped cards mismatch, they flipped back, otherwise stay face up. Flip all cards face up to solve the puzzle.Update 12.04.2022 - removed leftover debug stuffUpdate 9.6.2022 - Fixed bug with overwriting combos by cards.",
+  "setup": "1.Set up MEMORY_PAIR_DECKSIZE combos, starting with card back, and following rest of cards.2.Place combos from step 1, forming the grid and deck of cards. Each card must have even number of copies.3.Place FFC with card back combo and script assignedD0 - delay before game starts, in frames.",
+  "has_zip": true,
+  "has_popup": true
+}

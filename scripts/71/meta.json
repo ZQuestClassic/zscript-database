@@ -1,0 +1,16 @@
+{
+  "name": "Item Combiner",
+  "author": "Evan20000",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "When you pickup an item with the script attached, it checks to see if you have another specific item. If you do, it plays a special string and adds the \"combined\" item into your inventory. If you don't have the item, it plays a different string.",
+  "description": "When you pickup an item with the script attached, it checks to see if you have another specific item. If you do, it plays a special string and adds the \"combined\" item into your inventory. If you don't have the item, it plays a different string.",
+  "setup": "Simply attach the script into the \"pickup\" slot of an item and fill out the following arguments.//D0 First pickup string//D1 Item to check for//D2 Combined item string//D3 Combined item itemIf you don't want Link to have one or either item after combining them, you can use string control codes to take them away",
+  "has_zip": false,
+  "has_popup": true
+}

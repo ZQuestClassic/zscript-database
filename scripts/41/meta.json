@@ -1,0 +1,17 @@
+{
+  "name": "Big Tektite",
+  "author": "Saffith",
+  "added": "29 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "5",
+  "downloads": "130",
+  "info": "An enemy that jumps around the screen, not unlike a Tektite. It can use weapons and has a super jump attack, as well. Suitable for use as a boss or a regular enemy, depending on its settings.",
+  "description": "An enemy that jumps around the screen, not unlike a Tektite. It can use weapons and has a super jump attack, as well. Suitable for use as a boss or a regular enemy, depending on its settings.",
+  "setup": "Set up four consecutive combos:\n1: Idle\n2: Preparing to jump\n3: Jumping\n4: Stunned\n\nSet up an enemy as follows:\nType: Other\nWeapon and weapon damage are used\nStep, halt rate, homing factor, and hunger are used\nAttribute 1: Size\n* Minimum: 1\n* Maximum: 4\n* Default: 2\nAttribute 2: Flags - add together any of these numbers:\n* 1: Can be stunned and frozen by clocks\n* 2: Super jump disabled\n* 4: Super jump impact stuns Link if he's on the ground\n* 8: Super jump impact launches debris\n* 16: Super jump impact drops enemies or debris from the ceiling\n* 32: The tektite is invincible unless stunned from a super jump\n* 64: The tektite's weapons are unblockable (some weapons are unblockable regardless)\n* 128: Fall onto the screen at the start of the fight\nAttribute 3: Time stunned after a super jump, in frames\nAttribute 4: Object dropped after a super jump if flag 16 is used\n* 0: Debris\n* 20-511: Enemy ID\nAttribute 5: Jumping sound\nAttribute 6: Super jump sound\nAttribute 7: Falling sound\nAttribute 8: Impact sound\nAttribute 9: Sprite used by debris\nAttribute 10: Death animation\n* 0: None\n* 1: Explode\n* 2: Flash and explode\n* Future versions of ghost.zh will add more animations\nAttribute 11: First combo number\nAttribute 12: Script slot\n\n\nResources\n\nRequires ghost.zh, std.zh, and string.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

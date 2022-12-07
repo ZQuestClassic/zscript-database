@@ -1,0 +1,16 @@
+{
+  "name": "1/2 Magic Attribute Item",
+  "author": "Lelouche Vi Britannia",
+  "added": "28 Mar 2016",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Adds an item to the game that will enable the 1/2 magic attribute on pick up rather than using the special room setting in the editor. Simple and very easy to use requiring little in the way of setting up.",
+  "description": "Simply put, it adds an item to the game that will allow you to gain the 1/2 magic usage attribute when you pick the item up rather than getting it once a string in a room is completed. Super simple!NOTE: The effect doesn't seem to work if you start with the item initially or give it to Link using cheats, but if the item is directly picked up, it will work. The 1/2 magic symbol will even appear on your subscreen if you have the element for it added in.Obviously, veteran scriptwriters will know how to do this already. This script entry is mostly meant for the non-scriptwriters or script-writing novices.",
+  "setup": "Be sure to add \"include std.zh\" to the top of the script file if you haven't already done so.\n\nCreate an item in the item editor and add this script to the \"Pick Up Script\" entry in the editor. Simple as that. You can even add the effect to the already existing Book of Magic (or any other already existing item) if you wanted to.\n\nOptional: Create a string for item pick up and Set D0 to the string number if you are using a script that prints strings when you pick up items. If you are not using this function remove the \"int m\" from the \"void run line\" so it reads \"void run ()\" and also delete the \"Screen->Message(m);\" line from the script. Do not include the quotation marks.\n\nThe lines were included because item pickup string scripts also use the \"pickup script\" entry on the editor.",
+  "has_zip": false,
+  "has_popup": true
+}

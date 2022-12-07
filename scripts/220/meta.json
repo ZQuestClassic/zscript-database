@@ -1,0 +1,16 @@
+{
+  "name": "Phantom Cloak",
+  "author": "grayswandir",
+  "added": "21 Mar 2016",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Leaving an afterimage (bait) behind at your original position, you dash forwards, damaging enemies and passing over pits.",
+  "description": "The Phantom Cloak is an item that allows you to dash forward several tiles (possibly through special blocks that would normally be solid, default the script 2 flag), dealing damage along the way. You also leave a bait at your original location, drawn transparently.",
+  "setup": "Requires std.zhTo setup, you need to examine everything in the Integration section to make sure that it's compatible with your quest. The following two sections, Behavior and Default Arguments, have isolated some of the easier parts of the script to modify. By default, the cloak lets you pass over solid tiles with the script 2 flag, but this can be changed.Then, give an item the activation script Use_PhantomCloak. The arguments are in the same order and effect as in the Default Arguments section - any item argument left at 0 will instead be set to those values.You'll also need to call PhantomCloak_Update in your main active script loop.Note that this makes use of global variables, so adding it will invalidate any saves you have.",
+  "has_zip": false,
+  "has_popup": true
+}

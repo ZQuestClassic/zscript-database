@@ -1,0 +1,17 @@
+{
+  "name": "scrollingDraws.zh",
+  "author": "Moosh",
+  "added": "09 Oct 2017",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Library"
+  ],
+  "rating": "4",
+  "downloads": "91",
+  "info": "A simple header for getting screen positions while scrolling between screens.",
+  "description": "A simple header for getting screen positions while scrolling between screens.",
+  "setup": "Set QUESTRULE_VERYFASTSCROLLING to 1 if you're using that rule.\n\nCombine the ScrollingDraws_Slot2 global script with your own. You'll probably want ScrollingDraws_Update() to be near the top of the while loop so the positions of your global draws are accurate.\n\nFor scripters, use these functions to get the various positions:ScrollingOldX() - X position of the top left corner of the old screenScrollingOldY() - Y position of the top left corner of the old screenScrollingNewX() - X position of the top left corner of the new screenScrollingNewY() - Y position of the top left corner of the new screenScrollingLinkX() - Link's X position during scrollingScrollingLinkY() - Link's Y position during scrolling\n\nRequires std.zh.",
+  "has_zip": true,
+  "has_popup": false
+}

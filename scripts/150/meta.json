@@ -1,0 +1,16 @@
+{
+  "name": "Crystal Switch Puzzle",
+  "author": "A Link to Frustration",
+  "added": null,
+  "updated": "17 Dec 2014",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "79",
+  "info": "A puzzle that involves repeatedly bashing colorfully changing crystals with your sword to trigger the Screen Secret.",
+  "description": "Tired of the same old puzzles that involve pushing stuff? Wouldn't you like to have one that involves hacking things, slashing things, shiny objects, and pretty colors? Well then here you are! Magic crystals stand tall, that change color when hit with your sword. Change all of the crystals on the screen to the correct color, and the Screen's Secret will be triggered!",
+  "setup": "Change the integers declared at the top of the script to reflect what they would be pointing to in YOUR quest. (Right now they are set to my specifications from the Demo Quest.)Combos should be in order, with the first combo as the first color (Color 0).Setup all of the combos with Strike->Next flags except for the last one on your list, which when hit should change to the screen's Under Combo.Set the screen's Under Combo to be the first combo (Combo 0) on your list, so that the colors loop back once they've run their course.Place the FFCs using this script onto your crystals, setting D0 to which color is the correct answer (the first color is 0), and set them to be \"Translucent\" and to \"Run at Screen Init\".Make sure to have a Secret Combo set for the screen so that the puzzle actually accomplishes something.I advise having the tiles used by each crystal be 8-Bit, so that they do not change along with the CSet, and remain uniform throughout your quest.(These instructions are also included in the script's code.)",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Any Counter for Any Item",
+  "author": "RephireZeKasual217",
+  "added": null,
+  "updated": "30 Sep 2019",
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "18",
+  "info": "Allows you to use any item with any counter.",
+  "description": "This pretty bare bones, simple script allows you to use basically any button item along with a counter to go with it. Want your wand to use super bombs, want your sword to use health, want your hookshot to use arrows? Now you can.",
+  "setup": "std.zh Required.Place the global script in slot 2.Put the Item Script in the Action Script Slot in the item editor.setup as you wish;d0: Item Numberd1: Counter Numberd2: Cost AmountCounter Options:0: Hearts1: Rupees2: Bombs3: Arrows4: Magic5: Keys6: Super Bombs7-31: Custom CountersNote: Prevents you from dying from using Hearts as a counter.If you have multiple global scripts, just add the GlobalCounter(); from global script SLOT_2{ to yours, above Waitdraw().",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Group Item Spawner",
+  "author": "Moosh",
+  "added": null,
+  "updated": "19 Mar 2017",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": "37",
+  "info": "A script for spawning groups of items that remember which you picked up.",
+  "description": "This script is similar to the Simple Item Spawner script, only it allows for the spawning of multiple copies of the same item, up to 16 per FFC. The script will remember which of these you picked up when you reenter the screen, making it useful for rupee rooms like the ones found in A Link to the past.\n\nUpdate: Setting D1 to a negative value now lets the script check for a combo ID instead of a flag.",
+  "setup": "Place down a copy of the script somewhere on the screen and set the FFC's D0-D2 as follows:D0: The ID of the item to be spawned.D1: The combo flag used for marking where the items will spawn.D2: The Screen->D (0-7) index used to mark which items have been picked up. If it is not a valid Screen->D you can spawn more than 16 items with one FFC, but the script will not keep track of when they're picked up. Be sure this value doesn't conflict with another FFC script using Screen->D.\nWhile the limit per FFC is 16 of the same item, you can have a different FFC using a different combo flag and Screen->D spawn the same item and it will still work. If using all 8 Screen->D registers, you can keep track of 128 items on one screen.\n\nThis script requires std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Modern Donation Shop",
+  "author": "Alucard648",
+  "added": "21 Jan 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "5",
+  "info": "\"For the sake of peace in Hyrule...Would you, please, make a donation?\"Rewrite done on request by SkyFlare",
+  "description": "//Stand on FFC and press either EX1 to perform donation. Donate target total for reward.Unlike my ancient donation shop script, this one behaves like modern charity organization, rather than a random beggar with primitive technologies",
+  "setup": "Place FFC at trigger position. D0 - Screen D to keep track charity progress. D1 - Counter to be used by this charity organization. For blood donations, minimum of 1 full heart should left upon         donation. D2 - Target total for this charity campaign. D3 - Max counter amount transferred per button press. D4 - Reward. >0 - Award item ID, -1 - Secret trigger. D5 - #####.____ - String to display, when charity progress is 0.      _____.#### - String to display, when charity campaign is completed. D6 - Combo position to render charity progress.7 - Combo used to render counter image.",
+  "has_zip": true,
+  "has_popup": true
+}

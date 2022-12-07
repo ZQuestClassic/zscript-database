@@ -1,0 +1,16 @@
+{
+  "name": "Lights Out",
+  "author": "Beefster",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is an FFC-based puzzle that uses Puzzle Check.When you toggle a switch with your sword, it toggles the adjacent switches. Pretty simple... but can be tough to solve.",
+  "description": "This is an FFC-based puzzle that uses Puzzle Check.When you toggle a switch with your sword, it toggles the adjacent switches. Pretty simple... but can be tough to solve.",
+  "setup": "- IMPORTANT: make sure the constant doesn't interfere with other scripts. It generally won't, but be careful if you like using FFC->Misc more than necessary.\n\n- Set up your initial state.\n- Create your FFCs, assigning them an initial state (D0) and graphics (D1 and D2) for their alternate state. (i.e. if it starts on, provide the off Combo/CSet and vice versa)\n- Determine which FFCs are \"adjacent\". They need not be physically adjacent- if you're going for a confusing variant. Just assign them to D3-D6.\n- Determine the solved state (D7)\n- Set up PuzzleCheck.\n\n- WARNING: I can't guarantee that this will work if your switches are really close together.\n\nThis script requires Puzzle Check (another script)",
+  "has_zip": false,
+  "has_popup": true
+}

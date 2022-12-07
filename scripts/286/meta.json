@@ -1,0 +1,16 @@
+{
+  "name": "Simple GB Shutter",
+  "author": "Moosh",
+  "added": "17 Oct 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "A 1x1 shutter FFC script for Gameboy based tilesets.",
+  "description": "I've made this script at several points in the past, guess it's about time I actually submitted a version of it.",
+  "setup": "Please note: This script still uses the editor secret combos when being opened by screen secrets. The main function of the script is to push Link into the room and shut the door when he enters through the shutter side. If you want a more advanced version, my other shutter script may be more appropriate.\n\nPlace down an FFC with the closed shutter combo over a combo on the edge of the screen. The combo directly following the closed shutter combo in the list should be a halfway open shutter. Give it the Run Script at Screen Init flag and set its arguments as follows:D0: Set to 1 if it's an enemy shutter, otherwise it will open when the secret combo underneath it is changedD1: Set to 1 if the secret should be permanent.\n\nIf you're using Mooshpits, you can find this line in the script and remove the comment (//) to have the door update your respawn position.\n//MooshPit_ResetEntry();\t\n\nRequires std.zh and ffcscript.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

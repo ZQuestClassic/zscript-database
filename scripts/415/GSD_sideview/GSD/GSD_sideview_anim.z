@@ -1,0 +1,124 @@
+//Renders Link`s sprites when needed to do by this engine
+void SideviewAnim(){
+	if ((LinkMode == LINK_MODE_LADDER)&&(LINK_LADDER_ALWAYS_FACE_UP>0)){
+		Link->DrawXOffset = 1000;
+		int anim = cycletimer%(LINK_LADDER_CLIMB_NUMFRAMES*LINK_LADDER_CLIMB_ASPEED);
+		int tile = TILE_LINK_LADDER_CLIMB;
+		if (Link->Action>1) Link->DrawXOffset=0;
+		else if ((Link->InputUp)||(Link->InputDown)||(Link->InputLeft)||(Link->InputRight))
+		Screen->FastTile(3, LinkX, LinkY, tile +(Div(anim,LINK_LADDER_CLIMB_ASPEED)), 6, OP_OPAQUE);
+		else Screen->FastTile(3, LinkX, LinkY, tile , 6, OP_OPAQUE);
+		//debugValue(4, Link->DrawXOffset);
+	}
+	else if ((LinkMode == LINK_MODE_WATER)&&(TILE_LINK_SWIM_ANIM>0)){
+		Link->DrawXOffset = 1000;
+		int tile = TILE_LINK_SWIM_ANIM;
+		if (Link->Item[I_SHIELD3]) tile+=60;
+		else if (Link->Item[I_SHIELD2]) tile+=40;
+		else if (Link->Item[I_SHIELD1]) tile+=20;
+		tile+= (LINK_SWIM_ANIM_NUMFRAMES*Link->Dir);
+		int anim = cycletimer%(LINK_SWIM_ANIM_NUMFRAMES*LINK_SWIM_ANIM_ASPEED);
+		if (Link->Action>1) Link->DrawXOffset=0;
+		if (((Link->InputUp)||(Link->InputDown)||(Link->InputLeft)||(Link->InputRight))||(LinkVy<0))
+		Screen->FastTile(3, LinkX, LinkY, tile+(Div(anim,LINK_SWIM_ANIM_ASPEED)), 6, OP_OPAQUE);
+		else Screen->FastTile(3, LinkX, LinkY, tile, 6, OP_OPAQUE);
+	}
+	else if((LinkMode == LINK_MODE_CUSTOM)&&(LinkBlock==BLOCK_EMPTY)&&(TILE_LINK_JUMP_ANIM>0)){
+		//TODO
+		Link->DrawXOffset = 1000;
+		int tile = TILE_LINK_JUMP_ANIM;
+		tile+= (20*Link->Dir);
+		int anim = cycletimer%(LINK_JUMP_NUMFRAMES*LINK_JUMP_ASPEED);
+		if (Link->Action>1) Link->DrawXOffset=0;
+		else if ((LinkVy>=LINK_TERM)&&(LINK_FALL_FRAME>=0)) Screen->FastTile(3, LinkX, LinkY, tile+LINK_FALL_FRAME-1, 6, OP_OPAQUE);
+		else Screen->FastTile(3, LinkX, LinkY, tile+(Div(anim,LINK_JUMP_ASPEED)), 6, OP_OPAQUE);
+	}	
+	else Link->DrawXOffset=0;
+	if ((LinkMode == LINK_MODE_WATER)&&(SPR_AIRBUBBLE>0)){
+		if (cycletimer%300 == 0){
+			lweapon b = Screen->CreateLWeapon(LW_SCRIPT9);
+			b->X = LinkX;
+			b->Y = LinkY;
+			b->UseSprite(SPR_AIRBUBBLE);
+			b->CollDetection=false;
+			b->DeadState = 1000;
+		}
+	}
+	for (int i = 1; i<=Screen->NumLWeapons();i++){
+		lweapon b = Screen->LoadLWeapon(i);
+		if (b->ID != LW_SCRIPT9) continue;
+		b->Y--;
+		int collptsx[2] = { b->X + 6, b->X +10};
+		int collptsy[2] = { b->Y + 6, b->Y +10};
+		for (int x=0; x<2; x++){
+			for (int y=0; y<2; y++){
+				int cmb = ComboAt(collptsx[x], collptsy[y]);
+				if (Screen->ComboT[cmb]!= CT_SIDEVIEW_WATER){
+					if (b->isValid()) Remove(b);
+				}
+			}
+		} 
+	}
+}
+
+//Creates sideview water splash anumation
+void CreateLinkWaterSplashAnim(){
+	bool burn = false;
+	lweapon l = CreateLWeaponAt(LW_SPARKLE, LinkX, LinkY);
+	if (AffectedByFlag(CF_LAVA)){
+		if (Link->Item[I_VARIASUIT]){
+			Game->PlaySound(SFX_VARIA_LAVA_SPLASH);
+			l->UseSprite(SPR_VARIA_LAVA_SPLASH);
+		}
+		else{
+			burn = true;
+			Game->PlaySound(SFX_LAVABURN);
+			l->UseSprite(SPR_LAVABURN);
+		}
+	}
+	else{
+		Game->PlaySound(SFX_SIDEVIEW_SPLASH);
+		l->UseSprite(SPR_SIDEVIEW_SPLASH);
+	}
+	if (burn)l->ASpeed*=2;
+	l->DeadState = Max(l->ASpeed*l->NumFrames-1, 1);
+	if (burn){
+		l->DeadState*=2;
+		return;
+	}
+	int cmb = ComboAt(LinkX+8, LinkY);
+	if (Screen->ComboT[cmb]==CT_SIDEVIEW_WATER) l->Flip = 2;
+	cmb = ComboAt(LinkX, LinkY+8);
+	if (Screen->ComboT[cmb]==CT_SIDEVIEW_WATER)l->Flip =4;
+	cmb = ComboAt(LinkX+15, LinkY+8);
+	if (Screen->ComboT[cmb]==CT_SIDEVIEW_WATER) l->Flip = 7;
+}
+
+//Creates anumation of Link getting crushed.
+void LinkCrushAnim(int dir){
+	lweapon l = CreateLWeaponAt(LW_SPARKLE, LinkX, LinkY);
+	l->UseSprite(SPR_LINKCRUSH);
+	l->DeadState = Max(l->ASpeed*l->NumFrames-1, 1);
+	if (EXTENDED_CRUSH_ANIM>0){
+		if (dir==DIR_UP){
+			while ((Screen->isSolid(l->X+3, l->Y))
+			||(Screen->isSolid(l->X+12, l->Y))) l->Y++;
+		}
+		if (dir==DIR_DOWN){
+			while ((Screen->isSolid(l->X+3, l->Y+15))
+			||(Screen->isSolid(l->X+12, l->Y+15))) l->Y--;
+		}
+		if (dir==DIR_LEFT){
+			while ((Screen->isSolid(l->X, l->Y+3))
+			||(Screen->isSolid(l->X, l->Y+12))) l->X++;
+		}
+		if (dir==DIR_RIGHT){
+			while ((Screen->isSolid(l->X+15, l->Y+3))
+			||(Screen->isSolid(l->X+15, l->Y+12))) l->X--;
+		}
+		l->OriginalTile += 20*dir;
+	}
+	else{
+		if (dir>1) l->OriginalTile += 20;
+	}
+}

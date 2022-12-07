@@ -1,0 +1,16 @@
+{
+  "name": "Zelda 2 Elevator",
+  "author": "Aquamentus (Facing Right)",
+  "added": null,
+  "updated": "04 Mar 2019",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "26",
+  "info": "A recreation of the elevators found in palaces in Zelda 2: The Adventure of Link.",
+  "description": "(Wait, no one has submitted a script like this to the database already?)\n\nA recreation of the elevators found in palaces in Zelda 2: The Adventure of Link.\n\nHop on this bad boy and change your Y-axis in sideview screens safely! It can make elevation sounds too! What else can it do? Not much!!\n\nWorks well with catchy palace music.\n\nThe package download contains tiles from Zelda 2.\n\n\nPlease feel free to give me suggestions/tips. I am a new scripter.\n\n\n\n~Special thanks to all who contributed to the invention of the elevator\n~Additional tiles suggested by P-Tux7",
+  "setup": "(Probably requires std.zh.)(For use in sideview screens)You need some graphics probably. Again, 2x3 size is what this script was designed for.Script:1. Inside the script, set the sfx number to whatever sound in your quest you wish to play during movement.Tiles:1. Make just one combo using the top-left tile of the elevator.2. Use that for the FFC.FFC:1. Place an FFC with this script attached in your desired location.2. Set \"Tile W\" to 2 and \"Tile H\" to 3, or to match whatever tiles you are using. (Code was made using the Zelda 2 tiles)3. (I like to check the \"Draw Over\" flag.)4. Place any additional FFCs ON THE SAME X-AXIS as before on each screen Link will move to via elevation.5. Preferably, allow only 2-tile-wide spaces above and/or below elevator (if centered on tile grid).6. Have fun! (This step is not required)",
+  "has_zip": true,
+  "has_popup": true
+}

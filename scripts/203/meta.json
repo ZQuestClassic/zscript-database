@@ -1,0 +1,17 @@
+{
+  "name": "Nessie (Autoghost)",
+  "author": "ywkls",
+  "added": null,
+  "updated": "05 Sep 2015",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "35",
+  "info": "Creates a 4 x 2 enemy that only can move in water, similar to the Loch Ness Monster.",
+  "description": "This is designed as a mini-boss for a water dungeon. The foe spews 3 fireballs every 1.5 seconds and submerges to become invulnerable every 3 seconds. Inspired by ideas submitted by GrantGreif. Tiles by Ryan914, Tonberry2K, Kazuu90210 of Spriter's Resource.Update- 9-4-15- Changed fireballs so that they track you and split into four random fires on impact. Changed flags so he won't swim in shallow water.",
+  "setup": "Create 4 combos in this order. Surfaced, facing left; surfaced, facing right; submerged, facing left; submerged, facing right. The enemy is designed to be 4 x 2.Requires=std.zhstring.zhghost.zh",
+  "has_zip": true,
+  "has_popup": true
+}

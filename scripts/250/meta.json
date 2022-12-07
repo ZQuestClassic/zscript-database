@@ -1,0 +1,16 @@
+{
+  "name": "Key Blocks with Removable Key",
+  "author": "Mani Kanina",
+  "added": null,
+  "updated": "08 Oct 2016",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "44",
+  "info": "A key block that eats a key when Link stands next to it and presses A (triggering the screen lock state), but also allows Link to, in the same manner, remove the key to un-trigger the screen lock state.Also experimental item cube.",
+  "description": "I can't have been the only one who got really psyched about the lockblocks feature in A Tribute to Yeto's Quest, quest. This is a re-creation, though it functions a bit differently in regards to limitations and what it can do.A key block that eats a key when Link stands next to it and presses A (triggering the screen lock state), but also allows Link to, in the same manner, remove the key to un-trigger the screen lock state.The cube checks for global keys when not specified otherwise. With specification it can instead check for any of the values in the counter array. There is no support for level specific keys.[Item Cube Beta]Script now also includes an item cube beta. This one eats an item defined in D0 instead and sets the chest state for the screen.",
+  "setup": "Requires the library std.zh, so if you haven't included it already, include it with this script.Place the FFC combo with the script where you want the lockcube to be on a screen. Note that the FFC have NO solidity, so you'll want to place it on top of a solid combo. Personally I recommend making the FFC transparent and have a lockblock(copycat) combo under it. BUT! The FFC WILL change to the next combo in the list when you insert a key, and then back to it's original combo when removed, so keep that in mind.The D0 value on the FFC is for what counter reference you want. If it's left at 0 it will just operate with regular generic global keys. Note that this does not translate any of the values. So for example if you want to use the counter \"Script 25\" then that would mean you'd have to enter the value \"31\" in D0.For examples on how to use this script, see the example quest.",
+  "has_zip": true,
+  "has_popup": true
+}

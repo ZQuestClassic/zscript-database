@@ -1,0 +1,17 @@
+{
+  "name": "Save game",
+  "author": "Avaro",
+  "added": "18 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script saves the game, and it can play a sound effect before doing so too.Available as FFC script or as Item script.",
+  "description": "This script saves the game, and it can play a sound effect before doing so too.The FFC script version could be useful after certain cutscenes, perhaps. There is also a version of the FFC script that will only save once.The item version is basically an usable \"save-button\" as an item. xD",
+  "setup": "D0 in the FFC/Item settings is the sound effect you want to play when saving the game. Leave it at 0 if you don't want one.In the \"Only Save Once\" version, D1 is the Screen->D register to use. If you are unsure, leave it at 0.",
+  "has_zip": false,
+  "has_popup": true
+}

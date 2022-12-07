@@ -1,0 +1,16 @@
+{
+  "name": "Scripted Lock Blocks",
+  "author": "Timelord",
+  "added": null,
+  "updated": "25 Nov 2016",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "16",
+  "info": "Fully scripted lock blocks that use either standard keys, or a custom key counter. This allows placing up to four scripted lock blocks per screen, easily, in addition to the one lockblock that is normally possible per screen.",
+  "description": "This script allows you to place lock blocks that use a custom key type to open them. You may place up to four unique lock blocks per screen, that use the same key type, but work independently.This ffc script allows placing up to four custom (scripted) lock blocks per screen, in addition to the normal, single lock block allowed by ZC.",
+  "setup": "Combo Set-Up\n\nCreate eight combos, as follows:\n\n1. Lock block tile, combo type 'none', solid. Note down the combo ID for this one, as you will need it later.\n2. Unlocked lock block tile, combo type 'none', no solidity.\n3. Same as 1\n4. Same as 2\n5. Same as 1\n6. Same as 2\n7. Same as 1\n8. Same as 2\n\nThese combos must be sequential. See the combo page used in the test quest.\n\nAssign the ID of (1) to the constant 'CMB_LOCKBLOCK2' in the script.\n\nAssign an unlock sound from Quest->Audio->SFX to the constant 'SFX_SPEC_LOCKBLOCK' in the script file. The default is the 'Shutter' sound in the Classic tileset.\n\nThe constant 'TIMER_WALK_UNLOCK' is used to determine the number of frames that Link must push against the lockblock, to try to open it. The default is 50 frames, but you may adjust this as you deem necessary.\n\nThe constant 'SCREEN_D_SPECIALLOCKBLOCK' is assigned to the index of Screen->D[n] used by the ffc to track opened locks. The default is '7', but if you already use Screen->D[7] for something else, change the value assigned to this constant to an unused Screen->D[] index.\n\nIf you wish to use custom keys...\n\nEnable custom keys by setting the script constant 'USE_CUSTOM_KEYS' to a value of '1'.\n\nCreate a new item, with a key tile. Assign its counter ref to CR_SCRIPT1, or if you are using that for something else, pick a different script counter and assign the constant 'CR_LOCKBLOCK' key (in the script) to the value of that counter (see std_constants.zh).\n\nSet it's type to a custom item class type.\n\nSet it's counter 'increase' and 'not above' values' to whatever you want as the cap. I used 99.\n\nFFC Usage\nCompile the script, and assign the ffc script to a slot. The included item script is not used.\n\nPlace the ffc on a screen on which you intend to use the special lockblocks.\n\nSet the ffc combo to combo ID '1', or a combo with a blank tile that is not Combo 0.\n\nSet the script of the ffc to 'SpecialLockBlock'.\n\nSet the ffc flag 'Run on screen init.'\n\nPlace custom lockblocks on the screen.",
+  "has_zip": true,
+  "has_popup": true
+}

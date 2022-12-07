@@ -1,0 +1,16 @@
+{
+  "name": "Custom Guy (simple version)",
+  "author": "Nightmare",
+  "added": "08 Jan 2015",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This is a simple Custom Guy script that AGN and I came up with a while back, and has been used in several of my newer quests. I consider an essential part of making a new quest in today's age in Zelda Classic. It takes any tile and a CSet, specified by you.",
+  "description": "This is a simple Custom Guy script that AGN and I came up with a while back, and has been used in several of my newer quests. I consider an essential part of making a new quest in today's age in Zelda Classic. It takes any tile and a CSet, specified by you. It's really nice use for classic-based quests where you're limited by the editor.Credits:CJC, BigJoe, Mero, SUCCESSOR: We've been discussing some scripting round-table, especially those that don't use globals or autoghost.",
+  "setup": "1. Copy the script code into a .h file (or .zh if you prefer that)2. Set a freeform combo in the room. Try to match it with the floor so you don't look bad.3. Set the first argument (D0) to the tile you're using.4. Set the second argument (D1) to the tile CSet.5.  Use \"Abei 2\" guy when choosing a guy in the room to activate this.Wa-la! If you have any questions contact me via PM, and I'll answer them the best I can.",
+  "has_zip": false,
+  "has_popup": true
+}

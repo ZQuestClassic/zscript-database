@@ -1,0 +1,16 @@
+{
+  "name": "stdCombos.zh",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "27 Sep 2021",
+  "tags": [
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": "74",
+  "info": "A library for detecting collisions with various in-game objects and combos.Update 28 Sep 2021: Fixed off by 1 errors in hitboxes for all functions.",
+  "description": "This header is used to detect collision between various in-game objects and combos.Most of his functions return INT, which means return location of first combo that has tripped collision.Interactable combos can be represented by combo types, placed flags, inherent flags and hardcoded combos (specific combos in the combo data table).All kinds of items (FFC`s, lweapons, eweapons, enemies, dropped items, Link) are represented here.Link can use either full hitbox(\"Collision\"), or it`s bottom half(\"Stepped\").If you want just to check if an object collides with any combo with specific flag/type, usepiece of code like this:if (ComboTypeCollision (type, foo, false, -1))>=0){bar}where the \"foo\" can be a pointer to any object in game, except Link. if \"solidonly\" boolean is TRUE, only solid portions of combos are used. \"Zheight\" integer defines Z-\"height\" of combo. If Lweapons, Eweapons and NPC`s Z is higher than this value, they can fly/jump over combo without triggering collision. Set to -1 for combo to always affect midair objects. FFC`s and dropped items don`t have Z-position and their functions don`t have \"Zheight\" argument.Link-to-combo interaction is represented by completely differently formatted functions. Here is an example:int LinkHardcodedComboStepped(int cmb, int sens, bool solidonly, int Zheight)This function returns ID of the first \"hardcoded\" combo that has registered collision, if occured. \"sens\" integer arguent controls so called \"sensivity\" which determines how far Link can walk onto the combo before the function detects collision, similar to \"Damage combo sensivity\" entry in Screen Data dialog box in Zquest. \"solidonly\" and \"Zheight\" argument are similar to other functions. The only difference is the fact, that sensivity only works with non-solid combos (solidonly is set to FALSE)./!\\ A note should be taken regarding perfomance: Any of the functions of the header iterate trough all 176 combos on the screen. Solid combo interaction do this 4x slower. If you call any of the library`s functions several times per frame, you might end up with laggy gameplay.",
+  "setup": "Import the library. Plain and simple.Headers: none beyond std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

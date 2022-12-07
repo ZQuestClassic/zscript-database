@@ -1,0 +1,17 @@
+{
+  "name": "Pit Fall Package",
+  "author": "cavthena",
+  "added": "25 Dec 2015",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Allows for Pits, Lava, Moving Platforms and Shutter Doors in ZC.",
+  "description": "Pitfall package includes: Pits and Lava, Moving Platforms, and Shutter Doors.Allows for the addition of Pit and Lava combos. The combos will harm Link if he falls in or warp him to another floor. Moving Platforms move over pits or lava while allowing Link to stand on it. Shutter Doors close once Link enters the room but prevents him from being able to hide in the door way from enemies.If Link falls into a pit or lava and is harmed he will be moved back to the point of which he entered the screen or where a door shut behind him. If the pitfall is a warp Link will be Pit Warped, meaning his X and Y are kept the same. Keep this in mind while building screens that use Pit Fall.",
+  "setup": "Required Libraries:std.zhstdExtra.zhRequired Global Variables: 4\nRequired Weapons: 2\nRequired SFX: 2\n\nSet-up:Set up the LWeapons for Link falling and Link Melting. Each Sprite can be of any animation length.Set up Constants.Set up \"PF_Drawing()\" function. Place functions that need to be drawn while Link is falling or melting within this function. Note: Avoid placing Waitframe functions inside PF_Drawing(). This will cause a error in the animation and warp timing.Add the code to your Global and place \"PitFall();\" in your global loop before Waitdraw().Set up your Combos. Combo Type needs to match PF_PIT_COMBO and PF_LAVA_COMBO for Pits and Lava respectively. Combo Flag should be set to \"97 No Ground Enemies\", to prevent ground enemies from walking on them.Once the combo is on screen if you want a Pit combo to warp Link place the PF_PIT_WARP flag on the combo and set \"Side Warp D\" to the screen you wish Link to warp to. Lava combos cannot warp Link.\n\nPlatfrom Setup:Set the constants found at the start of the FFC. Then compile into your game.Place the platform FFC at the location of the platform or changer.Set the arguments appropriately.\nShutter Door Setup:Place the FFC anywhere and set the arguments as required.",
+  "has_zip": false,
+  "has_popup": true
+}

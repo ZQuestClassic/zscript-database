@@ -1,0 +1,17 @@
+{
+  "name": "LinkMovement.zh",
+  "author": "Moosh",
+  "added": null,
+  "updated": "12 Jun 2021",
+  "tags": [
+    "#Global",
+    "#Library"
+  ],
+  "rating": "4",
+  "downloads": "104",
+  "info": "A header for moving Link by subpixel amounts.",
+  "description": "This header contains a global script and some functions that I use in my own projects for handling moving Link by non integer amounts. Features of the header include:Moving Link by non integer amountsAdding modifiers to Link's step speedDetecting which direction takes priority when opposing directions are held\nUpdate 2/9/18: Fixed bug with speed boosts not affecting Link while in the air. Also fixed a bug where input killing scripts broke StickX and StickY.\nUpdate 3/20/18: Updated the CanWalk function to work better with sideview.\nUpdate 3/24/18: More tweaks to CanWalk.\nUpdate 6/9/18: Fixed some bugs with negative speed boosts.\nUpdate 6/12/18: Added LinkMovement_UndoLinkMovement()\nUpdate 6/16/18: Fixed more bugs with negative speed boost. Added compatibility for (somewhat buggy) 4-way movement.\nUpdate 6/30/18: Fixed bug with speed boost clipping Link through push blocks.\nUpdate 6/12/21: Finally added a fix for push block collision.",
+  "setup": "Combine the LinkMovement_Example global script with your own. For scripters, here's some functions you can use:LinkMovement_Push(int pX, int pY) - Pushes Link by an X/Y component before waitdraw.LinkMovement_PushNoEdge(int pX, int pY) - Pushes Link by an X/Y component before waitdraw and allows pushing him off the screen edge.LinkMovement_Push2(int pX, int pY) - Pushes Link by an X/Y component after waitdraw.LinkMovement_Push2NoEdge(int pX, int pY) - Pushes Link by an X/Y component after waitdraw and allows pushing him off the screen edge.LinkMovement_AddLinkSpeedBoost(float i) - Adds i to Link's current speed boost. Speed boost is reset by the global script every frame.LinkMovement_SetLinkSpeedBoost(float i) - Sets Link's current speed boost to i. Speed boost is reset by the global script every frame.LinkMovement_GetLinkSpeedBoost() - Returns Link's current speed boost. Because the speed boost is reset each frame, this might not be accurate depending on where you call it. Use right before LinkMovement_Update1() in the global script for the total speed boost.LinkMovement_StickX() - Returns the X component of Link's input. -1 for left, 1 for right, 0 for none.LinkMovement_StickY() - Returns the Y component of Link's input. -1 for up, 1 for down, 0 for none.LinkMovement_UndoLinkMovement(*bool xAxis, *bool yAxis) - Cancels out all movement that happens before waitdraw for one frame. Optional arguments apply the effect to individual axes.\nRequires std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

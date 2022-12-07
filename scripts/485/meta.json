@@ -1,0 +1,16 @@
+{
+  "name": "Floor Switch EX",
+  "author": "Alucard648",
+  "added": "14 Jul 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "Simple 2-state switch. Made on request by SkyFlare.",
+  "description": "This script is a set of various floor switches that can define state-switchable combos. Up to 11 switches can be in one screen, 1 per CSet. Switch can be weighted, trigger traps and do more stuff.",
+  "setup": "Place FFC st switch location. D0 - combo to turn flagged combos in off state D1 - combo to turn flagged combos in on state D2 - Switch type:  0 - step -> permanent (until leaving screen)  1 - step - on, release - off.  2 - Toggle state with EX1.  3 - Hold EX1 on switch FFC to keep switch on, otherwise off.  4 - step - permanent  5 - toggle with EX1 - record into register D3 - Switch only combos with came CSet, as FFC. D4 - Quake timer on turning on. D5 - trap settings - -1 - fire drop, >0 enemy ID spawn D6 - if D5>0 - number of enemies to spawn, else - damage caused by fire eweapons.   D7 - if (D5<0) - number of fire eweapons to spawn.//As for switchable FFCs, you can read switch state by passing FFC pointer into SwitchState function that either returns switch state (true - on, false - off), or generate error and terminates the script, if FFC is not a switch.",
+  "has_zip": true,
+  "has_popup": true
+}

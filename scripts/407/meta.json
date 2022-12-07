@@ -1,0 +1,16 @@
+{
+  "name": "Tower of Hanoi Puzzle",
+  "author": "Alucard648",
+  "added": "23 Aug 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "6",
+  "info": "ZC adaptation of Tower of Hanoi puzzle.",
+  "description": "You have foundations, some of them are occupied by towers composed of several disks, one smaller than other.This towers need to be moved from one foundation to another. Link can move 1 disk at time. Larger disks cannot be placed on smaller ones. To solve the puzzle, all the disks must be located on one target foundation.Stand on foundation of tower and press A to grab topmost disk. Then stand on base of valid foundation and press A to place disk on top of the tower.",
+  "setup": "1. Set up tiles. One for disk, which will be scaled horizontally depending on disk width. Then up to 4 in horizontal line for tower foundation.\n2. Make combo using leftmost foundation tile made previously.\n3. Check out constants at the top of script file. Ecpecially FFC_MISC_TOWER_OF_HANOI_NUMDISKS - FFC->Misc[] variable - set it to avoid conflicts with other scripts. Same thing with LINK_MISC_TOWER_OF_HANOI_DISK_IN_HAND - Link->Misc[] variable - set it to avoid conflicts with other scripts. \n4. import and compile the script. Assign 2 FFC script slots to scripts.\n5. Place invisible FFC with TowerOfHanoiController script. No arguments needed.\n6. Place at least 3 FFC`s with combo from step 2, Tile Width equal to foundation width (in tiles) from step 1 and Combo Width (in pixels) for foundation hitbox. Assign TowerOfHanoi script to each of those FFC`s and InitD arguments:D0 Number of disks at the start. Disk width is automatic.D1 At least 1 FFC must have this argument set to anything >0. All disks must be moved to this FFC to trigger puzzle solution.D2 Tile used to render disks. Scaled with disc width. Defaults to TILE_TOWER_OF_HANOI_DISK from top of script file, if set to 0.\n7. Test, enjoy, report bugs...",
+  "has_zip": true,
+  "has_popup": true
+}

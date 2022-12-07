@@ -1,0 +1,16 @@
+{
+  "name": "Color Cube",
+  "author": "cavthena",
+  "added": "25 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "72",
+  "info": "Color based puzzle involving a cube with 3 colors that can be pushed around the room to solve puzzles. Combine it with Push Blocks to make it more interesting.",
+  "description": "A FFC code used to build puzzles involving a push block and colors. When the Color Cube is pushed the cube will change color based on a 3 colored 6 sided dice. The cube can trigger screen secrets if the Player moves the cube to the correct position and the correct color is facing up.Colors are refered to as \"Red\", \"Blue\" and \"Yellow\". However they do not have to be these colors. You may choose any color to represent these. The color \"Red\" will always be the starting color.\"BlockRed\" must be the starting combo, place this one on the screen.The 3 cubes must all be the same Cset. The script will change the block as it is pushed around but the Cset will remain the same as the starting cube, \"BlockRed\". \"BlockRed\" can be any Cset.The script will track the cube on layer 0 only, you cannot place the cube on any other layers.Place only 1 cube on screen. If 2 or more are placed the script will not work properly.Secret triggers act like normal push block triggers. They are not permanent.\nEdit: Fixed bug where block would not push once the color changed to the solution color upon returning to the room after solving/triggering screen secrets once.",
+  "setup": "Place the appropriate combo values into the script. \"Color Cube Combos\" at the start of the script.Compile and save into your quest.Set up the FFC. The FFC can be place anywhere on screen.\nD0: screen position of the secret trigger. Do not use built in flags to trigger secrets.\nD1: Color the cube must be to trigger secrets. Refer to \"Colors\" constants at the start of the code for values.Place the cube on screen. Make sure to place the \"Red\" cube (\"BlockRed\" combo).",
+  "has_zip": true,
+  "has_popup": true
+}

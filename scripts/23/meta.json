@@ -1,0 +1,16 @@
+{
+  "name": "Enemy Music",
+  "author": "Dan358",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": null,
+  "info": "Plays music if an NPC is in the room.",
+  "description": "This script checks whether or not there are any NPCs in the room and changes the music accordingly. Now boss fights can get jazzed up without so many warps or making the screen have permanent music!",
+  "setup": "Just place this script in the room where you would like the music controlled. Try not to place it in rooms with guys in them.D0 = Number of MIDI to be played when there are NPCs in the room.D1 = Number of MIDI to be played when there are no NPCs in the room.",
+  "has_zip": false,
+  "has_popup": true
+}

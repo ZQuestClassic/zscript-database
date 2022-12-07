@@ -1,0 +1,16 @@
+{
+  "name": "Alternate NPC Script",
+  "author": "ywkls",
+  "added": "03 Jan 2015",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "An NPC that does different things than other NPC scripts.Credits: LinktheMaster- original NPC script this is based on.Avataro- CollectItemstoActivateSecrets script.",
+  "description": "This NPC will display one message the first time you talk to it and can have a different response every time after that. It can warp you to another screen and heal you. It can detect the value of counters used in the game, like rupees and bombs or ones you create; then activate secrets to either open a path or reward you. Primarily created to ease setup of NPCs used in trading quests, rewards for collecting special items and cutscenes between dungeons that don't have Triforce pieces.",
+  "setup": "Place import 'std.zh' at the top of the script file, then the rest of this script. Assign to an ffc and set the attributes.// d0: String number to be displayed// D1: Set to anything other than zero. Tells the ffc that this NPC has more than one message. Use string control codes to determine what message to display. Use \\3\\x\\y\\z at the beginning of your string where X is Zero, Y is one and Z is the string to switch to.// D2: If you want the NPC to warp you to another screen after you talk to it. Set to anything other than zero to activate. Uses Sidewarp D to set destination.// D3: If you want the NPC to heal you fully after you talk to it. Set to anything other than zero to activate.// D4: The counter to check for amount listed in D5. If requirements are met, screen secrets are triggered. Check std_constants for countertypes.// D5: Used to test in-game counters. Can be used for collectibles, either existing or created. Set to Zero if this NPC doesn't require certain items.",
+  "has_zip": false,
+  "has_popup": true
+}

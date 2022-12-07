@@ -1,0 +1,17 @@
+{
+  "name": "BS Ganon",
+  "author": "Moosh",
+  "added": "24 Apr 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Enemy"
+  ],
+  "rating": null,
+  "downloads": "13",
+  "info": "It's uh...It's Ganon. Not much to see here. He has some more animations and is easier to beat though.",
+  "description": "It's uh...It's Ganon. Not much to see here. He has some more animations and is easier to beat though.",
+  "setup": "Set all the sfx/music/color constants at the top of the script as desired. Create two enemies. The first is the main enemy. It should use Pal CSet 3. The second is an enemy that's just used to manipulate the Pal CSet. It should use Pal CSet 4, the frozen Ganon one.Both enemies should be Other type and use a special set of 8-bit tiles included with the script. These are recolored into the Pal CSet and prevent the enemy from flashing so he can do his unique hit animation.Give the main BS Ganon enemy the script and set his InitD[0] to the enemy ID of the frozen palette Ganon.This script requires std.zh. No ghost needed.",
+  "has_zip": true,
+  "has_popup": true
+}

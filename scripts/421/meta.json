@@ -1,0 +1,16 @@
+{
+  "name": "Render Priority Puzzle",
+  "author": "Alucard648",
+  "added": "19 Nov 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "2",
+  "info": "Place transparent images one on top of another to overlap them and form target image to solve.Made on request by SkyFlare",
+  "description": "You are given a set of semi-transparent and half-opaque tiles Place those tiles one on top of another, so when overlapped,they form target image.Individual tiles - Ex1 to switch, Ex2 to rotate.Main spot - Ex1 to place & combine tiles in order. If you get target image, secrets pop open.",
+  "setup": "1. Set up a sequence of combos using the same tile sizes for transparent tiles.2. mport and compile the script. 2 FFCs used.3.ffc script RenderPriorityPuzzle  Place FFC at position, where the picture should be assembled.   D0-D5 = puzzle solution     #####.___ combo of image.     _____.#### rotation, multipled by 90 degrees.   D6 - X size, negative for translucency.  D7 - Y size, negative to just render target image, not accept solution4. ffc script RenderPriorityInputer  Place multiple FFCs to form individual tiles that are swapped and rotated prior to combing.    D0 - number of combos in sequence.   D1 - order of tile placement, must be unique per FFC from range 0-5.   D2 - 0 -> disable rotating.   D3 - translucent, if >0.A note on designing puzzles, make sure that target image can only be builat with unique, order of tile overlappings, no ambiguity is allowed.",
+  "has_zip": true,
+  "has_popup": true
+}

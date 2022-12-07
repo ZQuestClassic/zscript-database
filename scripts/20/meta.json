@@ -1,0 +1,17 @@
+{
+  "name": "Bombchus",
+  "author": "Mero",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Creates a Bombchu that can be controlled by Link.",
+  "description": "When link uses this item it checks the item's counter reference to make sure he has atleast one ammo. If he does he'll place a bombchu on the ground infront of him and it'll start moving. It moves constantly but the direction can be changed with the arrow keys. Link cannot move while using it, and it'll explode if Link get's hurt or it collides with an enemy or solid object. As far as solidity is concerned you can have the bombchu treat solid combos as walk-able and vice versa by placing a bombchu flag over the combo location on layer 0.",
+  "setup": "1. Import/Compile script as usual after setting constants appropriately.\n2. Create bombchu sprites.\n3. Create a \"Custom Item Class\" item and set the counter reference to what you want.\n4. Power is the damage done by the explosion so be sure to set it.\n5. Go to scripts tab and put the \"Bombchu\" script in it's action slot.\n6. Set the d arguments using the list bellow.\n\nd0 is the ffc script slot number.\nd1 is the explosion type. 0-2: Bomb blast, Superbomb blast, and 8 fires respectfully.\nd2 is the movement type. 0-2: no direction changing, 4 way, and 8 way respectfully.\nd3 is the step speed per frame in 100th's of a pixel.\nd4 is the sprite to use for the bombchu. Sprites are organized UP DOWN LEFT RIGHT.\nd5 is the sfx to use if the \"8 fire\" blast type is used.\n\nYou'll need std.zh \"included with ZC\" and ffcscript.zh which can be found here.",
+  "has_zip": false,
+  "has_popup": true
+}

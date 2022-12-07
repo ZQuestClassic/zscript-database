@@ -1,0 +1,16 @@
+{
+  "name": "Jump-Drown Spawn",
+  "author": "justin",
+  "added": "06 Jan 2015",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": "17",
+  "info": "A fix for spawning on previous screen entry point when you jump offscreen and drown.",
+  "description": "A fix for spawning on previous screen entry point when you jump offscreen and drown.",
+  "setup": "Only needs std.zhScript includes a sample global.1. Put the variables after the void() and before the while(true).  Several scripts use these same variables,  you only need them once, however depending on how the other script is using them, you might get weird behaviour.2. Copy the stuff between the // JumpDrownSpawn lines to after your while(true), but before your Waitdraw/Waitframe.  Again, several scripts might use a variation of this, so you might need to merge them.3. That's it.  You jump offscreen and drown, you'll end up back where you entered the screen you jumped from, just as if you drowned on that screen.Included in the download is an example that merges the Pit/Lava script by Freya (which uses the same stuff from steps 1&2), to give an example of how to merge this stuff.  It works perfectly fine with that script.Note:  it does work in sideview gravity, but depending on what kinda sideview scripts you have in your quest - sideview ladder, fancy platforms, etc.  You might need to modify the IsJumping function.",
+  "has_zip": true,
+  "has_popup": true
+}

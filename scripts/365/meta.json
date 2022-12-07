@@ -1,0 +1,18 @@
+{
+  "name": "Credits.zh",
+  "author": "Emily",
+  "added": null,
+  "updated": "31 May 2021",
+  "tags": [
+    "#2.55",
+    "#Library",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": "27",
+  "info": "A header to create scrolling credits",
+  "description": "Allows you to create credits, line-by-line, by calling functions to add text. It will draw these out to a bitmap with proper spacing, even resizing the bitmap as needed (which WILL change the bitmap pointer, presently!).You can get the bitmap pointer it uses with a function, should you wish to perform custom draws on it to fancify your credits; but no help is provided in this. All that is provided is simple adding of lines of text (of whatever font, either left/center/right aligned, whatever font color, etc).Includes a function 'rollCredits(int scrollSpeed)', which will scroll the credits across the screen, starting at the bottom.A fairly basic header, but useful for those without experience in custom draws in creating credits.Changelog:05 Dec, 2019 - V1.0 Release31 May, 2021 - V1.01 - no longer uses 'bitmap.zh' header",
+  "setup": "Call 'Credits::init()' to set up the credits, then call the various add functions to add lines of text to the credits. When done, call 'Credits::rollCredits(int scrollSpeed)' to scroll them across the screen.",
+  "has_zip": true,
+  "has_popup": false
+}

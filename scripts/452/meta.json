@@ -1,0 +1,16 @@
+{
+  "name": "Multi State Dungeon Map",
+  "author": "TheRock",
+  "added": "27 Mar 2022",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Ever annoyed that with your 2 state dungeon when you go to one version the other one looks like you haven't been anywhere? Well I have, so here's the fix so now it will appear as if both states on the same map.",
+  "description": "This script makes so the screens you visit on one map will look like you have been there on a different map. Very useful for multistate dungeons with the space bar map.",
+  "setup": "const int mapOne = 1; //Map number of the first state of the dungeonconst int mapTwo = 2; //Map number of the second state of the dungeon",
+  "has_zip": false,
+  "has_popup": true
+}

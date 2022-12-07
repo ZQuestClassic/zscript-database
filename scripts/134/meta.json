@@ -1,0 +1,16 @@
+{
+  "name": "stdArguments.zh",
+  "author": "Timelord",
+  "added": "24 Sep 2014",
+  "updated": null,
+  "tags": [
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": "37",
+  "info": "This is an updated version of stdArguments.zh, that addresses some problems with a few functions, but alas is still far from perfect.",
+  "description": "stdArguments.zh v6.9.9\n\nFor those not aware, stdArguments.zh is a method library, for utilising float values to assign values dynamically. This is primarily useful when making items, or FFCs, that have quite a bit of shared code, or for scripts that may be used by people in many applications, where constants aren't the best solution.\n\nThe trade-off, is that the naming conventions that I used for this, are tedious.\n\nFor more information, please read the stdArguments.zh entry in the old script database.\n\nI will eventually decide on naming conventions, update this to v7, and move all of the old functions into backward-compatibility sub-libraries that the user may import, or choose not to import. For the present, this may be required for some of my code, with (optimally) full-backward-compatibility.\n\nIf it breaks anything, the v6.9 release will remain in the old script DB for you to use, until the end of time.",
+  "setup": "[b]Installing[/n]\nImport the header using:\n\"import stdArgyuments.zh\"\nThis header is 100& functions: No variables, or any global events, or scripts of any sort. It is however, bogged down by a massive amount of in-line text with instructions for use. I'll update this again in the next few days by stripping this from the header, and placing it in its own little kingdom, as a .txt file manual.\n\nI have stripped this documentation from the present library file v6.9.9/1, both so that you needn't look at it just to use the library, however, the download option at present will give you the library v6.9.9/0, that has it, if you need it in its present, confusing state.",
+  "has_zip": true,
+  "has_popup": true
+}

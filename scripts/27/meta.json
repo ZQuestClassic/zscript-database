@@ -1,0 +1,16 @@
+{
+  "name": "Ice Push Block",
+  "author": "Colossal",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": null,
+  "info": "This script makes ice push blocks like the ones in some official Zelda games. When pushed, they travel in a straight line until they hit a solid combo or a \"No push blocks\" flag.",
+  "description": "This script makes ice push blocks like the ones in some official Zelda games. When pushed, they travel in a straight line until they hit a solid combo or a \"No push blocks\" flag. When all of the triggers have blocks on them, the screen secrets are triggered.\n\nThis is a rewrite of the ice push block script by Dan Furst of AGN. The purposes of the rewrite are to make the script work well in the most recent builds and to make it easier to use.\n\nUpdate: Added a sensitivity setting to reduce the likelihood of accidentally pushing an ice block as a result of just bumping into it, prevented blocks from leaving the screen if pushed to the right and no obstacles were in the way, and allowed use of placed or inherent flags.",
+  "setup": "Recommended quest rule: \"FFCs are visible while the screen is scrolling.\" (So the blocks are visible as you enter/exit the screen)\n\n1. Place ice block FFCs aligned to the 16x16 grid and set their combo data to a solid combo.\n2. Place block trigger combos on layer 0 and give the trigger combos flag 66 (\"Block Trigger\"). Also place one ice trigger FFC to get the triggers working.\n3. Set ICE_BLOCK_SCRIPT to the slot number that you have assigned the ice_block script to.\n4. Push blocks will be stopped by a combo that is at least partially solid or a \"No Push Blocks\" flag.\n\nRequires std.zh, included with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

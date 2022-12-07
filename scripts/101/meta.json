@@ -1,0 +1,16 @@
+{
+  "name": "Tall Push Combo",
+  "author": "Mero",
+  "added": "01 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Allows for a freeform combo to move along with it's base. Giving the visual effect of a tall pillar.",
+  "description": "Allows for a freeform combo to move along with it's base. Giving the visual effect of a tall pillar.",
+  "setup": "Place ffc on the screen above the pushable combo so it's aligned on the combo grid. It can be up to 4 tiles high and should have overlay flag set. Set it's TileHeight so the ffc's bottom is touching; but not overlapping the base combo. Then attach the script and apply a push flag to the base combo and your ready to go. NOTE: The base combo is the Push Block placed on the screen NOT the ffc.Requires std.zh which is included with zc.",
+  "has_zip": false,
+  "has_popup": true
+}

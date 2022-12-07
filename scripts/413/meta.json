@@ -1,0 +1,16 @@
+{
+  "name": "Picture Assembly Puzzle",
+  "author": "Alucard648",
+  "added": "17 Oct 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "5",
+  "info": "Made by another request from SkyFlare",
+  "description": "Picture assembly puzzle. Assemble picture by pushing combos to solve it.Credit goes to SkyFlare for picture used in demo quest.",
+  "setup": "1. Set up solid combos to form 2*2 to 4*4 picture 2. Place FFC where you want fully assembled picture to be.3. Assign FFC`s combo to top left corner of picture.4. Set up Tile Width and Tile Height to determine picture dimensions.5. Set \"Run at Screen Init\" FFC flag.6. No arguments needed. Scatter picture parts (combos from step 1) anywhere in the screen and flag them as pushable.",
+  "has_zip": true,
+  "has_popup": true
+}

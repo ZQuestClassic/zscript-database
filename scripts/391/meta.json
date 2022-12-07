@@ -1,0 +1,16 @@
+{
+  "name": "chess.zh",
+  "author": "Alucard648",
+  "added": "17 Jun 2021",
+  "updated": null,
+  "tags": [
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A small library consisting functions for checking if cartain combos on the screen are on same horizontal, vertical or diagonal line, or within chess leaping piece, like knight.",
+  "description": "Not much more to say. Mostly usable in puzzles.",
+  "setup": "Import it and then any scripts that requires it.",
+  "has_zip": false,
+  "has_popup": true
+}

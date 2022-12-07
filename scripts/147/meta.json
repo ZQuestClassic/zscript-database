@@ -1,0 +1,18 @@
+{
+  "name": "Empty Bottles and Potions",
+  "author": "floundermaj",
+  "added": "28 Nov 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script will implement 4 Empty bottles and 4 types of potions for each bottle.",
+  "description": "I was looking for a script to implement bottles, but I couldn't find one, so I made one.  These scripts implements 4 bottles and 4 different types of potions.  Setting them up is quite involved, and requires 20 custom items and 4 custom item classes.  Rather than writing a prolonged explanation I'll just post the code, and if you can't figure it out ask me.  I have tested this and it works on the quest I am building. Note that the item numbers in the script apply to my custom quest, and they'll be different for you, as will sound effect and string numbers.  I'm still new to scripting, so feel free to improve on them in any way, but please give me credit if you use this.Once this is implemented, you can add each of the custom item classes to your subscreen, and you have 4 independent bottles, each one can have different contents, and be used individually.  The bottles can be used over and over.  And since you are slotting the script into the built-in potion items, you can still use the Letter item to activate the shop.  Let me know what you think, and please feel free to ask if you need help setting the items up.",
+  "setup": "All the setup instructions are included in the code.  std.zh required.In order to use this you need to set up 20 different items across 4 custom item classes, 5 items in each class.  Also, set up 4 items of the \"Potions\" item class, for Red, Blue, Green and Purple potions.  The \"emptybottle\" item script will slot in the pickup script for the potion items, and the \"potions\" item script will slot as an action script for each of the 20 custom items.  Then it's just a matter of setting up the variables and adding the bottles to the subscreen.",
+  "has_zip": false,
+  "has_popup": true
+}

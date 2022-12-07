@@ -1,0 +1,16 @@
+{
+  "name": "Enemy Stun and Death Animations",
+  "author": "MoscowModder",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A while back, someone (I forget who, sorry) gave me a script for custom enemy death animations, to get around ZC's hard-coded limitation of 4-frame animations. I cleaned that script up a bit, and added another part for stun animations. Now your enemies will clearly show when they're stunned, and make cool effects when they die. Enjoy!",
+  "description": "A while back, someone (I forget who, sorry) gave me a script for custom enemy death animations, to get around ZC's hard-coded limitation of 4-frame animations. I cleaned that script up a bit, and added another part for stun animations. Now your enemies will clearly show when they're stunned, and make cool effects when they die. Enjoy!",
+  "setup": "Edit the three constants to fit your needs.If you already have a global script, put the line deathAnimations(); into your while(true) loop. Otherwise assign the \"active\" script to the slot of the same name.Go whack an enemy with the boomerang and kill it.\n\nRequires stdExtra.zh",
+  "has_zip": false,
+  "has_popup": true
+}

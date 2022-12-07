@@ -1,0 +1,16 @@
+{
+  "name": "Shovel",
+  "author": "Jamian",
+  "added": "02 Jun 2015",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "An updated version of the shovel script featured in my quests The Forbidden City and Promised Lands.",
+  "description": "This is an updated version of the shovel script featured in my quests The Forbidden City and Promised Lands.Just like the shovel in official Zelda games, it lets you dig soft soil, giving you a random chance of finding certain item drops. You may also uncover secrets by digging, such as secret stairs.",
+  "setup": "Create a shovel item and give it a custom item class. Import the script in your item scripts, then assign it as your shovel's action script.Make sure to read all the comments within the script so you can set everything up to your liking.",
+  "has_zip": false,
+  "has_popup": true
+}

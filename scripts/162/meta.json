@@ -1,0 +1,16 @@
+{
+  "name": "Scripted Step Triggers",
+  "author": "Avaro",
+  "added": "22 Jan 2015",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": "43",
+  "info": "A script for step triggers Ever got annoyed by the fact that step triggers don't play the secret sound? Well, this script fixes this problem and it does even more. You can have multiple step triggers in one screen and the player would have to trigger all of them to activate screen secrets.",
+  "description": "This script does not use the step trigger combo type and only works if every step trigger on one screen uses the same combo. You also need to place all triggers on layer 0. You'll have to place an FFC with the script on every screen where you want to use it.Read the set-up section to find out how to set it up.Update 09-15-2015: Now Link can't trigger the switches while in air.",
+  "setup": "Imort the script to your quest.Find a screen where you want to use the scripted step triggers and place an FFC with the script on the screen.Set up the combos. You need 2 combos: The unactivated step trigger and the activated step trigger. Both combos should use the combo type \"None\". Don't use the step trigger combo type.Place one or more step triggers on the screen. They all need to be the same combo and you have to place them on layer 0.Set up the FFC arguments:\nD0 = Combo number of the unactivated step trigger.\nD1 = Combo number of the activated step trigger.\nD2 = SFX for stepping on a trigger.\nD3 = SFX for screen secret.Set up the screen secrets using flags 16-31 like usual. Place secret flags on the step triggers too, to change them to their activated state permanently.Enjoy the results \nRequires std.zh which is included with ZC.",
+  "has_zip": true,
+  "has_popup": true
+}

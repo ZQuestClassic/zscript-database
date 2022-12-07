@@ -1,0 +1,17 @@
+{
+  "name": "Dungeon Outside/Inside",
+  "author": "SkyLizardGirl",
+  "added": null,
+  "updated": "09 Mar 2019",
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": "16",
+  "info": "This script was made by Dimentio. It gives you the ability to make maps so that they have custom intro message titles such as in ~Link's Awakening message appearing:(Level-1 Tail Cave) etc when you enter a dungeon level or map.",
+  "description": "At the Entrance/Entry of Dungeon Levels and Various Maps you can make maps have titles also.You Place StringDungeon FFC Inside where you want the message displayed to show.You Place DungeonOutside FFC On the Screen Outside of a Dungeon or map just before you enter the screen.^DungeonOutside: This always resets the message so it displays again and again.You use two FFC one for Inside one for Outside.'",
+  "setup": "Export your current Script: Paste it to the bottom of your current script and Compile the script.After that:Then set up your StringDungeon FFC in an empty slot.Then set up your DungeonOutside FFC Script to use in an empty slot.",
+  "has_zip": true,
+  "has_popup": true
+}

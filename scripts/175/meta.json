@@ -1,0 +1,16 @@
+{
+  "name": "Scripted Traps",
+  "author": "ywkls",
+  "added": null,
+  "updated": "13 Jan 2017",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "43",
+  "info": "A trap designed to bounce off of solid objects, even if moving diagonally. Great for designing larger than normal traps! Credit to Lejes for scripting tips.Now requires std.zh, ghost.zh and string.zh",
+  "description": "Update 4-12-15- Fixed bug that can make traps pass through walls.Update 4-14-15- Now supports vertical and horizontal stationary traps.Update 4-15-15- Fixed some code typos. Fixed bug that made stationary traps bounce after moving.Update 4-29-15- Now supports circular trap movement which bounce off of solid objects!Update 1-12-17- Now uses ghost.zh Eweapons for better trap interaction!",
+  "setup": "Requires std.zh// Set Vx and Vy to positive numbers for most traps to avoid unintended behavior.// If placed at greatest X, will start going left, otherwise going right. If placed at bottom of screen will start going up, otherwise down.// For diagonal movement, set both Vx and Vy.//D0 - One for horizontal movement.// Two for vertical movement. Either one or two can be used to create diagonal movement.// Three is a horizontal stationary trap. Set initial Vx and Vy to zero.// Four is a vertical stationary trap. Set initial Vx and Vy to zero.// Five is a circular trap. Set Vx to positive for clockwise movement and negative for counterclockwise.// Place trap at the center of whatever circle it is supposed to travel in and set the radius.// Be careful in placing circular traps to keep them from getting stuck.//D1 - Least X position//D2 - Greatest X position//D3 - Least Y position//D4 - Greatest Y position//D5 - How much damage you take. Defaults to one-quarter heart.//D6 - Radius of a circle, used in conjuction with circular traps.// Do not use damage combos for ffc, damage is handled internally.// Least X and Least Y should be no less than 32 in most dungeons.// Greatest X should be 208 in most dungeons. Reduce by 16 for every increase in Tilewidth.// Greatest Y should be 128 in most dungeons. Reduce by 16 for every increase in Tileheight.// To make larger traps, select a group of tiles that make the shape you want, have the starting combo be the top left corner of the first tile and change the ffc's tilewidth and tileheight to the appropriate amount.// Larger traps get stuck by solid objects more easily than small ones. Be careful when placing them.",
+  "has_zip": true,
+  "has_popup": true
+}

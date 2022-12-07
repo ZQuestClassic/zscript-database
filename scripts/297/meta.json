@@ -1,0 +1,16 @@
+{
+  "name": "Day/Night cycle [<2.55]",
+  "author": "Emily",
+  "added": "16 Jan 2018",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A simple script which allows day/night DMap switching.\nIf you are using ZC 2.55 or later, use the newer version: https://www.purezc.n...=scripts&id=339",
+  "description": "This script allows a day/night cycle. You can specify how long each day/night lasts, as well as what DMaps to use for this. Time will continue to pass, even when in dungeons- although this will not affect the dungeon in any way, unless the dungeon is where you have day/night set up.You can set this up for an unlimited number of DMaps, however the given script is only set up for 2 pairs of DMaps. There is a comment in the code with instructions on how to add more.UPDATE 2/1/2018: Fixed bug with day/night changing while in Screen 80 softlocking the game.",
+  "setup": "Only requires \"std.zh\"Create 2 DMaps which are on the SAME map, with different palettes.Create an item, of class Non-gameplay items. Take note of it's item ID. None of the stats matter, just make sure you don't use that item ID for anything else.Set the constants in the script.dayLength = number of minutes each day/night lasts. This is the time for each the day and the night, not both the day and the night. (Ex. If I set it to 8, day will last 8 minutes before night falls, then night will last for 8 minutes before dawn).I_NIGHT = This should be the item ID of the item from step 2.dayDMAP1 = the DMap number of your day DMapnightDMAP1 = the DMap number of your night DMapdayDMAP2 = a second day DMap, if you need a day/night cycle that affects multiple maps. Leave at -1 if not using.nightDMAP2 = a second night DMap, if you need a day/night cycle that affects multiple maps. Leave at -1 if not using.Either import the example global script, or combine it with your existing global script.\nNote: Enemies may respawn, and bushes or temporary secrets may reset on the screen Link is on when day/night switch.",
+  "has_zip": false,
+  "has_popup": true
+}

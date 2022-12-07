@@ -1,0 +1,16 @@
+{
+  "name": "Resistance Ring",
+  "author": "Avaro",
+  "added": "03 May 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": "26",
+  "info": "This item is inspired by the \"Sturdy\" ability in pokemon games, that many rock-type pokemons have.",
+  "description": "With this item, Link will be able to resist death. For example: If Link has 2 hearts left and is attacked by something that does more than 2 hearts of damage, the ring protects Link and prevents the death, so that at least 1/2 heart is saved (or you can also make it to use 1/4 heart as the lowest possible HP that Link can have). But after that, the ring won't help anymore. If you then get hit again, you'll die.So basically, the ring protects Link from strong attacks.Though, it will only work randomly. You can have 3 Levels of the item, for example:Resistance Ring L1: 50% Chance to prevent deathResistance Ring L2: 75% Chance to prevent deathResistance Ring L3: 100% Chance to prevent death (ring will always do it's job).These are just examples, you can modify the values to whatever you like.",
+  "setup": "1: Create the items. Give all rings different levels of the same itemclass. Use a custom itemclass (or one of the zz item classes).2: In the script, change the \"const int\" values as needed. Combine the global script with other global scripts, if there are others.3: Import the script.4: Try out if it works. Keep in mind that there is a random chance for the rings to save you, except if you set the chance to 100%",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Oracle/GB Interior Entry",
+  "author": "Taco Chopper",
+  "added": "14 May 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A script that makes the player walk up when entering an interior area, similar to the Oracle games.",
+  "description": "In the Oracle games, Link walks up into interior areas from the edge of the room, similar to the dungeon scrolling style in Z1. This script emulates that behaviour, and is simple to set up.",
+  "setup": "Set the constant OracleIntYLocation; by default it will move the player up one tile.Add the script to your header, and compile.Assign the script to a FFC.Place the FFC on the warp return point.",
+  "has_zip": false,
+  "has_popup": true
+}

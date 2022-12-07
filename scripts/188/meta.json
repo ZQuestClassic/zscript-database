@@ -1,0 +1,17 @@
+{
+  "name": "Solid FFC",
+  "author": "Mero",
+  "added": "05 Jun 2015",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is the script you've all been waiting for, the feature everybody wants. Freeform Combo Solidity. And it's now here.",
+  "description": "Let's you make freeform combos solid which can push link around, act as platforms in sideview, and even crush him!",
+  "setup": "1. Copy Script to text/code editor\n2. Edit Constants\n3. Combine Global Scripts if needed, if you need help. Just ask on the forums.\n4. Test it out both in sideview and not.\n5. Ruin or Make your player's day.\n\nMaking a FFC Solid: Their are two ways of doing this manually and the ffc provided. To do it manually add the following code to the beginning of a script.\n\n        this->Misc[MISC_SOLIDFFC] = 1;\n        this->Misc[MISC_SFFC_X] = this->X;",
+  "has_zip": false,
+  "has_popup": true
+}

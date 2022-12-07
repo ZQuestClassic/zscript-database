@@ -1,0 +1,16 @@
+{
+  "name": "DrawLayerFix.zh",
+  "author": "Moosh",
+  "added": "15 Feb 2018",
+  "updated": null,
+  "tags": [
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": "45",
+  "info": "This isn't a very exciting one. Just some functions that fix a certain quirk ZQuest has with layers.",
+  "description": "This isn't a very exciting one. Just some functions that fix a certain quirk ZQuest has with layers. If you have a screen using layer -2 or -3 and a script calls a draw function to those layers, the draw will appear under layer 0. This can cause graphical bugs with some scripts, such as item scripts.",
+  "setup": "Anywhere in a script where there's a draw function, you can just delete the Screen-> pointer and the draws will be shifted to an appropriate layer if the screen flag is checked.\n\nIn addition there's two more functions included:\nvoid DrawTileC(int layer, int x, int y, int tile, int blockw, int blockh, int cset, int xscale, int yscale, int rx, int ry, int rangle, int flip, bool transparency, int opacity){\nand\nvoid DrawComboC(int layer, int x, int y, int combo, int blockw, int blockh, int cset, int xscale, int yscale, int rx, int ry, int rangle, int frame, int flip, bool transparency, int opacity){\n\nThese work the same as regular DrawTile() and DrawCombo(), but use the center of the tile block for positioning, scaling, and rotation.\n\nRequires std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

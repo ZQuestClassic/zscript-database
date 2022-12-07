@@ -1,0 +1,16 @@
+{
+  "name": "Metroid Prime Style Intro",
+  "author": "Sensei Chu",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script deletes every DEFAULT item except heart pieces and triforce pieces.",
+  "description": "This script deletes every DEFAULT item except heart pieces and triforce pieces.",
+  "setup": "Just simply having an FFC with this script will suffice, as there are no additional settings to modify.",
+  "has_zip": false,
+  "has_popup": true
+}

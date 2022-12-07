@@ -1,0 +1,18 @@
+{
+  "name": "Better F6",
+  "author": "Avaro",
+  "added": "05 Aug 2019",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Global",
+    "#Hero"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Requires at least 2.55 alpha 29.\n\nA scripted End Game screen, made for the new onF6Menu script type. This scripted menu will also appear after the death animation, without the \"Cancel\" option.\n\nWorks automatically, it's easy to set up.",
+  "description": "This menu appears when you press F6, when you select End Game from the menu bar, and after the player dies (without the \"Cancel\" option).The \"Quit\" without saving option requires extra confirmation.This F6 menu can be disabled under certain conditions in the quest. For more details, see the constants in the scriptfile.",
+  "setup": "1: Modify the constants in the scriptfile to your liking. Setting up the colors is especially important.2: Import the scripts and put the \"BetterF6\" script into the global \"onF6Menu\" slot, and the \"onDeath\" Link/Player/Hero script into the \"onDeath\" Link/Player/Hero slot.3: Disable the backwards compatibility questrule \"Old (Instant) F6 Menu\".The Saving options can be disabled with the \"No Saving when Continuing\" quest rule.Requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

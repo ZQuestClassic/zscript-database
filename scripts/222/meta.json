@@ -1,0 +1,17 @@
+{
+  "name": "Secret Medicine/Fairy",
+  "author": "Hari",
+  "added": "27 Mar 2016",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script emulates the secret medicine item from Link's Awakening or the fairy item from other Zelda games. When Link's health is zero, the item will be used to set his health to his max health.",
+  "description": "This script emulates the secret medicine item from Link's Awakening or the fairy item from other Zelda games. When Link's health is zero, the item will be used to set his health to his max health.No headers are required to use this script.Update 3/27/16: Added a customizable sound effect to be played when the medicine takes effect. Also added the option to display a message when the medicine takes effect.",
+  "setup": "First, set the constant POTION_ID to the ID of the potion or fairy item, and set the constant POTION_SFX to the number of the sound effect to be played when the medicine takes effect. If you want a message to be displayed when the medicine takes effect, set the constant DISPLAY_MESSAGE to 1, and set the constant MESSAGE to the number of the message you want displayed. If you want a message to be displayed, make sure the quest rule \"Messages Freeze All Action\" is checked. If you don't already have a global script, just copy this script. If you do have a global script already, copy the main part of this script into your current global script. Make sure you place it before Waitdraw() and any ghost.zh functions.No headers are required to use this script.",
+  "has_zip": false,
+  "has_popup": true
+}

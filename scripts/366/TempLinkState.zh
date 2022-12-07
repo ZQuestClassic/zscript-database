@@ -1,0 +1,328 @@
+const int TEMPLINKSTATE_PRIORITIZE_LENGTH = 1; //If 1, temp Link state timers can't be set to a value lower than they already are
+const int TEMPLINKSTATE_TILE_OVERRIDE_USES_SPRITE = 0; //If 1, Link tile override uses weapon sprites instead of script draws
+const int TEMPLINKSTATE_TILE_OVERRIDE_FLICKERS = 0; //If 1, Link flickers during tile override (like the quest rule)
+const int TEMPLINKSTATE_TILE_OVERRIDE_UNHIDE_ON_DEATH = 1; //If 1, Link stops being redrawn when he dies
+const int TEMPLINKSTATE_TILE_OVERRIDE_DRAW_DURING_SCROLL = 1;  //If 1 and TEMPLINKSTATE_TILE_OVERRIDE_USES_SPRITE is 0, overwritten Link tiles will still draw during scrolling
+
+int LW_LINKTILEOVERRIDE = 23; //LWeapon type for sprite Link draws (LW_SPARKLE by default)
+
+const int TEMPLINKSTATE_BIG_LINK = 0; //0 for normal, 1 for 1x2, 2 for 2x2
+
+int _TempLinkState[64];
+
+//Global array indices, do not change
+const int _TLSI_COLLDETTIMER   = 0;
+const int _TLSI_INVISTIMER     = 1;
+const int _TLSI_DRAWXTIMER     = 2;
+const int _TLSI_DRAWXOLDSTATE  = 3;
+const int _TLSI_DRAWYTIMER     = 4;
+const int _TLSI_DRAWYOLDSTATE  = 5;
+const int _TLSI_HITXTIMER      = 6;
+const int _TLSI_HITXOLDSTATE   = 7;
+const int _TLSI_HITYTIMER      = 8;
+const int _TLSI_HITYOLDSTATE   = 9;
+const int _TLSI_LTO            = 10;
+const int _TLSI_LTOTIMER       = 11;
+const int _TLSI_LTOLAYER       = 12; 
+const int _TLSI_LTOCSET        = 13;
+const int _TLSI_LTOHITFRAMES   = 14;
+const int _TLSI_DIRTIMER       = 15;
+const int _TLSI_DIR            = 16;
+
+void TempLinkState_Init(){
+	_TempLinkState[_TLSI_COLLDETTIMER] = 0;
+	Link->CollDetection = true;
+	_TempLinkState[_TLSI_INVISTIMER] = 0;
+	Link->Invisible = false;
+	_TempLinkState[_TLSI_DRAWXTIMER] = 0;
+	_TempLinkState[_TLSI_DRAWYTIMER] = 0;
+	_TempLinkState[_TLSI_HITXTIMER] = 0;
+	_TempLinkState[_TLSI_HITYTIMER] = 0;
+	_TempLinkState[_TLSI_LTOTIMER] = 0;
+	_TempLinkState[_TLSI_LTOHITFRAMES] = 0;
+}
+
+void TempLinkState_Update1(){
+	if(_TempLinkState[_TLSI_LTOTIMER]){
+		//If Link has died while being redrawn
+		if(TEMPLINKSTATE_TILE_OVERRIDE_UNHIDE_ON_DEATH&&Link->HP<=0){
+			Link->Invisible = false;
+			_TempLinkState[_TLSI_INVISTIMER] = 0;
+			_TempLinkState[_TLSI_LTOTIMER] = 0;
+			return;
+		}
+	}
+}
+
+void TempLinkState_Update2(){
+	//Count down Link's hurt frames
+	if(_TempLinkState[_TLSI_LTOHITFRAMES])
+		--_TempLinkState[_TLSI_LTOHITFRAMES];
+	//If hurt frames are 0 and he got hurt, set the hurt frames
+	else if(Link->Action==LA_GOTHURTLAND||Link->Action==LA_GOTHURTWATER)
+		_TempLinkState[_TLSI_LTOHITFRAMES] = 47;
+	
+	//Count down timer for Link Tile Override
+	if(_TempLinkState[_TLSI_LTOTIMER]){
+		--_TempLinkState[_TLSI_LTOTIMER];
+		if(TEMPLINKSTATE_TILE_OVERRIDE_DRAW_DURING_SCROLL&&Link->Action==LA_SCROLLING)
+			_TempLinkState_DrawLink(ScrollingLinkX(), ScrollingLinkY());
+		else
+			_TempLinkState_DrawLink(Link->X, Link->Y);
+		if(_TempLinkState[_TLSI_INVISTIMER]<2)
+			TempLinkState_SetInvisible();
+	}
+	
+	//Count down timer for Link->CollDetection, default state is true
+	if(_TempLinkState[_TLSI_COLLDETTIMER]){
+		--_TempLinkState[_TLSI_COLLDETTIMER];
+		if(!_TempLinkState[_TLSI_COLLDETTIMER])
+			Link->CollDetection = true;
+	}
+	
+	//Count down timer for Link->Invisible, default state is false
+	if(_TempLinkState[_TLSI_INVISTIMER]){
+		--_TempLinkState[_TLSI_INVISTIMER];
+		if(!_TempLinkState[_TLSI_INVISTIMER])
+			Link->Invisible = false;
+	}
+	
+	//Count down timer for Link->DrawXOffset
+	if(_TempLinkState[_TLSI_DRAWXTIMER]){
+		--_TempLinkState[_TLSI_DRAWXTIMER];
+		if(!_TempLinkState[_TLSI_DRAWXTIMER])
+			Link->DrawXOffset = _TempLinkState[_TLSI_DRAWXOLDSTATE];
+	}
+	
+	//Count down timer for Link->DrawYOffset
+	if(_TempLinkState[_TLSI_DRAWYTIMER]){
+		--_TempLinkState[_TLSI_DRAWYTIMER];
+		if(!_TempLinkState[_TLSI_DRAWYTIMER])
+			Link->DrawXOffset = _TempLinkState[_TLSI_DRAWYOLDSTATE];
+	}
+	
+	//Count down timer for Link->HitXOffset
+	if(_TempLinkState[_TLSI_HITXTIMER]){
+		--_TempLinkState[_TLSI_HITXTIMER];
+		if(!_TempLinkState[_TLSI_HITXTIMER])
+			Link->HitXOffset = _TempLinkState[_TLSI_HITXOLDSTATE];
+	}
+	
+	//Count down timer for Link->HitYOffset
+	if(_TempLinkState[_TLSI_HITYTIMER]){
+		--_TempLinkState[_TLSI_HITYTIMER];
+		if(!_TempLinkState[_TLSI_HITYTIMER])
+			Link->HitXOffset = _TempLinkState[_TLSI_HITYOLDSTATE];
+	}
+	
+	//Count down timer for Link->Dir
+	if(_TempLinkState[_TLSI_DIRTIMER]){
+		Link->Dir = _TempLinkState[_TLSI_DIR];
+		--_TempLinkState[_TLSI_DIRTIMER];
+	}
+}
+
+void _TempLinkState_DrawLink(int x, int y){
+	int cs = _TempLinkState[_TLSI_LTOCSET];
+	lweapon l;
+	//Flash the CSet based on the flash timer in a pattern of 9-9-8-8-7-7-6-6
+	if(_TempLinkState[_TLSI_LTOHITFRAMES]>0)
+		cs = 6+(((_TempLinkState[_TLSI_LTOHITFRAMES])>>1)&3);
+	
+	//Sprite drawing creates a weapon for 1 frame under Link instead of drawing it
+	if(TEMPLINKSTATE_TILE_OVERRIDE_USES_SPRITE){
+		if(TEMPLINKSTATE_TILE_OVERRIDE_FLICKERS){
+			if(!(_TempLinkState[_TLSI_LTOHITFRAMES]&1)){
+				l = CreateLWeaponAt(LW_LINKTILEOVERRIDE, Link->X+Link->DrawXOffset, Link->Y+Link->DrawYOffset-Link->Z);
+				l->DrawYOffset = 0;
+				l->NumFrames = 1;
+				l->ASpeed = 1;
+				l->DeadState = 0;
+				l->OriginalTile = _TempLinkState[_TLSI_LTO];
+				l->CSet = _TempLinkState[_TLSI_LTOCSET];
+				l->DeadState = 1;
+				l->CollDetection = false;
+			}
+		}
+		else{
+			l = CreateLWeaponAt(LW_LINKTILEOVERRIDE, Link->X+Link->DrawXOffset, Link->Y+Link->DrawYOffset-Link->Z);
+			l->DrawYOffset = 0;
+			l->NumFrames = 1;
+			l->ASpeed = 1;
+			l->DeadState = 0;
+			l->OriginalTile = _TempLinkState[_TLSI_LTO];
+			l->CSet = cs;
+			l->DeadState = 1;
+			l->CollDetection = false;
+		}
+	}
+	else{
+		int layer = _TempLinkState[_TLSI_LTOLAYER];
+		if(Screen->Flags[SF_VIEW]&0010000b && layer==2) //Layer -2
+			layer = 1;
+		if(Screen->Flags[SF_VIEW]&0100000b && layer==2) //Layer -3
+			layer = 4;
+		if(TEMPLINKSTATE_TILE_OVERRIDE_FLICKERS){
+			if(!(_TempLinkState[_TLSI_LTOHITFRAMES]&1)){
+				if(TEMPLINKSTATE_BIG_LINK==2)
+				Screen->DrawTile(layer, x-8+Link->DrawXOffset, y-16+Link->DrawYOffset-Link->Z, _TempLinkState[_TLSI_LTO], 2, 2, _TempLinkState[_TLSI_LTOCSET], -1, -1, 0, 0, 0, 0, true, 128);
+			else if(TEMPLINKSTATE_BIG_LINK==1)
+				Screen->DrawTile(layer, x+Link->DrawXOffset, y-16+Link->DrawYOffset-Link->Z, _TempLinkState[_TLSI_LTO], 1, 2, _TempLinkState[_TLSI_LTOCSET], -1, -1, 0, 0, 0, 0, true, 128);
+			else
+				Screen->FastTile(layer, x+Link->DrawXOffset, y+Link->DrawYOffset-Link->Z, _TempLinkState[_TLSI_LTO], _TempLinkState[_TLSI_LTOCSET], 128);
+			}
+		}
+		else{
+			if(TEMPLINKSTATE_BIG_LINK==2)
+				Screen->DrawTile(layer, x-8+Link->DrawXOffset, y-16+Link->DrawYOffset-Link->Z, _TempLinkState[_TLSI_LTO], 2, 2, cs, -1, -1, 0, 0, 0, 0, true, 128);
+			else if(TEMPLINKSTATE_BIG_LINK==1)
+				Screen->DrawTile(layer, x+Link->DrawXOffset, y-16+Link->DrawYOffset-Link->Z, _TempLinkState[_TLSI_LTO], 1, 2, cs, -1, -1, 0, 0, 0, 0, true, 128);
+			else
+				Screen->FastTile(layer, x+Link->DrawXOffset, y+Link->DrawYOffset-Link->Z, _TempLinkState[_TLSI_LTO], cs, 128);
+		}
+	}
+}
+
+global script TempLinkState_Example{
+	void run(){
+		ScrollingDraws_Init();
+		TempLinkState_Init();
+		while(true){
+			ScrollingDraws_Update();
+			TempLinkState_Update1(); 
+			
+			Waitdraw();
+			
+			TempLinkState_Update2(); //Recommended to place immediately before Waitframe()
+			
+			Waitframe();
+		}
+	}
+}
+
+//Makes Link invincible for the desired number of frames
+void TempLinkState_UnsetCollDetection(int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	if(frames > _TempLinkState[_TLSI_COLLDETTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		Link->CollDetection = false;
+		_TempLinkState[_TLSI_COLLDETTIMER] = frames;
+	}
+}
+void TempLinkState_UnsetCollDetection(){
+	TempLinkState_UnsetCollDetection(1);
+}
+
+//Sets Link invisible for the desired number of frames
+void TempLinkState_SetInvisible(int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	if(frames > _TempLinkState[_TLSI_INVISTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		Link->Invisible = true;
+		_TempLinkState[_TLSI_INVISTIMER] = frames;
+	}
+}
+void TempLinkState_SetInvisible(){
+	TempLinkState_SetInvisible(1);
+}
+
+//Sets Link's Draw X Offset for the desired number of frames
+void TempLinkState_SetDrawXOffset(int offset, int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	if(frames > _TempLinkState[_TLSI_DRAWXTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		_TempLinkState[_TLSI_DRAWXTIMER] = frames;
+		_TempLinkState[_TLSI_DRAWXOLDSTATE] = Link->DrawXOffset;
+	}
+	Link->DrawXOffset = offset;
+}
+void TempLinkState_SetDrawXOffset(int offset){
+	TempLinkState_SetDrawXOffset(offset, 1);
+}
+
+//Sets Link's Draw Y Offset for the desired number of frames
+void TempLinkState_SetDrawYOffset(int offset, int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	if(frames > _TempLinkState[_TLSI_DRAWYTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		_TempLinkState[_TLSI_DRAWYTIMER] = frames;
+		_TempLinkState[_TLSI_DRAWYOLDSTATE] = Link->DrawYOffset;
+	}
+	Link->DrawYOffset = offset;
+}
+void TempLinkState_SetDrawYOffset(int offset){
+	TempLinkState_SetDrawYOffset(offset, 1);
+}
+
+//Sets Link's Hit X Offset for the desired number of frames
+void TempLinkState_SetHitXOffset(int offset, int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	if(frames > _TempLinkState[_TLSI_HITXTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		_TempLinkState[_TLSI_HITXTIMER] = frames;
+		_TempLinkState[_TLSI_HITXOLDSTATE] = Link->HitXOffset;
+	}
+	Link->HitXOffset = offset;
+}
+void TempLinkState_SetHitXOffset(int offset){
+	TempLinkState_SetHitXOffset(offset, 1);
+}
+
+//Sets Link's Hit Y Offset for the desired number of frames
+void TempLinkState_SetHitYOffset(int offset, int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	if(frames > _TempLinkState[_TLSI_HITYTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		_TempLinkState[_TLSI_HITYTIMER] = frames;
+		_TempLinkState[_TLSI_HITYOLDSTATE] = Link->HitYOffset;
+	}
+	Link->HitYOffset = offset;
+}
+void TempLinkState_SetHitYOffset(int offset){
+	TempLinkState_SetHitYOffset(offset, 1);
+}
+
+//Draws a tile over Link for the desired number of frames
+void TempLinkState_SetLinkTileOverride(int tile, int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	_TempLinkState[_TLSI_LTO] = tile;
+	_TempLinkState[_TLSI_LTOCSET] = 6;
+	_TempLinkState[_TLSI_LTOLAYER] = 2;
+	if(frames > _TempLinkState[_TLSI_LTOTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		_TempLinkState[_TLSI_LTOTIMER] = frames;
+	}
+}
+void TempLinkState_SetLinkTileOverride(int tile){
+	TempLinkState_SetLinkTileOverride(tile, 1);
+}
+
+//Draws a tile over Link in a specified cset for the desired number of frames
+void TempLinkState_SetLinkTileCSetOverride(int tile, int cset, int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	_TempLinkState[_TLSI_LTO] = tile;
+	_TempLinkState[_TLSI_LTOCSET] = cset;
+	_TempLinkState[_TLSI_LTOLAYER] = 2;
+	if(frames > _TempLinkState[_TLSI_LTOTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		_TempLinkState[_TLSI_LTOTIMER] = frames;
+	}
+}
+void TempLinkState_SetLinkTileCSetOverride(int tile, int cset){
+	TempLinkState_SetLinkTileCSetOverride(tile, cset, 1);
+}
+
+//Draws a tile over Link in a specified cset to a specified layer (only on non sprite drawing) for the desired number of frames
+void TempLinkState_SetLinkTileCSetLayerOverride(int tile, int cset, int layer, int frames){
+	++frames; //When frames hits 0 in the global script, changes get undone, so effectively 2==1
+	_TempLinkState[_TLSI_LTO] = tile;
+	_TempLinkState[_TLSI_LTOCSET] = cset;
+	_TempLinkState[_TLSI_LTOLAYER] = layer;
+	if(frames > _TempLinkState[_TLSI_LTOTIMER] || !TEMPLINKSTATE_PRIORITIZE_LENGTH){
+		_TempLinkState[_TLSI_LTOTIMER] = frames;
+	}
+}
+void TempLinkState_SetLinkTileCSetLayerOverride(int tile, int cset, int layer){
+	TempLinkState_SetLinkTileCSetLayerOverride(tile, cset, layer, 1);
+}
+
+//Sets Link's direction in the global script, preventing engine turning
+void TempLinkState_SetDirOverride(int dir, int frames){
+	_TempLinkState[_TLSI_DIR] = dir;
+	_TempLinkState[_TLSI_DIRTIMER] = frames;
+}
+void TempLinkState_SetDirOverride(int dir){
+	TempLinkState_SetDirOverride(dir, 1);
+}

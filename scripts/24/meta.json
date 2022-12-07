@@ -1,0 +1,16 @@
+{
+  "name": "Picking up the item triggers secrets",
+  "author": "Avaro",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script will trigger the screen secrets when there is no room item on the screen.",
+  "description": "This script will trigger the screen secrets when there is no room item on the screen. Items dropped by enemies, bushes or other scripts, etc won't be counted. Only the item that you place on the screen manually matters. You can use this, for example, to open a path when the player picks up the key, or something like that. You can also define if it should play a sound effect or not.",
+  "setup": "Place an FFC with this script on a screen where you want to use it.D0 is the number for the sound effect to play. If you want no sound effect playing, then leave it at 0.Requires std.zh (comes with downloading Zelda Classic).",
+  "has_zip": false,
+  "has_popup": true
+}

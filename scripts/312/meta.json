@@ -1,0 +1,17 @@
+{
+  "name": "Follow FFC",
+  "author": "GrandLovania",
+  "added": "25 Mar 2018",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": "19",
+  "info": "This script can be use to do enemy with single FFC the type of combo work with this FFC(Not have collision)",
+  "description": "This is a simple script do a FFC move toward link",
+  "setup": "There is no special setup to do for this script.Just create a FFC with this script and a combo place it on the room and its will work.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Consecutive Monster Generator",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Spawns monsters consecutively. Useful for Wizzrobes, Zoras, and other enemies that attack simutaneously. Just don't go using it with Windrobes.",
+  "description": "Spawns monsters consecutively. Useful for Wizzrobes, Zoras, and other enemies that attack simutaneously. Just don't go using it with Windrobes.",
+  "setup": "Step 1: Play ffc on screen and attach script\nStep 2: Set Attributes as follows\n\nD0 ID of the Enemy you wish to create.\nD1 Max number of enemies before it stops generating.\nD2 How many frames to wait until spawning another.\nD3 SpawnPoint Flags are 4 values ORed together as follows1 = Land2 = Solid Combos4 = Water8 = Pits (Direct Warps)\nD4 The script quits if the max is reached, setting this to any value except zero prevents this.\n\nYou'll need both std.zh and string.zh which are included with Zelda Classic and also ghost.zh which can be found here.",
+  "has_zip": false,
+  "has_popup": true
+}

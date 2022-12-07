@@ -1,0 +1,17 @@
+{
+  "name": "Better Cane of Byrna",
+  "author": "Lejes",
+  "added": "10 Sep 2016",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "The Cane of Byrna, but better.",
+  "description": "This script primarily exists to reduce the magic cost of the Cane of Byrna, since it drains magic outrageously fast even with a cost of 1. It also adds several new options. You can have the cane make the player invulnerable, \u00e0 la Link to the Past, and have it block enemy projectiles.",
+  "setup": "Requires std.zh. Place the function BetterByrna() in your global active script's while loop, before Waitdraw(), or put the sample global script in your active slot. The script uses a global variable, so it will require a new save file. You also need to attach the included item script to your Cane of Byrna. Its magic cost should be 0, and the numbers in the Scripts tab should be as follows:D1: magic cost (something like 0.25 might be good)D2: 1 to make player invincible while using caneD3: 1 to make cane orbiters block enemy projectiles",
+  "has_zip": false,
+  "has_popup": true
+}

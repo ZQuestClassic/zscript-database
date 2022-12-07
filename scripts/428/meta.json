@@ -1,0 +1,16 @@
+{
+  "name": "Traps and Shooters EX",
+  "author": "Alucard648",
+  "added": "27 Dec 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "8",
+  "info": "A set of traps and eweapon shooters made on request by SkyFlareCredit goes to LinktheMaster for original script.",
+  "description": "Rotating Cannon trap. Fires eweapons then rotatesTimed MachineGun trap. Fires volleys of eweapons at regular intervals Electric floor trap. Zaps Link when activated if Link was standing on.Double Cannon Spawner Spawns 2 Rotating Cannons firing in opposite directions.Quad Cannon Spawner Spawns 4 Rotating Cannons firing in cross shape, like in SMB3.",
+  "setup": "All scripts require ghost.zh// Rotating Cannon trap. Fires eweapons then rotates// d0 = The weapon ID to fire.  Can use EW_ constants or... (DEFAULT: fireball)// 0 = Fireball// 1 = Boss fireball// 2 = Rock// 3 = Fire (short distance)// 4 = Fire (long distance)// 5 = Wind// 6 = Bomb// d1 = Direction to fire in.  For DIR_ constants, add 1 to them (DEFAULT: at link)// 0 = At Link// 1 = Up// 2 = Down// 3 = Left// 4 = Right// 5 = Left Up// 6 = Right Up// 7 = Left Down// 8 = Right Down// d2 = #####.___ = Frequency (60 is about 1 second) (DEFAULT: 120)//    _____.#### = Initial Delay before firing, in frames// d3 = Speed (100 = 60 pixels a second) (DEFAULT: 100)// d4 = Damage (DEFAULT: 1)// d5 = Sound effect (DEFAULT: SFX_FIREBALL)// d6 = rotaion rate after every shot, in multiples of 45 degrees.// d7 = Flags, add together// 1 = Unblockable// 2 = Stops when the FFC's combo changes// 4 = Rotating eweapon sprite// Timed MachineGun trap. Fires volleys of eweapons at regular intervals // d0 = Direction to fire in.  For DIR_ constants, add 1 to them (DEFAULT: at link)// 0 = At Link// 1 = Up// 2 = Down// 3 = Left// 4 = Right// 5 = Left Up// 6 = Right Up// 7 = Left Down// 8 = Right Down// d1 = Damage (DEFAULT: 1)// d2 = #####.___ = Frequency (60 is about 1 second) (DEFAULT: 120)//    _____.#### = Initial Delay before firing, in frames// d3 = firing rate - delay (in frames) between shots in each volley // d4 = The weapon ID to fire.  Can use EW_ constants or... (DEFAULT: fire, like flamethrower)// 0 = Fireball// 1 = Boss fireball// 2 = Rock// 3 = Fire (short distance)// 4 = Fire (long distance)// 5 = Wind// 6 = Bomb// d5 = Speed (100 = 60 pixels a second) (DEFAULT: 100)// d6 = Flags, add together// 1 = Unblockable// 2 = Stops when the FFC's combo changes// 4 = Rotating eweapon sprite// d7 = Sound effect (DEFAULT: SFX_FIRE)//Electric floor trap. Zaps Link when activated if Link was standing on.// D0 - damage// D1 - Initial Delay before activating, in frames// D2 - Frequency (60 is about 1 second) (DEFAULT: 120)// D3 - Sprtite used to shock Link, 1 frame.// D4 - Sound effect on activating// D5 - Sound effect on shock LinkDouble Cannon Spawner//Spawns 2 Rotating Cannons firing in opposite directions.//Init Ds are the same as for Rotating ShooterQuad Cannon Spawner//Spawns 4 Rotating Cannons firing in cross shape, like in SMB3.//Init Ds are the same as for Rotating Shooter",
+  "has_zip": true,
+  "has_popup": true
+}

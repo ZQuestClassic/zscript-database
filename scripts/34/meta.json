@@ -1,0 +1,16 @@
+{
+  "name": "LA Flamethrower",
+  "author": "Orithan",
+  "added": "27 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Constantly spews flames in a single direction.",
+  "description": "This script emulates the Flamethrower from LA. It spews out flames (the Fire EWeapon) constantly in one direction from the FFC. In LA, you encounter it in a cave while on your way to Turtle Rock and you were required to use the Mirror Shield to pass through it. Note: It is compatible with movement and changer FFCs.",
+  "setup": "Copy-paste the code into your script file and then compile it.Find the tiles/sprites you are going to use and have them comboed. It is advisable to have combos of them in all four directions.Set up the FFC: Set its combo to the comboed sprites/tiles you intend to use. Set D0 to the direction that it will be facing (0 = Up, 1 = Down, 2 = Left, 3 = Right), set D1 to the amount of time (in frames) between firing flames (it is not advisable to set it to anything lower than 2) and set D2 to the amount of damage the flames do to Link in quarter-hearts (Default to 16, which is 4 hearts and the same amount of damage as they did in LA. Set it to -1 for the flames to do 0 damage). In order to have them move, set the speeds variables and changers as you would do with normal FFCs.Enjoy!",
+  "has_zip": false,
+  "has_popup": true
+}

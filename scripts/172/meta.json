@@ -1,0 +1,17 @@
+{
+  "name": "Eyegore",
+  "author": "Moosh",
+  "added": "04 Apr 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "83",
+  "info": "An enemy that's invincible until you get close and then wakes up and walks around.",
+  "description": "This enemy is based on the one in LttP known as Eyegore or Rocklops. It stays asleep until you walk close enough at which point it opens its eye and walks around for a bit.",
+  "setup": "This enemy uses the Autoghost global script, so be sure you have that set up properly.\n\nSet up an Other type enemy with the Random Rate, Homing Factor, Step Speed, and Hunger you want and then set its Misc. Attributes in the Data 2 tab like so:Attribute 1: Set this to the distance between Link and the enemy in pixels at which it will activate.Attribute 2: Set this to how many frames (60ths of a second) you want the enemy to move for before closing its eyes again.Attribute 3: Set this to how many frames the enemy should stay deactivated before opening its eye again.Attribute 11: Set this to the first of 7 combos used for the enemy's graphics.\nCombo 1: Walking up, animatedCombo 2: Walking down, animatedCombo 3: Walking left, animatedCombo 4: Walking right, animatedCombo 5: Eye closed, staticCombo 6: Eye half open, staticCombo 7: Eye open, staticAttribute 12: Set this to the script slot this script was loaded into.\nRequires std.zh and ghost.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

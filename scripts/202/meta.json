@@ -1,0 +1,17 @@
+{
+  "name": "Vitreous (Autoghost)",
+  "author": "ywkls",
+  "added": null,
+  "updated": "09 Oct 2017",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": "57",
+  "info": "An attempt to recreate battle against Vitreous from LTTP.",
+  "description": "Creates a core boss and 4 eyes. The core fires a laser at you occasionally. After you defeat the 4 eyes, 4 more appear and it fires the laser more often. After you beat them, it becomes vulnerable; starts moving around and fires the laser even more frequently.Update- 8-17-15-  Added exploding death animation.Update- 10-9-17- Completely rewrote script. Added lightning attack, thanks to Dimentio.",
+  "setup": "Create the main foe , a 2 x 2 enemy. Create the smaller eyes, a 1 x 1 enemy.Create 2 combos. The first for the stationary boss. The second for the boss as it moves around.Select sound effects and set that constant.Requires-std.zhstring.zhghost.zhlaser.zh- zipped with the example quest and link in my signature.",
+  "has_zip": true,
+  "has_popup": true
+}

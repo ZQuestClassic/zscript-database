@@ -1,0 +1,16 @@
+{
+  "name": "Hellrobe (Autoghost)",
+  "author": "Mero",
+  "added": null,
+  "updated": "28 Sep 2014",
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": null,
+  "downloads": "69",
+  "info": "A vile wizzrobe of endgame difficulty",
+  "description": "I took a wizzrobe and made it change attack and movement styles as well as gave it ice magic too spice things up a bit.",
+  "setup": "Create a wizzrobe enemy, give it the sword weapon and make it either teleporting or phasing, and set attribbute 5 to the number of frames between switching to another wizzrobe behavior (chooses from the built in wizzrobe IDs: Mirror, Fire, Bat, Wind, as well as itself. HP will be copied as well as defenses and sprite. Ghost_Replace is used her.Create a ring item with a Level of 255 (max) and set the palette to whatever you want Link's frozen ESP palette to be. In the classic tileset this is 14 by default.",
+  "has_zip": true,
+  "has_popup": true
+}

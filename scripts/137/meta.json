@@ -1,0 +1,16 @@
+{
+  "name": "FFC Raft",
+  "author": "Moosh",
+  "added": null,
+  "updated": "11 Sep 2015",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "97",
+  "info": "This script makes an FFC behave like a raft, sort of like the one in OoA/LA.\n\nUpdate 9/11/2015: I rewrote the script completely and changed some of the mechanics that led to the first one's bugs.",
+  "description": "This script makes an FFC behave like a raft. You can ride it across water and it will follow you across screens. The script can carry you over swim warp combos without triggering them. If you take a raft onto a screen with another raft, the second raft will disappear until you return to that screen without a raft. If you drown while using the raft, it will return to either the last screen transition point or its starting point.\n\nSome minor known bugs (neither I could fix):Link's animation when he has the flippers and uses the raft is a little strange because he tries to go into the swimming state and I can't prevent this.Crossing screen borders in the corners sometimes causes Link to drown.",
+  "setup": "Place down a raft FFC on a water combo with the script. Done.Be sure to put an extra raft in any section where you can leave the raft behind so the player doesn't get stuck.If you have the FFCs Are Visible While The Screen Is Scrolling rule checked, screen transitions might look a little strange.Requires std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

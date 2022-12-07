@@ -1,0 +1,16 @@
+{
+  "name": "Permanent Tiered Secrets",
+  "author": "Moosh",
+  "added": "19 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "73",
+  "info": "Normally ZC only remembers the first secret on a screen with tiered secrets and also can't save secrets on dungeon screens. This script fixes both those problems.",
+  "description": "Set the screen to have temporary secrets. The script will handle saving secrets for you.Place down an FFC with the script over a combo that will be changed every time secrets are triggered. (Usually this will be a two state looping secret like in the top left corner of screen 2:00 in the example quest)Check the FFC's Run Script at Screen Init flagIf Screen->D[0] is used by another script, set the FFC's D0 to something that isn't. Otherwise, leave it at 0.If you're using all the flag 16-31 secrets on a screen, you can place the secret detection combo on a layer and set D1 to that layer. This is done on screen 2:12 in the example quest. Otherwise, leave it at 0.If the screen's tiered secrets loop endlessly, set D2 to the number of states it has. (For example, screen 2:00 has 3 states: Green, Red, and Blue.) Otherwise, leave it at 0.\nNote that secrets using this script will be DMap specific because of how Screen->D works. That means if you go to the same screen on two different DMaps, it will have a different secret state on each.\n\nThis script requires std.zh.",
+  "setup": "No reviews found!",
+  "has_zip": true,
+  "has_popup": true
+}

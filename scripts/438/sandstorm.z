@@ -1,0 +1,46 @@
+//Sandstorm. Reduces Link`s movement speed, if Link does not have specific item. 
+//Requires LinkMovement.zh
+//D0 - item ID
+//D1 - speed penalty
+ffc script Sandstorm{
+	void run (int itemid, int slow){
+		while(true){
+			if (! Link->Item[itemid])LinkMovement_SetLinkSpeedBoost(-slow);
+			Waitframe();
+		}
+	}
+}
+
+//Creates random item from given dropset at given coordinates.
+void CreateRandomItem(int dropset, int x, int y){
+	npc dummynpc = Screen->CreateNPC(116); //Create dummy enemy. I use 166, the trigger enemy used to execute secret carryover in older ZC versions.
+	dummynpc->ItemSet=dropset; //Assign item drop set.
+	dummynpc->X=x; //Place him onto candle`s position.
+	dummynpc->Y=y;
+	dummynpc->HP=0; //Kill the dummy so it drops his item.
+}
+
+//Dropset combos. Create random dropset item when specific combo changes into another one Once per combo.
+//D0 - Combo ID to check
+//D1 - Dropset to use.
+//D2 - Sound to play.
+ffc script CustomizableDropsetCombos{
+	void run (int potcmb, int dropset, int sound){
+		int cmb[176];
+		for (int i=0;i<176;i++){
+			if (Screen->ComboD[i]==potcmb) cmb[i]=1;
+			else cmb[i]=0;
+		}
+		while(true){
+			for (int i=0;i<176;i++){
+				if (cmb[i]==0)continue;
+				if (Screen->ComboD[i]!=potcmb){
+					Game->PlaySound(sound);
+					CreateRandomItem(dropset, ComboX(i), ComboY(i));
+					cmb[i]=0;
+				}
+			}
+		Waitframe();
+		}
+	}
+}

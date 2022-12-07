@@ -1,0 +1,17 @@
+{
+  "name": "Test Play Mode Starts With All Items",
+  "author": "Moosh",
+  "added": "11 Mar 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This is a simple script to start with all items only when in 2.55's new test play mode. This way you don't need to cheat in whatever items you need for what you're testing every time and your long term saves remain cheat free.",
+  "description": "This is a simple script to start with all items only when in 2.55's new test play mode. This way you don't need to cheat in whatever items you need for what you're testing every time and your long term saves remain cheat free.",
+  "setup": "This is a global Init script, so you just need to compile it to use it. It will run whenever you access test play mode from ZQuest.Requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

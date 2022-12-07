@@ -1,0 +1,16 @@
+{
+  "name": "Invisible Maze",
+  "author": "Mr. Z",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Do you remember that mini game in Clock Town where you have to find your way through a maze, but the walls aren't visible unless you get near? You can do the same thing with this script, and it's not limited to just walls!",
+  "description": "Do you remember that mini game in Clock Town where you have to find your way through a maze, but the walls aren't visible unless you get near? You can do the same thing with this script, and it's not limited to just walls!",
+  "setup": "First set up an invisible FFC. This FFC will be on the same position as Link, so it looks better invisible. (Chasing Link around wasn't really needed, so if you feel like doing it differently, go ahead.)Import this script and attach it to your FFC.You need to set up 3 arguments:D0: The combo the wall uses when it is too far away and invisible.D1: The combo the wall uses when it is close enough to become visible.D2: The distance in pixels you need to be from a wall before it appears. I suggest you use at least 32 for this.This script is pretty versatile:You can use damage combos or pits or whatever you want instead of walls. Or be creative and place two FFCs with different properties to create an even bigger chaos.You can also edit this script to, for example, make the FFC move freely around the room.Requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

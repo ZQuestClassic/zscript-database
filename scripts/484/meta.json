@@ -1,0 +1,16 @@
+{
+  "name": "Columns multicolored puzzle block",
+  "author": "Alucard648",
+  "added": "14 Jul 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "Inspired by Columns(Genesis). Made on request by Skyflare.",
+  "description": "Multocolored pushblock. Every time you push it, it shifts colors. Land it on trigger, so every block consisting FFC is on same colored trigger to solve it. Non-solid variant can be pushed by standing on it, facing desired direction and pressing Ex1.",
+  "setup": "Effect Width and Height used and is automatically set to be tile dimensions multiplied by 16. Total tile area must not exceed 4 D0 - bracelet level requirement.  D1 - allowed push directions. Add together - 1-up, 2-down, 4-left, 8-right. 0 for all directions. D2-D5 - colors/csets consisting block D6 - add together: +1 -> Icy variant, continues moving in direction, +2 - allow shift colors by standing on it and press     EX2(non-solid variant only), +4 - shift ccolors with each push, +8 -> Use next combo in list to render animation when   moving.",
+  "has_zip": true,
+  "has_popup": true
+}

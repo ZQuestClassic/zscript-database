@@ -1,0 +1,16 @@
+{
+  "name": "BigEnemyDX Expansion Pack",
+  "author": "kurt91",
+  "added": "02 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "72",
+  "info": "A series of specific-situation BigEnemy scripts to make expanding enemies easier, or work more efficiently.Written by Alucard648. All I did was organize them into separate script files and upload them.",
+  "description": "A pack of custom BigEnemy scripts for specific situations. This Expansion Pack includes:MassBigEnemyWill apply BigEnemy settings to all enemies on the screen.MassBigEnemy - Enemy SpecificUse once to apply BigEnemy settings to all instances of a specific enemy. For example, use once to enlarge all Keese on the screen.MassBigEnemy - ContinuousIdentical to \"Enemy Specific\", but also will be applied to all instances of the enemy that are spawned later (such as being summoned)NOTE: This is an \"Expansion Pack\" for the original BigEnemyDX script. The scripts included require the functions and constants used in the BigEnemyDX. They will not work on their own without those functions. HOWEVER, The functions and constants have been included in a separate text document, in case the original BigEnemyDX script is not needed or desired. It is up to the user to include the necessary functions/constants, whether it be from the original BigEnemyDX script, or manually added from the stand-alone.",
+  "setup": "If the original BigEnemyDX script is already added to the quest, just throw these in as well, and use nearly the same way. If not, you will have to copy and paste the contents of \"StandAlone Constants and Functions\" into the desired scripts before adding to your quest. All scripts function the same way:D0 =Target Enemy ID (Found in Enemy Editor)D1 = Width (measured in pixels)D2 = Height (measured in pixels)D3 = Sprite X-OffsetD4 = Sprite Y-OffsetD5 = Hitbox X-OffsetD6 = Hitbox Y-OffsetD7 = Custom Animation Flags.00000001b - enable custom animation00000010b - allow 8 way direction00000100b - always face Link (Tracking)00001000b - use separate animations when npc is halting (Firing)00010000b - unused00100000b - unused01000000b - unused10000000b - unused",
+  "has_zip": true,
+  "has_popup": false
+}

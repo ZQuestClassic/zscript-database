@@ -1,0 +1,16 @@
+{
+  "name": "Fire Trail Duration Reduction",
+  "author": "Lejes",
+  "added": "12 Nov 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "5",
+  "downloads": null,
+  "info": "Shortens the time fire trails hang around on screen.",
+  "description": "Fire Zols leave flame trails that last for about 10.66 seconds. Now they can last less horribly long.",
+  "setup": "Requires std.zh. Attach this script to an FFC on any screen where Fire Zols are present. Argument D0 is the duration of the fire trails in frames (60 frames = 1 second).",
+  "has_zip": false,
+  "has_popup": true
+}

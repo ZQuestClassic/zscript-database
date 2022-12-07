@@ -1,0 +1,17 @@
+{
+  "name": "Moving Platform",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script is a rewrite of my old moving platform script. This version makes use of a global variable onplatform which stores the number of the FFC if Link is on a platform. Check if this variable equals zero to make it compatible with other scripts such as one of the holelava scripts. This script is not compatible with classic NES Movement, however you can disable diagonal movement by changing the value of DIAGONAL_MOVEMENT to 0.",
+  "description": "This script is a rewrite of my old moving platform script. This version makes use of a global variable onplatform which stores the number of the FFC if Link is on a platform. Check if this variable equals zero to make it compatible with other scripts such as one of the holelava scripts. This script is not compatible with classic NES Movement, however you can disable diagonal movement by changing the value of DIAGONAL_MOVEMENT to 0.",
+  "setup": "In the infinity loop of your global script add the function NesMovementFix() before Waitdraw() and MovingPlatforms() between Waitdraw() and Waitframe(). Then simply attach the script movingplatform to the FFC that you want to be a platform.Additionally, you don't need to assign the script to changers, and doing such will result in them being treated as platforms which is a bug of course.Requires std.zh",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Remote Controlled Bulldozer",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "01 Apr 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "4",
+  "info": "Made on request by SkyFlare",
+  "description": "Magical bulldozer. Stand next to it and press Ex1 to activate it. You can control it by pressing direction buttons.If it runs off course, it crashes. Bulldozed combos are replaced with screen`s undercombo. Bulldoze entire area to open secrets.This script, unlike one made by Ywkles, uses 4 directional combos to indicate which direction bulldozer will go, as it was done in Link`s Remakening.Update 1.04.2022Added options to use specific combo and cset, instead of screen`s undercombo, to replace bulldozed combosAdded option to allow Link to terminate bulldozer prematurely by pressing EX1.",
+  "setup": "1. Set up 4 consecutive combos for directions up->down->left->right.2. Import and compile the script. It requires ffcscript.zh, in addition to default libraries.3. Build the puzzle: place CF_BULLDOZER_TRIGGER over all combos that are needed to be bulldozed and CF_BULLDOZER_ALWAYS_CRASH for obstacles.Also you can edit screen`s undercombo to have inherent CF_BULLDOZER_ALWAYS_CRASH flag for Hamiltonian style puzzles ala Link`s Awakening.4. Place FFC with 1st combo from step 1 and script assigned at it`s initial position. Grid snap it.D0 - Initial direction.D1 - Speed. 64 is best. Others may glitch.D2 - 0-Prevent secret triggering, just bulldozing stuff.D3 - Use FFC`s CSet, instead of screen`s undercset to replace bulldozed combosD4 - ID of combo to use as replacement of bulldozed combo, defaults to screen`s undercomboD5 - If set to > 0 -> allow Link to terminate bulldozer prematurely by pressing EX1.",
+  "has_zip": true,
+  "has_popup": true
+}

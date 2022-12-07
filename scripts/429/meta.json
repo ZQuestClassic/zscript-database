@@ -1,0 +1,16 @@
+{
+  "name": "Linked Circles Combination lock / puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "03 May 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "8",
+  "info": "Another puzzle done on request by SkyFlare",
+  "description": "Combination lock consisting multiple linked rotateable wheels. Link can press button (stand on it and press EX1) to rotate wheel. Rotating a wheel cause wheels linked to it also rotate, sometimes in bizarre patterns. Some wheels can have move limit which, when expired, causes them to lock in lace and block rotation, both direct and linked, which also prevents other wheels to be rotated directly. Input correct direction on each wheel to solve puzzle.Update 3.5.2022 - Fixed premature secret triggering, involving linked circles in motion.",
+  "setup": "1. Setup combos for each button and wheel. Wheel`s combo must be directly below it`s button and has assigned to top left corner of 4x4 tile sheet.2. Import and compile the script. Nothing beyond classic.zh is needed.3. Place FFCs with button combos and scripts attached.D0 - Combo Position of wheel to be drawn. Wheels are rendered in order of FFC IDs.D1 - Initial angle of the wheel, in degrees. 0 - 359D2 - #####.____ - Rotation amount per button press, in degrees, multipled by LINKED_CIRCLE_SPEED_MULTIPLER, counterclockwise. Negative to reverse direction.D2 - _____.#### - Target direction of wheel to solve the puzzle.D3, D4, D5#####.____ - Linked FFC rotating amount, in degrees, multipled by LINKED_CIRCLE_SPEED_MULTIPLER, counterclockwise. Negative to reverse direction._____.#### - Linked FFC ID (0-32)D6 - Rotation count limit. When the wheel is rotated that amount of times, direct or via linked wheels. it locks in placeand cannot be rotated anymore and blocks other wheels that are linked to it from being rotated directly. 0 for unlimited rotations.",
+  "has_zip": true,
+  "has_popup": true
+}

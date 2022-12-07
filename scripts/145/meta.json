@@ -1,0 +1,17 @@
+{
+  "name": "Simple Item Spawner",
+  "author": "Ben",
+  "added": "24 Nov 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "This script spawns one item on the screen. The item always respawns.",
+  "description": "This very basic script spawns one item on the screen when attached to a FFC. Use Argument 1 as the item ID, and argument 2 and 3 as the X and Y coordinates of the item.If you leave arguments X and Y at zero, the item will have random coordinates, which can be handy for making fairy fountains.Place multiple FFCs to place multiple items. The item will always return when you revisit the screen, so this is mostly useful for keeping Link supplied with health or ammo. I suppose you could maybe find a more creative use for an always-respawning item as well.",
+  "setup": "Set up a new Freeform Combo using a blank combo for its graphic, and assign it this script.\n\nLook up the item ID of the item you want to use in the item editor, and put it into Argument 1.\n\nYou can optionally supply X and Y coordinates in arguments 2 and 3, but if you leave them at zero, the item will be placed at a random position on the screen.\n\nUpdated 1/4/15: Now includes a simple alternate version that is three lines long. Places an item at the FFC coordinates. It will not place an item at random coordinates like the first script.",
+  "has_zip": false,
+  "has_popup": true
+}

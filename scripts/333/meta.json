@@ -1,0 +1,16 @@
+{
+  "name": "Boss music",
+  "author": "Jamian",
+  "added": "25 Mar 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Play boss music on a screen, for as long as the boss is alive",
+  "description": "This is a very simple script that allows you to play a specific midi for a boss fight. Once the boss is dead, the midi that was previously playing will resume. Upon reentering the boss room, the boss music won't play again if the boss is already dead.",
+  "setup": "Assign the script to a FFC on the screen where the player fights the boss. Set the FFC's D0 argument to the number of the boss fight midi.You need to have the line:import\"std.zh\"at the top of your script file.",
+  "has_zip": false,
+  "has_popup": true
+}

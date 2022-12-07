@@ -1,0 +1,16 @@
+{
+  "name": "Assorted FFC scripts",
+  "author": "Alucard648",
+  "added": "24 May 2015",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "A pack of various simple FFC scripts that are used to manipulate screen states or drop special items.",
+  "description": "This file contains 5 FFC scripts:ScreenStateTrigger// Triggers secrets when specific screen state is set.EnemySecret//Triggers secrets when specific enemy dies.SecretKillAllEnemies//Kills all enemies when specific screen state is set.Note: Originally used to check only secrets, hence the name. But it was updated to check any desired screen state.SpecialItemDropper// Drops Screen`s Special Item when combo underneath FFC changes into another one. Works just like flag #10 but more versatile and works with custom combo changers.StateSpecialItem//Checks specific screen state and drops Screen`s Special Item, if set to TRUE.",
+  "setup": "EnemySecret//Triggers secrets when specific enemy dies.//Place anywhere in the screen.//DO: Enemy Slot//D1: Set to anything > 0 for secret permanency.SecretKillAllEnemies//Kills all enemies when specific screen state is set.//Place anywhere in the screen.//D0: Screen State to check. Refer to stdConstants.zh for determining which number to set.ScreenStateTrigger// Triggers secrets when specific screen state is set//Place anywhere in the screen.//D0: Screen State to check. Refer to stdConstants.zh for determining which number to set.//D1: Set to 1 to render secrets permanent.//D2: Set Screen State to \"false\" on reentering for reusability (useful for 2.10-styled bosses).//    Any number > 0 activates this function.SpecialItemDropper// Drops Screen`s Special Item when combo underneath FFC//changes into another one. Works just like flag 10 but more versatile.//Place the FFC where you want to drop item.//No arguments needed.StateSpecialItem//Checks specific screen state and drops Screen`s Special Item, if set to TRUE.//Place the FFC where you want to drop item.//D0: Screen state to check. Refer to stdConstants.zh for various screen states.Headers: none beyond std.zh",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Block Puzzles",
+  "author": "ywkls",
+  "added": null,
+  "updated": "31 May 2021",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "31",
+  "info": "Ever wanted to have more unique puzzles?Includes 3 new scripts and a built-in method seldom used.",
+  "description": "Includes the following scripts:1. Push blocks- Scripted push blocks.Can be set to have various requirements before they can be pushed.Supports push blocks that fall when pushed off ledges in sideview.Also, can be set to mimic behavior of any existing push block including uni-directional.2. Color Cube- Rotating six-sided block from Oracle series.When pushed, it will change appearance to a new side.If it rotates onto a specially marked combo with the right side up, sets a flag for other scripts to detect.3. Dominion Block- Block that moves continually based on pressing the arrow keys from LA.Won't cross path where it has already been.Won't cross solid combos.Won't cross combos with flag 67 (no push blocks).4. Register Check- Used by Push Blocks and Color Cube to detect multiple blocks are in place.Uses Screen->D registers to detect completion.Can have up to 8 onscreen.5. Register Reset- Resets Screen->D register.Uses to reset puzzles that use these when you leave a screen and reenter.6. Type Puzzle- Used to detect how many of a combo type are on screen.Used in conjuction with Dominion Block.Tileset by HeroofFireUpdates5-31-21Adjusted Dominion Block script to move more slowlyFixed issue with Push Blocks scriptFixed setup issue with demo",
+  "setup": "All scripts- requires std.zhPush Blocks- set up sound effects.//D0- Whether this push block will only set off triggers of a certain flag or type// 0- No flag needed. Sets off triggers with flag 66// 1- Flag needed. If type is not set, this is placed or inherent flag////D1- If you want the push block to set off a trigger when it rests on a specific combo type// Can only be set if D0 is greater than 1.////D2- Screen->D register to store puzzle completion// Activated by setting D0 or D1 to something other than zero// Set to a value between 0-7// All parts of a puzzle should use the same value// Use in connection with Register_Check script////D3- Something must be done before you can push this block// 0- No requirement// 1- Kill all enemies// 2- Level 1 bracelet// 3- Level 2 bracelet// 4- Level 3 bracelet////D4- This block can only be pushed in one direction// 0- All 4 directions// -1- Up// 1- Down// 2- Left// 3- Right// 4- Horizontal// 5- VerticalColor Cube- set up 30 combos in the following order.1- Red top, blue front2- Red top, yellow front3- Blue top, red front4- Blue top, yellow front5- Yellow top, red front6- Yellow top, blue front7-30- Set up 6 sets of four animated combosEach set corresponds to one of the first 6, in the same order.Each set should be in this order: rotating up, down, left, right//D0- Initial state of the color cube. See state list for accepted values//D1- Sfx to play when rotating//D2- Screen->D register to change upon reaching proper spotDominion Block- Set up three combos in this order: Idle, stopped, moving.//D0- Sound to play while moving//D1- CSet to use for under combo",
+  "has_zip": true,
+  "has_popup": true
+}

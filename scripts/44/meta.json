@@ -1,0 +1,16 @@
+{
+  "name": "animation.zh",
+  "author": "grayswandir",
+  "added": "29 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": "54",
+  "info": "Library that let's you easily create and manipulate sprite animations based off of lweapons. This is a bit more robust than the code I posted the other day - the animations can move off and back onto the screen without dying, and you can both set a timer and use the built-in movement variables.",
+  "description": "Library that let's you easily create and manipulate sprite animations based off of lweapons. This is a bit more robust than the code I posted the other day - the animations can move off and back onto the screen without dying, and you can both set a timer and use the built-in movement variables.\n\nIf you run out of lweapons (I tried setting the demo to make 10 animations every frame instead of 3), it seems to just silently fail to make the animation and continue on, which is good.",
+  "setup": "Requirements\nThis requires stdExtra.zh for the DirToXSpeed and DirToYSpeed functions - if you can live without dir based movement you can just delete that part of the code instead.\n\nConstants\nThere are 2 constants, both of which should be fine as they are if you aren't running any other scripts. The first is the LW_ANIMATION, which is the weapon id you'll be assigning to animations. Don't let it overlap with any other weapons you're using.\n\nThe second is ANIMATION_ID_INDEX, which is which Misc slot of the lweapon you'll be storing the animation id in. You can change this to a different slot if it's interfering with an existing script.\n\nSprites\nThis uses sprites for animation, which you can define in ZQuest at Quest -> Graphics -> Sprites -> Weapons/Misc. It's probably easiest to make a constant for each sprite you'll be using.\n\nCode\nCall AnimationCreate(spriteId, x, y, loop) to create an animation lweapon. Set loop to true if you want it to continue forever, or false if you want it to stop after one time through the sprite.\n\nUse AnimationGetId(animation) to get a unique id for each created animation, which will stay consistent between frames. Then use AnimationGet(id) to turn the id back into an animation for you to mess with.\n\nIf you call AnimationUpdate() in your main loop, then the animations will respect any of the normal movement values you'd give an lweapon, like Step and Dir and such. You can also call AnimationUpdate(animation) for a specific animation instead if you only want to move a specific one.\n\n\nResources\nstd.zh, stdExtra.zh, ffcscript.zh",
+  "has_zip": true,
+  "has_popup": true
+}

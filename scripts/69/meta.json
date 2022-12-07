@@ -1,0 +1,17 @@
+{
+  "name": "IceGolem (AutoGhost)",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "50",
+  "info": "These things should look familiar if you played Illusion of Gaia. Yes I made a ZC version as a boss. They walk about launching their rocket fist at you and firing lasers from their eyes!",
+  "description": "These things should look familiar if you played Illusion of Gaia. Yes I made a ZC version as a boss. They walk about launching their rocket fist at you and firing lasers from their eyes!",
+  "setup": "First off, grab the sprites and import the script file. If you wish to use custom sprites he is 3x3 tiles however his hitbox is center bottom at 32x32 pixels.\n\nCombos: Setting up the combos can be complicated as they use both A. X Skip and A. Y skip. Both of which should be 2. The first tile should be the top left tile of the first frame of the animation. ONLY set A. Y Skip if the animation is going to take up more then one row. For the actual combos they are arranged as follows Walking A. Speed 12, Shooting Fist A. Speed 6, Shooting Laser this one is 8 way. The directions are up, down, left, right, upleft, upright, downleft, downright. He uses 16 combos total.\n\nSprites: The enemy uses two different sprites for his Rocket Fist and Lasers. These need to be set and the number supplied to the enemy's attributes.\n\nSounds: These are constants, and are at the top of the script file underneath the import commands. Be sure to set these. I use LTTP Cannon for the fist and LTTP Tailwhip for the Laser.\n\nIce Golem Enemy...\nType: Other\nRandom Rate, Haltrate, Homing Factor, Stepspeed, and Hunger are used.\nnpc Attributes\n1: Rocket Fist Step. Default 200\n2: Rocket Fist Sprite. Default 88\n3: Laser Step: Default 400\n4: Laser Sprite: Default 89\n5: Laser Chance x in 16: Min 1, Max, 16, if not set haltrate is used.\n11: ComboID or number of the 1st combo of the 16 used by the enemy.\n12: Script Number\n\nDefenses: Must block any weapon that would stun him including boomerangs and hookshots. Is also impervious to clocks.\n\nIMPORTANT: The screen flag Sprites Carryover needs to be checked, no exceptions.\n\nRequires std.zh and string.zh included with ZC aswell as ghost.zh which can be found here.\nThe demo file contains the sprites and soundeffects I used.",
+  "has_zip": true,
+  "has_popup": true
+}

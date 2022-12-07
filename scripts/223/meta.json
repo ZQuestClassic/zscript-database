@@ -1,0 +1,16 @@
+{
+  "name": "Potions of Remedy",
+  "author": "Lelouche Vi Britannia",
+  "added": "28 Mar 2016",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Adds potions to your quest that cure Sword Jinx.",
+  "description": "The Potion of Remedy is designed to remove Sword Jinx. It's a staple in my current quest project due to permanent Sword Jinx being a real problem... Red Bubbles are rampant with few blue ones to be found. The script provides a counter to use to track potion usage as well, and removes the item from your inventory once you have used the last one. Don't worry, it'll come back once you find more. Script is pretty easy to set up and I probably overexplained the set up so that newbies to script writing or non-scriptwriters can easily incorporate the item into their designs if desired.Written in 2.5.2 but should be pretty backwards compatible as it's so simple.",
+  "setup": "Step 0: If not already done be sure to include the normal header \"import std.zh\" at the top of your script file if not already present.Step 1: Create the potion item in the item editor. Note which item number is being used for the item.1a>Set an unused custom item class for the class of item. What it is set to is not important so long as no other items use that custom item class number, but remember which one you use when you modify your subscreen as you'll need it to create the icon for the item.Step 2: Import the Script Then2a> Change the variable for CR_JINXP in line 3 to whatever counter you wish to use for your quest2b> Change the \"143\" in the last written line to whatever the actual item number is for your quest2c> CompileStep 3: Return to the item editor, enable this script for the Remedy Potion. Do the following as well;3a> Go to the pick up tab and set the following; Increase amount 1 (more if you want more given on pick up), Increase \"Counter Max\" and \"But Not Above\" to whatever the maximum you want them to be able to carryNow you can add the item to shops, drop lists or whatever.NOTE: You can also change the sound effect if you want to by changing the number 53 in the line Game->PlaySound(53) to the sound number you want to use instead.",
+  "has_zip": false,
+  "has_popup": true
+}

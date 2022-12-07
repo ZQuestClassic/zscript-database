@@ -1,0 +1,17 @@
+{
+  "name": "Fyrus (Autoghost)",
+  "author": "ywkls",
+  "added": null,
+  "updated": "02 Aug 2015",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "54",
+  "info": "A boss who looks like a Goron on fire and has larges chains to pelt you with.Sprites based on work by Master Maniac.",
+  "description": "Creates the main boss, plus two circling chains and a third that tries to head towards you. As his HP drops, he moves faster; the chains circle faster and the projectile is fired more often.",
+  "setup": "Assign chain sprite graphics to a slot and change variable to match that slot.Requiresstd.zhstring.zhghost.zh",
+  "has_zip": true,
+  "has_popup": true
+}

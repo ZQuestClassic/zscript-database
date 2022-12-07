@@ -1,0 +1,16 @@
+{
+  "name": "Input Password To Unlock Secrets",
+  "author": "Alucard648",
+  "added": "02 Mar 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Input password on floor (or wall) tiles to open secrets.",
+  "description": "A string of combos that form a sequence. Link can change combos in various ways like stepping on them. When correct password is erected, the secrets pop open.Update 17.06.2021 - Fixed off by 1 error that caused 8 digit passwords, max length, to fail to work. Added option (via constant at top of script file) to allow changing combos by standing on it and press either A or Ex1.",
+  "setup": "1. Set up a sequence of combos to be changed from one to another. They must be consequtive in the combo table.2. Place a horizontal string of password combination, using only first combo in sequence from step 1 (like 0000).3. Import and compile the script.4. Place invisible FFC on the first digit in sequence on screen, assign compiled script to it`s script slot.5. Assign D values to form solution starting from D0, one digit at time, to D7 (password can be up to 8 digits long).If your password is shorter that 8 digits, terminate solution with -1.Example 1. 6 arabian digits from 0 to 9. Solution - 234216:D0 - 2, D1 - 3, D2 - 4, D3 - 2, D4 - 1, D5 - 6, D6 - -1, D7 - unused.Example 2 4-color password, only red,yellow, green and blue used, sequence is the same. Solution- Red, Blue, Green, Yellow.D0 - 0, D1 - 3, D2 - 2, D3 - 1, D4 - -1, rest are unused.Headers: none beyond std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

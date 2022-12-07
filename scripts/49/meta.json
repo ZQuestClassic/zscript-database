@@ -1,0 +1,17 @@
+{
+  "name": "Chaser (AutoGhost)",
+  "author": "Saffith",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "51",
+  "info": "This is a recreation of the chaser enemy seen in Oracle of Ages, Oracle of Seasons, Four Swords, and The Minish Cap.",
+  "description": "This enemy is a trap that does not retract. When horizontally or vertically aligned with Link, it moves straight toward him as far as it can. When it can go no farther, it simply stops and waits in place for Link to come into range again.",
+  "setup": "Set up four consecutive combos:\n1: Inactive\n2: Starting up\n3: Spinning - slow\n4: Spinning - fast\n\nSet up an enemy as follows:\nType: Other\nStep speed is used\nAttribute 1: Move over water\n- 0: No\n- 1: Yes\nAttribute 2: Move over pits (direct warps)\n- 0: No\n- 1: Yes\nAttribute 3: Tile width\n- Minimum: 1\n- Maximum: 4\n- Default: 1\nAttribute 4: Tile Height\n- Minimum: 1\n- Maximum: 4\n- Default: 1\nAttribute 5: Sound played when first starting to move\nAttribute 6: Sound played when stopping\nAttribute 7: Sound played while moving\nAttribute 8: Time in frames for moving sound to loop\nAttribute 11: Inactive combo\nAttribute 12: Script slot\n\nRequires ghost.zh, std.zh, and string.zh.\nTiles are here.\nSounds can be found here. In OoA and OoS, Oracle_Block_Push is used when the trap starts moving.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Basic ALttP Dark Room [2.55]",
+  "author": "Moosh",
+  "added": "19 Mar 2021",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#DMap"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a basic DMap script for drawing the light cone effect used by A Link to the Past in dark rooms.",
+  "description": "This is a basic DMap script for drawing the light cone effect used by A Link to the Past in dark rooms.",
+  "setup": "Set the TIL_LTTP_DARKROOM and TIL_LTTP_DARKROOM_TRANS constants to the top-left corners of the two 6x6 tile blocks used for the light cone. \n\nDepending on the tileset you may also need to set CS_LTTP_DARKROOM to a CSet where the light cone tiles appear black and C_BLACK to the position of the color black in CSet 0.\n\nAssign the DMap script in the DMap editor and give D0 one of the following values:0: Same as 12864: Makes the light cone translucent96: Makes the light cone translucent but darker128: Makes the light cone opaque\n\nRequires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

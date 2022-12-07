@@ -1,0 +1,17 @@
+{
+  "name": "SimpleTangoHandler",
+  "author": "Emily",
+  "added": null,
+  "updated": "31 May 2021",
+  "tags": [
+    "#Global",
+    "#Misc"
+  ],
+  "rating": "1",
+  "downloads": "52",
+  "info": "A handler for Tango.zh, allowing fast/easy setup for message boxes.",
+  "description": "A customized handler for Tango.zh, allowing for customizable message boxes.\nThis will also be set up to support any tango-based scripts I upload to the database.\n\nThis basically just allows a quick-and-easy tango setup. Feel free to modify it however you need to, or even just use this as a base to learn how Tango works as a whole.\n\nPresently supports the following database scripts of mine:\n-FFC Shops ( https://www.purezc.n...=scripts&id=360 )\n\nChangelog:\nVersion 1.0 - 2.53+ version\nVersion 1.01 - Fix a compile error I somehow missed.\nVersion 1.02 (15-Aug-2020) - Update to work with current build of tango; add 2.55 version",
+  "setup": "Requires: Tango.zhSet up the constants as directed in the comments / readme file to match your quest.From another script, call 'ShowMessageAndWait(number)' to display a message from the ZQ string table, or 'ShowStringAndWait(string)' with a ZScript string pointer, to display that message. (This can NOT be used in the global script!)This basically just allows a quick-and-easy tango setup. Feel free to modify it however you need to, or even just use this as a base to learn how Tango works as a whole.",
+  "has_zip": true,
+  "has_popup": false
+}

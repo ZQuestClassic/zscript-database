@@ -1,0 +1,16 @@
+{
+  "name": "Bait Bag",
+  "author": "Mero",
+  "added": "29 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a replacement for the bait item that allows you to carry more then one.",
+  "description": "This is a replacement for the bait item that allows you to carry more then one.",
+  "setup": "1. Set the constant CR_BAIT to a number between 7 and 31.\n2. Assign the script to a Custom Item Class Type Item\n3. Add it to your subscreen or replace the original bait all together.\n4. Set the d arguments as follows: The defaults are used if 0 is given.\nd0 The weapon/Misc sprite to use for the bait.d1 Time in frames before the bait disappears.d2 Max amount that can be on the screen at once.\n\nResources\n\nRequires std.zh which is included with Zelda Classic.",
+  "has_zip": false,
+  "has_popup": true
+}

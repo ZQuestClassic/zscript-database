@@ -1,0 +1,17 @@
+{
+  "name": "Hardhat Beetle",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a recreation of the Hardhat Beetle enemy from ALTTP and the GB games. They move at varying speeds and can be knocked back in 8 directions.",
+  "description": "This is a recreation of the Hardhat Beetle enemy from ALTTP and the GB games. They move at varying speeds and can be knocked back in 8 directions.",
+  "setup": "Type = Walking Enemy or Other\nAnimation can be 2 Frame, 3 Frame, 4 Frame, Flip or None.\n\nAttributes: \"1 & 2 are defined by constants\"\n1. Min Step: This is what step is reset to when it is hit or runs into an obstacle.\n2. Max Step: The fastest it will move in 100th's of a pixel per frame.\n11. GH_INVISIBLE_COMBO.\n12. ffc script slot number with the script assigned.\n\nRequires std.zh, string.zh, and ghost.zh.\nTiles can be found here.",
+  "has_zip": false,
+  "has_popup": true
+}

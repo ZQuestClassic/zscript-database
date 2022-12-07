@@ -1,0 +1,16 @@
+{
+  "name": "Signpost",
+  "author": "Joe123",
+  "added": "01 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": null,
+  "info": "Turns the combo underneath the ffc into a signpost.",
+  "description": "Turns the combo underneath the ffc into a signpost.",
+  "setup": "Place the ffc exactly on top of a solid combo with a signpost graphic.\nGive the ffc this script, and a transparent combo that's not combo 0\nD0 is the message string to play\nD1 is which button to check for when reading the singpost, 0 is A, 1 is B, 2 is L and 3 is R\n\nThe script will only function correctly with both the 'Messages Freeze All Action' and the 'Messages Disappear' Quest Rules checked.\n\nNote: This script uses a number of functions common to some other scripts of mine in the database. These functions should only be included in your script file once",
+  "has_zip": false,
+  "has_popup": true
+}

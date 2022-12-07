@@ -1,0 +1,49 @@
+//Constant Walk. Every Nth frame, he jumps. His every Mth jtmp is higher than normal.
+
+//Random rate, hunger, homing factor, step speed are used.
+//Attribute 0 - normal jump height.
+//Attribute 1 - max jump height
+//Attribute 2 - delay between jumps, in frames, counted after landing.
+//Attribute 3 - every X jump is big one.
+
+ffc script TweeterSMB2{
+	void run(int enemyID){
+		npc ghost = Ghost_InitAutoGhost(this, enemyID);
+		
+		int HF = ghost->Homing;
+		int HR = ghost->Haltrate;
+		int RR = ghost->Rate;
+		int HNG = ghost->Hunger;
+		int SPD = ghost->Step;
+		int WPND = ghost->WeaponDamage;
+		
+		int minjump = Ghost_GetAttribute(ghost, 0, 2);
+		int maxjump = Ghost_GetAttribute(ghost, 1, 3);
+		int jumpdelay = Ghost_GetAttribute(ghost, 2, 20);
+		int jumpcount = Ghost_GetAttribute(ghost, 3, 3);
+		
+		//ghost->Extend=3;
+		
+		Ghost_SetFlag(GHF_NORMAL);
+		
+		int State = 0;
+		int haltcounter = -1;
+		int jumpcounter = jumpdelay;
+		int jc = jumpcount;
+		
+		while(true){
+			if (State==0){
+				haltcounter = Ghost_ConstantWalk4(haltcounter, SPD, RR, HF, HNG);
+				if (jumpcounter==0 && Ghost_Z==0){
+					if (jc==1) Ghost_Jump = maxjump;
+					else Ghost_Jump = minjump;
+					jc--;
+					if (jc==0)jc = jumpcount;
+					jumpcounter = jumpdelay;
+				}
+				else if (Ghost_Z==0) jumpcounter--;
+			}
+			Ghost_Waitframe(this, ghost);
+		}
+	}
+}

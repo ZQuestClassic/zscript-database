@@ -1,0 +1,12 @@
+// "Small" extended with sword icon.
+// Also has wider line spacing than the original.
+
+int TANGO_FONT_SMALL_EXTENDED[] = {
+    TANGO_FONT_BUILTIN_EXTENDED,
+    TANGO_FONT_MONOSPACE,
+    FONT_S,
+    1082, // Start of extensions
+    6,    // Character height
+    2,    // Space between lines
+    6     // Character width
+};

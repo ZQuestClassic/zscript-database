@@ -1,0 +1,16 @@
+{
+  "name": "Simple Shutters",
+  "author": "Sans",
+  "added": null,
+  "updated": "29 Mar 2017",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "18",
+  "info": "My first script submission.",
+  "description": "This is a script for the shutters very simple to use. This shutters is a recreation from the shutters from Oracle of Ages/Seasons actions.\n\nThanks to Obderhode\nfor allowing me to post this script.",
+  "setup": "1- First copy/paste the script code.2- compile the FFC script and place the script on a slot you desire.3- create 3 shutters combos for this script on this orders (Closed, Semi open, Opened). (The FFC script must be use at the last combo. use all tiles you do want to setting up for Opened Shutters.4- If you want make it more Oracle series actions then download the Oracle of Ages/Seasons shutters sound.If you make it on the right way you should no have any problems.D0- Shutters directions (0 south, 1 north, 2 East, 3 West.D1- Conditions to open the shutters. (0 Never opened, 1 Kill enemy open the door, 2 secrets open the door.D3- # flag (Exemple if you do want trigger it to Flag 16 then the shutters will open when the Flag 16 will be trigged when the secret mechanism is actived/disable.)",
+  "has_zip": true,
+  "has_popup": true
+}

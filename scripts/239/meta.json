@@ -1,0 +1,17 @@
+{
+  "name": "Custom Lens Hints",
+  "author": "Alucard648",
+  "added": "05 Jul 2016",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script allows designer to create customizable hints to be revealed, when Link uses Lens of Truth.",
+  "description": "With stdWeapons.zh out in database, it`s possible to have custom weapon-related secret triggers. As for now, ZC`s Lens Hints quest rule only works with built-in secret trigger flags and does not work with custom ones. This script allows custom secret triggers in the quest without leaving Link clueless about triggering them if he had to rely solely on Lens of Truth.The sript has support for combo type & flag hints (drawn on combo when Lens used), FFC hints (Draws hint on center of combo, if the FFC runs the specific script and the specific D value matches the given argument), and NPC (draws hint on specific enemies, like to show their weaknesses).",
+  "setup": "Requires stdExtra.zh and all it`s dependencies.Global lens hints.1. Global script combining: put DrawCustomLensHints after Waitdraw and before Waitframe in the main loop of global active script.2.Global function set up: Put DrawCustomLensHint in DrawCustomLensHints function for each lens hint in your quest and configure it`s arguments://Lenstype: 0-combo type, 1-combo flag, 2 - NPC.//miscvalue1: depends on lenstype:// 0 - combo type ID// 1 - combo flag ID// 2 - NPC ID//cmb - combo to draw, cset - cset to use for hint drawing//minlevel - minimum item level for Lens-like item needed to be used to reveal this hint.3. Put DrawFFCLensHint into DrawCustomLensHints function for each FFC lens hint and set up it`s arguments// scr - FFC script to check// dreg - D register to check 0-7.// dvalue - value to compare the given D register. Hint is drawn on match.// cmb - ID of combo to draw// cset - Cset touse for drawing// minimum item level for Lens-like item needed to be used to reveal this hint.4. Import and compile the script. Assign CustomLensHints FFC script slot//Screen-scpecific FFC based lens hints5. Place an empty FFC anyhere in the screen6. Assign invisible combo (non-0) to it.7.//D0 - Lenstype: 0-combo type, 1-combo flag, 2 - NPC.//D1: depends on lenstype:// 0 - combo type ID// 1 - combo flag ID// 2 - NPC ID//D2 - combo to draw,//D3 - cset to use for hint drawing//D4 - minimum item level for Lens-like item needed to be used to reveal this hint.8. Assign CustomLensHints script to this FFC.",
+  "has_zip": false,
+  "has_popup": true
+}

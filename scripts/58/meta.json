@@ -1,0 +1,17 @@
+{
+  "name": "Floormaster (Autoghost)",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "These disembodied hands come out of the ground, chase you, grab you, and sink back into the ground taking you to the entrance of the DMap.",
+  "description": "These disembodied hands come out of the ground, chase you, grab you, and sink back into the ground taking you to the entrance of the DMap.",
+  "setup": "The enemy uses 8 combos, organized Left/Right. Transparent, Surfacing Frame 1, Surfacing Frame 2, WalkingType is other, step is used, haltrate is how often the enemy re-aims, while homingfactor is the accuracy of these reaims x/255.Attributes: 5 is the time before surfacing, 11 is the first of the 8 combos, 12 is the script number.You also need to set two constants. One for it's grab sound another for it's autowarp combo a.std.zh, string.zh, and ghost.zh are required.Also sound effect from the oracle games was Boss Die.",
+  "has_zip": false,
+  "has_popup": true
+}

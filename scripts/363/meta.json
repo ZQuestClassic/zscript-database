@@ -1,0 +1,17 @@
+{
+  "name": "Thanos Snap / Infinity Gauntlet",
+  "author": "Emily",
+  "added": null,
+  "updated": "31 May 2021",
+  "tags": [
+    "#2.55",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "40",
+  "info": "An item to snap half of the enemies on-screen out of existence.",
+  "description": "An item to snap half of the enemies on-screen out of existence.Has no COST, but has a configurable charge-up, during which if you are hit the snap is cancelled, and a configurable cooldown, which is how long you cannot use it for after using it.Has 2 \"Modes\", as well;Mode 1 - Kill: Kill half the enemies on screen; this produces drops, and will act as though you killed the enemies normally.Mode 2 - Delete: Delete half the enemies on screen; no drops will drop, and the enemies will return if you leave and come back.The cooldown can be set to display on a Counter, optionally. Note that doing this then requires additional script setup.Changelog:14-Nov-2019 - V1.01 - Cleaned up the script a bit; no real functional changes.",
+  "setup": "Requires std.zhQR: Ensure that the QR 'Item Scripts Continue to Run' is checked.This can be found under 'ZScript>>Quest Script Settings>>Scripts'Set parameters:d0 - charge-up time, in framesd1 - cooldown time, in secondsd2 - Explode visual effect (Value to use for 'npc->Explode()'). Presently, this means a value of '0', '1', or '2'. Personally, I recommend '2'.Flag: Set 'Flags[0]', the first flag in the item editor flags tab, to use 'Delete' mode. Leaving this unchecked will use 'Kill' mode.Set constant: SNAP_COOLDOWN_COUNTER (default 0)If this is non-0, that counter ID will be used to store the cooldown. If you set this non-0, see additional instructions below.ADDITIONAL SETUP IF USING COUNTER:If the SNAP_COOLDOWN_COUNTER is not 0, you must merge the example script 'ThanosSnapOnExit' with your 'global script onExit' slot. This ensures that the counter is cleared properly when you exit the game, and does not linger.If the SNAP_COOLDOWN_COUNTER is 0, you can ignore this.",
+  "has_zip": true,
+  "has_popup": false
+}

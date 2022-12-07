@@ -1,0 +1,89 @@
+// An NPC who asks you to pick a tree color, then comments on it.
+//
+// This demonstrates non-text-based menus, synchronizing with @sync() and
+// Tango_Sync(), reading the current cursor position in a menu, updating
+// a text box as that selection changes, and using @a0 as an argument
+// to @string().
+
+ffc script PickAColor
+{
+    void run(int message)
+    {
+        while(true)
+        {
+            if(StartTalking(this))
+            {
+                GetColorChoice(message);
+                StopTalking();
+            }
+            
+            Waitframe();
+        }
+    }
+    
+    void GetColorChoice(int message)
+    {
+        int talkSlot;
+        int choiceSlot=TANGO_INVALID;
+        int currentChoice;
+        int lastChoice=-1;
+        
+        int purple[]="purple";
+        int orange[]="orange";
+        int blue[]="blue";
+        
+        int choiceX[]={ 192, 160, 176 };
+        int choiceY[]={ 80, 96, 112 };
+        int choiceStrings[]={ purple, orange, blue };
+        
+        talkSlot=ShowMessage(message, TANGO_SLOT_NORMAL, STYLE_PLAIN, 32, 32);
+        
+        // The string will call @sync(1) when the menu should start
+        Tango_Sync(1);
+        
+        // Set up the menu
+        Tango_InitializeMenu();
+        Tango_SetMenuCursor(706, 0, 2, 2);
+        Tango_SetMenuSFX(66, 67, 0);
+        Tango_SetMenuFlags(TANGO_MENU_CAN_CANCEL);
+        for(int i=0; i<3; i++)
+            Tango_AddMenuChoice(i+1, choiceX[i], choiceY[i]);
+        
+        Tango_ActivateMenu();
+        
+        // Show a second string with whatever the cursor is currently on
+        while(Tango_MenuIsActive())
+        {
+            // In this menu, the value of each choice is one greater than
+            // the corresponding array position
+            currentChoice=Tango_GetCurrentMenuChoice()-1;
+            if(currentChoice!=lastChoice)
+            {
+                // The cursor has moved (or the menu was just activated);
+                // load up the new string
+                if(choiceSlot!=TANGO_INVALID)
+                    Tango_ClearSlot(choiceSlot);
+                choiceSlot=ShowString(choiceStrings[currentChoice],
+                  TANGO_SLOT_NORMAL, STYLE_CURRENT_COLOR, 72, 104);
+                lastChoice=currentChoice;
+            }
+            Waitframe();
+        }
+        
+        if(choiceSlot!=TANGO_INVALID)
+            Tango_ClearSlot(choiceSlot);
+        
+        if(Tango_GetLastMenuChoice()==0) // Canceled
+        {
+            Tango_ClearSlot(talkSlot);
+            return;
+        }
+        
+        // Load the value to pass to @string
+        Tango_SetSlotVar(talkSlot, TANGO_VAR_A0,
+          choiceStrings[Tango_GetLastMenuChoice()-1]);
+        
+        while(Tango_SlotIsActive(talkSlot))
+            Waitframe();
+    }
+}

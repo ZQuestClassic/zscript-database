@@ -1,0 +1,17 @@
+{
+  "name": "Ball and Chain Enemy",
+  "author": "Joe123",
+  "added": "27 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Attaches a spinning ball and chain weapon to an enemy.",
+  "description": "Well, I wrote this earlier and I thought I'd share cause it's quite easy to use, and it makes for quite nice mini-bosses, or even just an addition to normal enemies. It spins a ball round and enemy 2 or 3 times at D1 radius, then move in to a radius of 20, spin really quickly a couple of times, then launch off at Link, then start over.",
+  "setup": "D0: Number of enemy on the list to give the mace to\nD1: Max radius of the mace. Set to a value greater than 20, otherwise hell may ensue.\nD2: Damage for mace to deal\n\nSet the two constants at the top to be what tiles you want the chain and the mace head to use.\nThe chain is just made up of little circles, so it's a bit like the LA one.\n\nYou can only have one mace enemy on a screen, and it shouldn't really be paired with enemies that shoot fireballs or anything (cause they won't work).\nIt can be attached to any enemy, so if you really like, you can give it to at tektite.\nI tried it earlier.\nIt's less fun than you might think really.\nMaybe a mace-carrying gel is what some of you were looking for though?\nI don't know.",
+  "has_zip": false,
+  "has_popup": true
+}

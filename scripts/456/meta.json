@@ -1,0 +1,16 @@
+{
+  "name": "Lift and Place Combos",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "09 Jun 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "6",
+  "info": "Made on request by SkyFlare.",
+  "description": "Pick and place combos, like Minecraft.Update 24.04.2022 - Added Stack/drop pillar script for stacking/dropping liftable combo puzzles.Update 3.5.2022 -Timed colored hole. script - Animated hole that must be filled by dropping correct combo within specific timing to solve the puzzle.Update 9.6.2022 - Added option to swap combo held by Link with combo on floor in one operaion.",
+  "setup": "3 FFC scripts to assign on compile.//Pick/Place combos.Place anywhere in the screen.D0 - bracelet power requirement.In the demo, secrets are triggered via Disconnected Matrix password script//Stackable pick/place comb pillsr.Place FFC with solid combo at baseD0 - bracelet level requirement.D1 - number of combos in column at start.D2 - maximum number of elements in pillar - make sure that all combos stacked here are visible and out of direct reach.//Timed colored hole.Effect width and height usedSet up sequence of combos for animationD0 - ID of correct combo to dropD1 - CSet of correct combo to dropD2 - delay between frame changing in animation, in frames.D3 - D2 - target animation frame for timed combo drop, starting from 0. -1 = no timing needed.D4 - number of frames in animation",
+  "has_zip": true,
+  "has_popup": true
+}

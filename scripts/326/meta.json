@@ -1,0 +1,16 @@
+{
+  "name": "Toggle System",
+  "author": "ywkls",
+  "added": "10 Feb 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "18",
+  "info": "Allows switching back and forth between two different secret \"states\" easily,",
+  "description": "Ever wanted to make red/blue block puzzles that don't rely on enemies?\nOr how about a dungeon where you can raise/lower the water at will?\nThis script allows that; and more!\n\nWarning! Combos affected by this script don't currently reset upon death/continue.\nTake this into account when designing your quest.",
+  "setup": "Requires std,zhIf also using the Linked Secrets script, comment out the indicated lines.Place an ffc on any screen this script should affect.Set ffc to \"Run Script at Screen Init\" .Arguments//D0- Sound made when switch is hit.//D1- Which toggle has been hit. Each thing you want to toggle should have a different number assigned here.//       Each numbered toggle affects every other toggle with the same number in the whole quest.//D2- Which lweapon activates this toggle. See stdconstants for a list of lweapon IDs.//       Set to zero if this isn't a switch but there are combos corresponding to D1 on this screen.//D3- How to affect toggled combos, in terms of combo ids//       Can use both positive and negative values.//D4- What placed flag to look for//D5- If more than one toggle of this index is on screen, set the first one to non-zero.//       Uses values from 1 to 7. This is to prevent bugs.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Gale Fruit",
+  "author": "ywkls",
+  "added": "05 Dec 2016",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "20",
+  "info": "This script creates a whirlwind that makes multiple warp points (up to 5) on one screen.It warps Link, LWeapons, EWeapons and enemies.",
+  "description": "Launches a whirlwind directly in front of Link. When it encounters a combo that is Script Type1-5 which also has flag 98 or 99; creates a warp at that location and another at a combo of the same type with flag 99 or 98 elsewhere on the screen.The warp remains active until Link, an lweapon, an eweapon or any enemy walks into it.When they do, they warp from one location to another.",
+  "setup": "Requires:std.zhstring.zhffcscript.zhCreate 5 combos, of type Script 1 through Script 5. These will be used as warp points.Assign values to the constants.Combos of type Script 1-5 with flag 98 are warp entrances.Combos of type Script 1-5 with flag 99 are warp exits.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Automatic Overhead Transparency",
+  "author": "grayswandir",
+  "added": "15 Apr 2016",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Turns overhead combos transparent when Link walks underneath them.",
+  "description": "In the script itself, you can toggle layers 3 through 6 to be affected. Whenever Link is under a non-zero combo in any of the chosen layers, all of the selected layers are turned transparent or invisible.",
+  "setup": "Instructions are in the script itself.To run, just place Overhead_Update() in your active loop.You can also edit the configuration section to choose which layers are affected, and to choose transparency or complete invisibility.",
+  "has_zip": false,
+  "has_popup": true
+}

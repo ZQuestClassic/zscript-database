@@ -1,0 +1,17 @@
+{
+  "name": "Demon Wall (autoghost)",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "17 Sep 2022",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "5",
+  "info": "The walls are closing in! Made on request by SkyFlare",
+  "description": "//Demon WallSolid moving wall trap. Instant-kills if completely closes in, but crushing against random stuff inside arena is like normal solid FFC crusher. Can be any size, even beyond 4*4. Uses custom rendering. Trigger secrets to blow up the Demon Wall.//Demon Wall EyeEye boss for Demon Wall script. Moves along the wall, fires magic lasers. Invincible, when closed. Kill the eye to destroy Demon Wall. In the demo, Demon Wall eye is vulnerable only to reflected lasers and Link has Mirror Shield.Update 17.09.2022 - Fixed bug that caused Demon Wall to treat crush against random rock/tree as instant-kill in certain cases.",
+  "setup": "//Demon Wall1. Requires Solid FFCs.zh and all it`s dependencies. Global script example uses combination of default classic.zh global, LinkMovement, needed for SolidFFFC, and Solid FFC.2. Set up 3*3 tiles for wall rendering3. Set up SolidFFCs.zh and all his dependencies4. Place FFC at top Left Corner of initial position of trap. Set velocity for movement.D0 NPC slot to keep track for weak spot. If you use enemy that has ghosted death animation, set D0 to it`s enemy slot so the wall will stop and don`t crush Link during death animation.D1 - X size of the wall, in tiles.D2 - Y size of the wall, in tiles.D3 - Top left corner of tile setup from step 1.D4 - death sprite, draw for each tile in wall. 0 for sbomb explosion at center.//Demon Wall Eye1.Set up demon wall script2.Place and set up Demon_Wall_Eye onto wall, using enemy placement flags.3.Set demon wall FFC`s D0 to slot used by eye boss enemy.Step: Movement speed along the wall.Attribute 1: Initial movement direction. Use No enemy fags to prevent boss from moving offscreen.Attribute 2: Projectile typeAttribute 3: FFC script slot for demon wall scriptAttribute 4: Weapopn firing directionAttribute 5: Animation/firing delay, in framesAttribute 6: Sprite used for eweapon.Attribute 7: Eweapon X size, in tilesAttribute 8: Eweapon Y size, in tilesAttribute 11: -1Attribute 12: Script Slot",
+  "has_zip": true,
+  "has_popup": true
+}

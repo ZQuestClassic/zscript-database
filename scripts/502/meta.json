@@ -1,0 +1,16 @@
+{
+  "name": "Adjacent combo rotator",
+  "author": "Alucard648",
+  "added": "17 Sep 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "2",
+  "info": "Standalone and updated variant of Ajacent Combo Rotator script that previously included as bonus with Matrix Password Script.",
+  "description": "Stand on FFC and press Ex1, and combos around this one will rotate around given one. Update 17.09.2022 - Added option to use offset for rotated combos during rotation animation, usually for animating rotated combos.P.S. This script can be used with oth combo-related scripts. In demo, it was used with Disconnected Matrix password script to construct the puzzle.",
+  "setup": "Place where this puzzle element would be. D0 - How many shifts per press, positive-clockwise, negative - counter-clockwise. 2 means 90 degrees, 4 - 180 degrees. D1 - Sound to play on activation. D2 - Rotate flags. D3 - rotate csets, D4 - change to next on rotation, + 2 - rotation animation D5 - animation offset - uses combos that are D5 positions further in list for rotation animation. Works only, if D4 animation flag is set on. 0 for no offset.",
+  "has_zip": true,
+  "has_popup": true
+}

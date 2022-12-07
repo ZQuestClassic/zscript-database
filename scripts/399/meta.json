@@ -1,0 +1,16 @@
+{
+  "name": "Warnsdorff`s Knight Tour puzzle.",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "11 Mar 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "6",
+  "info": "Infamous Knight tour puzzle for ZC 2.53.1\nhttps://en.wikipedia...i/Knight's_tour",
+  "description": "Perform series of knight moves to visit each space of chessboard exactly once. Stand on space and press Ex1.Update 11.03.2021 on request by SkyFlare:Operation button changed to Ex1.Added knight jumping animation",
+  "setup": "1. Check out constants at the top of script file.\n2. Set up 4 consecutive combos: empty space, knight`s actual position, available moves highlight, and visited space mark.\n3. import and compile the script. It requires chess.zh in addition to default libraries.\n4. Build board of any size and shape, using only 1st combo from step 1. \n   If 1st combo in step 1 is fully transparent, you may build chess board on background layer.\n5. Place FFC with knight`s combo on any space of the board.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Swindle Haggle",
+  "author": "Timelord",
+  "added": "25 Nov 2016",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": "12",
+  "info": "A simplified haggling with shop merchants script.",
+  "description": "This script allows you to permit a player to risk raising shop prices, in order to lower them. Once per shop, the player may press a button (set by script preferences) to attempt to 'haggle' with the shopkeep. This will result in one of three events, each with a 1/3 chance:Prices lower.Prices remain the same.Prices increase.The shop uses the 'Wealth Medal' items to accomplish its effects, and quests using this should balance shop prices around the player having 'Wealth Medal 1'.The script only uses the first two level of Wealth medals, and you may edit the price discount, or price hike, by adjusting the values in the Item Editor for Wealth Medals level 1 and level 2.Failing a 'haggle' attempt results in taking away the wealth medals 9for that shoppe).You may still award the Level 3 Wealth Medal, if you so choose. This will override all 'haggle' shop pricing.",
+  "setup": "Compile the script, and assign the global script 'SwindleHaggle' to slow 2 (active).If you already have a global script, place the following function 'DoHaggle()' before Waitdraw(), and the script will function normally.This doesn't even require std.zh. Note: I purposefully wrote the identifiers in this to be hilarious, which may also make it slightly confusing. Don't fear: The proper mixture of insomnia and alcohol, cures all woes.",
+  "has_zip": true,
+  "has_popup": true
+}

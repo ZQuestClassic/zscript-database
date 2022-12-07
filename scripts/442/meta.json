@@ -1,0 +1,16 @@
+{
+  "name": "Puzzle Retreat",
+  "author": "Alucard648",
+  "added": "11 Mar 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "ZC adaptation of IOs/Android game called Puzzle Retreat. Made on request by Skyflare.",
+  "description": "Stand on button, face the chosen direction and press Ex1 to spawn a stack of ice blocks that ride chosen direction.These blocks ride across holes, dropping 1 block at time, bounce off mirrors, change direction on conveyers and shatter on hitting NoPushblock flags.Fill all holes to solve puzzle.",
+  "setup": "1.Set up sequence of combos with CF_PUZZLERETREAT_BUTTON inherent flag for buttons, leftmost must have missing that flag. 0,1,2,3,4 etc.2. Set up sequence of 2 combos for empty/filled holes. Assign CF_PUZZLERETREAT_HOLE flag to empty holes.3. Place FFC anywhere in the screen.4. Build the puzzle, surround it with CF_PUZZLERETREAT_BARRIER flags. Running ice blocks ignore combo solidity at all. D0 - combo used as 1st in sequence of ice spawn buttons (0 ice blocks)",
+  "has_zip": true,
+  "has_popup": true
+}

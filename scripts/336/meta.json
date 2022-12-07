@@ -1,0 +1,18 @@
+{
+  "name": "Splitting Segmented Worm [2.55]",
+  "author": "Emily",
+  "added": null,
+  "updated": "31 May 2021",
+  "tags": [
+    "#2.55",
+    "#Enemy",
+    "#NPC"
+  ],
+  "rating": null,
+  "downloads": "33",
+  "info": "A ready-to-use multi-segment splitting worm enemy. Moves similar to a moldorm, splits like Terraria's Eater of Worlds.",
+  "description": "Creates a worm enemy, with a settable number of segments. Each segment has separate HP. Killing one in the middle will cause it to split at that point. If a segment is left solo with no attached segments, it will die.Based loosely on Terraria's Eater of Worlds for the splitting, though the movement is based on Moldorms.Movement is 8-directional.",
+  "setup": "Required includes: EmilyMisc.zh (Utility function header)Assign the script to an enemy. The enemy's tile should be the upper-left corner, where the tiles are set up according to the chosen animation style, with one major exception; it will use 3 rows of this.The first row represents a middle segment. The second represents a head, while the third represents a tail.D0: Number of segments for this worm. Minimum 2.D1: Number of frames to wait before turning. Will turn sooner if it hits a wall.D2: Leave this at 0. Used by the script.D3: Leave this at 0. Used by the script.D4+: Unused",
+  "has_zip": true,
+  "has_popup": false
+}

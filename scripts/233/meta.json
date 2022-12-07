@@ -1,0 +1,16 @@
+{
+  "name": "FFC Moves Only After Secrets Are Triggered",
+  "author": "idontknow8",
+  "added": "07 Jun 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "As described in the title, makes a FFC only use its X and/or Y speed after secrets are triggered.",
+  "description": "This script allows you to place a FFC with X & Y speeds BUT it won't move until AFTER you've triggered the room secrets.  Previously, the only other work-around was having a \"Screen Freeze (FFCs Only)\" type combo on screen and then removing it with a secret flag.  HOWEVER, this made ALL moving FFC's freeze, including any FFC scripts activated by an item.  Using this script, you could have multiple FFCs and only one be frozen until its triggered to move.",
+  "setup": "Not much, just make sure you have import \"std.zh\" and import \"ffcscript.zh\" at the top of your script.  Compile and place this script in a vacant FFC Script slot.  Then place a FFC with this script and set its x and/or y speeds and set its script to this.  Then make sure you have some sort of trigger for secrets, either by way of step->trigger or trigger flags.  No secret tiles, however, are necessary.What could this be used for?  Say you want to have an instant-kill trap that's blocking your way and there's no way around it.  You could activate the screen's secret state and upon doing so, this trap will now move out of the way.",
+  "has_zip": false,
+  "has_popup": true
+}

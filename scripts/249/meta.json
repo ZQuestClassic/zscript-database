@@ -1,0 +1,16 @@
+{
+  "name": "Timed Shooter",
+  "author": "Alucard648",
+  "added": "25 Sep 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Timed projetile shooter trap.",
+  "description": "Use it to setup traps that fire projectile at fixed time intervals. Or attach ffc to a boss. Works with changers. Tested on ZC 2.5.2.",
+  "setup": "Headers: none beyond good old std.zh.//D0 - Damage dealt on hit, in 1/4ths of heart//D1 - Eweapon type. Refer to std_constants.zh for finding ID`s of various eweapon types.//D2 - Sprite used. Leave as 0 for sprite default to eweapon type.//D3 - Projectile speed, in 1/100`s of pixel per frame.//D4 - Delay between firing projetiles, in frames.//D5 - Firing direction. Use positive value for shooting in specific direction or negatives for automatic aiming.// Use AT_* constants from std_functions.zh for verious aim types. The number must be multiplied by -1 and then passed as argument.//D6 - Fire eweapon at sript init. 0 - false, 1 - true.//D7 - Sound to play on firing eweapon.",
+  "has_zip": false,
+  "has_popup": true
+}

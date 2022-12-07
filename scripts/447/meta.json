@@ -1,0 +1,16 @@
+{
+  "name": "FlowFree path connection puzzle",
+  "author": "Alucard648",
+  "added": "23 Mar 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "ZC adaptation of iOS/Android path connection puzzle. Made on request by SkyFlare",
+  "description": "You have a grid with pairs of different colored nodes. Your goal is to connect nodes by building paths, so no two paths intersect and all empty spaces of the grid are used. Stand on node, press EX1, then walk to same-colored node to construct path. Ex1 is also used to cancel path construction, or erase a built path.",
+  "setup": "1. Set up combos as shown in screenshot #2.2. Build puzzle of any size and shape. Nodes must be placed in pairs, each pair must have different CSet.3. Flag all nodes with CF_FLOWFREE_NODE flags, rest of the grid with CF_BLOCKTRIGGER flags.4. Place invisible FFC with script and 1st combo from step 1 anywhere in the screen. No arguments needed.",
+  "has_zip": true,
+  "has_popup": true
+}

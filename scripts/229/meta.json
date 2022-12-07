@@ -1,0 +1,16 @@
+{
+  "name": "Level Key for another Level",
+  "author": "Avaro",
+  "added": "23 Apr 2016",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Very simple script to make an item that gives you a level key for a specific level.",
+  "description": "Very simple script to make an item that gives you a level key for a specific level.",
+  "setup": "1: Import the script.2: Make a custom item that is NOT a key or a level key.3: Add the script as the item's pickup script4: Set D0 to the level the player should get a key for.5: Set D1 to the item pickup message or leave it at 0 if you don't need one.",
+  "has_zip": false,
+  "has_popup": true
+}

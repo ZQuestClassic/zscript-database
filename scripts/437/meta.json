@@ -1,0 +1,17 @@
+{
+  "name": "Time/Use Limit Item",
+  "author": "Alucard648",
+  "added": "25 Feb 2022",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": "7",
+  "info": "Time and Use count limited items. Made on request by SkyFlare.",
+  "description": "2 item scripts and global one for setting up limited items. First one is use count limit, like sword sharpening in Majora`s Mask. Item disappears from Link`s inventory after it was used certain number of times. The second one is time limited item that disappears from Link`s inventory after certain time since pickup.",
+  "setup": "Use count Limit.1. Assign SetItemLimit into OnPickUp item script2. Assign UpdateItemDurability into OnAction item script//D0 - Global RAM Array index. Must be unique per limited item.//D1 - Use count limit.//D2 - Sound to play, when item expires.//D3 - Message string to display, when item expires.Time Limit1. Assign SetItemLimit into OnPickUp item script2. Global Script combining: insert UpdateItemTimer function with item ID matching it into UpdateTimeLimitItems function3. Global Script combining: put UpdateTimeLimitItems() into main loop of Active global script//D0 - Global RAM Array index. Must be unique per limited item.//D1 - Time limit, in seconds//D2 - Sound to play, when item expires.//D3 - Message string to display, when item expires.",
+  "has_zip": true,
+  "has_popup": true
+}

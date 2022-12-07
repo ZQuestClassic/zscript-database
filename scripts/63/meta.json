@@ -1,0 +1,16 @@
+{
+  "name": "Hamiltonian Path",
+  "author": "MoscowModder",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "If you're not familiar with the Hamiltonian Path puzzle, it's the one that appeared in a few 2D Zelda games where you have to step on each tile once. In this version, the tiles you've already activated become unwalkable. Jumping (with Roc's feather) is disabled to prevent Link jumping over non-activated tiles. If you get stuck, you can press the L button at any time to reset the puzzle and warp out of it.",
+  "description": "I originally made this as a collection of scripts requested by Avataro. After he released his tutorial for making this kind of puzzle, I decided to put together a single script that handles all of the necessary functions so you don't have to set up four or five FFCs per puzzle.\n\nIf you're not familiar with the Hamiltonian Path puzzle, it's the one that appeared in a few 2D Zelda games where you have to step on each tile once. In this version, the tiles you've already activated become unwalkable. Jumping (with Roc's feather) is disabled to prevent Link jumping over non-activated tiles. If you get stuck, you can press the L button at any time to reset the puzzle and warp out of it.",
+  "setup": "Combos\nThis script needs three combos if using screen secrets, or five combos otherwise.\n1. OFF combo: a normal floor tile with the Step->Next combo type.\n2. Pressed combo: the walkable combo directly after the OFF combo (if for some reason you use combo cycling and the pressed combo used by the script isn't 1 after the OFF combo, you can specify one)\n3. ON combo: a non-walkable combo with no other special properties\n4. (If not using screen secrets) Target combo: the combo to change when the puzzle is done (like a barrier)\n5. (Ditto secrets) Disabled target combo: 1 after the target; what it changes to (like a normal floor tile)\n\nSetup\nFirst, place the screen's warp return A somewhere outside the puzzle, and then place the script's FFC on the same spot. Next, set the FFC's D# arguments:\nD0: # of the OFF combo\nD1: # of the pressed combo (if left at 0, defaults to 1 after OFF combo)\nD2: # of the ON combo (defaults to 1 after pressed combo)\nD3: Sound to play when Link steps on an OFF combo\nD4: Secret mode\n-1 = Trigger screen secrets when solved (permanent)\n-2 = Change the target combo (temporary)\n-3 = Trigger screen secrets temporarily\n0-7 = Change target combo and save to one of the eight extra screen variables (must not be used by another script on the same screen)\nD5: # of the target combo, used if D4 = -2 or 0-7 - changes to the next in the list\n\nRequires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

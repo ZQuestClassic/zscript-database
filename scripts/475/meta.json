@@ -1,0 +1,16 @@
+{
+  "name": "Tile Row/Column shifting puzzle",
+  "author": "Alucard648",
+  "added": "09 Jun 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "1",
+  "info": "Made on request by SkyFlare",
+  "description": "Shift tiles in rows and columns to asssemble pattern. Stand on row/column, face the given direction and press EX1 to move.",
+  "setup": "Requires MatrixPassword script and chess.zh\n1.build puzzle in it`s initial state. Use only fully opaque combos. Flag all combos consisting it with CF_TILE_DISPLACE_PIECE\n2. Define solution by putting it on background layer. Setup Matrix Password script and set it`s D3 to layer with solution\n3. Place invisible FFC with this script. No arguments needed.",
+  "has_zip": true,
+  "has_popup": true
+}

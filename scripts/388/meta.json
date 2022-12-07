@@ -1,0 +1,16 @@
+{
+  "name": "Anti Pause Buffer (fak u dimi)",
+  "author": "Moosh",
+  "added": "16 May 2021",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Sometimes in certain difficult quests, players will repeatedly open and close the subscreen to gain an advantage. This is somehow fairer in their minds than pressing F3 and advancing frame by frame. The world may never know why.Use this script if you want to mess with those people. (If it's not clear, this was written as a joke)",
+  "description": "Sometimes in certain difficult quests, players will repeatedly open and close the subscreen to gain an advantage. This is somehow fairer in their minds than pressing F3 and advancing frame by frame. The world may never know why.\n\nUse this script if you want to mess with those people. (If it's not clear, this was written as a joke)\n\nFeatures include:Frame delays for start and map buttons, for preventing pause buffering as an aid for precise inputsCooldowns for start and map buttons, for preventing pause buffering as a speed aidA mashing penalty, to really screw with people who abuse the system",
+  "setup": "Combine the global script with your own. Then set up the following constants if you want to configure the timings:ANTIPAUSEBUFFER_DELAY_ON_MASH: If 1, the mashing penalty is applied as a delay, else it eats inputsANTIPAUSEBUFFER_DELAY: Frame delay after pressing the button before the subscreen opens. This should be fairly low so as not to be intrusive to  normal players, just a few frames.ANTIPAUSEBUFFER_COOLDOWN: Frames after closing the subscreen when inputs will be eaten.ANTIPAUSEBUFFER_MASHTIME: Frames between two uses of the subscreen used to detect mashing.ANTIPAUSEBUFFER_MASHTIMEPENALTY: Frames the mashing penalty lasts for.ANTIPAUSEBUFFER_MASHDELAY: Frames added to leading or ending frame delays when the mashing penalty is active.\nLet out your best maniacal laugh while laying your trap. This'll teach them not to have fun in their own strange, strange little way.",
+  "has_zip": false,
+  "has_popup": true
+}

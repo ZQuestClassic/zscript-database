@@ -1,0 +1,17 @@
+{
+  "name": "Flowing water",
+  "author": "MoscowModder",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Makes water push Link like a conveyor combo. Includes FFC and Global script versions, and uses simple combo flags to apply the effects. Current speed and flags used are both customizable with global constants.\n\nNote: This only works with non-solid water.",
+  "description": "Makes water push Link like a conveyor combo. Includes FFC and Global script versions, and uses simple combo flags to apply the effects. Current speed and flags used are both customizable with global constants.\n\nNote: This only works with non-solid water.",
+  "setup": "Put EITHER the FFC script or the Global script into your script file, along with the constants at the top and the three functions at the bottom. The first constant is used to determine the speed of the currents, and the second is the first of 4 flags to use (defaults to 98 for up, 99 for down, 100 for left, and 101 for right). If using the FFC version, the FFC's D0 argument will override the frequency constant, allowing you to set a different current speed for each screen.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Shallow Water Splash (and tall grass SFX)",
+  "author": "MoscowModder",
+  "added": "01 May 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script simply plays the splash SFX while Link walks in shallow water (and an optional extra sound effect when walking in tall grass).",
+  "description": "Requested by Sepulcher. This script simply plays the splash SFX while Link walks in shallow water (and an optional extra sound effect when walking in tall grass). The frequency is set to sound good with the default sound effect, but can be customized to fit your needs. The sound effect plays immediately as soon as Link walks into the water/grass, and when he stops and starts walking.",
+  "setup": "Simply combine this with your existing global script (if necessary), edit the frequency constants, set the grass SFX number if you want to use it, and you're good to go.Requires std.zh (included with ZC).",
+  "has_zip": false,
+  "has_popup": true
+}

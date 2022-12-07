@@ -1,0 +1,18 @@
+{
+  "name": "Enemy Step & Weapon Triggers",
+  "author": "justin",
+  "added": "20 Jan 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": "29",
+  "info": "Create unique puzzles and situations with these robust FFC triggers and check functions that simulate the Step and Strike combo types but for enemies.",
+  "description": "Script includes 4 FFC functions.1. Enemy Step Trigger - activates when an enemy steps on it. Can be specific enemy ID or type. Can be a certain number of enemies. Can be for a certain duration. Can be Step->Next style. Can be triggered by Link too. Can unset after a so many frames. Can be sensitive or like a regular step trigger. Can set attraction where enemies attracted to bait are attracted to the combo.2. Enemy Weapon Trigger - activates when an enemy weapon hits it. Can be a specific enemy weapon type, or any. Can be a certain number of times hit. Can be sensitive or not. Can be Strike->Next style.3. Enemy Trigger Check - if using multiple of either above triggers on the screen, this function checks that they are all activated before triggering secrets - temp or permanent.4. Enemy Trigger Order Check - if using multiple of either above triggers on the screen, this function checks that they were activated in the correct order. If yes, temp or permanent secrets are set. If not, they are all deactivated.Note about attraction feature for the step tiles:  The attraction places a lweapon Bait on the screen.  While scripts can create numerous baits on screen, Link can only place a bait if there are no other baits on screen.  So if using the attraction feature, Link won't be able to use his bait weapon on that screen.  However, even though Link won't place a bait any action script attached to the bait will still run.Also, the enemies will always be attracted to the first bait on screen, so if using two attraction tiles on one screen, they will go to the lowest numbered FFC.Update:  no change in the script or example quest.  just the added comment about how bait lweapons work to prevent potential issues and confusion if using the attraction feature.",
+  "setup": "Only needs std.zh.Set the two constants to numbers unused by other scripts. If no other scripts use ffc->Misc[] or eweapon->Misc[] arrays then you can leave them as is.Compile and place the FFC triggers over the trigger combo you are using. The FFC combo needs tp be something other than combo 0. The ffc doesn't need to be placed exactly on grid, the script snaps it in place, but that means if you are up or left of where you intended to place it it'll snap to wrong location.If only using one trigger on the screen, you can set the alone value (D7 for Step Trigger, D4 for weapon trigger), and don't need the Check or Order functions.If using multiple triggers, use either the Check or Order function.Detailed instructions on all the arguments for each function are in the script.",
+  "has_zip": true,
+  "has_popup": true
+}

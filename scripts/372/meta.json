@@ -1,0 +1,18 @@
+{
+  "name": "Earthquake Enemy",
+  "author": "Bagu",
+  "added": "18 Feb 2020",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Enemy",
+    "#NPC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Wanna have an enemy (no matter what type) that triggers an earthquake, synchorized with variable SFX...? Try this code\nMay the Triforce be with you, mates\n(BTW I'm not that kind of shitty player, as it seems in the demo video - I just let the beast live, to show effects)",
+  "description": "QUAKE MASTER\n(perfect to upgrade classical Bosses)\n\nThe script gives an enemy the ability to cause earthquake and (screen shake, item jinx, sword jinx), in a variable loop (delay before erathquake and before the loop restarts).\nGive the enemy a sound you want it to use for the eathquake\n(I modified the \"Stone Door Slam\" from OoT and combined it, with a pitched version of OoT's \"Ganon Scream\" SFX wave - made in audiacity)",
+  "setup": "- required headers: \"std.zh\"\n\nLoad the script in the \"Action Script\" slot of an enemy, you want.\n\nD0 = Time before the earthquake begins\nD1 = SFX you want to use for the quake attack\nD2 = Delay before the loop restarts",
+  "has_zip": false,
+  "has_popup": true
+}

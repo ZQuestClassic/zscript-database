@@ -1,0 +1,17 @@
+{
+  "name": "Light Beam",
+  "author": "cavthena",
+  "added": "23 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": "91",
+  "info": "Creates an Beam of Light that can be bounced around the room with mirrors or the mirror shield. Allowing for dungeon wide puzzles involving Light.",
+  "description": "Few notes to quest makers using this script. The Light beam is dynamic in other words, once it is set up the code will handle everything else.\nLight can be used to trigger screen secrets. Secrets triggered by this script are permanent!Light can be \"passed\" to the screen next to it. If the Light is on an MirrorOut_ combo then the Light will continue on to the next screen. The screen that the Light is passed to must have this script running in a FFC. The FFC must be set up as normal. If the Light is no longer hitting the MirrorOut_ Combo then the Light will not be passed and the beam will be turned off on the next screen.The ignore Screen arguments are used for when 2 Light beams pass screens next to each other. If this is not set then one beam could shut off the other.Do not place any other combos on the layer the Light is drawn on. I recommend using Layer 5 or 6.Push Blocks can be saved. Only 2 different combos can be saved. See line 2 in the code for how many can be saved.",
+  "setup": "The beam of Light is an FFC script and must be place in every screen you want a Light beam to appear.Set the constants at the top of the script to the appropriate values.Place the FFC on screen. The X and Y position of the FFC is where the Light beam will begin.Set the FFC arguments.Save, play and enjoy!",
+  "has_zip": true,
+  "has_popup": true
+}

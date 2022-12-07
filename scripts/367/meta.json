@@ -1,0 +1,16 @@
+{
+  "name": "Simple Title Screen",
+  "author": "Matthew",
+  "added": "17 Dec 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Simple title screen script that works by triggering screen secrets.",
+  "description": "This script plays a sound effect and triggers screen secrets upon pressing \"START\". By placing warps underneath an invisible Link, this effectively allows for the creation of a title screen, warping Link off of it upon pressing \"START\".Note: This is a fairly simple script, and does not include any frills such as flashing text upon input. Keep this in mind before using it.",
+  "setup": "This script requires std.zh.\n\nThis script makes use of two constants, shown below.\n\nConstants:D0 = Integer ID of the SFX to play upon pressing the \"START\" button.D1 = Time between button input and screen secrets being triggered, in frames. (I would recommend less than 60 frames for this value.)\nImplementation:To implement, import the script, compile, and place an FFC (with the script assigned) on your title screen.Make sure Link is invisible and that the subscreen is disabled.Place secret flags under Link's position, and set them to turn into warps of some kind.Set up the corresponding warp data, and you're good to go!",
+  "has_zip": false,
+  "has_popup": true
+}

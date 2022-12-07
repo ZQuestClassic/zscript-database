@@ -1,0 +1,17 @@
+{
+  "name": "Power, Courage and Wisdom",
+  "author": "Bagu",
+  "added": "13 Mar 2020",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Inspired by \"ItemBundle\", just like my \"ActiveRings\" Script.Change the entire Status of your hero in 3 different states (+ original state).Sword change without enabling \"Can select A-Button Items\" Rule.",
+  "description": "The Script will simulate global effects, done to your hero, by using selectable Triforce or other related items.",
+  "setup": "requires \"std.zh\"\n\nCreate LttP Amulets, OoT Spiritual ore selectable Triforce Fragments and assign 1 of these scripts in the active slot.\n\n\"GoldenForce1\" can add 2 variable items (Sword 5-6 + related Armor/Ring you decided to use) and remove a max of 6 items (added by the other GoldenForce Items).\n\"GoldenForce2\" can add 3 variable items (Sword 6-7 + Armor/Ring 3rd variable item) and remove a max of 5 items (while there is no need to remove Sword and Armor items, if used to add the highest level Sword/Armor).\n\nThe 3rd addable Item, of \"GoldenSwords2\" is meant to gain an invisible/unused item to your inventory. I used it to add the Charge Ring L2 as long as I use the \"Triforce of Wisdom Status\" (GoldenForce2)\n\nThe PureMasterBlade Script removes all items, possibly gained by GoldenForce1/2 and restores the \"original\" state of your hero (free of triforce powers).",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Bombs shake the screen",
+  "author": "Avaro",
+  "added": "09 Oct 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "5",
+  "downloads": null,
+  "info": "This global script gives bomb explosions a nice little screen shake effect.",
+  "description": "It's basically a screen shake for bomb explosions. I would not use this script in combination with the rule that makes the screen flash when bombs explode. Have fun with this script.",
+  "setup": "1. Set the const ints to your liking.2. This script uses a Misc value for the weapons, so make sure no other scripts use the same value3. Combine this script with your global script if needed4. Compile the script, add the global to your quest and you are done.std.zh is required. (comes with ZC)",
+  "has_zip": false,
+  "has_popup": true
+}

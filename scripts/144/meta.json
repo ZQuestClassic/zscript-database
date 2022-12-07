@@ -1,0 +1,18 @@
+{
+  "name": "Passive Subscreen A/B Counter Fix",
+  "author": "justin",
+  "added": "21 Nov 2014",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item",
+    "#Misc"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A fix to display the proper counter for the A and B buttons on the passive subscreen when the quest rule \"Can Select A-Button Weapon on Subscreen\" is on.",
+  "description": "With the quest rule \"Can Select A-Button Weapon on Subscreen\" selected, placing a counter on the passive subscreen for the button item is broken. With the quest rule off, you can use the Subscreen Counter object attribute \"Only Selected\" to get your counter to show when that particular item is selected. But that option doesn't work with the quest rule on. This script is a work around for that.",
+  "setup": "More detailed setup instructions are included with the code.Requires std.zh1. Add SetCountersAB(); before the waitframe in your global active (slot2) script. A sample global script is included with the code.2. Check the Script Counter constants that it uses to ensure there will be no conflicts. The defaults are the max values.3. On your passive subscreen, place a Counter object with each Button Item display. Edit the properties.On the Attributes Tab, change Item 1 to the corresponding Script counter - default is A Button = Script 24, B Button = Script 25Leave \"Show Zero\" and \"Only Selected\" UNCHECKED.Note: make sure that your item has its Counter Reference declared. Edit the item, Pickup tab.For instance, Arrows are hardcoded to use either rupees or arrows. Unless the Counter Reference is set, the counter won't show.",
+  "has_zip": false,
+  "has_popup": true
+}

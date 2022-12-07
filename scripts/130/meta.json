@@ -1,0 +1,16 @@
+{
+  "name": "Confusion",
+  "author": "Mero",
+  "added": "21 Sep 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": "47",
+  "info": "I hate the Drunk touch effect and wrote a replacement for it that's much better.",
+  "description": "This script is a replacement for drunk and reverses link's movement.",
+  "setup": "1. Set the constant \"CR_CONFUSION\" to a scripted counter.2. Either import the example active script or add the UpdateConfusion() function before waitdraw inside the while(true) loop. If you have an Init Script you will need to combine those as well.P.S. I have included a item script to remove confusion. This will work for pickup and active scripts.Fairys, Potions, and Triforce are the normals for bubbles which I used in the demo.",
+  "has_zip": true,
+  "has_popup": true
+}

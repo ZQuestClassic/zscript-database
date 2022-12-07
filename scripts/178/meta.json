@@ -1,0 +1,16 @@
+{
+  "name": "Sideview falling object",
+  "author": "Alucard648",
+  "added": "20 Apr 2015",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "It can be a stalactite, an icicle, an anvil, a piano or even chandelier.",
+  "description": "It waits until Link passes under it and then falls hoping to hit Link for damage.Some such things can break into nasty shards upon hitting ground. Intended to be used in sideview areas.",
+  "setup": "This file contains 2 FFC scripts.ffc script SideviewFallingObject//A falling object that breaks into damaging partcles on hitting ground.1. Place FFC where you want to have initial location of the trap.//D0: Damage done by hitting Link directly, in 1/16th of hearts.//D1: Sound to play when hitting solid combo.//D2: Sprite used by shards.//D3: Damage dealt by shards. Leaving as 0 disables collision with shards.//D4: Number of shards produced on hitting ground.//D5: Eweapon type used for shards. Refer for std_constants.zh for which eweapon type to create.ffc script SideviewFallingObjectSimple//A simpler version of the script that ignores combo solidity.1. Place FFC where you want to have initial location of the trap.//D0: Damage done by hitting Link directly, in 1/16th of hearts.Headers: none beyond std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "RPG Style HP and MP Counters",
+  "author": "Lelouche Vi Britannia",
+  "added": "22 Sep 2017",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Allows RPG Style numeric HP and MP Counters to be added to Subscreens.",
+  "description": "The script here contains a simple set of constants and a global function to plug into your while(true) loop that allows you to set up numeric HP and MP counters instead of using hearts or meters to do it. It's easy to set up and use.UPDATE: I've modified the code to call a function rather than put all the code into the Global Script. I've included the Global Script example so you have an idea of what to expect. Thanks to ZoriaRPG for the input and clean up!",
+  "setup": "As per normal you must include the standard line (import \"std.zh\") without the parenthesis at the top of your script file.Make sure to call the function before the \"Waitdraw();\" line in your global script. The script here shows what it should look like.Compile, then set Active to your global active script after you compile.Now when you build your subscreen, you can add the counters by inserting counter object and setting the first item on the list of 3 as Script # corresponding to which item you are placing.For example, if you didn't change the constant values then you would use script 1 for the counter that tracks current HP, script 2 for Max HP, and so on.",
+  "has_zip": false,
+  "has_popup": true
+}

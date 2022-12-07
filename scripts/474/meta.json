@@ -1,0 +1,16 @@
+{
+  "name": "Link`s Awakening Freeform Lights Out puzzle.",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "14 Aug 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": "7",
+  "info": "Restoration of Beefster`s 8 years old implemntation of Lights out puzzle made on request by SkyFlare.",
+  "description": "Just like LightsOut, but come in many waird ways to link combos and also allows defining final lights pattern needed to solve the puzzle. Crystal combos are activated by sword.Update 15.08.2022 - Unhardcoded and increased sword cooldown delay, on request by Taco Chopper.",
+  "setup": "1. Set up 2 consecutive combos, Off then ON state.2.Place FFCs for each light with combo as OFF state of light. Must be one combo apart or more.D0: initial state (1 = on, 0 = off)D1-2: adjacent ffc IDs (0 to ignore) Also you may set FF_LIGHTSOUT_AUTOMATIC_ADJACENT_FFC_SETUP to 1 to automatically assign adjacent FFCS in each cardinal direction.D5: Target light state for puzzle solution.",
+  "has_zip": true,
+  "has_popup": true
+}

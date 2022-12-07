@@ -1,0 +1,17 @@
+{
+  "name": "Item FFC Template",
+  "author": "Mero",
+  "added": "22 Sep 2014",
+  "updated": null,
+  "tags": [
+    "#Item",
+    "#Misc"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This is a template for scripters who wish to make use of ffcscript.zh or wish to use a item script that requires it and doesn't do anything else except launch a ffc. Feweritems scripts!",
+  "description": "This is an utility item script that launches an ffc script.",
+  "setup": "This is useless if you don't use ffcscript.zh. So be sure to grab it here.\n\nPut it in either item script slot depending on the need and set D0 to the script slot number of the ffc script you wish to launch. D1-D7 can be used for the ffc script arguments, D0 of the ffc will be the items power.",
+  "has_zip": false,
+  "has_popup": true
+}

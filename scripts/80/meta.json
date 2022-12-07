@@ -1,0 +1,16 @@
+{
+  "name": "Message when Combo Appears",
+  "author": "Kite",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This will check for the specified combo. If found, it will play a message. If the combo disappears, the check for the combo will reset. This only works on layer 0.\n\nThis was made in response to a request by Cukeman: https://www.purezc.co...showtopic=53855",
+  "description": "This will check for the specified combo. If found, it will play a message. If the combo disappears, the check for the combo will reset. This only works on layer 0.\n\nThis was made in response to a request by Cukeman: https://www.purezc.co...showtopic=53855",
+  "setup": "This is an FFC script, so attach it to an FFC.d0 = Stringd1 = Number of the combo to check forstd.zh is required.",
+  "has_zip": false,
+  "has_popup": true
+}

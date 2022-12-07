@@ -1,0 +1,16 @@
+{
+  "name": "Donation Shop",
+  "author": "MoscowModder",
+  "added": "20 Sep 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Requested by Kurt91\n\nThis script makes a shop, similar to the NES shop/info/what-have-you rooms, which lets you donate money (like the fairy queen in LttP, donation jar in TP, etc) until you reach a certain amount an win a reward.",
+  "description": "You can set up any number of tiles in the 'shop' to let you donate different amounts towards the same count. The count is stored per-screen, so you can have any number of donation 'shops', but each one must be all on one screen.When you donate, all the tiles will vanish until you leave and re-enter the screen, as with NES shops.When the donation reaches the target, the tiles will all vanish forever.",
+  "setup": "Requires stdExtra.zh\nBe sure to set COLOR_WHITE in stdExtra.zh to an appropriate value. color number = (CSet # * 16) plus number within CSet, from 0 to 15.\n\nSet up an FFC with this script, and the following parameters:\nD0: Index of the Screen->D variable to store donation amount\nD1: The amount to donate\nD2: The total amount of money before getting the reward\nD3: Reward item\nD4: Message to play when donating\nD5: Message to play when you get the item\n\nTo make multiple tiles for different amounts, copy the FFC and change D1 (amount), and optionally D4 (message).",
+  "has_zip": false,
+  "has_popup": true
+}

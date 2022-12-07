@@ -1,0 +1,16 @@
+{
+  "name": "Solid + Non-solid Klotski Blocks",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "14 Jul 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "7",
+  "info": "Made on request by SkyFlareUpdate 9.6.2022 -- Added Ice klotski variant with option to bounce off other blocks, like Mulino gameUpdate 15.7.2022 - minor bug fixes",
+  "description": "Solid and Non-solid Klotski puzzle block.Solid: push like normal large push block.Non-solid Stand on it, face desired direction and press EX1 to move it.Land all colored blocks on the same-colored triggers to solve the puzzle.",
+  "setup": "Upon compiling, assign 2 FFC scripts,//Solid Klotski blocks. Non-solid Klotski Blocks.Both scripts have the same setup algorithm//Effect Width and Height used and is automatically set to be tile dimensions multiplied by 16.//D0 - bracelet level requirement.//D1 - allowed push directions. Add together - 1-up, 2-down, 4-left, 8-right. 0 for all directions.//D2 - 1 - require same-colord trigger combo for trigger secrets.//D3 - 0 - not count for trigger//D4 - 1 - allow pushing onto same-colored #67 flags, +2 -> Icy variant, continues moving in direction, +4 - bounce off another ice block (non-solid only).",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Simple Shop",
+  "author": "Tabletpillow",
+  "added": "10 Nov 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "50",
+  "info": "At last, there's finally a custom shop script in the script database!",
+  "description": "Using Joe123's signpost script as a base. I was able to transform it into a shop the closely resembles A Link to the Past. It's really easy to use! This also comes with a sample quest and graphics for the prices.\n\nCredit goes to Joe123 for the signpost script",
+  "setup": "Like stated before this script uses Joe123's signpost script as a base, meaning that the freeform combo for the shop script should be either an invisible combo, or the combo of the item graphic. This script must also be put onto solid combos. The rest is straightforward:D0: The item ID of the shop itemD1: The price of the item.D2: The message to display when the item is bought. (put in 0 if you don't want a message to display)D3: The message to display when you don't have enough rupees.D4: Which button to use to buy the item. 0 = A, 1 = B, 2=L, 3=R.Price graphics are included in the package.If you are using the signpost script, remove the last two blocks of code. Requires std.zh",
+  "has_zip": true,
+  "has_popup": true
+}

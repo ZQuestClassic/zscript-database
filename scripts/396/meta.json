@@ -1,0 +1,17 @@
+{
+  "name": "Secret->Item FFC",
+  "author": "Mani Kanina",
+  "added": "26 Jul 2021",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A FFC script that spawns the item of the ID entered in D0 when the secret state on a given screen has been set.",
+  "description": "When the screen state on a given screen has been set (that is to say, a permanent secret, not a temporary one), an item will be spawned on the X and Y coordinates this FFC is placed at.For the purpose of Zelda Classic this item is considered the screen item, not secret item. Once the item spawned by this script (or any placed screen item) is picked up, it will no longer spawn. (Unless Link steps on a reset screen combo)",
+  "setup": "Just include the script in your main script file and assign it to an FFC slot, should be it.D0 on the FFC script is the item ID you want to spawn.If the D0 is left at 0, it will instead draw item ID from the catch-all room data type. (Secret item number, etc)",
+  "has_zip": false,
+  "has_popup": true
+}

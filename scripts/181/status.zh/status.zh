@@ -1,0 +1,336 @@
+const int STATUS_TIME_PERMANENT = 200000; //Pass this into duration argument for permanent status effect. 
+
+const int STATUS_STATE_OFF = 0; //Link is free from this status effect.
+const int STATUS_STATE_EXPIRED = 1; //The status effect timer just recently hit 0.
+const int STATUS_STATE_CLEARED = 2; //The status effect has been recently cured.
+const int STATUS_STATE_ACTIVE = 3; 
+const int STATUS_STATE_UNCURABLE_ACTIVE = 4;
+const int STATUS_STATE_PERMANENT_ACTIVE = 5;
+const int STATUS_STATE_PERMANENT_UNCURABLE_ACTIVE = 6;
+
+
+const int STATUS_POISON = 0; // Poison. Damages Link over time.
+const int STATUS_DRUNK = 1; // Good old "Drunk" status effect from ZC.
+const int STATUS_CONFUSION = 2; // Reverses Left and Right + Up and Down.
+const int STATUS_ANTIMAGIC = 3; // Makes Link lose all MP and disables gaining any MP. Also known as CURSE.
+const int STATUS_JINX_A = 4; // Jinxes corresponding action button.
+const int STATUS_JINX_B = 5; // Best used with "Can select A button on subscreen" quest rule turned on.
+const int STATUS_BLIND = 6; // Fills the screen white for simulating being blinded.
+const int STATUS_STONE = 7; // Turns Link into a stone statue.
+const int STATUS_SCRIPT1 = 8; // Any other curses and blesses that can be bestowed upon poor hero.
+const int STATUS_SCRIPT2 = 9;
+const int STATUS_SCRIPT3 = 10;
+
+//Constants used by poison status effect.
+const int POISON_DAMAGE = 4; // 1/4 heart every 1/2 second is lost when poisoned.
+const int POISON_TIMER = 30; // Feel free to change these two constants prior to compiling.
+
+const int CSET_STONE = 11; //CSet used for drawing pertified Link. Change to 7 for Frozen Link or to 5
+//for Midas curse, which means turned into golden statue.
+
+const int UPDATE_TIMERS_WHILE_SCROLLING = 0; //Set this constant to any number other than 0, 
+//and status timers will count down even when the screen is scrolling.
+
+
+int STATUSTIMERS[32];//I have set these arrays quite big so invalidation of saves is uncommon.
+int STATUS_STATE[32];//Feel free to change number of timers if global variable number limit prevents scripts from compiling.
+
+//Init global script.
+global script Init {
+	void run() {
+		InitStatusEffects();
+	}
+}
+
+//Status timers initializing function.
+void InitStatusEffects(){
+	int numtimers = SizeOfArray(STATUSTIMERS);
+	for (int i=0; i<numtimers; i++){
+		STATUSTIMERS[i] = 0;
+		STATUS_STATE[i] = STATUS_STATE_OFF;
+	}
+}
+
+//Example of global script setup.
+global script StatusActive {
+void run() {
+	while(true){
+		StatusEffectsUpdate1(); //Checks status effects and runs code for active ones.
+		UpdateStatusTimers(); //Updates status effect timers.
+		Waitdraw(); // Performs Game Logic.
+		Waitframe(); // Wait for the screen to draw. (You wouldn't think it from the name, right?)
+		}
+	}
+}
+
+//Main status effect updating function. Run in main loop of global script 
+//prior to performing game logic (Waitdraw()).
+void StatusEffectsUpdate1(){
+	if (STATUS_STATE[STATUS_POISON]>0){
+		if (IsActive(STATUS_POISON)){
+			int poisontimer = STATUSTIMERS[STATUS_POISON];
+			if ((poisontimer%POISON_TIMER)==0){
+				Game->PlaySound(SFX_OUCH);
+				Link->HP -= POISON_DAMAGE;
+			}
+		}
+	}
+	if (STATUS_STATE[STATUS_DRUNK]>0){
+		if (HasStarted(STATUS_DRUNK)){
+			Link->Drunk = Abs(STATUSTIMERS[STATUS_DRUNK]);//Timer value is negative the moment the status is induced.
+		}
+		if (HasExpired(STATUS_DRUNK))Link->Drunk=0;
+		if (HasRemoved(STATUS_DRUNK))Link->Drunk=0;
+	}
+	if (STATUS_STATE[STATUS_CONFUSION]>0){ //Credit goes to Mero for original code.
+		if (IsActive(STATUS_CONFUSION)){
+		if(Link->InputUp != Link->InputDown)
+		{
+			Link->InputUp = !Link->InputUp;
+			Link->InputDown = !Link->InputDown;
+		}
+		if(Link->InputLeft != Link->InputRight)
+		{
+			Link->InputLeft = !Link->InputLeft;
+			Link->InputRight = !Link->InputRight;
+		}
+		}
+	}
+	if (STATUS_STATE[STATUS_ANTIMAGIC]>0){
+		if (IsActive(STATUS_ANTIMAGIC)){
+		Link->MP=0;
+		}
+	}
+	if (STATUS_STATE[STATUS_JINX_A]>0){
+		if (IsActive(STATUS_JINX_A)){
+		Link->InputA = false;
+		Link->PressA = false;
+		}
+	}
+	if (STATUS_STATE[STATUS_JINX_B]>0){
+		if (IsActive(STATUS_JINX_B)){
+		Link->InputB = false;
+		Link->PressB = false;
+		}
+	}
+	if (STATUS_STATE[STATUS_BLIND]>0){
+		if (IsActive(STATUS_BLIND)){
+		Screen->Rectangle(6, 0, 0, 256, 176, 1, 1, 1, 1, 0, true, OP_OPAQUE);
+		}
+	}
+	if (STATUS_STATE[STATUS_STONE]>0){
+		if (IsActive(STATUS_STONE)){
+		NoAction();
+		int LTile = Link->Tile;
+		Screen->FastTile(3, Link->X, Link->Y, LTile, CSET_STONE, OP_OPAQUE);
+		}
+	}
+	if (STATUS_STATE[STATUS_SCRIPT1]>0){
+		if (IsActive(STATUS_SCRIPT1)){
+		//Your status effect code runs HERE. Once every frame.
+		}
+	}
+	if (STATUS_STATE[STATUS_SCRIPT2]>0){
+		if (IsActive(STATUS_SCRIPT2)){
+		//Your status effect code runs HERE. Once every frame.
+		}
+	}
+	if (STATUS_STATE[STATUS_SCRIPT3]>0){//A more advanced version of status effect template.
+		if (HasStarted(STATUS_SCRIPT3)){
+			//Run code the moment the moment the status effect has been induced.
+		}
+		if (IsActive(STATUS_SCRIPT3)){
+			//This event runs once every frame.
+		}
+		if (HasExpired(STATUS_SCRIPT3)){
+			//Use this event if you need to run some more code right before expiration of status effect.
+			//Do you remember "Doom" status effect from Final Fantasy RPG`s?
+		}
+		if (HasRemoved(STATUS_SCRIPT3)){
+			//You could also run code here, if you want to execute some nasty surprises
+			//when player attempts to cure this status effect.		
+		}
+	}
+	if (STATUS_STATE[10]>0){
+		//If you want to add more slots for status effects, just duplicate this piece of code as many times as you want.
+		//Just make sure to increment index to status timers array every time to avoid conflicts.
+	}
+}
+
+//Updates timers for non-permanent status effects. Used in global script right after StatusEffectsUpdate().
+void UpdateStatusTimers(){
+	if ((Link->Action == LA_SCROLLING)&&(UPDATE_TIMERS_WHILE_SCROLLING == 0)) return;
+	int numtimers = SizeOfArray(STATUS_STATE);
+	for (int i=0; i<numtimers; i++){
+		if(STATUSTIMERS[i]<0) STATUSTIMERS[i] = Abs(STATUSTIMERS[i]);
+		if ((STATUS_STATE[i] == STATUS_STATE_EXPIRED)||(STATUS_STATE[i] == STATUS_STATE_CLEARED)) STATUS_STATE[i] = STATUS_STATE_OFF;
+		if (IsPermanent(i)) continue;
+		if (STATUSTIMERS[i] > 0) STATUSTIMERS[i] --;
+		else if (STATUS_STATE[i]>1) STATUS_STATE[i] = STATUS_STATE_EXPIRED;
+	}
+}
+
+//Induces given status effect with set time.
+//Set "nullifier" to allow specific item to prevent specific status effect/s from being applied to Link.
+//"Uncurable" boolean controls whether the status effect can be removed by various means or not.
+//Pass STATUS_TIME_PERMANENT into "duration" for permanent status effect.
+// /!\ WARNING! Current Status effects and their remaining timers are recorded in player`s save file!
+void InduceStatusEffect (int status, int duration, int nullifier, bool uncurable){
+	if (Link->Item[nullifier]) return;
+	if (uncurable){
+		if (duration == STATUS_TIME_PERMANENT) STATUS_STATE[status] = STATUS_STATE_PERMANENT_UNCURABLE_ACTIVE;
+		else STATUS_STATE[status] = STATUS_STATE_UNCURABLE_ACTIVE;
+	}
+	else {
+		if (duration == STATUS_TIME_PERMANENT) STATUS_STATE[status] = STATUS_STATE_PERMANENT_ACTIVE;
+		else STATUS_STATE[status] = STATUS_STATE_ACTIVE;
+	}
+	STATUSTIMERS[status] = -duration;
+}
+
+//Returns TRUE, if the status effect has been recently bestowed upon Link.
+bool HasStarted(int status){
+	return STATUSTIMERS[status]<0;
+}
+
+//Returns TRUE, if the status effect is currently active.
+bool IsActive(int status){
+	return STATUS_STATE[status]>2;
+}
+
+//Returns TRUE, if the status effect has recently expired.
+bool HasExpired(int status){
+	return STATUS_STATE[status]==STATUS_STATE_EXPIRED;
+}
+
+//Returns TRUE, if the status effect has been recently removed, such as by using item.
+bool HasRemoved(int status){
+	return STATUS_STATE[status]==STATUS_STATE_CLEARED;
+}
+
+//Removes the given status effect.
+// "uncurableforceremove" when set to TRUE bypasses default inability to remove status effect
+// by default means and removes this status effect no matter what.
+void RemoveStatusEffect(int status, bool uncurableforceremove){
+	if (!IsCurable(status)&&(!uncurableforceremove)) return;
+	STATUSTIMERS[status] = 0;
+	STATUS_STATE[status] = STATUS_STATE_CLEARED;
+}
+
+//Returns TRUE if the given status effect is permanent and therefore does not expire on it`s own.
+bool IsPermanent (int status){
+	if (STATUS_STATE[status] == STATUS_STATE_PERMANENT_UNCURABLE_ACTIVE) return true;
+	if (STATUS_STATE[status] == STATUS_STATE_PERMANENT_ACTIVE) return true;
+	return false;
+}
+
+//Returns TRUE if the given status effect cannot be cured by normal ways.
+bool IsCurable(int status){
+	if (STATUS_STATE[status] == STATUS_STATE_PERMANENT_UNCURABLE_ACTIVE) return false;
+	if (STATUS_STATE[status] == STATUS_STATE_UNCURABLE_ACTIVE) return false;
+	return true;
+}
+
+//Item that removes specific status effect when used/picked up.
+//Can be used as "On Use" item script, like various antidotes,
+//or "On Pickup", for item that prevents given status effect. 
+//D0: Status to remove.
+//D1: Clear normally uncurable status effect. 0 - false, 1 - true.
+item script CureStatusEffect{
+	void run (int status, int uncurableforceremove){
+		bool forceremove = false;
+		if (uncurableforceremove > 0) forceremove = true;
+		RemoveStatusEffect(status, forceremove);
+	}
+}
+
+//Item that applies status effect (usually positive) on activation.
+//Best used on potions.
+//D0: Status to apply.
+//D1: Effect duration.
+//D2: Sound to play on usage.
+item script SetStatusEffect{
+	void run(int status, int duration, int sound){
+		Game->PlaySound(sound);
+		InduceStatusEffect (status, duration, 0, true);
+	}
+}
+
+//Removes ALL curable status effects when used/picked up. Like the milk in Minecraft.
+//Best used as "On Use" item script, for universal "Cure All" potion.
+item script CureALL{
+	void run (){
+		int numtimers = SizeOfArray(STATUSTIMERS);
+		for (int i=0; i<numtimers; i++){
+			RemoveStatusEffect(i, false);
+		}
+	}
+}
+
+
+//This is a FFC script for testing and debugging status effects. Any time Link gets hurt by anything
+//on the screen with this FFC he will instantly cursed by given status effect for the given time.
+//Use this script to debug custom status effects.
+//Controls: L/R to cycle trough status effects to apply to Link.
+//Place FFC anywhere in the screen.
+// D0 - Default index to status effect.
+// D1 - Duration, in frames.
+//  Set D1 to 200000 to render status effect permanent.
+ffc script StatusDebug{
+	void run(int status, int time){
+		int oldaction = Link->Action;
+		while(true){
+			if (Link->Action == LA_GOTHURTLAND){
+				if (Link->Action != oldaction)  InduceStatusEffect (status, time, 0, false);
+			}
+			oldaction = Link->Action;
+			if (Link->PressR){
+				if (status < 32) status++;
+			}
+			if (Link->PressL){
+				if (status > 0) status--;
+			}
+			debugValue( 1, status);
+			debugValue( 2, STATUSTIMERS[status]);
+			debugValue( 3, Link->Drunk);
+			Waitframe();
+		}
+	}
+}
+
+//Step on FFC with this screen and all curable status effect will be removed instantly.
+//Place FFC on the same place as Fairy Ring combo flags.
+//D0: sound to play on curing status effects.
+ffc script FairyStatusRemover{
+	void run(int sound){
+		while(true){
+			int ax = this->X+7;
+			int ay = this->Y+7;
+			int bx = this->EffectWidth - 7;
+			int by = this->EffectHeight - 7;
+			if (RectCollision(ax, ay, bx, by, (Link->X), (Link->Y), (Link->X+16), (Link->Y+16))){
+				int numtimers = SizeOfArray(STATUSTIMERS);
+				for (int i=0; i<numtimers; i++){
+					RemoveStatusEffect(i, false);
+				}
+				Waitframe();
+				Quit();
+			}
+			Waitframe();
+		}
+	}
+}
+
+//This FFC script curses any character with given status effect as long as he is on the given screen
+//(or area, if FFC carryover is enabled).
+//Place FFC anywhere in the screen.
+//D0: Index to status array. Set it to define which status effect is induced.
+//D1: Item that prevents this curse as long as it`s in character`s inventory. 
+ffc script CursedZone{
+	void run(int status, int nullifier){
+		while (true){
+			InduceStatusEffect (status, 2, nullifier, false);
+			Waitframe();
+		}
+	}
+}

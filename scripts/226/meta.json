@@ -1,0 +1,17 @@
+{
+  "name": "Dungeon Floor Spinner",
+  "author": "ywkls",
+  "added": null,
+  "updated": "21 May 2016",
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "2",
+  "downloads": "76",
+  "info": "Attempts to replicate the behavior of the dungeon floor spinners from the Oracle games.",
+  "description": "A three by three ffc that will grab link if he gets too close and spin him around its center until he's on another side of it. Can be used to create complicated dungeon paths.Update- 5-20-16- Changes graphics of spinners and the combos under them, updated script.",
+  "setup": "Requires std.zh.While the example script uses ghost.zh and string.zh, these can be eliminated fairly easily.//D0- True if clockwise rotation. False if not.//D1- Screen->D register to store having already rotated. Register zero is reserved.Be sure to set the global scripts to prevent cheating past spinners by continuing.Also, don't place in rooms where Link holds up an item as that interferes with how the script works.Set up combos as follows-Spinner counterclockwise, spinner clockwise, base counterclockwise, base clockwise.",
+  "has_zip": true,
+  "has_popup": true
+}

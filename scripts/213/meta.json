@@ -1,0 +1,16 @@
+{
+  "name": "Bliss Winnings",
+  "author": "Kivitoe",
+  "added": "18 Jan 2016",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "3",
+  "downloads": null,
+  "info": "This script refills Link's HP and MP, unlocks level 4 cheats, displays a message, and plays a bomb sound when the item is used.",
+  "description": "This script refills Link's HP and MP, unlocks level 4 cheats, and plays a bomb sound when the item is used.",
+  "setup": "1. Compile the script.\n\n2. Include the script in the item's action slot.\n\n3. Put the string's number in the D0 slot.\n\nNOTE: If you don't want a message to be displayed, remove the following lines from the script:\nvoid run(int m) //Remove the int m.\n...\nScreen->Message(m);",
+  "has_zip": false,
+  "has_popup": true
+}

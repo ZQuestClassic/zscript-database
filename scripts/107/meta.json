@@ -1,0 +1,17 @@
+{
+  "name": "ItemHandling.zh",
+  "author": "Timelord",
+  "added": "11 May 2014",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A set of global functions, with one global constant, and one global variable, used to extend, and optimise handling items with FFC, or global scripts; such as detecting collision, between a given item, and an object, flag, or FFC.",
+  "description": "Grayswandir originally created (most of) these functions for me, to use in conjunction with the Generic FFC Trigger script. As I rely on them for many of my scripts, when handling collision between LWeapons, and FFCs, and for other detection of item usage, I'm turning them into a library set, so that I need not duplicate them in future script postings.If your compiler gives you an error, that these functions already exist, then you may be using one of my other scripts, that calls to, and includes them. If so, you can either remove them from other scripts, or simply discard this library as a separate file.The library also includes item handling functions by SUCESSOR, and some ffc scripts, that I believe were made by MoscowModder, and Saffith.",
+  "setup": "Import into your main script file, somewhere after the line:import \"std.zh\"...with this command:import \"ItemHandling.zh\"Be sure that this import occurs before anything that calls to these functions, and global variables & constants.Future updates will retain all extant functions, but may modify them.I plan to correct this in a future update.[/code]",
+  "has_zip": false,
+  "has_popup": true
+}

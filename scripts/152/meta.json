@@ -1,0 +1,17 @@
+{
+  "name": "JerkLike",
+  "author": "Jamian",
+  "added": "20 Dec 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "A LikeLike who sucks your magic shield off your hands from a distance if you get too close to him.",
+  "description": "As you probably know, LikeLikes can eat your magic shield if they grab you for a certain amount of time. But this particular LikeLike is a real jerk: he sucks your magic shield off your hands if you simply get too close to him. You can decide how close Link has to get in order to get his shield sucked off his hands, and the chances that the JerkLike will give the shield back upon being defeated. If you set this to 100%, it makes him a bit less of a jerk.",
+  "setup": "1) Create a combo that uses the \"Magic Shield\" tile. You only need to set up the graphics. Remember the number of that combo.2) Edit the constants at the top of the script to suit your needs:SFX_JerkLike is the sound that will be played when the JerkLike sucks your shield.COMBO_MagicShield is the number of the combo you have created in step 1.CSET_MagicShield is the CSet used by the magic shield item (6 by default).COMBO_Transparent is any empty transparent combo that is not combo 0 (in the classic tileset, combo 1 works nicely).3) Import the script in your FFC script slots.4) Place a normal LikeLike enemy on the screen where you want to use it. (Theoretically, it doesn't need to be a LikeLike though)5) Place an FFC with the script on the same screen.6) Set the FFC's arguments as follows:D0: Number of the JerkLike enemy in the enemy list. The first enemy in the list is 1, the second one is 2, etc.D1: The distance from where the JerkLike can suck your shield, in pixels. I recommend something between 32 and 64, but feel free to experiment.D2: The chance, in %, that the JerkLike will give you your shield back upon being defeated. If you put 100 he will always give it back, if you put 0 he never will.",
+  "has_zip": false,
+  "has_popup": true
+}

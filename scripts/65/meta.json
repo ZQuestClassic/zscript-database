@@ -1,0 +1,16 @@
+{
+  "name": "Heart Piece Message",
+  "author": "MoscowModder",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "4",
+  "downloads": null,
+  "info": "Similar to the old item pickup message script, this plays a unique string when you pick up a Heart Piece based on how many pieces Link currently possesses (as in most/all Zelda games featuring heart pieces).\n\nUpdate: The new version supports any number of Heart Pieces (since you can customize the number required), but at the cost of manually choosing each string. The old version is still included here.",
+  "description": "Similar to the old item pickup message script, this plays a unique string when you pick up a Heart Piece based on how many pieces Link currently possesses (as in most/all Zelda games featuring heart pieces).\n\nUpdate: The new version supports any number of Heart Pieces (since you can customize the number required), but at the cost of manually choosing each string. The old version is still included here.",
+  "setup": "After adding the script to your file, make a different string for each number of heart containers. Example: \"You got a heart piece! Collect 3 more to form a new heart container\" and \"You got your fourth heart piece! You now have a new heart container.\" Assign this script to the Heart Piece's pickup script slot, and set D0-D3 to the four strings in order from 1st HCP to last HCP. If all of the scripts are in sequential order, you can just set D0 and the rest will be filled in automatically.If you don't have four Heart Pieces per container, you will need to use the new version of the script. This one requires that all the messages must be in order. If the messages are more than one string long, the first string of each message must be in a row.Example:10. Message111. Message2...15. Message616. Message1 continued...Only requires std.zh, which is included with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Tiered Item Pickup",
+  "author": "Architect Abdiel",
+  "added": "30 Jun 2019",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "12",
+  "info": "This script allows you place one item in multiple locations, and each time you pickup that item, it'll give you a different item.For instance, if you wanted to make a Z1 style quest with four rings.You could place the SAME item in multiple locations so that the player has to acquire the lowest level item first.",
+  "description": "Place the same item in every location.Get a different item each time.",
+  "setup": "std.zh is required. You only need std.zh once.\nIf you already have it included in your scripts, delete it from this one.\n\nThe setup is simple. Also, you DO NOT have to use up all D0-D7 arguments.\nYou can use any number of items you wish.\n\n\nD0: The item ID of the first item (lowest tier item)\nD1: The item ID of the second item (next lowest tier item)\nD2: The item ID of the third item (next lowest tier item)\nD3: The item ID of the fourth item (next lowest tier item)\nD4: The item ID of the fifth item (next lowest tier item)\nD5: The item ID of the sixth item (next lowest tier item)\nD6: The item ID of the final item (highest tier item)\nD7: The message string to play when you pickup the item.\n\nCurrently this only supports each item having the same pickup string. Coders will know how to get around the string limitation.",
+  "has_zip": true,
+  "has_popup": true
+}

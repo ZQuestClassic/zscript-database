@@ -1,0 +1,16 @@
+{
+  "name": "Red, Green and Blue Potions",
+  "author": "Demonlink",
+  "added": "19 Oct 2014",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": "55",
+  "info": "This script allows you to make potions similar to those from ALttP.",
+  "description": "This script allows you to make potions similar to those from ALttP. Red refills your health, Green refills your magic and Blue refills both.",
+  "setup": "You need the Std.zh library included by default in ZC. D0 is used for a custom SFX when you use the potion, if it's 0, then it will play the SFX Refill instead. So, let's get started.\n\n1.- Compile the script (Obvious).\n2.- Make a Custom Item and assign the script to it's Action slot. (It's also recommendable to have these with Item Class: Custom Itemclass 01). \n3.- To make all three of these appear in your subscreen, make three Current Items, make sure all three of them have the same Item Class you assigned to the potions, and in \"Item Override\", override each Item with each Potion. (See the demo for more details). \n4.- Happy Potion Shopping!",
+  "has_zip": true,
+  "has_popup": true
+}

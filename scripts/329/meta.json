@@ -1,0 +1,16 @@
+{
+  "name": "Screen Entry SFX",
+  "author": "Kivitoe",
+  "added": "07 Mar 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A small script I made for my personal quests as a more convenient alternative to screwing around in Screen Data. It plays a sound effect whenever the player enters the screen.",
+  "description": "A small script I made for my personal quests as a more convenient alternative to screwing around in Screen Data. It plays a sound effect whenever the player enters the screen. This script is great for cutscenes.",
+  "setup": "This is pretty much a plug and play script. Place an FFC with the script attached to it on your desired screen.\n\n== Arguments ==\n\nD0 - The SFX ID that you would like to play.",
+  "has_zip": false,
+  "has_popup": true
+}

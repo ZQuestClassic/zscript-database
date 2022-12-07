@@ -1,0 +1,16 @@
+{
+  "name": "Penalizable Forbidden item",
+  "author": "Alucard648",
+  "added": "14 Jul 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "1",
+  "info": "\"Cheating bastard! DIE\"\nMade on request by SkyFlare.",
+  "description": "Variant of banning items with penalty for even accidental usage - deals damage and warps Link away.",
+  "setup": "1.Set up 2 consecutive combos, invisibla one, then auto-side warp.2. Set up side warp A - warp destination3. Place FFC with 1st combo from step 1 and script assigned. D0-D3 - ID of forbidden items. 5 banned items total. D5 - String to display on violation. D6 - Damage to deal as penalty, in addition to warp, in 1/16th of heart. D7 - 1-> Confiscate forbidden item from Link`s inventory. +2->Save game immediately to seal penalty in save file. +4 - charge 50% rupees fine.",
+  "has_zip": true,
+  "has_popup": true
+}

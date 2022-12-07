@@ -1,0 +1,16 @@
+{
+  "name": "One-time Item Pick Up Message",
+  "author": "Twilight Knight",
+  "added": "19 Nov 2020",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A simple addition to the Item Pick Up Message script by Joe123, so it's capable of showing an item message only once.",
+  "description": "Right now there is no other way besides scripting to show an item message only once after continuing or saving.This script makes sure that the message won't play again after obtaining the item once. Even after continuing or saving.Also apply this to multiple, different items, so that the item message will only play once for one of those items.",
+  "setup": "Import the script and select it as pickup script for an item.\nBe sure to also include this line somewhere within your script files: \"bool itemsObtained[50];\"\n\nYou need to provide 2 arguments:The string ID of the message to playThe type of item (optional)\nAnd 4 things to keep in mind while using this script:If you omit the type, the string will always play.If you set the type to 1 f.e., the string will only play once when first obtaining this typeIf you set the same type to multiple items, the string will only play once when first obtaining one of this type, though they are different itemsIf there are more than 99 types, you should increase the array length of itemsObtained by changing the number in between the [brackets]",
+  "has_zip": false,
+  "has_popup": true
+}

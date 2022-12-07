@@ -1,0 +1,16 @@
+{
+  "name": "Freeform Doors",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "83",
+  "info": "This script allows you put doors anywhere along the edges of the screen and not just at the center of the wall.",
+  "description": "This script allows you put doors anywhere along the edges of the screen and not just at the center of the wall.",
+  "setup": "Now the fun part. The placement of the ffc needs to be exact and overlap the door depending on it's size and direction. The screenshot in the above section shows where to placed them. For shutters you need to make it so all enemies that you don't want to be counted as a enemy by the shutter need to have the misc flag \"Doesn't count as beatable enemy.\" or the shutters may say close. So projectile shooters, bubbles, and traps need to be double checked. For bombable walls, be sure to set the ffc's CSet to match the CSet for the dust, as well as set it's size depending on how many tiles make up the dust. The initial combo should use a tile that's the top left tile of a 4x4 block. Most importantly you must check the ffc flag \"Run Script at Screen Init\" in order for them to work right. Now for arguments. I'll divide this into 3 sections covering each of the 3 scripts.\n\nLockedd0: Direction the door faces where 0 = North, 1 = South, 2 = West, 3 = East. Directions repeat starting with 4 = north.d1: The offset between the combos. Take note that this offset affects every combo that makes up the door.d2: The adjacent screen using DMap coordinates converted to decimal.d3: Whether or not the door is a boss door where 0 = false, and any other number = true.d4: Whether or not the door is a 2x3 door where 0 = false, and any other number = true.\nShutterd0: Direction the door faces where 0 = North, 1 = South, 2 = West, 3 = East. Directions repeat starting with 4 = north.d1: The offset between the combos. Take note that this offset affects every combo that makes up the door.d2: The condition for reopening where 0 = Normal, 1 = Pushing a Block, 2 = Block Trigger Flag, and 3 = Secret.d3: Whether or not the door is a one way shutter where 0 = false, and any other number = true.d4: Whether or not the door is a 2x3 door where 0 = false, and any other number = true.\nBombabled0: Direction the door faces where 0 = North, 1 = South, 2 = West, 3 = East. Directions repeat starting with 4 = north.d1: The offset between the combos. Take note that this offset affects every combo that makes up the door.d2: The adjacent screen using DMap coordinates converted to decimal.d3: The combo data of the dust that appears.d4: The combo location of the dust that appears.d5: Whether or not the door is a 2x3 door where 0 = false, and any other number = true.\nNothing but good old std.zh is needed to run this script.",
+  "has_zip": true,
+  "has_popup": true
+}

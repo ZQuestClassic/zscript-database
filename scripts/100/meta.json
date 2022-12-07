@@ -1,0 +1,17 @@
+{
+  "name": "Spume (AutoGhost)",
+  "author": "Saffith",
+  "added": null,
+  "updated": "05 Jun 2021",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "56",
+  "info": "This is an enemy based on Skyward Sword's Spumes. It spits projectiles at Link, but if he comes too close, it submerges, becoming invulnerable to most weapons. It is intended to be placed in water or lava, but it can go anywhere.",
+  "description": "This is an enemy based on Skyward Sword's Spumes. It spits projectiles at Link, but if he comes too close, it submerges, becoming invulnerable to most weapons. It is intended to be placed in water or lava, but it can go anywhere.2021-06-05: Added an option to let the game place the Spume like a regular enemy",
+  "setup": "This enemy require twenty consecutive combos. The tiles linked below show them in order.\n\n1: Submerged - up\n2: Submerged - down\n3: Submerged - left\n4: Submerged - right\n5: Emerging - up\n6: Emerging - down\n7: Emerging - left\n8: Emerging - right\n9: Fully emerged - up\n10: Fully emerged - down\n11: Fully emerged - left\n12: Fully emerged - right\n13: Preparing to fire - up\n14: Preparing to fire - down\n15: Preparing to fire - left\n16: Preparing to fire - right\n17: Firing - up\n18: Firing - down\n19: Firing - left\n20: Firing - right\n\nSet up an enemy as follows:\nType: Other\nWeapon damage is used\nAttribute 1: Spawn on this combo type (layer 0 only)\n- If this is 0, it will be ignored\n- If this is -1, the enemy will be placed by the game, meaning it will spawn on land or on an enemy flag\nAttribute 2: Spawn on this flag (layer 0 only)\n- If this is 0, it will be ignored\n- If attributes 1 and 2 are both 0, the Spume will spawn in water\nAttribute 3: Shield level\n- If Link's shield is not at least this level, projectiles will be unblockable\nAttribute 4: Projectile movement\n- 0: Fly straight at Link\n- 1: Arc through the air\nAttribute 5: Projectile sprite\n- Default: 17\nAttribute 6: Projectile transparency\n- 0: None\n- 1: Flickering\n- 2: Translucent\n- 3: Both\nAttribute 7: Charging sound\nAttribute 8: Firing sound\nAttribute 9: Emerging sound\nAttribute 10: Submerging sound\nAttribute 11: First combo number\nAttribute 12: Script slot\n\nThe Spume normally spawns in deep water (including swim and dive warps), but attributes 1 and 2 let you specify combo types and/or flags for it to spawn on. If there are no valid spawn points on the screen, it will appear at the top-left corner. Combo type numbers for attribute 1 are found in std.zh.\n\nRequires ghost.zh, std.zh, and string.zh.\nTiles are here.",
+  "has_zip": true,
+  "has_popup": false
+}

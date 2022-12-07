@@ -1,0 +1,16 @@
+{
+  "name": "Spinner Arm",
+  "author": "cavthena",
+  "added": "26 Nov 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "50",
+  "info": "FFC script that will create a spinner made of sprites to imitate a trap.",
+  "description": "Places a spinner on screen to act as a trap.Spinner can be made from any Enemy sprite with any length animation.Each FFC can support up to 4 arms with any number parts (although to many parts might make it to long!).Spinners can spin clockwise or counter-clockwise. At different speeds.Spinners could be made to move about the screen **!(Untested, use at your own risk)!**\nThanks to Freya for the circle movement method! Which was great help!\nFind it here: Circular Movement",
+  "setup": "Required libraries: \"std.zh\"\nRequired Enemies: 1\n\nCreate your Enemy:Create a new enemy in the enemy editor.Name it what ever you want. I go with FIREARM or something similar.Set the enemy's sprite, animation and frame rate appropriately.Set the enemy's type to Other. Then set the HP to anything higher than 0. And damage to the amount you want the spinner arm to hurt Link.Set the Misc Flag \"Doesn't Count As Beatable Enemy\" to true(Check the box).Set all Defenses to Ignore.Last change the Spawn Animation to Instant. While this doesn't affect the script it does make it look nice.Make note of the Enemy's number.\nEdit your FFC script:Open the spinner arm script in notepad++ or something similar. I don't recommend using notepad, but you can if needed.Find \"const int FireBall = 177;\" and change the 177 to the number of the sprite you wish to use.Find \"const int Spacer = 8;\" You will need to play with this number. This is to control the distance, in pixels, between each sprite(part) in a arm. To get this to look good you'll have to try a few numbers to see what works.save and import into your quest.\nSet up your FFC:Place your FFC on screen at the X,Y you want the center of the spinner to be.Change the combo to a transparent combo.Check the flag \"Run Script at Screen Init\".Fill in the required Arguments. Arguments are given at the top of the script file!",
+  "has_zip": true,
+  "has_popup": true
+}

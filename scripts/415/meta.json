@@ -1,0 +1,20 @@
+{
+  "name": "Grayswandir Sideview Engine",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "26 Nov 2021",
+  "tags": [
+    "#Enemy",
+    "#FFC",
+    "#Global",
+    "#Item",
+    "#Library"
+  ],
+  "rating": "1",
+  "downloads": "32",
+  "info": "A complete overhaul of ZC`s otherwise shitty sideview mechanics, featuring many more features, like solid FFCs, stairs, ladders, swimming and much more.",
+  "description": "Named after author of early stages of engine development, this script brings sideview gameplay to at least playable level, while implementing commonly requested features, like Solid FFCs, sideview swimming, stairs, ladders and many more. Originally was a part of Link Stuck in Castlevania. Check out demo quest to discover most of the engine features. Ex1 to jump.Update 1.11.2021 - Fixed Link not being hurt by touching damage combos from side while in midair.Credits:Moosh - for helping with solid FFCs and organizing collab for sideview enemies.P-Tux7 - for helping with sideview Link swimming tiles and other graphics for demo.Update 26.11.2021 - Major uptate. Tons of new stuff. Changelog inside readme. Unless a miracle happen, this could be a final update for 2.53 branch...",
+  "setup": "1. Set up animation stuff: 1.1.Set up 4 consecutive rows of tiles for animation of Link getting crushed between solid stuff. 1.2.Set up table for Link swimming tiles, Rows - animation sequences for up/down/left/right directions,       columns - no shield/small shield/magic shield/mirror shield. 1.3 Open GSD_Sideview.z in text editor, like Notepad++. 1.4.Set TILE_LINK_SWIM_ANIM constant to top left corner of table. 1.5.Set LINK_SWIM_ANIM_NNMFRAMES constant to number of frames in each animation sequence (2 to 4) 2. Set up sprite for Link getting crushed, using tiles from step 1-1, Weapons/Misc.3. Check out other editable constants and default values of global variables at the top of script file.4. Global script combining: 4.1 Put SideviewEngineInit(); line prior to main loop of global script.4.2 Put SideviewEngineUpdate1(); line prior to Waitdraw() in the main loop of global script.4.3 Put SideviewEngineUpdate2(); line after to Waitdraw() in the main loop of global script.- An example of Active global script combined with ghost.zh can be found inside engine`s script file.5. Import and compile the script. It requires Classic.zh bundle library that comes with ZC 2.53+ in addition to default       libraries.6. Assign Script slots  - FFC - - GenericSolidFFC - RideableCrusher - ScreenChange - SideviewCrumblingBridge - SideviewFlipblock - SideviewPendulum - SideviewPushblock - SideviewSignboard - SideviewDoor - SideviewTreasureChest - SideviewButton - SideviewFallingPlatform - TwoStateSwitch - TwoStateButton    - Ghosted Enemies - - Sideview_Walker - Sideview_Jumper - Sideview_Hover - Sideview_WallCrawl - Sideview_SineWave - Sideview_WallBounce - Sideview_Thwomp - Sideview_Leever - Sideview_Shooter - Sideview_WizzrobeFix - Sideview_WallHopper - Sideview_LazyChase - Sideview_Fish - SideviewBlooper - SideviewAirBlooper    - Item - -AdjustLinkJump -AdjustLinkSpeed7. Assign Active global script to it`s slot.- Check out the demo quest inside download package to see how stuff are set up.",
+  "has_zip": true,
+  "has_popup": false
+}

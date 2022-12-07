@@ -1,0 +1,17 @@
+{
+  "name": "Sideview Ladder",
+  "author": "justin",
+  "added": "09 Jan 2015",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": "105",
+  "info": "The database didn't have a Sideview Ladder script. Allows climbing up ladders (or other things) in Sideview gravity. Nothing to do with the ladder item.",
+  "description": "Allows climbing up ladders (or other things) in Sideview gravity.\nNothing to do with the ladder item.\n\nThe script is based off several sideview ladder script versions I've seen floating around the discussion forums. A lot has been added to basically make it into its own thing. The main base script was Moosh's found here - https://www.purezc.ne...showtopic=52761\n\nThe Features:\n- ffc or global version depending on how much sideview is in your quest\n- always face up\n- climb in any direction\n- stand on top of ladder\n- jump left or right off the ladder\n- jump at the base of the ladder\n- hang from bottom of ladder\n- falling link will always stop and catch the ladder, jumping link will continue jumping up before catching it\n- some functions to help interaction with other scripts\n\n\nUpdate:\n-bug fix for Global version which wasn't working\n-bug fix for FFC version that prevents Link from getting stuck \"climbing\" if leaving an FFC sideview ladder screen to a non-SVLadder screen while climbing.",
+  "setup": "std.zh and ffcscript.zh are neededDetailed setup instructions in the script file.Example quest included to see how it works / is setup. The example quest has a bunch of other scripts (Hole/Lava, Pegasus Boots, Sideview Swimming, etc) in the buffer which has detailed comments to get an idea how to make things work together. The Pegasus Boots function is highly modified to compliment this SV Ladder script - allows sliding down the ladder, downward thrusting when falling off the bottom, and dashing sideways on the ladder. If you want to use both, pull that Pegasus script from the buffer.  * The global version of this script has not been updated in the buffer - use the one from here.",
+  "has_zip": true,
+  "has_popup": true
+}

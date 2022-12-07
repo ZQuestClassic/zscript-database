@@ -1,0 +1,17 @@
+{
+  "name": "[2.55] Enemy Sword",
+  "author": "Moosh",
+  "added": "30 Jun 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Enemy"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "This is a simple script that gives an enemy a sword in front of it. There's also an extra more complex script that gives it more Gameboy Darknut like behavior.",
+  "description": "This is a simple script that gives an enemy a sword in front of it. There's also an extra more complex script that gives it more Gameboy Darknut like behavior.",
+  "setup": "EnemySword_Simple\nSet the enemy to use this script in the editor. Set its arguments like so:InitD[0]: The sprite (Quest->Grapics->Sprites->Sprite Data) to use for the swords. This sprite a set of four tiles: Up, Down, Left, RightInitD[1]: How far outwards to extend out the swordInitD[2]: On up and down sprites, how much to shift the sword to the sideInitD[3]: On left and right sprites, how much to shift the sword downward\n\nEnemySword_Complex\nSet up the following constants for all enemies using this script:SFX_SWORDCLASH: The sound that plays when a sword clash happensSPR_SWORDCLASH: The sprite that draws between the swords when a sword clash happensSWORDCLASH_PUSH_SPEED: How fast Link and the enemy are pushed during a clashSWORDCLASH_PUSH_TIME: How long the clash pushes forSWORDCLASH_STUN_TIME: How long the enemy stays in place for after a clash.\n\nSet up your enemy in the editor to be the Other type and set its animation to (None). This script will handle the enemy's behavior. Set the enemy to use this script in the editor. Set its arguments like so:InitD[0]: The sprite (Quest->Grapics->Sprites->Sprite Data) to use for the swords. This sprite a set of four tiles: Up, Down, Left, RightInitD[1]: How far outwards to extend out the swordInitD[2]: On up and down sprites, how much to shift the sword to the sideInitD[3]: On left and right sprites, how much to shift the sword downwardInitD[4]: How many pixels the enemy's aggro range is. When Link steps into this range it will attack.InitD[5]: How may frames it chases Link forInitD[6]: How many frames it cools down for before it can chase Link again\nThis script requires std.zh. If you're using the complex version, then it also requires LinkMovement.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

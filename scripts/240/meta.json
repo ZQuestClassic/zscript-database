@@ -1,0 +1,16 @@
+{
+  "name": "Dynamic Tile Overlay (ZASM)",
+  "author": "Timelord",
+  "added": "12 Jul 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "29",
+  "info": "If you have ever wanted to dynamically overlay tiles in a quest, say, to give all moblins fedoras, here's your chance.This is a ZASM-based FFC that uses an instruction that has no ZScript equivalent, and allows you to easily overlay up to four tiles in one pass.",
+  "description": "OVERLAYTILE** is a ZASM instruction that through to ZC 2.50.2, has had no ZScript equivalent. It functions in the same manner as CopyTile(), so it's easy to make a script that uses CopyTile(), ( ZASM: COPYTILE** ) and drop in the ZASM instruction OVERLAYTILE** to change from a copy process, to an overlay process.\n\nThe overlay works exactly as the similar command in the tile editor.\n\nThis package contains the ZASM ffc script, that you may import and use, an example quest, and an updated version of zscript.txt that includes details on the instruction.",
+  "setup": "Unzip the package OverlayTIle.zip and drop the file FFC_OverlayTIle.txt into your ZQuest path.In ZQuest, go to Menu->Quest->Scripts->Import ASM FFC Script.Select an empty slot.Name the slot OverlayTile.When prompted, select the file 'FFC_OverlayTile.txt' in the dialogue box.ZC will parse it, and add it to your ffc table. From this point onward, you will be able to select it as normal when placing ffcs on the screen.Place an ffc on a screen, set its script to 'OverlayTile', and set its combo data to something other than '0'.\nScript Args:\n\nD0, D1: Base and overlay tile of first overlay set. D0 is the main tile, and we will overlay D1 over it.\nD2, D3: Second set.\nD4, D5: Third set.\nD6, D7: Fourth set.\n\nIf any value in these sets is '0', no overlay for that set will occur.\n\nSee the demo quest for an example use.\n\nThis ZASM file is intended as a stopgap method to access this feature, until a future ZC version includes an instruction (e.g. void OverlayTIle(int src, int dest) ) for ZScript to do this.\n\nNote: Pure likes to remove the leading space in the code. All ZASM instructions require a leading space before them, or you will receive an error. if you see an error (illegal instruction (d0), add a space before the first instance of PUSHR d0 in the assembly.",
+  "has_zip": true,
+  "has_popup": true
+}

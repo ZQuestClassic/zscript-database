@@ -1,0 +1,60 @@
+//GhostZigZagFlyer. Flies in randomized ZigZag pattern. Every nw and then, it becomes translucent, ignoring all damage.
+
+//Use 8-dir enemy animation.
+//Random rate, hunger, homing factor, step speed are used.
+//Attribute 0 - Max delay between changing directions.
+//Attribute 1 - Delay for between changing between ghost form and normal form, in frames. -1 for no ghost form. 
+
+ffc script ZIgZagFlyer{
+	void run(int enemyID){
+		npc ghost = Ghost_InitAutoGhost(this, enemyID);
+		
+		int HF = ghost->Homing;
+		int HR = ghost->Haltrate;
+		int RR = ghost->Rate;
+		int HNG = ghost->Hunger;
+		int SPD = ghost->Step;
+		int WPND = ghost->WeaponDamage;
+		
+		int delay = Ghost_GetAttribute(ghost, 0, 15);
+		int ghostrh = Ghost_GetAttribute(ghost, 1, -1);		
+		
+		Ghost_SetFlag(GHF_NORMAL);
+		Ghost_SetFlag(GHF_IGNORE_WATER);
+		Ghost_SetFlag(GHF_IGNORE_PITS);
+		Ghost_SetFlag(GHF_FLYING_ENEMY);
+		Ghost_SetFlag(GHF_NO_FALL);
+		Ghost_SetFlag(GHF_8WAY);		
+		
+		//int OrigTile = ghost->OriginalTile;
+		int State = 0;
+		int haltcounter = delay;
+		int dir = Rand(7);
+		int ghostcounter = ghostrh;
+		int defs[18];
+		Ghost_StoreDefenses(ghost,defs);
+		
+		while(true){
+			if (State==0){
+				haltcounter = Ghost_VariableWalk8(haltcounter, SPD, RR, HF, HNG, delay);
+				if (ghostcounter>=0){
+					if (ghostcounter==0){
+						if (ghost->DrawStyle==DS_NORMAL){
+							ghost->DrawStyle=DS_PHANTOM;
+							Ghost_SetAllDefenses(ghost, NPCDT_IGNORE);
+						}
+						else{
+							ghost->DrawStyle = DS_NORMAL;
+							Ghost_SetDefenses(ghost, defs);
+						}
+						ghostcounter = ghostrh;
+					}
+					else {
+						ghostcounter--;
+					}
+				}
+			}
+			Ghost_Waitframe(this, ghost);
+		}
+	}
+}

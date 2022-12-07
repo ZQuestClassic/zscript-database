@@ -1,0 +1,16 @@
+{
+  "name": "Light Puzzles (Mirror Shield)",
+  "author": "Emily",
+  "added": "30 Jan 2018",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A script that allows creation of light-based puzzles with the mirror shield/mirror combos.Does not activate secrets on a screen, even though it does change things on a screen.",
+  "description": "Allows beams of light which bounce off of mirror combos (Defined in the constants) and also Link, if he has the Mirror shield.",
+  "setup": "Headers: Only std.zh\nInstructions:Set up the constant variables in the script first. All of the constants have a description beside them telling you what they are for.Place a transparent non-combo-0 FFC with the \"lightPuzzle\" script on the screen. This will be your beam of light.D0 is the combo number for light. Probably should be a pure yellow non-solid combo. Pure white works too. You do not need to set this if you have set the LIGHT_COMBO constant already, unless you want this to use a different combo.D1 is the layer to place on. If you leave it at 0, it will use the default layer from the LIGHT_LAYER constant. I recommend layer 5 or 6.D2 is a number of tiles from the edge of the screen that are immune to light. This is probably gonna be 0, unless you are in a dungeon or something. A default NES dungeon has 2-wide walls, so you would set this number to 2 for those.D3 is a toggle. If it is 1, light will stop on any solid combo. If it is 0, light will continue until it hits the edge of the screen (or however many tiles away you specified in D2)D4 is a toggle. If you want a light from the ceiling, leave it at 0. If you want a beam of light coming out of something (a statue, the wall) then set this to 1.D5 is the direction the beam will go. If D4 is 0, then this doesn't matter. Otherwise, 0=up, 1=down, 2=left, 3=right.Place a transparent non-combo-0 FFC with the lightTriggerSetup script attached. This is required to set up light triggers.D0 is the \"set\" of light triggers. All triggers in a given set must be active for the puzzle to be \"solved\". You can have multiple sets per screen, up to 10- however each set needs its own lightTriggerSetup FFC.Place a transparent non-combo-0 FFC with the lightTrigger script attached. This will be your trigger. Place up to 20 per set on each screen.D0 is the same as in step 2.D1 is the same as in step 2.D2 is the same as D0 from step 3.D3 is the total number of triggers you are going to have on the screen.D4 is a toggle. If it is 0, the puzzle must be re-solved each time you enter the room. If it is 1, the puzzle will stay solved.D5 is a flag number. Any combo with this flag will be changed when the puzzle is solved.D6 is a combo number. This is the combo that will replace all combos of the above flag.D7 is a trigger number. This is the only thing that is different between triggers of the same set on the same screen. If you have 5 triggers, each one should have a number from 0-4 for their D7. No 2 triggers can have the same D7.\nScript compatability warnings:\nThe Link->Misc[] values of 6+lightSet are used.\nThe first X Screen->D[] values are used, where X is the number of different light sets on the screen.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Dual Swords",
+  "author": "MoscowModder",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script allows you to wield a pair of swords together (as one item).",
+  "description": "This script allows you to wield a pair of swords together (as one item). The second sword swings from the opposite direction of the main one. The combination of the two allows for a much wider reach than one sword alone.Right now, the second sword can have any damage value (including stunning) apart from the main sword. If you want to have more different effects for each blade, let me know and I could write those too. The second blade also doesn't shoot beams. If anyone really wants that, I can include that as a feature too.",
+  "setup": "0. Set up the graphics for the first sword normally.\n1. Set up the tiles for the second sword, like the screenshot above. Place them in the order Slash up, down, left, right; stab up, right. Remember that these are all held in the opposite hand of the main sword.\n2. If you use the quest rule \"flip right-facing slash\", set RULE_FLIPRIGHTSLASH to true; otherwise leave it false.\n3. Set the constant \"swordSwitchFFC\" to the number of the slot you will put the FFC script in.\n4. Make a new dual swords item (with the sword item class) or edit an existing sword, and assign the dualSwords script to its action slot. Set the action SFX to 0, then set the following D# values:\n- D0: Damage of the second sword (0 = stun)\n- D1: Sprite of the second sword\n- D2: SFX of main sword\n- D3: SFX of second sword\n\nRequires ffcscript.zh.\nIf you have my stdExtra.zh, you will need remove the FLIP_ constants and noMovement() function from the script file.",
+  "has_zip": false,
+  "has_popup": true
+}

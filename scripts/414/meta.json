@@ -1,0 +1,16 @@
+{
+  "name": "Password lock Script 4: The Disconnected Matrix 4",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "14 Jul 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "7",
+  "info": "Third version of password puzzle script. Done on request by SkyFlare.",
+  "description": "Password Lock - The Disconnected Matrix 4Unlike my prevous password script, it has 2 differences.1. Password combos can be anywhere in the screen.2. Remapped inputting password to Ex1 button.Step on puzzle lock combos and press Ex1 to cycle. Input correct password to trigger secrets.--//Adjacent combo rotatorStand on FFC and press Ex1, and combos around this one will rotate around given one.Update 31.12.2021 - minor impovement to work with Trigger->Self-Only flags.Update 24.04.2022 - puzzle solution can be defined from any layerAdded bonus script - Adjacent combo rotator. See inside download for it.Update 9.6.2022 - Fixed bug with premature secret trigger when solution was defined by non-0 layer, Damn permanency.Update: 15.7.2022 - Password lock combos can be solid - stand below it, face up and prexx Ex1 to input password.Combo rotator - animation",
+  "setup": "1. Set up sequence of combos to for password alphabet, followed by combo that looks like 1st combo in the sequence and cycles to that combo.2. Import and compile the script. It requires ffcscript.zh in addition to default libraries.3. Build the combination lock in it`s solved state. Flag every combo consisting the puzzle with CF_MATRIX_PUZZLE_PIECE.4. Place FFC anywhere in the screen. Assign the script to it and combo to first combo in password alphabet.5. Set \"Run at Screen Init\" and \"Only Visible to Lens of Truth\" flags. D0 - Set  to > 0 to Allow using Lens of Truth to crack the code. D1 - Set  to > 0 to disallow input by standing on puzzle combos and pressing Ex1, forcing to use different methods of changing combos. D2 - Set  to > 0 to replace all CF_MATRIX_PUZZLE_PIECE flags with Trigger->Self-only flags on init after defining intended puzzle solution.Needded if you use trigger flags for building password puzzles. You also need to set \"Secrets are Temporary\" screen flag so secrets won`t open after hitting a trigger, then exiting and reentering screen. D3 - screen layer to define puzzle solution. Use layer, other then 0, if you don`t want changes to layer 0. D4 - tile rotating animation//Adjacent combo rotator - find ithe script in downloaded package.Place where this puzzle element would be.D0 - How many shifts per press, positive-clockwise, negative - counter-clockwise. 2 means 90 degrees, 4 - 180 degrees.D1 - Sound to play on activation.D2 - >0 - Rotate flags.D3 - >0 - rotate csets.D4 - change rotated combos to next in table. + 2 - rotation animation",
+  "has_zip": true,
+  "has_popup": true
+}

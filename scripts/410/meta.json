@@ -1,0 +1,16 @@
+{
+  "name": "Generic Disassembled item piece.",
+  "author": "Alucard648",
+  "added": "12 Sep 2021",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "Link must collect enough those item pieces to assemble whole item. 2.53.x",
+  "description": "Not much to say. Unfortunately, it`s not possible in any way to handle progress rendering in subscreen, unless is was scripted entirely.",
+  "setup": "1. Set aside 1 screen in a DMap, like unused space in a dungeon. You need 1 such screen per 8 disassembled items.\n2. Set up as many consecutive strings to track item assembly progress, like 1/4, 2/4, 3/4 etc.\n3. Import and compile the script. Assign 1 item script slot. No libraries beyond std.zh needed.\n4. Create item in Item editor, assign script into Pickup script slot.D0 - Item to assemble.D1 - Number of pieces to form whole item.D2 - First string of the sequence from step 2.D3 - Dmap from step 1, needed to track item assembly progress.D4 - Dmap Screen from step 1, needed to track item assembly progress.D5 - Dmap Screen D register from step 1, needed to track item assembly progress.\nIf you want to disassemble a boss key (ala Twilight Princess), make sure that all parts are in the same level as assembled boss key. Alternatively, you could set D0 to item that awards specific Level Item, when picked up,\n\nAn advanced note to one, who does want to rescript subscreen entirely: you can make it read item assemblt progress by reading Screen D register you set up in Step 1 and assigned dor item in D3, D4 and D5.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Circular Movement",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script allows for a freeform combo to move in a circular pattern. This can also be made into an oval and rotated at the center.",
+  "description": "This script allows for a freeform combo to move in a circular pattern. This can also be made into an oval and rotated at the center.",
+  "setup": "Place the ffc at it's center and set it's attributes as follows. D3 and D4 are optional.D0: radius in pixels.D1: speed of rotation in degrees.D2: starting position in degrees. If negative it will be random.D3: radius2, this is used for the Y Axis, if set it will turn into a oval.D4: angle2, this will cause the oval to be rotated at it's center like in the picture above.\nRequires std.zh which is included with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

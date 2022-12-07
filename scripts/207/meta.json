@@ -1,0 +1,16 @@
+{
+  "name": "Scripted Secrets and Sounds",
+  "author": "ywkls",
+  "added": null,
+  "updated": "19 Apr 2016",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "35",
+  "info": "A way to use more than the built-in secret flags and create sounds when blocks switches are activated and pots are smashed.Update: 4-19-2016- Fixed a small error in the test quest. Thanks to Avataro for pointing it out.",
+  "description": "Any flag that wouldn't normally be activated by an item (thus triggering screen secrets) can be used as it's own secret flag.Thus, the following flags become secret flags that can be used to change any group of combos to any other group of combos a certain distance away.8- Raft flag. If you don't have a raft, you won't interact with it.12- Raft branch- again, can't be affected unless you have the raft.13- Dive->Item- unless this is a water-type combo, the game should ignore it's existence.16-31- normal secret flags. Each can be used for a separate secret that can be triggered in various ways.67- No push blocks. If you don't have any push blocks in the room, this won't affect you.96- No enemies- doesn't affect Link.97- No ground enemies- doesn't affect Link either.98-102- Script type 1 through 5. Can only be affected by scripts.103- Raft bounce. Again, can only affect you if you have a raft.Additionally, changing combos can trigger a sound and or trigger screen secrets.",
+  "setup": "Requires std.zhWarning! Do not use these to make changes in solid combos at the edge of the screen! While the flag Run at Screen Init should be checked, you must be able to walk onto this screen for the effect to take place. May not work with NES-Style dungeons.With Secret Combo script- must have combos to switch to which are a precise distance away from the starting combos. Can be positive or negative. If not permanent, secrets will reset when you leave the room. Up to 8 on screen at once can be permanent, with different numbers in the argument for the screen register.With Combo Change script- select what combo id to monitor. If combo changes, a sound will be made if you select one. If secrets are to be triggered, will trigger screen secrets if all triggers are hit.With Both- You can have as many Secret Combos are there are secret flags with Combo Change active, as long as all have the secret flag result the same as the combo triggered by the Secret Combos. Do not use flags besides 16-31. Best for combining temporary and permanent secrets. Example- all fires must be lit to advance, but fires don't stay lit when you leave the room.",
+  "has_zip": true,
+  "has_popup": true
+}

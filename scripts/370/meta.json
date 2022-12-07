@@ -1,0 +1,17 @@
+{
+  "name": "Item Cancels Message String",
+  "author": "Bagu",
+  "added": "01 Feb 2020",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Screen"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Cancels displaying a variable screen message by checking Item ID",
+  "description": "This script is primary useful, to disable strings, which include functions (like warp commands etc.).I use a string like that, to warp out, if Link enters an \"underwater map\", till he gets the required item...In this case, the blue tunic/armor/ring, to breathe under water.",
+  "setup": "Put it in the screen script slot and set it to \"run script at screen init\".D0 = Item ID (the item you want to disable the message)D1 = Message String that plays till Link picks up the required item",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "A/B Subscreen with L/R + EX1/EX2 scrolling",
+  "author": "Evan20000",
+  "added": "02 Jan 2018",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Enables you to cycle both buttons without opening a menu.",
+  "description": "Exactly what it looks like on the tin",
+  "setup": "Paste the codeblock somewhere in your script file that isn't in any other codeblock.Now pasteHaveANotShittySubscreen();into your global script's while loop. Have fun.",
+  "has_zip": false,
+  "has_popup": true
+}

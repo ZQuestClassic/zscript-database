@@ -1,0 +1,173 @@
+const int FLIPBLOCK_MODE_NORMAL = 0;
+const int FLIPBLOCK_MODE_WARNING = 1;
+const int FLIPBLOCK_MODE_FLIPPING = 2;
+const int FLIPBLOCK_MODE_FALL = 3;
+
+const int SIDEVIEW_FLIPBLOCK_WARNING_CSET = 8; //Cset used to recolor FFC, when flipblock is about to spin and become non-solid.
+
+//Sideview Castlevania styled Flipblock Trapdoor. Flips when Link jumps on it.
+//1. For flipblocks with damaging undersides set up 2 combos, 1 for normal, 1 for flipped side.
+//2. Place where it shoild be, assign 1st combo from step 1.
+// D0 - 1 for or semi-solid block, 2 for fully sold block.
+// D1 - Flipping speed for trapdoor, in degrees per frame.
+// D2 - if > 0 this flipblock has spiky underside which deals assigned damage when touched.
+// D3 - Set to >0, and flipblock, when flipping, will detach and fall, like late-game flipblock traps in Bloodstained 1.
+// D4 - Set to >0, and filpblock will flip over even just by walking on it.
+
+ffc script SideviewFlipblock{
+	void run(int solidity, int aspeed, int damage, int fall, int sens){
+		SetSideviewFFCSolidity(this, solidity);
+		int OldLinkVy = 0;
+		int mode = FLIPBLOCK_MODE_NORMAL;
+		bool flipped = false;
+		int timer = 0;
+		int origdata = this->Data;
+		int origcset = this->CSet;
+		while(true){
+			if (mode == FLIPBLOCK_MODE_NORMAL){
+				if (damage>0){
+					if (RectCollision(LinkX, LinkY, LinkX+15, LinkY+16, this->X, this->Y, (this->X + this->EffectWidth-1), (this->Y + this->EffectHeight))){
+					if (Link->Action!= LA_GOTHURTLAND){
+							if ((CenterLinkY()>CenterY(this))&&(!flipped)&&(GetLinkVy()<0)){
+								ProcessScriptedDamage(damage);
+							}
+							else if ((CenterLinkY()<CenterY(this))&&(flipped)){
+								ProcessScriptedDamage(damage);
+							}
+						} 
+					}
+					else {
+						if (flipped) this->Data = origdata+1;
+						else this->Data = origdata;
+					}
+				}
+				if ((IsRidden(this))&&((OldLinkVy>0)||(sens>0))){
+					timer = 30;
+					this->CSet = SIDEVIEW_FLIPBLOCK_WARNING_CSET;
+					mode = FLIPBLOCK_MODE_WARNING;
+				}
+				OldLinkVy = LinkVy;
+			}
+			else if (mode== FLIPBLOCK_MODE_WARNING){
+				timer--;
+				if (timer<=0){
+					SetSideviewFFCSolidity(this, 0);
+					this->Data = FFCS_INVISIBLE_COMBO;
+					timer = 180/aspeed;
+					mode = FLIPBLOCK_MODE_FLIPPING;
+				}
+			}
+			else if (mode== FLIPBLOCK_MODE_FLIPPING){
+				timer--;
+				int flip = 3;
+				if (flipped) flip=0;
+				Screen->DrawCombo(2, this->X, this->Y, origdata, this->TileWidth, this->TileHeight, this->CSet, -1, -1, this->X, this->Y, timer*aspeed, 1, flip, true, OP_OPAQUE);
+				if (timer<=0){
+					if (fall>0){
+						mode = FLIPBLOCK_MODE_FALL;
+						Waitframe();
+						continue;
+					}
+					if (flipped) flipped = false;
+					else flipped = true;
+					if ((damage>0)&&(flipped)) this->Data = origdata+1;
+					else this->Data = origdata;
+					this->CSet = origcset;
+					timer=0;
+					SetSideviewFFCSolidity(this, solidity);
+					mode= FLIPBLOCK_MODE_NORMAL;
+				}
+			}
+			else if (mode == FLIPBLOCK_MODE_FALL){
+				int flip = 3;
+				if (flipped) flip=0;
+				timer--;
+				this->Ay = GRAVITY;
+				if (this->Vy> TERMINAL_VELOCITY) this->Vy = TERMINAL_VELOCITY;
+				Screen->DrawCombo(2, this->X, this->Y, origdata, this->TileWidth, this->TileHeight, this->CSet, -1, -1, this->X, this->Y, timer*aspeed, 1, flip, true, OP_OPAQUE);
+				if (timer< -256) Quit();
+			}
+			//Screen->Rectangle(2, this->X, this->Y, this->X + (this->TileWidth*16)-1, this->Y + (this->TileHeight*16), 1, 1, 0, 0, 0, false, OP_OPAQUE);
+			Waitframe();
+		}
+	}
+}
+
+const int ELEVATOR_FLAGS_PRESSED_BY_LINK = 1;
+const int ELEVATOR_FLAGS_PRESSED_BY_BLOCKS = 2;
+const int ELEVATOR_FLAGS_PERPAETUAL_TIMER = 4;
+const int ELEVATOR_FLAGS_FLOAT_IN_WATER = 8;
+
+const int ELEVATOR_WARNING_CSET = 8; //Cset used to recolor FFC, when elevator is about to fall.
+const int ELEVATOR_WARNING_XSHAKE = 1;//Shaking offset, when elevator is about to fall.
+const int SFX_ELEVATOR_FALL = 38;//Sound to play when elevator falls
+
+//A platform that. if Link or solid block is on top of it will fall.
+// D0 - add together flags.
+//  1 - Link can trigger fall of elevator.
+//  2 - Pushabke blocks can trigger flags.
+//  4 - Once triggered, his warning countdown timer will never reset, unlike Donut Lift-like behavior, if this flag os not set.
+//  8 - If you set this flag and D2 to 2 cause lift to float in water, on fall.
+// D1 - Warning countdown time, in frames.
+// D2 - Solidity. 1 - Solid-on-top, ignores solidity when falling. 2 - Fully solid block. Becomes pushable block when falling.
+// D3 - If D2 is set to 2, this argument defines bracelet level needed to push fallen lift.
+// D4 - If set to 1, uses 3-combo extended animation, normal-warning-falling.
+
+ffc script SideviewFallingPlatform{
+	void run(int flags, int warntimer, int solidity, int weight, int exanim){
+		bool pressed = false;
+		bool fallen = false;
+		int str[]="SideviewPushblock";
+		int scr = Game->GetFFCScript(str);
+		int counter = warntimer;
+		int origdata = this->Data;
+		int origcset = this->CSet;
+		
+		SetSideviewFFCSolidity(this, solidity);
+		
+		while(true){
+			if (counter>0){
+				pressed = false;
+				if ((flags&ELEVATOR_FLAGS_PRESSED_BY_LINK) > 0){
+					if (IsRidden(this)) pressed = true;
+				}
+				if ((flags&ELEVATOR_FLAGS_PRESSED_BY_BLOCKS) > 0){
+					if (IsPressed(this, scr)>0) pressed = true;
+				}
+				if (pressed){
+					counter--;
+					this->CSet = ELEVATOR_WARNING_CSET;
+				}
+				else{
+					if (((flags&ELEVATOR_FLAGS_PERPAETUAL_TIMER)>0)&&(counter < warntimer)) counter--;
+					else{
+						this->CSet = origcset;
+						counter = warntimer;
+					}					
+				}
+			}
+			else if (!fallen){
+				this->Data = origdata+2*exanim;
+				this->CSet = origcset;
+				Game->PlaySound(SFX_ELEVATOR_FALL);
+				if (GetSideviewFFCSolidity(this)==1) this->Ay = 0.12;
+				else if (GetSideviewFFCSolidity(this)==2)TransformIntoPushblock(this, weight, 1, flags&ELEVATOR_FLAGS_FLOAT_IN_WATER);
+				fallen=true;
+			}
+			if ((counter>0)&&((pressed)||(counter<warntimer))){
+				int anim = Div(counter, 6);
+				int offset = 0;
+				if (IsOdd(anim)) offset = ELEVATOR_WARNING_XSHAKE;
+				else offset = -ELEVATOR_WARNING_XSHAKE;
+				this->Data = FFCS_INVISIBLE_COMBO;
+				Screen->DrawCombo(3, this->X+offset, this->Y, origdata+exanim, this->TileWidth, this->TileHeight, this->CSet, -1, -1, 0, 0, 0, 1, 0, true, OP_OPAQUE);
+			}
+			else this->Data = origdata;
+			if (this->Y>176){
+				SetSideviewFFCSolidity(this, 0);
+				Quit();
+			}
+			Waitframe();
+		}
+	}
+}

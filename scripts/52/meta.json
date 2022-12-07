@@ -1,0 +1,16 @@
+{
+  "name": "DMap MIDI Change",
+  "author": "Kite",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This will change the DMap MIDI of the specified DMap. This is probably temporary and won't save between game sessions. This also won't work with the built-in MIDIs due to how it uses variables.\n\nThis was made in response to a script request by James24: https://www.purezc.co...showtopic=53970",
+  "description": "This will change the DMap MIDI of the specified DMap. This is probably temporary and won't save between game sessions. This also won't work with the built-in MIDIs due to how it uses variables.\n\nThis was made in response to a script request by James24: https://www.purezc.co...showtopic=53970",
+  "setup": "This is an FFC script, so attach it to an FFC.d0 = The dmap midi to change. If less than 0 (-1 for example), it will pick the current dmap.d1 = The midi to change the dmap midi to. If less than 0 (-1 for example), it will pick the currently playing midi.d2 = Should the currently playing midi be changed? 0 = No. 1 = Yes.Requires std.zh",
+  "has_zip": false,
+  "has_popup": true
+}

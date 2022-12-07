@@ -1,0 +1,16 @@
+{
+  "name": "Light Path Puzzle 2.0",
+  "author": "Alucard648",
+  "added": "05 Jul 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "10",
+  "info": "An update of Moosh`s Lighpath puzzle FFC script with new features and bugfixes.Credit goes to Moosh for original script and graphics, VGMusic for music used in demo quest.Tested in ZC 2.53.1 bets 55.",
+  "description": "Originally this script was made by Moosh. This puzzle was originally written By Moosh to fulfill a random request. I found it pretty interesting, bur way too basic. Later, as part of development of 100 Rooms of Wisdom, I have expanded it with sme extra features, like:- pushable solid path combos- rotateable start and end points- wraparound portals- option to rotate path tiles just by standing on them and pressing A- sections that have multiple paths for light to follow, like double bends and bridge tiles.",
+  "setup": "1. Map out combos for paths as shown in screen shots.Fixed start/end nodes: unlit then lit 32 combos total.Rotateable floor path tiles: unlit then lit 32 combos total.Fixed floor path tiles: unlit then lit 32 combos total.Solid block path tiles: unlit then lit 32 combos total.Rotateable start/end nodes: unlit then lit 32 combos total.Tiles with double paths, in this exact order - unlit then every state of pight path activity- Fixed floor paths: double bends //, then \\\\ and bridges- rotateable double bends // then \\\\- solid block paths : double bends // then \\\\ and bridges- You should end up with 32 double path combos.\n2. Import and compile the script. No headers beyond default ones required. 1 FFC script slot is used.\n\n3. Build the puzzle. Place ony unlit versions of path tiles, except start nodes, which must be placed as lit ones.- if you have solid block paths, you can make them pushable by placing \"push block\" flags on those combos.- If light path runs into CT_LIGHTPATH_WRAPAROUND_PORTAL combo type, it will wrap around using another CT_LIGHTPATH_WRAPAROUND_PORTAL combo as shown in demo quest.- If you place CF_LIGHTPATH_SOURCE_NODE onto unlit node, it will stay lit ince fed with light, even if it was dusconnected afterwards.\n4. Place invisible FFC anywhere in the screen, assign the script into slot;D0 - The combo number of the first of the 32 start/end nodes.D1 - The combo number of the first of the 32 rotateable path tiles.D2 - The combo number of the first of the 32 fixed floor path tiles.D3 - The combo number of the first of the 32 solid block path tiles.D4 - The combo number of the first of the 32 rotateable start/end nodesD5 - The combo number of the first of the 32 special double-path tiles\n5. Test, enjoy, report issues...",
+  "has_zip": true,
+  "has_popup": true
+}

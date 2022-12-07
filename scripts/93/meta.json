@@ -1,0 +1,16 @@
+{
+  "name": "Secret Sound Freeze",
+  "author": "Kite",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "If permanent secrets have just been activated on the screen, this script will freeze the screen for a specified length, play a sound, wait a specified length, unfreeze, then play a string if one is specified.",
+  "description": "If permanent secrets have just been activated on the screen, this script will freeze the screen for a specified length, play a sound, wait a specified length, unfreeze, then play a string if one is specified.\n\nThis was made in response to a script request by Dawnlight: https://www.purezc.co...showtopic=57509",
+  "setup": "This is an FFC script, so attach it to an FFC and give it some values to work with.\n\nD0 = SFX to play.\nD1 = Length to wait before playing SFX in frames (60 frames ~ 1 second)\nD2 = Length to wait when SFX starts playing until the string happens in frames (ZC doesn't have a way to wait for a SFX to finish playing automatically)\nD3 = String to play (if any).\n\nNote: This will only work with permanent secrets.\nNote2: This will not freeze FFCs since they kind of need to remain running for the script to work.\n\nResources\n\nRequires std.zh",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,42 @@
+// An old man who gives Link a sword.
+//
+// This demonstrates a custom font with non-Latin characters and synchronizing
+// a script and message with @sync() and Tango_Sync(). It also gives Link
+// the item that launches the ItemObtained script.
+
+ffc script Ojiisan
+{
+    void run()
+    {
+        // "一人では危険じゃ。これを授けよう。@sync(1)"
+        int jpn[]= { KNJ_ICHI, KNJ_JIN, HG_DE, HG_HA, KNJ_KI, KNJ_KEN, HG_JI, HG_SMALL_YA, KUTEN,
+                     HG_KO, HG_RE, HG_WO, KNJ_JU, HG_KE, HG_YO, HG_U, KUTEN, NULL };
+        int format[]="%s@sync(1)";
+        int string[26];
+        sprintf(string, format, jpn);
+        
+        while(true)
+        {
+            if(StartTalking(this))
+            {
+                int slot=ShowString(string, TANGO_SLOT_NORMAL, STYLE_JAPANESE, 32, 32);
+                if(slot!=TANGO_INVALID)
+                {
+                    // Wait until @sync(1) is reached before continuing
+                    Tango_Sync(1);
+                    
+                    item sword=Screen->CreateItem(5);
+                    sword->X=Link->X;
+                    sword->Y=Link->Y;
+                    
+                    while(Tango_SlotIsActive(slot))
+                        Waitframe();
+                }
+                
+                StopTalking();
+            }
+            
+            Waitframe();
+        }
+    }
+}

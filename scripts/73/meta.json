@@ -1,0 +1,17 @@
+{
+  "name": "LA-style animal NPCs",
+  "author": "MoscowModder",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Made by request for Dragonite.\nThis is an autoghost script that makes 'enemies' that hop around in random directions and stop for a specified number of frames. The quest-maker can decide whether or not they can deal or receive damage from Link.",
+  "description": "Made by request for Dragonite.\nThis is an autoghost script that makes 'enemies' that hop around in random directions and stop for a specified number of frames. The quest-maker can decide whether or not they can deal or receive damage from Link.",
+  "setup": "If you haven't already, assign the autoghost global script to your global script slot or combine it with your existing scripts.\n\nCreate each animal in the enemy editor as a Walking Enemy, and set up its attributes as follows:\nType: Walking enemy\nAnimation and sprite: Whatever you want; these are used for the NPC\nHP: Must be at least 1, even if it can't take damage\nStep speed: How fast to move\n3 = Death Attr 1: How high to jump (1-2 is a good value)\n4 = Death Attr 2: How long to stand still (in frames)\n5 = Death Attr 3: How long to move (ditto)\n6 = Extra shots: Collision detection (0: intangible; 1: deals damage and can be killed)\n11 = MUST BE equal to GH_INVISIBLE_COMBO in ghost.zh\n12 = Script slot number (check as you're assigning this to an FFC slot)\n\nOnce setup is complete, animals can be placed like regular enemies.\n\nRequires ghost.zh, string.zh, and std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

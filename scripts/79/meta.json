@@ -1,0 +1,16 @@
+{
+  "name": "Message Script",
+  "author": "Hoff123",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "A script by \"Hoff123\" to show a message(string) on the screen.Includes multiple ways to display a message:Normal, delay, no return, switch string, toggle switch string, and if you have a certain item or not",
+  "description": "A script by \"Hoff123\" to show a message(string) on the screen.Includes multiple ways to display a message:Normal, delay, no return, switch string, toggle switch string, and if you have a certain item or not",
+  "setup": "Just create a new FFC(freeform combo), and change the combo to someone that is not the default transparent one(preferably the one right next to it which is also transparent). Then choose a script for it(Hoffs_Message_Script), and then go to Arguments and enter whatever you want.D0: The string you want to use. If all you want is to show a simple message, leave the other arguments as is       If you're using D6, this will be the string shown if you don't have a certain itemD1: How long until the message is showed. 60 = 1 second. If you don't want any delay, leave this as isD2: If you want the message to be showed only the first time you enter the screen, set this to 1       If you're using D6, this will be the string shown if you do have a certain itemD3: If you want to switch to another string when you enter the screen a second time       It will then show the second string every time you visit that screen, unless...D4: If you want to toggle between the first and second string every time you enter the screen, set this to 1D5: The Screen->D[] variable you want to use for either D2 or D3/D4       If you have no idea what that means, just leave it as isD6: If you want to show a string depending on if you have an item or not, set this to the ID of the item      This one doesn't require any Screen->D variable(s) and just checks if you actually have an item or not in your inventoryNote that for obvious reasons you can't use both D2 and D3/D4 in the same screenBut you can mix them with delay. E.g \"delay + no return\" and \"delay + switch string\"But note that there will always be a delay when you enter the screen if you use itD6 uses string and string2 to show a message depending on if you have an item or notand can't be mixed with any of the other ways, except for delay which works with everythingYou are meant to use one instance(one FFC) of this script per screenIf you try to use multiple instances(multiple FFC's) on the same screenit will most likely cause some troubles",
+  "has_zip": false,
+  "has_popup": true
+}

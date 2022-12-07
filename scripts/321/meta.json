@@ -1,0 +1,16 @@
+{
+  "name": "Glass Shatter Wipe",
+  "author": "Moosh",
+  "added": "17 Nov 2018",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "This is an FFC script that produces a glass shattering effect and warps players to a new screen, for use in cutscenes.",
+  "description": "This is an FFC script that produces a glass shattering effect and warps players to a new screen, for use in cutscenes.",
+  "setup": "Keep in mind that in order for this script to work optimally, the screen you're on and the screen you're warping to need to share a palette or at least all visible colors. This is a limitation of ZC's palette system. Usually you can make a custom cutscene palette with the colors for both screens, but if this isn't possible you may have to compromise and do two warps: a shatter to black and then a shatter to the new area.\n\nFirst place an FFC with the script where you want the center point of the wipe to be. All glass shards will be pushed away from this point. Set the FFC's D0-7 variables:\n\nImportant Settings:D0: The DMap to warp Link to.D1: The Y position (or first digit) of the screen to warp Link to. For example if the screen is 64, you'd set it to 6.D2: The X position (or second digit) of the screen to warp Link to. For example, if the screen is 64, you'd set this to 4. Digits A-F count as 10-15. This is affected by DMap offsets, so if you're using those be sure to preview them in the DMap editor.\nOptional Settings:D3: The sound to play when the wipe begins.D4: This affects the speed of the wipe's expanding radius in pixels per frame. If 0, all shards will activate instantly. Otherwise they'll activate in an expanding circle moving from the center. If you're unsure, try 2 as a default speed.D5: This affects how fast the shards will be pushed away from the center in pixels per frame. If 0, it will default to 1.D6: This affects the gravity (or vertical acceleration) of the shards in pixels per frame. If 0, it will default to 0.6.D7: If you want to use your own timed warp instead of the script's, set this to 1. It will continue to draw the new screen after the wipe is completed. D0-2 still need to be set even if this is set to 1.\nIf you want to delay when the wipe happens, you can set the FFC's A. Delay.\n\nThis script only requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Warp Link on Death",
+  "author": "Avaro",
+  "added": "14 Aug 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "This script fully heals Link upon dying and then warps him, using an autowarp combo type. No death animation or gameover will happen.",
+  "description": "Useful for a minigame where you don't want Link to actually die, for example.",
+  "setup": "After importing the script, place an FFC with this script on the screen where you want to use it.\n\nSet D0 to the combo ID of a blank combo with an autowarp combo type, which will appear when Link dies. This script fully heals Link to prevent the death.\n\nIf you don't know how the autowarp combo type works, click the \"?\" button in the combo editor.\n\nThis script most likely won't be compatible with other scripts that do things upon Link dying.\n\nRequires std.zh which comes with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,707 @@
+//+====================================+
+//|        MooshMap Constants          |
+//+====================================+
+
+// === SETTINGS ===
+//These are TRUE / FALSE constants. Set the to 1 to toggle features on, or 0 to toggle them off.
+
+const int MOOSHMAP_VISITED_CARRYOVER = 1; //Set to 1 to make which screens on a floor have been visited carry over
+const int MOOSHMAP_ALL_CARRYOVER = 1; //Set to 1 to make the other screen states carry over
+const int MOOSHMAP_D_CARRYOVER = 0; //Set to 1 to make Screen->D carry over
+
+const int MOOSHMAP_HIGHLIGHTCURRENTROOM = 1; //Set to 1 to highlight whichever room Link is in
+const int MOOSHMAP_DRAWLINKPOSITION = 1; //Set to 1 to draw a Link marker in whichever screen Link is in
+const int MOOSHMAP_PRECISELINKPOSITION = 1; //Set to 1 if the Link marker's position should be based on Link's (Like in ALttP)
+
+const int MOOSHMAP_SHOW_TITLE = 1; //Set to 1 to show the DMap name on the subscreen
+const int MOOSHMAP_SHOW_LITEMS = 1; //Set to 1 to show icons for the level items on the subscreen
+
+//Okay this one actually isn't true/false. I lied.
+const int MOOSHMAP_PRECISELINKPOSITIONBORDER = 1; //How thick the border around screens is (to keep the Link Marker from going offscreen)
+
+
+// === NUMBER COMBOS ===
+//These script uses a couple blocks of combos to mark decimal and hex numbers. These constants determine where those start and end.
+
+const int CMB_DEC = 25856; //Combo of the first decimal combo
+const int MAX_DEC = 511; //Decimal value of the last decimal combo
+const int CMB_HEX = 25600; //Combo of the first hex combo
+const int MAX_HEX = 0x8F; //Hex value of the last hex combo
+
+// === SCREEN FREEZE ===
+//These constants allow the script to freeze the screen.
+
+const int CMB_SCREENFREEZEA = 2; //An invisible Screen Freeze (Except FFCs) combo
+const int CMB_SCREENFREEZEB = 3; //An invisible Screen Freeze (FFCs Only) combo
+
+//These two FFC slots will become screen freeze when the map is opened
+const int FFC_SCREENFREEZEA = 31;
+const int FFC_SCREENFREEZEB = 32;
+
+// === GFX ===
+//These constants are for graphical things, combos, csets, and colors that are used by the script
+
+//Combo and CSet of the marker showing which floor Link is on
+const int CMB_MOOSHMAP_LINKFLOORMARKER = 7876;
+const int CS_MOOSHMAP_LINKFLOORMARKER = 6;
+
+//Combo and CSet of Link's position marker
+const int CMB_MOOSHMAP_LINKPOSITIONMARKER = 7877;
+const int CS_MOOSHMAP_LINKPOSITIONMARKER = 6;
+
+//Combo and CSet of the map icon on the subscreen
+const int CMB_MOOSHMAP_MAP = 7828;
+const int CS_MOOSHMAP_MAP = 6;
+
+//Combo and CSet of the compass icon on the subscreen
+const int CMB_MOOSHMAP_COMPASS = 7829;
+const int CS_MOOSHMAP_COMPASS = 7;
+
+//Combo and CSet of the boss key icon on the subscreen
+const int CMB_MOOSHMAP_BOSSKEY = 7830;
+const int CS_MOOSHMAP_BOSSKEY = 8;
+
+const int C_WHITE = 0x01; //The color white
+const int C_BLACK = 0x0F; //The color black
+
+// === SFX ===
+//Sounds
+
+const int SFX_MAPSUBSCREEN_OPEN = 70; //SFX when the map is opened
+const int SFX_MAPSUBSCREEN_CLOSE = 70; //SFX when the map is closed
+const int SFX_MAPSUBSCREEN_FLOORCHANGE = 5; //SFX when the selected floor is changed
+
+// === MAPS AND SCREENS ===
+//The script references specific maps and screens in order to find map data.
+
+//Map the script grabs the layout of level maps from. Each screen corresponds to a level number of the same value in decimal
+const int MAP_MOOSHMAP_DATA = 1;
+
+//Map and Screen for default map subscreen background
+const int MAP_MOOSHMAP_BG = 1;
+const int SCREEN_MOOSHMAP_BG = 0x87;
+
+// === MISC CONSTANTS ===
+//Other loose odds and ends
+
+const int RT_MOOSHMAP = 1; //Bitmap used for map drawing. If you don't know what this is and haven't seen it before,
+						   //chances are it doesn't matter. Just be sure it's unique to any other RT_ constants you're using.
+
+const int DMF_ALLOWMAP = 11; //DMap flag that enables the dungeon map. Script 1 by default.
+
+//X,Y position of the map
+const int MOOSHMAP_MAP_X = 120;
+const int MOOSHMAP_MAP_Y = 24;
+//Spacing between map tiles
+const int MOOSHMAP_MAP_SQUARE_SCALE = 14;
+
+//X,Y position of the center position for the floor listing
+const int MOOSHMAP_FLOOR_X = 48;
+const int MOOSHMAP_FLOOR_Y = 60;
+//Width,Height of each floor combo
+const int MOOSHMAP_FLOOR_WIDTH = 2;
+const int MOOSHMAP_FLOOR_HEIGHT = 1;
+//Y spacing between floor combos
+const int MOOSHMAP_FLOOR_SPACING = 16;
+
+//Font of the map title. See FONT_ in std_constants.zh
+const int MOOSHMAP_TITLE_FONT = 1;
+//X,Y position of the map title
+const int MOOSHMAP_TITLE_X = 176;
+const int MOOSHMAP_TITLE_Y = 148;
+
+//Y,Y position of the map icon
+const int MOOSHMAP_MAPICON_X = 32;
+const int MOOSHMAP_MAPICON_Y = 140;
+
+//Y,Y position of the compass icon
+const int MOOSHMAP_COMPASSICON_X = 48;
+const int MOOSHMAP_COMPASSICON_Y = 140;
+
+//Y,Y position of the boss key icon
+const int MOOSHMAP_BOSSKEYICON_X = 64;
+const int MOOSHMAP_BOSSKEYICON_Y = 140;
+
+
+// === INTERNALS ===
+//DON'T CHANGE ANY CONSTANTS PAST THIS POINT.
+//Everything past here is just to make the script more readable for me. 
+//No more constants past this point need to be changed.
+
+int MooshMap[163];
+
+const int MM_ISOPEN = 0;
+const int MM_NUMFLOORS = 1;
+const int MM_LINKFLOOR = 2;
+const int MM_SELECTEDFLOOR = 3;
+const int MM_BGMAP = 4;
+const int MM_BGSCREEN = 5;
+const int MM_OPENFRAMES = 6;
+const int MM_FLOORSWITCHFRAMES = 7;
+const int MM_LASTDMAP = 8;
+const int MM_LASTSCREEN = 9;
+const int MM_LASTSCREENSTATES = 10;
+
+const int MM_STARTFLOORINDEX = 20;
+const int MM_NUMFLOORINDEX = 11;
+
+const int MM_F_FLOORCMB = 0;
+const int MM_F_FLOORCS = 1;
+const int MM_F_REFMAP = 2;
+const int MM_F_REFSCREEN = 3;
+const int MM_F_MARKERSCREEN = 4;
+const int MM_F_MARKERSCREEN2 = 5;
+const int MM_F_NUMFLOORS = 6;
+const int MM_F_FLOORDMAPS = 7;
+
+// === END OF INTERNALS ===
+
+//+=======================================+
+//|        MooshMap Global Script         |
+//+=======================================+
+//Combine this with any other global scripts you may be using.
+
+global script MooshMap_Example{
+	void run(){
+		MooshMap_Init();
+		while(true){
+			MooshMap_Update();
+			Waitdraw();
+			Waitframe();
+		}
+	}
+}
+
+//Function to freeze the screen
+void MooshMap_ScreenFreeze(){
+	ffc f1 = Screen->LoadFFC(FFC_SCREENFREEZEA);
+	f1->Data = CMB_SCREENFREEZEA;
+	ffc f2 = Screen->LoadFFC(FFC_SCREENFREEZEB);
+	f2->Data = CMB_SCREENFREEZEB;
+}
+
+//Function to unfreeze the screen
+void MooshMap_ScreenUnfreeze(){
+	ffc f1 = Screen->LoadFFC(FFC_SCREENFREEZEA);
+	f1->Data = 0;
+	ffc f2 = Screen->LoadFFC(FFC_SCREENFREEZEB);
+	f2->Data = 0;
+}
+
+//Run in the first frame of the global
+void MooshMap_Init(){
+	MooshMap_ScreenUnfreeze(); //If the screen is somehow frozen when starting, unfreeze
+	MooshMap[MM_ISOPEN] = 0; //In case of F6
+	
+	MooshMap[MM_LASTDMAP] = Game->GetCurDMap();
+	MooshMap[MM_LASTSCREEN] = Game->GetCurScreen();
+	MooshMap[MM_LASTSCREENSTATES] = MooshMap_GetAllScreenStates();
+}
+
+//Run every frame in the global to run the map script
+void MooshMap_Update(){
+	if(MOOSHMAP_VISITED_CARRYOVER){
+		MooshMap_UpdateCarryover();
+	}
+	if(Game->DMapFlags[Game->GetCurDMap()]&(1<<DMF_ALLOWMAP)){
+		if(MooshMap[MM_ISOPEN]){ //If the map is open
+			if(MooshMap[MM_OPENFRAMES]>0){ //Opening animation
+				if(MooshMap[MM_OPENFRAMES]>9){
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				else if(MooshMap[MM_OPENFRAMES]>6){
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				else if(MooshMap[MM_OPENFRAMES]>3){
+					MooshMap_DrawAll(MooshMap[MM_SELECTEDFLOOR]);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				else{
+					MooshMap_DrawAll(MooshMap[MM_SELECTEDFLOOR]);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				MooshMap[MM_OPENFRAMES]--;
+			}
+			else{
+				MooshMap_DrawAll(MooshMap[MM_SELECTEDFLOOR]);
+				if(MooshMap[MM_NUMFLOORS]>1){
+					if(Link->InputUp||Link->InputDown){
+						if(Link->InputUp&&!Link->InputDown){
+							if(MooshMap[MM_FLOORSWITCHFRAMES]>0)
+								MooshMap[MM_FLOORSWITCHFRAMES]--;
+						}
+						else if(Link->InputDown&&!Link->InputUp){
+							if(MooshMap[MM_FLOORSWITCHFRAMES]>0)
+								MooshMap[MM_FLOORSWITCHFRAMES]--;
+						}
+						else
+							MooshMap[MM_FLOORSWITCHFRAMES] = 16;
+					}
+					if(Link->PressUp||(Link->InputUp&&MooshMap[MM_FLOORSWITCHFRAMES]<=0)){
+						MooshMap[MM_FLOORSWITCHFRAMES] = 16;
+						Game->PlaySound(SFX_MAPSUBSCREEN_FLOORCHANGE);
+						MooshMap[MM_SELECTEDFLOOR]++;
+						//Wrap selection
+						if(MooshMap[MM_SELECTEDFLOOR]>MooshMap[MM_NUMFLOORS]-1)
+							MooshMap[MM_SELECTEDFLOOR] = 0;
+						MooshMap_UpdateBitmap(MooshMap[MM_SELECTEDFLOOR]); //The floor has changed, so we must update the bitmaps
+					}
+					else if(Link->PressDown||(Link->InputDown&&MooshMap[MM_FLOORSWITCHFRAMES]<=0)){
+						MooshMap[MM_FLOORSWITCHFRAMES] = 16;
+						Game->PlaySound(SFX_MAPSUBSCREEN_FLOORCHANGE);
+						MooshMap[MM_SELECTEDFLOOR]--;
+						//Wrap selection
+						if(MooshMap[MM_SELECTEDFLOOR]<0)
+							MooshMap[MM_SELECTEDFLOOR] = MooshMap[MM_NUMFLOORS]-1;
+						MooshMap_UpdateBitmap(MooshMap[MM_SELECTEDFLOOR]); //The floor has changed, so we must update the bitmaps
+						
+					}
+				}
+				if(Link->PressMap){
+					Game->PlaySound(SFX_MAPSUBSCREEN_CLOSE);
+					MooshMap[MM_ISOPEN] = 0; //The map is closed now
+					MooshMap[MM_OPENFRAMES] = 12; //It takes 12 frames to play the full closing animation
+				}
+				Link->InputStart = false;
+				Link->PressStart = false;
+				NoAction();
+			}
+		}
+		else{ //Otherwise, check if Link is trying to open it
+			if(MooshMap[MM_OPENFRAMES]>0){ //Closing animation
+				if(MooshMap[MM_OPENFRAMES]>9){
+					MooshMap_DrawAll(MooshMap[MM_SELECTEDFLOOR]);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				else if(MooshMap[MM_OPENFRAMES]>6){
+					MooshMap_DrawAll(MooshMap[MM_SELECTEDFLOOR]);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				else if(MooshMap[MM_OPENFRAMES]>3){
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				else{
+					Screen->Rectangle(7, 0, 0, 255, 175, C_BLACK, 1, 0, 0, 0, true, 64);
+				}
+				MooshMap[MM_OPENFRAMES]--;
+				if(MooshMap[MM_OPENFRAMES]<=0) //Unfreeze once the closing animation ends
+					MooshMap_ScreenUnfreeze();
+			}
+			else if(Link->PressMap){
+				if(MooshMap_LoadLevelMapData()){ //Only continue if we can get the floor data successfully
+					MooshMap_ScreenFreeze();
+					MooshMap_UpdateBitmap(MooshMap[MM_SELECTEDFLOOR]); //Update the non animated parts of the map before loading (screens, markers)
+					Game->PlaySound(SFX_MAPSUBSCREEN_OPEN);
+					MooshMap[MM_ISOPEN] = 1; //The map is open now
+					MooshMap[MM_OPENFRAMES] = 12; //It takes 12 frames to play the full opening animation
+				}
+			}
+		}
+		Link->InputMap = false;
+		Link->PressMap = false;
+	}
+}
+
+//Get a decimal number from a combo on a screen.
+//If it's not a decimal marker combo, return -1.
+int MooshMap_GetCMBDec(int map, int scrn, int pos){
+	int cd = Game->GetComboData(map, scrn, pos);
+	if(cd>=CMB_DEC&&cd<=CMB_DEC+MAX_DEC)
+		return cd-CMB_DEC;
+	return -1;
+}
+
+//Get a hexadecimal number from a combo on a screen.
+//If it's not a hex marker combo, return -1.
+int MooshMap_GetCMBHex(int map, int scrn, int pos){
+	int cd = Game->GetComboData(map, scrn, pos);
+	if(cd>=CMB_HEX&&cd<=CMB_HEX+MAX_HEX)
+		return cd-CMB_HEX;
+	return -1;
+}
+
+//Get map data from a screen based on the current Level
+bool MooshMap_LoadLevelMapData(){
+	if(Game->GetCurScreen()>=0x80)
+		return false;
+	
+	int num;
+	int level = Game->GetCurLevel();
+	num = MooshMap_GetCMBDec(MAP_MOOSHMAP_DATA, level, 3);
+	MooshMap[MM_BGMAP] = MAP_MOOSHMAP_BG;
+	MooshMap[MM_BGSCREEN] = SCREEN_MOOSHMAP_BG;
+	if(num>-1){ //If there's a custom background map set, store that
+		MooshMap[MM_BGMAP] = num;
+		num = MooshMap_GetCMBHex(MAP_MOOSHMAP_DATA, level, 4);
+		if(num>-1) //Same for background screen
+			MooshMap[MM_BGSCREEN] = num;
+	}
+	MooshMap[MM_NUMFLOORS] = 0;
+	MooshMap[MM_SELECTEDFLOOR] = 0;
+	MooshMap[MM_LINKFLOOR] = -1;
+	for(int i=0; i<13; i++){ //Cycle through all valid floor slots
+		num = MooshMap_GetCMBDec(MAP_MOOSHMAP_DATA, level, 51+i);
+		if(num==-1) //If there's no valid ref map at this position
+			break; //Break the loop
+		else{ //Otherwise, assume this is a valid floor
+			MooshMap[MM_NUMFLOORS]++;
+			
+			//Combo, CSet
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORCMB] = Game->GetComboData(MAP_MOOSHMAP_DATA, level, 35+i);
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORCS] = Game->GetComboCSet(MAP_MOOSHMAP_DATA, level, 35+i);
+			
+			//Ref Map (Also used earlier to check if it's a valid floor)
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_REFMAP] = num;
+			
+			//Ref Screen
+			num = MooshMap_GetCMBHex(MAP_MOOSHMAP_DATA, level, 67+i);
+			if(num==-1) //Error
+				return false;
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_REFSCREEN] = num;
+			
+			//Marker Screen
+			num = MooshMap_GetCMBHex(MAP_MOOSHMAP_DATA, level, 83+i);
+			if(num==-1) //Error
+				return false;
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_MARKERSCREEN] = num;
+			
+			//Marker Screen 2
+			num = MooshMap_GetCMBHex(MAP_MOOSHMAP_DATA, level, 99+i);
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_MARKERSCREEN2] = num;
+			
+			//Floor DMap 1
+			num = MooshMap_GetCMBDec(MAP_MOOSHMAP_DATA, level, 115+i);
+			if(num==-1) //Error
+				return false;
+			if(Game->GetCurDMap()==num){ //If Link is on the current DMap, set Link's floor and the current floor
+				MooshMap[MM_LINKFLOOR] = i;
+				MooshMap[MM_SELECTEDFLOOR] = i;
+			}
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORDMAPS] = num;
+			
+			//Floor DMap 2 (Optional)
+			num = MooshMap_GetCMBDec(MAP_MOOSHMAP_DATA, level, 131+i);
+			if(Game->GetCurDMap()==num){ //If Link is on the current DMap, set Link's floor and the current floor
+				MooshMap[MM_LINKFLOOR] = i;
+				MooshMap[MM_SELECTEDFLOOR] = i;
+			}
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORDMAPS+1] = num;
+			
+			//Floor DMap 3 (Optional)
+			num = MooshMap_GetCMBDec(MAP_MOOSHMAP_DATA, level, 147+i);
+			if(Game->GetCurDMap()==num){ //If Link is on the current DMap, set Link's floor and the current floor
+				MooshMap[MM_LINKFLOOR] = i;
+				MooshMap[MM_SELECTEDFLOOR] = i;
+			}
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORDMAPS+2] = num;
+			
+			//Floor DMap 4 (Optional)
+			num = MooshMap_GetCMBDec(MAP_MOOSHMAP_DATA, level, 163+i);
+			if(Game->GetCurDMap()==num){ //If Link is on the current DMap, set Link's floor and the current floor
+				MooshMap[MM_LINKFLOOR] = i;
+				MooshMap[MM_SELECTEDFLOOR] = i;
+			}
+			MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORDMAPS+3] = num;
+		}
+	}
+	if(MooshMap[MM_NUMFLOORS]==0) //Can't have a map with 0 floors
+		return false;
+	return true; //Heyyy, we've loaded everything with no issue
+}
+
+//Draw the map and markers to various parts of the bitmap
+void MooshMap_UpdateBitmap(int floor){
+	int cmb; int cs; int flag; 
+	int cmbMarker; int csMarker; int ctMarker; 
+	int pos; 
+	int i; int j; int k;
+	bool test1; bool test2;
+
+	Screen->SetRenderTarget(RT_MOOSHMAP);
+	Screen->Rectangle(6, 0, 0, 511, 511, 0x00, 1, 0, 0, 0, true, 128); //Clear the bitmap
+	
+	int refMap = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_REFMAP];
+	int refScreen = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_REFSCREEN];
+	int markerScreen = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_MARKERSCREEN];
+	
+	//Find the first DMap associated with the current floor
+	int dmap = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_FLOORDMAPS];
+	if(MooshMap[MM_LINKFLOOR]==floor)
+		dmap = Game->GetCurDMap();
+	int srcMap = Game->DMapMap[dmap];
+	int offset = Game->DMapOffset[dmap];
+	
+	bool visited[64];
+	//Cycle through all screens once to find which have been visited
+	for(i=0; i<64; i++){
+		pos = i%8+Floor(i/8)*16;
+		if(Game->GetScreenState(srcMap, pos+offset, ST_VISITED)){
+			flag = Game->GetComboFlag(refMap, refScreen, pos);
+			if(flag>0&&!visited[i]){ //If a combo has a flag, it's part of a screen group
+				for(j=0; j<64; j++){ //Cycle through every screen again to
+					pos = j%8+Floor(j/8)*16;
+					if(Game->GetComboFlag(refMap, refScreen, pos)==flag) //All screens that share the flag should be marked as visited
+						visited[j] = true;
+				}
+			}
+			visited[i] = true;
+		}
+	}
+	
+	//Cycle through all the screens again and draw them this time
+	for(i=0; i<64; i++){
+		pos = i%8+Floor(i/8)*16;
+		cmb = Game->GetComboData(refMap, refScreen, pos);
+		cs = Game->GetComboCSet(refMap, refScreen, pos);
+		
+		if(Game->LItems[Game->GetCurLevel()]&LI_MAP) //If Link has the map, draw unvisited screens
+			Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8), MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8), cmb, cs, 128);
+		if(visited[i]) //If Link has been to the screen, or one grouped with it, draw it
+			Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+256, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8), cmb+1, cs, 128);
+		if(Game->LItems[Game->GetCurLevel()]&LI_COMPASS){ //If Link has the compass, show markers
+			for(k=0; k<2; k++){ //Repeat twice if MarkerScreen2 is set
+				int markerLayerOffset = 256*k;
+				markerScreen = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_MARKERSCREEN];
+				if(MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_MARKERSCREEN2]<0) //jesus christ, man, why are you doing it this way
+					k = 2; //seriously dude, no!
+				else if(k==1)
+					markerScreen = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_MARKERSCREEN2];
+				ctMarker = Game->GetComboType(refMap, markerScreen, pos);
+				if(ctMarker==CT_CHEST){ //Marker for Screen Item or Special Item (2 states: 0 = Item present, 1 = Item taken)
+					cmbMarker = Game->GetComboData(refMap, markerScreen, pos);
+					csMarker = Game->GetComboCSet(refMap, markerScreen, pos);
+					test1 = Game->GetScreenState(srcMap, pos+offset, ST_ITEM) || Game->GetScreenState(srcMap, pos+offset, ST_SPECIALITEM);
+					if(test1)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+1, csMarker, 128);
+					else
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker, csMarker, 128);
+				}
+				else if(ctMarker==CT_BOSSCHEST){ //Marker for Screen Item and Special Item (4 states: 0 = Both items present, 1 = Screen item present, 2 = Special item present, 3 = Both items taken);
+					cmbMarker = Game->GetComboData(refMap, markerScreen, pos);
+					csMarker = Game->GetComboCSet(refMap, markerScreen, pos);
+					test1 = Game->GetScreenState(srcMap, pos+offset, ST_ITEM);
+					test2 = Game->GetScreenState(srcMap, pos+offset, ST_SPECIALITEM);
+					if(test1&&test2)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+3, csMarker, 128);
+					else if(test1)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+2, csMarker, 128);
+					else if(test2)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+1, csMarker, 128);
+					else
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker, csMarker, 128);
+				}
+				else if(ctMarker==CT_DAMAGE1){ //Marker for bosses. Removed based on the level's boss flag. (2 states: 0 = Boss alive, 1 = Boss dead)
+					cmbMarker = Game->GetComboData(refMap, markerScreen, pos);
+					csMarker = Game->GetComboCSet(refMap, markerScreen, pos);
+					if(Game->LItems[Game->GetCurLevel()]&LI_BOSS)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+1, csMarker, 128);
+					else
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker, csMarker, 128);
+				}
+				else if(ctMarker==CT_STEP){ //Marker for screen secrets. (2 states: 0 = Secret not triggered, 1 = Secret triggered)
+					cmbMarker = Game->GetComboData(refMap, markerScreen, pos);
+					csMarker = Game->GetComboCSet(refMap, markerScreen, pos);
+					test1 = Game->GetScreenState(srcMap, pos+offset, ST_SECRET);
+					if(test1)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+1, csMarker, 128);
+					else
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker, csMarker, 128);
+				}
+				else if(ctMarker==CT_LOCKBLOCK){ //Marker for lock blocks. (2 states: 0 = Locked, 1 = Unlocked)
+					cmbMarker = Game->GetComboData(refMap, markerScreen, pos);
+					csMarker = Game->GetComboCSet(refMap, markerScreen, pos);
+					test1 = Game->GetScreenState(srcMap, pos+offset, ST_LOCKBLOCK);
+					if(test1)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+1, csMarker, 128);
+					else
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker, csMarker, 128);
+				}
+				else if(ctMarker==CT_BOSSLOCKBLOCK){ //Marker for boss lock blocks. (2 states: 0 = Locked, 1 = Unlocked)
+					cmbMarker = Game->GetComboData(refMap, markerScreen, pos);
+					csMarker = Game->GetComboCSet(refMap, markerScreen, pos);
+					test1 = Game->GetScreenState(srcMap, pos+offset, ST_BOSSLOCKBLOCK);
+					if(test1)
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker+1, csMarker, 128);
+					else
+						Screen->FastCombo(6, MOOSHMAP_MAP_SQUARE_SCALE*(i%8)+markerLayerOffset, MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8)+176, cmbMarker, csMarker, 128);
+				}
+			}
+		}
+	}
+	Screen->SetRenderTarget(RT_SCREEN);
+}
+
+//Draw the entire map
+void MooshMap_DrawAll(int floor){
+	Screen->DrawScreen(7, MooshMap[MM_BGMAP], MooshMap[MM_BGSCREEN], 0, 0, 0);
+	MooshMap_DrawMap(floor, MOOSHMAP_MAP_X, MOOSHMAP_MAP_Y);
+	MooshMap_DrawFloors(floor);
+	if(MOOSHMAP_SHOW_LITEMS)
+		MooshMap_DrawDungeonItems();
+	if(MOOSHMAP_SHOW_TITLE)
+		MooshMap_DrawTitle();
+}
+
+//Draw just the map block
+void MooshMap_DrawMap(int floor, int x, int y){
+	int refMap = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_REFMAP];
+	int refScreen = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*floor+MM_F_REFSCREEN];
+	
+	int cmb; int cs; int flag; 
+	int pos; 
+	int i;
+	int maxScale = MOOSHMAP_MAP_SQUARE_SCALE*8+1;
+	//Draw unvisited layer
+	Screen->DrawBitmap(7, RT_MOOSHMAP, 0, 0, maxScale, maxScale, x, y, maxScale, maxScale, 0, true);
+	//Draw visited layer
+	Screen->DrawBitmap(7, RT_MOOSHMAP, 256, 0, maxScale, maxScale, x, y, maxScale, maxScale, 0, true);
+	//Draw current screen layer
+	if(floor==MooshMap[MM_LINKFLOOR]&&MOOSHMAP_HIGHLIGHTCURRENTROOM){
+		pos = Game->GetCurDMapScreen();
+		flag = Game->GetComboFlag(refMap, refScreen, pos);
+		if(flag>0){ //Link is in a grouped screen
+			for(i=0; i<64; i++){
+				pos = i%8+Floor(i/8)*16;
+				if(Game->GetComboFlag(refMap, refScreen, pos)==flag){
+					cmb = Game->GetComboData(refMap, refScreen, pos);
+					cs = Game->GetComboCSet(refMap, refScreen, pos);
+					Screen->FastCombo(7, x+MOOSHMAP_MAP_SQUARE_SCALE*(i%8), y+MOOSHMAP_MAP_SQUARE_SCALE*Floor(i/8), cmb+2, cs, 128);
+				}
+			}
+		}
+		else{
+			cmb = Game->GetComboData(refMap, refScreen, pos);
+			cs = Game->GetComboCSet(refMap, refScreen, pos);
+			Screen->FastCombo(7, x+MOOSHMAP_MAP_SQUARE_SCALE*(pos%16), y+MOOSHMAP_MAP_SQUARE_SCALE*Floor(pos/16), cmb+2, cs, 128);
+		}
+	}
+	//Draw marker layer
+	Screen->DrawBitmap(7, RT_MOOSHMAP, 0, 176, maxScale, maxScale, x, y, maxScale, maxScale, 0, true);
+	//Draw second marker layer
+	Screen->DrawBitmap(7, RT_MOOSHMAP, 256, 176, maxScale, maxScale, x, y, maxScale, maxScale, 0, true);
+	//If set to draw Link's position, do so
+	if(MOOSHMAP_DRAWLINKPOSITION&&floor==MooshMap[MM_LINKFLOOR]){
+		pos = Game->GetCurDMapScreen();
+		int linkx = x+(pos%16)*MOOSHMAP_MAP_SQUARE_SCALE;
+		int linky = y+Floor(pos/16)*MOOSHMAP_MAP_SQUARE_SCALE;
+		if(MOOSHMAP_PRECISELINKPOSITION){
+			linkx += MOOSHMAP_PRECISELINKPOSITIONBORDER+(Link->X/240)*(MOOSHMAP_MAP_SQUARE_SCALE-MOOSHMAP_PRECISELINKPOSITIONBORDER*2)-8;
+			linky += MOOSHMAP_PRECISELINKPOSITIONBORDER+(Link->Y/160)*(MOOSHMAP_MAP_SQUARE_SCALE-MOOSHMAP_PRECISELINKPOSITIONBORDER*2)-8;
+		}
+		else{
+			linkx += MOOSHMAP_MAP_SQUARE_SCALE/2-8;
+			linky += MOOSHMAP_MAP_SQUARE_SCALE/2-8;
+		}
+		Screen->FastCombo(7, linkx, linky, CMB_MOOSHMAP_LINKPOSITIONMARKER, CS_MOOSHMAP_LINKPOSITIONMARKER, 128);
+	}
+}
+
+//Draw floor numbers next to the map
+void MooshMap_DrawFloors(int floor){
+	int x; int y;
+	int cmb; int cs;
+	for(int i=0; i<MooshMap[MM_NUMFLOORS]; i++){
+		cmb = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORCMB];
+		cs = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORCS];
+		x = MOOSHMAP_FLOOR_X;
+		y = MOOSHMAP_FLOOR_Y+(MOOSHMAP_FLOOR_SPACING*(MooshMap[MM_NUMFLOORS]-1))/2-MOOSHMAP_FLOOR_SPACING*i;
+		if(i==MooshMap[MM_SELECTEDFLOOR])
+			Screen->DrawCombo(7, x, y, cmb+1, MOOSHMAP_FLOOR_WIDTH, MOOSHMAP_FLOOR_HEIGHT, cs, -1, -1, 0, 0, 0, -1, 0, true, 128);
+		else
+			Screen->DrawCombo(7, x, y, cmb, MOOSHMAP_FLOOR_WIDTH, MOOSHMAP_FLOOR_HEIGHT, cs, -1, -1, 0, 0, 0, -1, 0, true, 128);
+		if(i==MooshMap[MM_LINKFLOOR])
+			Screen->FastCombo(7, x-16, y+((MOOSHMAP_FLOOR_HEIGHT-1)*8), CMB_MOOSHMAP_LINKFLOORMARKER, CS_MOOSHMAP_LINKFLOORMARKER, 128);
+	}
+}
+
+void MooshMap_DrawTitle(){
+	int str[21];
+	Game->GetDMapTitle(Game->GetCurDMap(), str);
+	for(int i=19; i>=0; i--){
+		if(str[i]==' ')
+			str[i] = 0;
+		else
+			break;
+	}
+	Screen->DrawString(7, MOOSHMAP_TITLE_X, MOOSHMAP_TITLE_Y-1, MOOSHMAP_TITLE_FONT, C_BLACK, -1, TF_CENTERED, str, 128);
+	Screen->DrawString(7, MOOSHMAP_TITLE_X, MOOSHMAP_TITLE_Y+1, MOOSHMAP_TITLE_FONT, C_BLACK, -1, TF_CENTERED, str, 128);
+	Screen->DrawString(7, MOOSHMAP_TITLE_X-1, MOOSHMAP_TITLE_Y, MOOSHMAP_TITLE_FONT, C_BLACK, -1, TF_CENTERED, str, 128);
+	Screen->DrawString(7, MOOSHMAP_TITLE_X+1, MOOSHMAP_TITLE_Y, MOOSHMAP_TITLE_FONT, C_BLACK, -1, TF_CENTERED, str, 128);
+	
+	Screen->DrawString(7, MOOSHMAP_TITLE_X, MOOSHMAP_TITLE_Y, MOOSHMAP_TITLE_FONT, C_WHITE, -1, TF_CENTERED, str, 128);
+}
+
+void MooshMap_DrawDungeonItems(){
+	int level = Game->GetCurLevel();
+	if(Game->LItems[level]&LI_MAP)
+		Screen->FastCombo(7, MOOSHMAP_MAPICON_X, MOOSHMAP_MAPICON_Y, CMB_MOOSHMAP_MAP, CS_MOOSHMAP_MAP, 128);
+	if(Game->LItems[level]&LI_COMPASS)
+		Screen->FastCombo(7, MOOSHMAP_COMPASSICON_X, MOOSHMAP_COMPASSICON_Y, CMB_MOOSHMAP_COMPASS, CS_MOOSHMAP_COMPASS, 128);
+	if(Game->LItems[level]&LI_BOSSKEY)
+		Screen->FastCombo(7, MOOSHMAP_BOSSKEYICON_X, MOOSHMAP_BOSSKEYICON_Y, CMB_MOOSHMAP_BOSSKEY, CS_MOOSHMAP_BOSSKEY, 128);
+}
+
+int MooshMap_GetAllScreenStates(){
+	int states;
+	for(int i=0; i<14; i++){
+		if(Screen->State[i])
+			states |= 1<<i;
+	}
+	return states;
+}
+
+void MooshMap_UpdateCarryover(){
+	if(Link->Action!=LA_SCROLLING){
+		int allStates = MooshMap_GetAllScreenStates();
+		if(MooshMap[MM_LASTDMAP]!=Game->GetCurDMap()||MooshMap[MM_LASTSCREEN]!=Game->GetCurScreen()||MooshMap[MM_LASTSCREENSTATES]!=allStates){
+			if(MooshMap[MM_LASTDMAP]!=Game->GetCurDMap()){
+				MooshMap_LoadLevelMapData(); //If what changed was the DMap, make sure the correct level is loaded
+			}
+			MooshMap[MM_LASTDMAP] = Game->GetCurDMap();
+			MooshMap[MM_LASTSCREEN] = Game->GetCurScreen();
+			MooshMap[MM_LASTSCREENSTATES] = allStates;
+			if(Game->DMapFlags[Game->GetCurDMap()]&(1<<DMF_ALLOWMAP)){ //Only bother running carryovers if the allow map flag is set
+				int i; int j; int k;
+				int currentFloor = -1;
+				for(i=0; i<13; i++){ //Cycle through all floors until we find which one Link is on
+					for(j=0; j<4; j++){
+						k = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*i+MM_F_FLOORDMAPS+j];
+						if(Game->GetCurDMap()==k){
+							currentFloor = i;
+							break;
+						}
+					}
+				}
+				if(currentFloor>0){
+					int map; int offset;
+					for(i=0; i<4; i++){ //Cycle through all DMaps on the current floor and set their states
+						k = MooshMap[MM_STARTFLOORINDEX+MM_NUMFLOORINDEX*currentFloor+MM_F_FLOORDMAPS+i];
+						if(k>-1&&k!=Game->GetCurDMap()){ //Don't bother for the current DMap or invalid ones
+							map = Game->DMapMap[k];
+							offset = Game->DMapOffset[k];
+							
+							//Start with carrying over the visited state
+							Game->SetScreenState(map, Game->GetCurDMapScreen()+offset, ST_VISITED, true);
+							//If set to do so, carry over the other 13
+							if(MOOSHMAP_ALL_CARRYOVER){
+								for(j=0; j<14; j++){
+									Game->SetScreenState(map, Game->GetCurDMapScreen()+offset, j, Screen->State[j]);
+								}
+							}
+							//Carry over Screen->D if set
+							if(MOOSHMAP_D_CARRYOVER){
+								for(j=0; j<8; j++){
+									Game->SetDMapScreenD(k, Game->GetCurDMapScreen(), j, Screen->D[j]);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

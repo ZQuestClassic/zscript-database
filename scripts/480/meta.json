@@ -1,0 +1,17 @@
+{
+  "name": "Combo Sprite Spawner",
+  "author": "Moosh",
+  "added": "24 Jun 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Combo"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A simple combo script to make combos play a sprite animation when they're cycled to. Designed for use with Slash combos but can be used with Step->Next, combo cycling, screen secrets, ect. It can also spawn weapons or enemies along with the visual effect.",
+  "description": "A simple combo script to make combos play a sprite animation when they're cycled to. Designed for use with Slash combos but can be used with Step->Next, combo cycling, screen secrets, ect. It can also spawn weapons or enemies along with the visual effect.",
+  "setup": "Under ZScript->Quest Script Settings, be sure at least Combos Run Scripts on Layer 0 is checked so combo scripts can actually run. \n\nPlace the ComboSprite script on a combo and set its attribs as follows:\nAttribytes (Used for visual sprites):Attribytes[0]: Which sprite animation to use when the combo appears. This is centered on the combo's position.Attribytes[1]: Tile width of the sprite animation.Attribytes[2]: Tile height of the sprite animation.Attribytes[3]: Sound to play when the combo appearsAttribytes[4]: Frames of delay before the additional effect spawns\nAttrishorts (Used for additional effects):Attrishorts[0]: Which type of additional effect to spawn0 - None1 - LWeapon2 - EWeapon3 - EnemyAttrishorts[1]: The ID of the effect to spawn. If it's an LWeapon or EWeapon, check the LW_ or EW_ constants in std_constants.zh.Attrishorts[2]: Which sprite to use for the effect (only for LWeapon and EWeapon)Attrishorts[3]: How much damage the effect dealsAttrishorts[4]: How fast the effect travels (100 units = 1 pixel per frame)Attrishorts[5]: Frames of delay before the effect starts moving.Attrishorts[6]: Angle the effect moves at (0 for towards Link)\n\nIf you're picky about details, there's a second script included called RedrawCombo. This will redraw a combo to a layer for an extra frame after it changes and fixes a limitation where a slash combo appears fully slashed for one frame before the ComboSprite script can create the slash sprite. Run this on combos that change to one running ComboSprite if you want to avoid that issue.\n\nThis script requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

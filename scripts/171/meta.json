@@ -1,0 +1,16 @@
+{
+  "name": "Glitch Robe aka G4mE bRe\u00c4K3r",
+  "author": "Mero",
+  "added": "03 Apr 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "\"Long ago a powerful artifact crossed the alternate timelines and fell into the hands of a wizzrobe changing it into a robot and giving it immense power.\"\nHappy April Fools Day, Yes I know it's late Moosh excuse my tardiness just this once.",
+  "description": "Creates wormholes.Kills Link Good.kills Ganon too.",
+  "setup": "Set your Interplanar Constantsconst int WPS_NULLBLADE = 88;const int SFX_NULLSBLADE = 2; //Sword Beamconst int SFX_GAMEBREAKER_OPEN = 52; //Rocket upconst int SFX_GAMEBREAKER_CLOSE = 53; //Rocket Downconst int GAMEBREAKER_BLADES = 13; //Number of sword beams the portals shoot.const int CMB_TEAR = 32768; //The combo to use for the tear in the fabric of reality. This is 4x4 tiles mind you.Set your Universal Attributes1: Death animation?2: Delay Before Opening Portal in frames?3: Teleport Delay in frames4: Solid Blocks Okay?Have a cosmic party of old spice body shots.",
+  "has_zip": false,
+  "has_popup": true
+}

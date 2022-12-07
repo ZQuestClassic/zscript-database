@@ -1,0 +1,16 @@
+{
+  "name": "Permanent Block Secrets",
+  "author": "MoscowModder",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": null,
+  "info": "Exactly what it says on the tin: it makes block secrets permanent.",
+  "description": "Exactly what it says on the tin: it makes block secrets permanent.",
+  "setup": "Before you start, don't forget to make sure import \"std.zh\" is included once at the top of your script file.\n\nThis script checks its own FFC's combo data to tell if secrets have been triggered. To make it work, create a combo (preferably invisible) with inherent flag 16, then set the FFC's combo to that. To clarify, the FFC's own combo should have an inherent flag 16.\n\nNow as long as you aren't in an NES dungeon, the FFC will detect secret flags being activated and then permanently set the screen's secret state.\n\nRequires std.zh; included with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

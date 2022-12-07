@@ -1,0 +1,17 @@
+{
+  "name": "Cucco",
+  "author": "SpacemanDan",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "58",
+  "info": "This script will allow you to create cuccos that will hop around the screen, then pause before hopping around again. The cucco will count as an 'enemy' though it cannot hurt Link, and it cannot be harmed itself.",
+  "description": "Once you have this script imported into a Freeform Combo script slot, be sure to take note of the number of the slot. You will need to set up a few combos for the cucco facing directions in the following order, one after another.\n\nUP/LEFT - DOWN/LEFT - UP/RIGHT - DOWN/RIGHT\n\nOnce this is done, take note of the first combo in the list.\n\nNext, you will need to open the enemy editor and open up whichever enemy you decide to make a cucco. Set the tile up for it to whatever you want - this will only be for reference sake as the script does not use the enemy tile, but it will use the CSet. Set the HP to anything above zero else it will not work. The enemy type should be Other.\n\nNext, open up the Data 2 tab. You will need to input the following numbers:\n\nMisc 1 - Minimum times the cucco will hop\nMisc 2 - Maximum times the cucco will hop\nMisc 3 - Jump Height (Recommended - 10)\nMisc 4 - Max Speed (Minimum - 5)\nMisc 5 - Minimum pause time between each hop phase)\nMisc 6 - Maximum pause time between each hop phase)\nMisc 11 - Combo for UP/LEFT direction of the cucco\nMisc 12 - The script slot the cucco script is in\n\nOnce this is done, you should have yourself a brand-spankin' new cucco\n\nResources\nghost.zh\nstring.zh\nstd.zh",
+  "setup": "GrandLovania\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 29 December 2019 - 03:39 PM\n\t\t\t\n\n\t\t\t\tSimple but good script",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Enemy Spawn and Change",
+  "author": "ywkls",
+  "added": "19 Feb 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "I was looking for a script that allowed you to not only spawn enemies, but to spawn them at a certain point and to spawn just one at a time. I couldn't find one, so I wrote my own.",
+  "description": "Allows you to place multiple FFCs on the screen that will cause enemies of your choice to spawn at the location of the FFC as long as you don't have Max HP or MP. Can be set up so that what enemy spawns at a particular point will change if you have a certain item.",
+  "setup": "Requires std.zh and ffcscript.zh.After compiling, be sure to set the values for whatever enemies you want to spawn.D0 is enemy to spawn normally.D1 is an item which if acquired will change the enemy that is spawned. Leave at zero to always spawn the same enemy.D2 is enemy to spawn if you have the item indicated in D1.",
+  "has_zip": false,
+  "has_popup": true
+}

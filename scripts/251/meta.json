@@ -1,0 +1,17 @@
+{
+  "name": "Lttp mirror",
+  "author": "G\u00e9g\u00e9",
+  "added": "21 Oct 2016",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "4",
+  "downloads": "58",
+  "info": "Mirror from Lttp.",
+  "description": "Script Original By MoscowModder\nRequire std.zh and ffcscript.zh",
+  "setup": "1. Create a overworld map and darkworld map withe same screen2. Edit and set your constants3. Import script4. Compile5. Put mirror in Item Script and mirrorFFC in ffcscript slot6. Create Item mirror with custom item class7. Put the script mirror in Action Script8. Check Auto-waprs are Direct in Screen data",
+  "has_zip": true,
+  "has_popup": true
+}

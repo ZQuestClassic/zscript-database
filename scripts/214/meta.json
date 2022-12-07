@@ -1,0 +1,16 @@
+{
+  "name": "Item Disabler",
+  "author": "Kivitoe",
+  "added": "22 Jan 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "35",
+  "info": "This script displays a message on the screen when Link walks on the ffc.",
+  "description": "This script displays a message on the screen when Link walks on the ffc and uses an item. Great for advanced message showing! WARNING: DO NOT PUT THE FFC WHERE THE MESSAGE IS DISPLAYED! LINK WILL GET TRAPPED!",
+  "setup": "D0 - String number.Place an ffc on a ground tile (Preferably near a guy). Then, select this script in the script slot.",
+  "has_zip": true,
+  "has_popup": false
+}

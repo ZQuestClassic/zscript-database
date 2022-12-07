@@ -1,0 +1,16 @@
+{
+  "name": "Visible Ganon",
+  "author": "Moosh",
+  "added": "14 Aug 2020",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script takes the Ganon enemy and draws him to the screen.",
+  "description": "This script takes the Ganon enemy and draws him to the screen.",
+  "setup": "Place an FFC with the script on the screen with Ganon and watch him do his magical dance. This script assumes that your quest only has one Ganon fight and that he uses the default enemy ID.This script only requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Jinx Stuff",
+  "author": "justin",
+  "added": "31 Dec 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Some additional options for temporary jinxes.",
+  "description": "This global script adds some optional extra stuff to temp jinxes.- Jinx carryover:  temp jinxes don't clear on screen change- Jinx combiner:  temp jinxes will combine if you get jinxed again while jinxed- Jinx counter:  on screen display of how long in seconds the temp jinx remainsEasy to use all or choose individually.",
+  "setup": "Only std.zh required.Set the JINX_CARRYOVER constant to 0 (zero) if not using, or leave at 1 if usingSet the JINX_COMBINE constant to 0 (zero) if not using, or leave at 1 if using.If using either of the above add JinxStuff(); to your global loop above the Waitdraw();  see the sample global script includedIf using Jinx Counter, scroll down the script file for those constants. There are numerous to set for this, all are commented.Add JinxCounter(); to the global loop above the Waitdraw();  see the sample global script included",
+  "has_zip": false,
+  "has_popup": true
+}

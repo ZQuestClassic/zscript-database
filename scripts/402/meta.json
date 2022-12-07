@@ -1,0 +1,16 @@
+{
+  "name": "8 Queens Placement Puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "03 May 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "16",
+  "info": "8 queens placement puzzle. Place 8 queens on chessboard so no two queens can attack each other.\nhttps://en.wikipedia...t_queens_puzzle\nAny of 92 possible solutions works here.",
+  "description": "8 queens placement puzzle. Place 8 queens on chessboard so no two queens can attack each other.Stand on board and press Ex1 to place a queen. Any attacked pieces are immediately removed.Supports other chess pieces.Check out example quest to see other similar puzzles.Update 11.03.2022- Ex1 to place pieces- Sprite for despawning eaten piecesUpdate 23.03.2022- Piece dropping animation- New art for chess pieces, thanks to SkyFlare.Update 3.5.2022 - fixed wrong shadow constant",
+  "setup": "1. Check out constants at the top of script file.2. Set up 2 consecutive combos for empty space and queen piece.3. import and compile the script. It requires chess.zh in additional to default libraries.4. Build puzzle using 1st combo from step 1 Build chessboard on background layer.5. Place FFC on any space of the board. Assign the script to it.//D0 - Number of pieces to place.//D1 - Piece type to place. Add values together.// 1 - horizontal rows// 2 - vertical columns// 4 - diagonals// 8 - knight move// examples: 3-rooks, 4-bishops, 7-queens, 8-knights, 15-maharajas",
+  "has_zip": true,
+  "has_popup": true
+}

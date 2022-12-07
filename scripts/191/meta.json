@@ -1,0 +1,17 @@
+{
+  "name": "LA Nightmare Final Form (Autoghost)",
+  "author": "ywkls",
+  "added": null,
+  "updated": "17 Aug 2015",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "92",
+  "info": "Recreates the final form of the Nightmare from Link's Awakening.",
+  "description": "The main body has two tails that circle it. These tails are invulnerable.Sprites by Ricky of Kokiri.Update 6-26-15- Now supports ghost.zh!Update: 6-28-15- Altered code to avoid potential bugs caused by ghosted movement.Update: 8-16-15- Changed tail rotation to be more random. Added explosive death animation.",
+  "setup": "Set up three enemies. The main boss, a 2 x 2 sprite. The tail segments, 1 x1. The tail spike, also 1 s 1,Set up one combo for the main boss.Requires-std.zhstdExtra.zhffcscript.zhstring.zhghost.zh",
+  "has_zip": true,
+  "has_popup": true
+}

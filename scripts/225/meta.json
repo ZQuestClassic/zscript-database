@@ -1,0 +1,16 @@
+{
+  "name": "Door Repair DX",
+  "author": "Avaro",
+  "added": "01 Apr 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "7",
+  "downloads": null,
+  "info": "On a screen with this script Link's rupees will be taken, then the game will be saved and optionally a message will be played.",
+  "description": "On a screen with this script Link's rupees will be taken, then the game will be saved and optionally a message will be played.",
+  "setup": "Do you actually want it in your quest?You can choose to have a guy in the room or not. You can give it a message, but then it will always play the message whenever you re enter the screen so you should use the script for the message.Put an FFC with the script on the door repair screen and set D0 to the message string you want to play. This script will work only once per screen unless you set D1 to -1.Requires std.zh which comes with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Final Fight Health Bar",
+  "author": "Moosh",
+  "added": "12 Mar 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Written a while back at the request of Nightmare. Draws simple boss health bars inspired by those featured in Final Fight.",
+  "description": "Written a while back at the request of Nightmare. Draws simple boss health bars inspired by those featured in Final Fight.",
+  "setup": "Set all the C_ constants to appropriate colors for your quest.\n\nPlace the FFC on the screen with the following D arguments:D0: The enemy ID of the boss enemy. If <=0, the script will use the HP pool of all enemies on the screenD1: A string with the boss's nameD2: A 1x1 tile with a boss portraitD3: The CSet to draw the portrait inD4: Set to 1 to automate the color ranges based on the boss's starting HPD5: Set to the number of colors to use if using the previous settingD6: Special exceptions1: Summoner. Enemies spawned after the first aren't included in the boss's HP pool.\n\nThis script requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

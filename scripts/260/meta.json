@@ -1,0 +1,16 @@
+{
+  "name": "Step -> Save Combos",
+  "author": "Aslion",
+  "added": "30 Jan 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Simple script that saves the game when you step on a certain combo and plays a sound effect.",
+  "description": "Simple script that saves the game when you step on a certain combo and plays a sound effect. Only triggers once per screen (re-entry allows saving again).Could not find anything like this on the site/database so I figured I'd submit it in case anybody has a use for it.",
+  "setup": "Only requires std.zh\n\nD1 - Sound effect to play when triggered.\nD2 - Combo number to use for the save point.",
+  "has_zip": false,
+  "has_popup": true
+}

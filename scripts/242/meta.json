@@ -1,0 +1,16 @@
+{
+  "name": "Chilly Water (FFC)",
+  "author": "idontknow8",
+  "added": "01 Aug 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "39",
+  "info": "A FFC that makes the water on this screen \"chilly\" so that it harms Link and even causes a visual and audio effect of him shivering (but no knock back)",
+  "description": "This FFC is great for winter settings in your overworld or an ice-cold cave that makes the water hazardous, even if you have the flippers.  It allows Link to swim in it with the flippers, as usual but every so often, he'll stop, shiver, make a noise, and receive damage.  All of these things are variables you can change using arguments - how long he can last in the water before shivering, the noise he makes, his sprite when shivering, the amount of damage, and you can even have a protective item that voids this effect altogether if you want this water to become safe later.And because this is a FFC, you can even have different pools of water have different effects.  Even though it's called \"Chilly Water,\" you can also have \"toxic\" water, which maybe doesn't cause Link to shiver, but an audible gasp and a quicker life-draining rate.",
+  "setup": "Add this FFC script to your overall script, making sure you have import \"std.zh\" and import \"ffcscript.zh\" at the top. Compile and then add this to a vacant FFC Script slot.  Then make sure you have the following:-A pool of water you want to make chilly (so probably in a winter type overworld or ice cavern)-A FFC combo on that same screen with this script attach.-A sound effect for Link to be shivering or gasping-A sprite that shows Link to be shivering or gasping-A custom item that is obtainable in your quest that would make Link no longer susceptible to damage from this water (the item doesn't need a script, just need to be in your inventory & note the item ID number)//D0: The timer between shivering (I've set it 2 seconds)//D1:  How much damage (in quarter hearts) for each shiver//D2:  The item ID of a safety item.  If Link acquires this item, he'll no longer shiver and receive damage from this screen's pool of water (this is optional, leave at 0 if no item will nullify this effect)//D3:  Shiver sound:  A sound Link makes every time he shivers//D4:  Shiver sprite:  This FFC combo will change to this combo (instead of from an invisible one).  Should be made to look like Link shivering water.//D5:  How long you want Link to shiver for (60 frames is a pretty good rate)",
+  "has_zip": true,
+  "has_popup": true
+}

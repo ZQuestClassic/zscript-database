@@ -1,0 +1,16 @@
+{
+  "name": "eSword",
+  "author": "eNJuR",
+  "added": "28 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": null,
+  "info": "Allows an enemy to wield a sword.",
+  "description": "Now, you can make an enemy that actually holds a weapon instead of trying to randomly run into you! What it does: creates an enemy on the screen and makes it wield a sword! The enemy will always re-appear whenever you re-enter the screen unless another script sets Screen->D[0] to something besides 0.",
+  "setup": "D0: ID of the enemy.D1: Starting X position.D2: Starting Y position.D3: How many pixels ahead of the enemy the sword is. (11-14 are good numbers)D4: ID of the sprite to use.D5: Damage the weapon does in quarter hearts.D6: How many frames the enemy waits before re-stabbing the sword if it hit something.",
+  "has_zip": false,
+  "has_popup": true
+}

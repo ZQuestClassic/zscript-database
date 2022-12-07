@@ -1,0 +1,16 @@
+{
+  "name": "Bigger FFCs",
+  "author": "Moosh",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A script to increase FFC size limits.",
+  "description": "Ever found FFC size limits annoying? I know I sure did, so I made this script. It's definitely not the best fix, but it works for me.This script will not expand Combo attributes like damage or flags to the expanded regions, but can be useful for moving visuals larger than 4x4 tiles.",
+  "setup": "D0 is the desired width in tiles of the FFCD1 is the desired height in tiles of the FFCD2 is the layer to draw the FFC on",
+  "has_zip": false,
+  "has_popup": true
+}

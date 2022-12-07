@@ -1,0 +1,16 @@
+{
+  "name": "Real Dungeon Map",
+  "author": "Rastael",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "The script take use of the zeldaclassic-map that is shown after pressing the \"MAP-button\".\nIf you are in a dungeon, you can't press the MAP-button, till you found a fake-item (the \"real dungeon-map\").",
+  "description": "Are you sick of this small maps on dungeon-subscreens? Yeah, me too. So I wrote this.\n\nWhat the script does:\nThe script take use of the zeldaclassic-map that is shown after pressing the \"MAP-button\".\nIf you are in a dungeon, you can't press the MAP-button, till you found a fake-item (the \"real dungeon-map\").\n\nIf you want to use the script, you have to check the dmap-flag \"View Overworld Map by pressing Map\" on every dmap, you want to use the script.\nIt's also a good idea, if check the flag \"...But only show screens marked in Minimap\" too.\n\nNote: The code section contains versions for 1 DMAP dungeons, 2 DMAP dungeons, and 3 DMAP dungeons. Make sure you only use the one you need.",
+  "setup": "If you want to use the script, you have to check the dmap-flag \"View Overworld Map by pressing Map\" on every dmap, you want to use the script.\nIt's also a good idea, if check the flag \"...But only show screens marked in Minimap\" too.\n\nAlso, refer to code section.\n\nResources\n\nNone required. Like ThisEdit",
+  "has_zip": false,
+  "has_popup": true
+}

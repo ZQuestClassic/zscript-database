@@ -1,0 +1,16 @@
+{
+  "name": "Selectable Triforce Check",
+  "author": "Evan20000",
+  "added": "01 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Triggers screen secrets if Link has at least the number of triforce pieces specified.",
+  "description": "Triggers screen secrets if Link has at least the number of triforce pieces specified.",
+  "setup": "Attach the script to an FFC and plop it down on the screen you want. Set D0 to the number of triforces you're checking for.You'll need std.zh for this to work.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Display enemy damage",
+  "author": "Jamian",
+  "added": "18 Mar 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#Global"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "When the player hits an enemy, the damage inflicted to that enemy briefly appears above its sprite. This could be a useful addition to RPG-oriented quests, and would also make the half/quarter damage options in the enemy editor more useful.Warning: it works well with regular enemies, but will behave funkily with some of the more complex Z1 enemies, such as Gleeok, Moldorm, etc.",
+  "description": "Step 1: Set up the constants at the top of the script according to your needs.Step 2: Paste the code in your script file.Step 3: Add the line   EnemyDamage();   in the loop of your active global script.",
+  "setup": "No reviews found!",
+  "has_zip": false,
+  "has_popup": true
+}

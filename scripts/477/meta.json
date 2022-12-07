@@ -1,0 +1,16 @@
+{
+  "name": "Like Like EX",
+  "author": "Alucard648",
+  "added": "09 Jun 2022",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "1",
+  "downloads": "4",
+  "info": "Made on request by SkyFlare",
+  "description": "Just a variant of LikeLike that can eat any counter. Also displays message when it succefully eats item, like magic shield.",
+  "setup": "Step speed, Random Rate, Homing Facor andHunger Rate used.Attribute 1:Counter reference to eatAttribute 2:counter reduction amount.Attribute 3:delay between counter reductions. in framesAttribute 4:Item to eat.Attribute 5::Delay between engulfing Link and devouring item, in frames.Attribute 6:String to display, when enemy eats item.Attribute 11: -1Attribute 12: script slot",
+  "has_zip": true,
+  "has_popup": true
+}

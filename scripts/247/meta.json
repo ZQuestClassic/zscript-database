@@ -1,0 +1,17 @@
+{
+  "name": "tango.zh",
+  "author": "Emily",
+  "added": null,
+  "updated": "01 Aug 2019",
+  "tags": [
+    "#Global",
+    "#Library"
+  ],
+  "rating": "3",
+  "downloads": "179",
+  "info": "A library for displaying text and creating menus.",
+  "description": "tango.zh provides a text display system much more powerful than ZC's built-in message system. It allows greater control over appearance and behavior, custom fonts, and some scripting capabilities. It also provides a simple system for creating menus in both text and ZScript.Latest update 1.3.2 (2019-08-01)* Fixed an erroneous delay after the player responds to @pressa().* Activating a slot using a style with no font set now reports an error.* Replaced tango.txt, tangoUsage.txt, and tangoFAQ.txt with HTML documentation.",
+  "setup": "See tango_zh_docs/index.html",
+  "has_zip": true,
+  "has_popup": false
+}

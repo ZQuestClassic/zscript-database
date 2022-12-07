@@ -1,0 +1,16 @@
+{
+  "name": "Monty Hall minigame",
+  "author": "Alucard648",
+  "added": "14 Nov 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A minigame based on Monty Hall problem.",
+  "description": "Three chests, separated by walls. Only one contains the main prize. If Link is on the way to open one of the chests, one of the other reveals it`s empty contents.",
+  "setup": "1. Set up treasure chests and solid combos as shown on 1st screenshot.2. Place FFC where \"dummy rupee\" is located on 1st screenshot.3. Import and compile the script. It requires std.zh and stdCombos.zh4. Assign the script to FFC.5. D0-ID for main prize item. Leave as 0 for default red rupee.   D1-ID for consolation prize item. Leave as 0 for \"1 rupee\".   D2-Cost per game, in rupees. Defaults as 10.   D3-String to display when entering screen with the minigame.   D4-String to display when the game is started.   D5-String to display when the game has ended in loss.   D6-String to display when the game has ended in victory.",
+  "has_zip": false,
+  "has_popup": true
+}

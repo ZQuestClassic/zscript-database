@@ -1,0 +1,17 @@
+{
+  "name": "Rupee Flower",
+  "author": "Avaro",
+  "added": "15 Feb 2016",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": "4",
+  "downloads": null,
+  "info": "This is intended as a rare item drop. If the player picks it up, rupees rain down for a few seconds!Inspired by the coin flower from Super Paper Mario.",
+  "description": "This script consists of an item script that you attach to the Rupee Flower item's pickup slot and a global script that handles the rupee rain effect. Going to a new screen doesn't cancel the effect.In the scripfile you can change what items you want to drop (it can only be 2 different items), the dropchance and the droprate. There is also a global variable in this script, so if you import this script into your questfile you should start a new savefile for your quest.",
+  "setup": "1: Set up the constants in the script to you liking. Read the information in the scriptfile to know what each variable does.2: If you already have a global script, combine it with this one.3: Import the scripts.4: Set up your Rupee Flower item and give it the item script as it's pickup script. Set D0 to the amount of time the rupee rain effect should last. (60 frames are 1 second)Requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

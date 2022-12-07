@@ -1,0 +1,17 @@
+{
+  "name": "Combo Sound",
+  "author": "Orithan",
+  "added": "27 Jun 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Combo"
+  ],
+  "rating": null,
+  "downloads": "0",
+  "info": "REQUIRES 2.55 OR LATER\nThis combo script plays a sound when cycled to.",
+  "description": "We have sound effects tied to some combos cycling, but nothing that happens specifically when a combo is cycled to. So I made this script.This script allows any combo to play a sound on an optional delay when it is cycled to (more accurately, when it appears on screen). This works on any combo regardless of type or other settings as long as nothing else needs the D0 and D1 args.",
+  "setup": "1) Add this script to your script file. Import std.zh if you already haven't.2) Compile and assign this script to a Combo Script slot in the \"Assign Compiled Scripts\" menu.3) Attach the script to the combo, assigning the following to D0 and D1:D0 - ID of the sound to play.D1 - The delay, in frames (60 = 1 second), before the sound is played.4) Set up combo cycling/slash combos/secret combos/whatever to cycle to this combo or just place it on the screen to have it run when you enter the screen.Enjoy",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,48 @@
+ffc script RotatingHazard{
+	void run(int enemyID, int innerenemyID, int speed, int angle, int radius, int numballs, int fluctradius, int fluctspeed){
+		this->Data = FFCS_INVISIBLE_COMBO;
+		
+		npc ghost = CreateNPCAt(enemyID, this->X, this->Y);
+		//f (enemyID==innerenemyID){
+		//	ghost->HitXOffset+=8;
+		//	ghost->HitYOffset+=8;
+		//	ghost->HitWidth=8;
+		//	ghost->HitHeight=8;
+		//}
+		
+		ghost->Extend=3;
+		
+		npc ball[32];
+		for (int i=0; i<numballs; i++){
+			if (innerenemyID>0)ball[i] = Screen->CreateNPC(innerenemyID);
+			if (ball[i]->Damage==0) ball->CollDetection=false;
+			ball[i]->HitXOffset+=8;
+			ball[i]->HitYOffset+=8;
+			ball[i]->HitWidth=8;
+			ball[i]->HitHeight=8;
+		}
+						
+		int OrigTile = ghost->OriginalTile;
+		int origradius = radius;
+		if (fluctradius<radius)fluctradius = radius;
+		
+		while(true){
+			if (!(ghost->isValid())){
+				for (int i=0;i<32;i++){
+					if (ball[i]->isValid()) ball[i]->HP=0;
+				}
+				Quit();
+			}
+			radius+=fluctspeed;
+			if ((radius>=fluctradius)||(radius<= origradius)) fluctspeed*=-1;
+			angle+=speed;
+			ghost->X = CenterX(this) + Cos(angle)*radius - ghost->HitWidth/2;
+			ghost->Y = CenterY(this) + Sin(angle)*radius - ghost->HitHeight/2;
+			for (int i=0; i< numballs; i++){
+				if (ball[i]->isValid()) ball[i]->X = Lerp(CenterX(this)-8, CenterX(ghost)-8, (1/(numballs))*i);
+				if (ball[i]->isValid()) ball[i]->Y = Lerp(CenterY(this)-8, CenterY(ghost)-8, (1/(numballs)*i));
+			}			
+			Waitframe();
+		}
+	}
+}

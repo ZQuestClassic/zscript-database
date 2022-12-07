@@ -1,0 +1,17 @@
+{
+  "name": "Wood Warden(Autoghost)",
+  "author": "ywkls",
+  "added": null,
+  "updated": "07 Sep 2015",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "41",
+  "info": "Creates an enemy that makes 3 fake copies of itself; then randomly chooses which one to become at the start and after each part dies.",
+  "description": "A large tree and 3 copies. After you defeat one, another comes to life. Once you defeat them all, the fight is over.Update- 9-6-15- Added a projectile that it throws which splits into 4 smalls projectiles. Added an invulnerability phase where it sinks into the ground and rises up again.",
+  "setup": "Create two enemies- both 3 x 4. Make the second invulnerable to everything.Create 8 combos in this order- facing up, facing down, facing left and facing right.Then 3 combos for the sinking/rising animation- sank one tile, sank two tiles, sank three tiles.Then a combo using a blank block of 3 x 4 combos. (The one used by the invisible combo is good for this.) Create a sprite for the limb. Change constants to match your game.Requires- std.zh, string.zh, ghost.zh",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "BigEnemyDX",
+  "author": "kurt91",
+  "added": "01 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "An improved version of the commonly-requested BigEnemy script, to create enemies larger than 16x16 pixels!\\\n\nTest Quest: http://purezc.magesg...rd/100tombs.qst\n\nUPDATE: Accidentially left out some needed constants. Should work properly now.",
+  "description": "Not much to say, other than this should allow you to create larger enemies of any desired size with no glitches. Many thanks to Alucard648, who took the original version of this script and added a ton of further improvements and fixes.",
+  "setup": "D0 = Enemy on Screen's Enemy List\nD1 = Width (measured in pixels)\nD2 = Height (measured in pixels)\nD3 = Sprite X-Offset\nD4 = Sprite Y-Offset\nD5 = Hitbox X-Offset\nD6 = Hitbox Y-Offset\nD7 = Custom Animation Flags.\n00000001b - enable custom animation\n00000010b - allow 8 way direction\n00000100b - always face Link (Tracking)\n00001000b - use separate animations when npc is halting (Firing)\n00010000b - unused\n00100000b - unused\n01000000b - unused\n10000000b - unused\n\nRequires std.zh\n\n=== Custom Animation ===\nA new feature added to this script is a custom animation setting that should prevent any graphical glitches and allow more detailed movement.\n\nThe script sets \"OriginalTile\", the graphic chosen in the Enemy Editor, depending on the enemy's Direction and TileHeight.\nTile arrangement for such enemies would look like this:\n\n\n\n\nEnemy Editor settings would look like this:\n\n\nSupports the following animation settings:\n\nNone, 2-Frame, 3-Frame, 4-Frame",
+  "has_zip": false,
+  "has_popup": true
+}

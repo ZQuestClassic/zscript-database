@@ -1,0 +1,16 @@
+{
+  "name": "Moosh NPC: Dialogue Branch Add-on",
+  "author": "Moosh",
+  "added": null,
+  "updated": "17 Jul 2018",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "92",
+  "info": "This script adds dialogue branches to my NPC script.",
+  "description": "The script comes in two different version. The simple one is just a two/three option message prompt that gives different strings depending on what you answer.\n\nThe advanced one allows:Multiple tiers of dialogue branchesRecursive dialogue branches (\"Would you like to hear what I said again?\")Running scriptsGiving items with a holdup animationTriggering screen secretsWarping LinkPlaying random strings\nUpdate 7/17/18: Added #HASTRIFORCE",
+  "setup": "First there's a couple constants you need to set:FONT_DIALOGUE_BRANCH: This is the font used by the dialogue branches. See FONT_ in std_constants.zh for the list.C_FONT_DIALOGUE_BRANCH: This is the color used for the font\nNext is the arguments for the two scripts. I'm gonna assume you know how to set up the NPCScript to call add-ons from that script's setup instructions.\n\nDialogueBranch_Simple\nThis version only works on NPCScript_Simple because of the number of arguments, but it should be good enough for most basic applications.D0: The string for the first option in the dialogue branchD1: The string for the second option in the dialogue branchD2: The string for the third option in the dialogue branch (set to 0 if no third option)D3: The string for the first response in the dialogue branchD4: The string for the second response in the dialogue branchD5: The string for the third response in the dialogue branch (once again, optional)\nDialogueBranch_Advanced\nThis version of the script can work on either version of the NPC script, but requires much more setup in the string editor itself.D0: The string for the control string to run. See DialogueBranch_Advanced - Usage.txt for an explanation of what these are and how they're used.\nRequires std.zh, ffcscript.zh, and DialogueBox.zh",
+  "has_zip": true,
+  "has_popup": true
+}

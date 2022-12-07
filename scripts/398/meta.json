@@ -1,0 +1,16 @@
+{
+  "name": "Lights Out Puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "25 Feb 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "7",
+  "info": "ZC adaptation of Lights Out puzzle. Can you turn off those nasty lights?",
+  "description": "Stand on a light combo and press Ex1. This light and all adjacent, depending on type will change state, on or off. If all lights are off, pop open go secrets.\nUpdate 24.02.2022:Operation button remapped to Ex1.Option for multiple light states in puzzle.Multiple different puzzles on same screen. All lights must be turned Off to solve dush puzzle.Option for solving puzzle by turning all lights ON.Option for flash effect on solving puzzle.",
+  "setup": "Requires chess.zh, in addition to default libraries!\n\n1. Check out audio related constants on the top of script file.\n2. Set up a sequence of combos, for each state of light.\n3. Import and compile the script. Requires chess.zh, in addition to default libraries!\n4. Build puzzle in the screen, using combos from step 2. It can be any size and shape, but at least 1 light combo must be On one.\n5. Place FFC anywhere on the screen. Assign LightsOut FFC script to it.\n D0 - unused.\n D1 - Combo for OFF light state, 1st in sequence.\n  All other combos on the screen are ignored. You can build board of any shape and size, as long, as it fits the screen.\n D2 - Puzzle type\n    0 - Normal Lights Out puzzle. Adjacent combos flick states with targrted one.\n    1 - Flip Flop. All combos on the same horizontal and vertical lines flick states with targeted one.\n    2 - Knights Out - All combos within knight move flick states, together with targeted one.\n D3 Number of light states.\n D4 - add together:\n    1 - Flash effect on solving the puzzle.\n    2 - Allow solving puzzle by turning all lights ON.",
+  "has_zip": true,
+  "has_popup": true
+}

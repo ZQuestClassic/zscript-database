@@ -1,0 +1,17 @@
+{
+  "name": "Old Windrobe Teleport Emulation",
+  "author": "Moosh",
+  "added": "25 Feb 2021",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script imitates the 2.53 emulation flag \"Restore 2.10 Windrobes\". This will make windrobes teleport randomly instead of lining up with Link. Credit goes to James24 for the idea, I just polished it up some.",
+  "description": "This script imitates the 2.53 emulation flag \"Restore 2.10 Windrobes\". This will make windrobes teleport randomly instead of lining up with Link. Credit goes to James24 for the idea, I just polished it up some. Additions over James' version:Windrobes are more aggressive, actively aiming at Link after teleporting.Compatibility with summonersAutoghost compatibility for easier one time setup",
+  "setup": "This script comes in two versions, one that's placed and one that uses ghost.zh's autoghost system to apply the behavior automatically. If you're using the regular version, simply place the FFC down on a screen with windrobes. If it's an overworld screen, you can set D0 to 1, allowing them to teleport onto one extra ring of combos.If you're using the autoghosted version, in the enemy editor set the Windrobe's Attribute 11 to -1 and Attribute 12 to the script slot windWizzEmulationAUTOGHOST is assigned to.Requires std.zh. Ghost.zh is optional, if you aren't using it you can delete the windWizzEmulationAUTOGHOST script.",
+  "has_zip": false,
+  "has_popup": true
+}

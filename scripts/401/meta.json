@@ -1,0 +1,16 @@
+{
+  "name": "Fifteen Sliding Puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "25 Feb 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "6",
+  "info": "Z\u0421 2.53.1 adaptation for Sam Lloyd 15 tile sliding puzzle.",
+  "description": "4*4 grid space, occupied by 15 numbered tiles and 1 empty space. Tiles in the same row or column of the open position can be moved by sliding them horizontally or vertically, respectively. Stand on tile adjacent to empty space and press Ex1.\nThe goal of the puzzle is to arrange the tiles in numerical order.\nUpdate 24.02.2022 on request by SkyFlare:Operation button remapped to Ex1Added sliding tile animationOption to disable secret triggering, so tile slide mechanism can be used by other puzzles, like passwords.",
+  "setup": "1. Check out constants at the top of script file.2. Set up 16 consecutive combos, 15 for number tiles, followed by empty space. You should end up with 4*4 block of combos depicting solved state of the puzzle.3. Import and compile the script. No extra libraries needed.4. Build 4*4 block on the screen using Right click -> Draw Block-> 4*45. Place FFC at top left corner of the grid. Assign script to it D0 - 1-Disable secrets, like for inputing passwords.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "L/R and Ex1/Ex2 Item Switch",
+  "author": "Lejes",
+  "added": "12 Nov 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "4",
+  "downloads": null,
+  "info": "Restores quick item switching functionality when quest rule \"Can Select A-Button Weapon On Subscreen\" is active.",
+  "description": "The quest rule \"Can Select A-Button Weapon On Subscreen\" disables the L/R quick B button item switch. This script re-enables it for B as well as adding similar functionality to the Ex1 and Ex2 buttons for the A button item.",
+  "setup": "Requires std.zh. If you have no other global scripts to combine with this, it can be imported as is and placed into the Global Active script slot.",
+  "has_zip": false,
+  "has_popup": true
+}

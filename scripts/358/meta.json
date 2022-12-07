@@ -1,0 +1,17 @@
+{
+  "name": "Slash FX / Effect on Tile Change",
+  "author": "AdmiralJaden",
+  "added": null,
+  "updated": "06 Dec 2019",
+  "tags": [
+    "#FFC",
+    "#Misc"
+  ],
+  "rating": "1",
+  "downloads": "6",
+  "info": "Allows you to add LWeapon effects to a slashable (or changeable) combo.Edit 1: Updated with an example file.Edit 2: Forgot to update the actual script with some changes (facepalm) - this edit updates the script.",
+  "description": "You probably need ffcscript.zh (to be safe), and of course std.zh.Import as normal. Set your combo/slashable, put an ffc wigh this script in it, over the combo in question, set the following:D0 - itemset that your item drops fromD1 - LWeapon to display on changeD2 - sound that plays on slash/changeThis does NOT have to use secrets. For slashables, just use a slash->next combo type or similar.",
+  "setup": "Avaro\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tEdited 27 September 2019 - 02:23 PM\n\t\t\t\n\n\t\t\t\tUsing this for pots and bushes is a very inefficient way of questmaking, because you would constantly be placing FFCs. So, not a good script for that purpose. Also, you could have coded the effect to disppear after it's animation was finished instead of doing it after 20 frames. (just make it an LW_SPARKLE). Other than that, an ok script. ;O\n\t\t\t\t\n\t\t\t\n\n\n\n\t\t\n\t\t\t\t\n\tAdmiralJaden\n\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\tlikes this",
+  "has_zip": true,
+  "has_popup": true
+}

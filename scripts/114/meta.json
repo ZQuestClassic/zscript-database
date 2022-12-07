@@ -1,0 +1,17 @@
+{
+  "name": "Beginner-Level Custom Boss Kit",
+  "author": "kurt91",
+  "added": "01 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Allows anybody who knows how to insert an FFC script to build their own unique custom bosses using the Enemy Editor!\n\nFully compatible with the BigEnemyDX script, for creating bosses larger than Link, found here.",
+  "description": "Allows the creation of a custom boss, by using up to three component enemies (Movement, Weapon, and Collision) and combining their individual data into one large enemy. These enemies are overlapped over each other every frame, so that they behave as one enemy with the combined traits of all three. When one enemy is killed, all three enemies will die so that they will truly act as one boss encounter.",
+  "setup": "In the Enemy Editor, begin by creating three enemies. The first enemy will act as the Movement data. It will dictate the boss's appearance, general behavior (Enemy Type - Will it move like a Keese, a Rope, or what?), and HP amounts.The second enemy is the Weapon data. This enemy should have no graphic (select blank tiles for appearance), and will control the boss's Fire Rate, what weapon is used, how much damage the weapon will do, etc. For simpler enemies that only need two components, this enemy will also control collision with Link.For more complex bosses, a third enemy is used for Collision data. This way, you can have enemies that will eat Link similar to a Like Like, as well as also firing weapons.Place one of each component enemy on the screen's Enemy List, then place the FFC. Arguments should be filled out as follows:D0: Movement part enemy in the list.D1: Shooter part enemy in the list.D2: Collision part enemy in the list. Also known as \"core\" or \"weak point\"D3: Set to 1 if you want for boss` body not to damage Link on direct contact. Contact with re is always harmful.D4: Shooter`s X position offset.D5: Shooter`s Y position offset.Use these arguments (D4 and D5) if you want to have boss shoot Eweapons from proper position. For Collision part use BigEnemy script with HitBox offset argument.",
+  "has_zip": false,
+  "has_popup": true
+}

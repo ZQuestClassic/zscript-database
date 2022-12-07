@@ -1,0 +1,2682 @@
+////////////////////////////////////////////////////////////////
+////            **** CUSTOM SIDEVIEW ENGINE ****            ////
+//////////////////////////////////////////////////////////////// 
+////  2012 Grayswandir  2014-2021 Alucard                   ////
+////////////////////////////////////////////////////////////////
+////  Uses many global variables!    2.53 only!             ////
+////////////////////////////////////////////////////////////////
+
+//Example FFC scripts for sideview engine and functions for sideview FFC scripts
+#include "GSD/sideview_ffc.z"
+#include "GSD/sideview_Ghost_GSD.z"
+#include "GSD/sideview_pendulum.z"
+#include "GSD/sideview_flipblock.z"
+#include "GSD/sideview_pushblock.z"
+#include "GSD/sideview_crumbling_bridge.z"
+#include "GSD/GSD_sideview_enemies.z"
+#include "GSD/GSD_sideview_anim.z"
+#include "GSD/Sideview_misc.z"
+
+////////////////////////////////////////////////////
+//// Engine Constants (editable prior to compiling).
+
+ //FFC misc variables to handle solidity in this engine. 
+ //Set them to avoid conflicts with other scripts.
+ //By default, it should be compatible with stdWeapons.zh
+const int FFC_MISC_ENEMY_SOLIDITY = 9;
+const int FFC_MISC_SOLIDITY = 10;
+
+//ANIMATION
+
+ const int LINK_LADDER_ALWAYS_FACE_UP = 1; // Set to >0 so Link will always face up when climbing ladders.
+//You also need to set up TILE_LINK_LADDER_CLIMB for idle Link sprite and CMB_LINK_LADDER_CLIMB_ANIM combo for Link`s slimbing anumation
+//and then change constants accordingly
+const int TILE_LINK_LADDER_CLIMB = 29811;
+const int LINK_LADDER_CLIMB_NUMFRAMES = 2;
+const int LINK_LADDER_CLIMB_ASPEED = 4;
+
+const int TILE_LINK_SWIM_ANIM = 29720;//Top left corner of block of tiles used for sideview Link swimming animation.
+//Rows - directions - up/down/left/right, columns - no shield/small shield/magic shield/mirror shield.
+const int LINK_SWIM_ANIM_NUMFRAMES = 2;//Number of frames in each direction for sideview Link swimming animation.
+const int LINK_SWIM_ANIM_ASPEED = 4;//Link Swim Anim Aspeed.
+
+//Link`s jumping/falling animation.
+const int TILE_LINK_JUMP_ANIM = 29729;
+const int LINK_JUMP_NUMFRAMES = 4;
+const int LINK_JUMP_ASPEED = 8;
+const int LINK_FALL_FRAME = 3;
+
+const int SPR_SIDEVIEW_SPLASH = 90;//Sprite for sideview water splash
+const int SPR_LINKCRUSH = 89;//Sprite used crush animation 3*4 tiles
+const int SPR_LAVABURN = 35;//Sprite to display, when Link burns in lava
+const int SPR_VARIA_LAVA_SPLASH = 91;//Sprite to display, when Link falls into lava while wearing Varia Suit
+const int SPR_AIRBUBBLE = 92;//Air bubble sprite
+
+const int EXTENDED_CRUSH_ANIM = 1;//Set to >1 to use extended crush animation.
+
+//COMBOS
+
+const int CF_SOFT = 98;// Combo Flag for soft platforms.
+const int CF_SLIPPERY = 99;//Combo flag for slippery stuff. Flag only solid combos!
+const int CF_LAVA = 100;//Very Hot lava
+const int CF_TWOSTATE_OFF = 101;//Combo Flag to mark OFF state of 2-state combos.
+const int CF_TWOSTATE_ON = 102;//Combo Flag to mark ON state of 2-state combos.
+
+const int CSET_TWOSTATE_OFF=7;//CSET used to mark OFF state of 2-state combos.
+const int CSET_TWOSTATE_ON=8;//CSET used to mark ON state of 2-state combos.
+
+//// Stair and other scripted combo types.
+const int CT_NEG = 142;// "/" stairs
+const int CT_CROSS = 143;// "X" stairs
+const int CT_POS = 144;// "\" stairs
+const int CT_LADDER = 145; //Sideview Ladders
+const int CT_SIDEVIEW_WATER = 146; //Water in sideview ares. Don`t use normal "water" combos!
+const int CT_LOW_GRAVITY_WELL = 14;// Gravity modifier combo types.
+const int CT_HIGH_GRAVITY_WELL = 15;
+
+//AUDIO
+
+const int SFX_CRUSH = 11; //Sound to play when Link gets crushed.
+const int SFX_SIDEVIEW_SPLASH = 26;//Sound to play when Link falls into water.
+const int SFX_LAVABURN=13;//Sound to play, when Link burns in lava
+const int SFX_VARIA_LAVA_SPLASH = 26;//Sound to play, when Link falls into lava while wearing Varia Suit
+const int SFX_TWOSTATE_SWITCH = 60;//Sound to play when two-state switch flicks.
+
+//ITEMS
+
+//Engine specific special items
+const int I_NOSLIP = 153; //No slipping in icy floors.
+const int I_NOKNOCKBACK = 0; //No Knoockback on taking damage.
+const int I_VARIASUIT = 18; //This artifact allows swimming in very hot lava.
+const int I_NOCONVEYOR = 157;//Negates conveyor belts
+const int I_NOWATERCURRENTS = 152;//Negates water currents.
+
+const int I_SIDEVIEWPEGASUSBOOTS = 150;//These items allow Link to gain speed boost by pressing Ex2
+const int I_PEGASUSSTAIRS = 151;//Stair Pegasus
+const int I_PEGASUSSWIM = 152;//Water Pegasus
+const int I_PEGASUSLADDER = 156;//Ladder Pegasus
+
+//DEFENSES
+
+const int CRUSH_DAMAGE = 16;//Damage to Link from Crushing, in 1/16ths of heart.
+const int DROWNING_DAMAGE = 4;//Damage to Link from drowning, in 1/16ths of heart.
+const int LAVABURN_DAMAGE = 16;//Damage to Link from burning in lava, in 1/16ths of heart.
+const int BOTTOMLESS_PIT_DAMAGE = 8;//Damage to Link from falling into bottomless pit, in 1/16ths of heart.
+
+//PHYSICS
+
+//Amount of time, in frames, for Link must be pinched between solid stuff before registering crushing.
+const int CRUSH_LEINENCY = 4;
+//Set this to >0 to cause Solid-on-top FFCs to crush Link against ceiling, instead of dropping through
+const int SEMISOLID_FFC_CEILING_CRUSH = 0;
+//Height of Semisolid FFC hitbox. Overrides FFC`s actual Y size.
+//Must be greater that Link`s terminal velocity, or Link will sometimes fail to land on semi-solid FFCs.
+const int SEMISOLID_LANDING_LEINENCY = 4;
+//If set to>0, releasing Jump button in midair, will clamp Link`s VSpeed to [-1; +infinity) range.
+const int CONTROLS_ALLOW_VERTICAL_VELOCITY_CONTROL =1;
+//Set to>0, and Link, upon grabbing onto ladder,will be snapped to it and unable to move sideways
+const int LINK_LADDER_GRIDSNAP = 1;
+//Set to >0 to allow FFC to push and crush enemies. They have no crushing leinency.
+const int SOLID_FFC_PUSH_ENEMIES = 1;
+//If you use ghost.zh, set this to >0 to process interaction between solid FFCs and ghosted enemies as well.
+const int GHOST_SOLID_FFC_PUSH_GHOSTED_ENEMIES = 1;
+//If set to 1, horizontal velocity won`t reset, when Link is in midair. Needed for bumpers.
+const int RETAIN_HORIZONTAL_VELOCITY_IN_MIDAIR = 1;
+//If set to 1, Hover Boots will auto-trigger when walking off solid combo or at the top of the jump
+const int AUTOMATIC_HOVER_BOOTS = 0;
+// Link's gravity acceleration.
+const float LINK_GRAV = 0.16;
+// Link's terminal velocity.
+const float LINK_TERM = 3.2;
+//Conveyor belt/ water current speed.
+const float CONVEYOR_SPEED = 1;
+//gravity well gravity modifiers.
+const int LOW_GRAVITY_MODIFIER = 0.5;
+const int HIGH_GRAVITY_MODIFIER = 1.5;
+//Knockback Speed
+const int KNOCKBACK_SPEED = 3;
+
+
+//// Custom Engine variables. //Can be edited either during quest init or by item scripts.
+
+float walkspeed = 1.5;// Link's base walk speed.
+float stairspeedmodifier = 1;// Link`s stair movement speed modifier
+float swimspeedmodifier = 0.75;// Link`s swimming speed modifier
+float ladderspeedmodifier = 0.75;// Link`s ladder climbing speed modifier
+float LinkJump = -4;// Link's jump speed.
+float LinkHop = -1;// Link's hop speed.
+float LinkFrogJump = -2.5;// Link`s out of water jump speed
+float LinkStompJump = -4;// Link`s Stomp jump speed, performed when jumping on enemy with Stomp Boots.
+int multijump = 0;//Link`s Midair Jump count. Adjust it to allow things, like double jump.
+int hoverboot = 0;//Hover Boot duration, in frames
+
+//////////////////////////////////////////////////////////////
+//The following constants and variables should not be edited.
+//////////////////////////////////////////////////////////////
+//// Link's State
+ 
+//// How to handle Link's movement.
+// We're letting the ZC engine handle movement.
+const int LINK_MODE_ENGINE = 0;
+// We're dealing with Link's movement ourselves.
+const int LINK_MODE_CUSTOM = 1;
+// We're moving link according to the stair system.
+const int LINK_MODE_STAIR = 2;
+// We are working with moving platform FFC`s. 
+const int LINK_MODE_ONPLATFORM = 3;
+// We are assuming that Link climbs vertical ladders or nets.
+const int LINK_MODE_LADDER = 4;
+// Considering if Link is swimming.
+const int LINK_MODE_WATER = 5;
+// Respawning after getting crushed or drowning
+const int LINK_MODE_CRUSHED = 6;
+
+//// Block Types.
+// An empty block.
+const int BLOCK_EMPTY = 0;
+// A fall-through block.
+const int BLOCK_SOFT = 1;
+// A standard block.
+const int BLOCK_HARD = 2;
+
+
+//// Stair State.
+// On a down-left up-right stair.
+const int STAIR_NEG = -1;
+// Not on any stairs.
+const int STAIR_NONE = 0;
+// On an up-left down-right stair.
+const int STAIR_POS = 1;
+
+//// Stair Positioning - where we are on a stair.
+// We're in the middle of the stair.
+const int STAIR_MIDDLE = 0;
+// We're anchored to the side of a stair.
+const int STAIR_BOTTOM = 1;
+// We're anchored to a stair diagonally.
+const int STAIR_TOP = 2;
+
+////////////////////////////////////////////////////////////////
+//// Global Variables
+////////////////////////////////////////////////////////////////
+
+// Link's current movement mode.
+int LinkMode = LINK_MODE_ENGINE;
+ 
+// Link's Location. This is so we can have fractional movement.
+float LinkX = 0;
+float LinkY = 0;
+
+// Link's Vertical Velocity.
+float LinkVy = 0;
+//Link`s Hosizontal Velocity
+float LinkVx = 0;
+// What Link is standing on.
+int LinkBlock = BLOCK_HARD;
+ 
+
+// Link`s MidAir jumps counter 
+int LinkDoubleJumpCounter = multijump;
+// Link`s Hover Boots Timer 
+int LinkHoverBootsTimer = 0;
+
+bool HasJumped = false;
+
+//// Fake input since we're canceling it.
+bool InputJump = false;
+bool PressJump = false;
+bool InputRun = false;
+  
+//// Various parts of Link's state from last frame.
+float OldLinkX = 0;
+float OldLinkY = 0;
+int OldLinkAction = LA_NONE;
+int OldLinkMode = LINK_MODE_CUSTOM;
+
+//Lin`s respawning coordinates and mode after getting crushed.
+int LinkEntryX = 0;
+int LinkEntryY = 0;
+int RetLinkMode = LINK_MODE_ENGINE;
+ 
+// The current kind of stair that Link is standing on.
+int StairMode = STAIR_NONE;
+// If the stairs were mounted this frame.
+bool StairMount = false;
+// The combo position for the stair that Link is anchored to.
+int StairLoc = -1;
+// Where we are on the stair.
+int StairPos = STAIR_MIDDLE;
+// The left edge of the stairs that Link is on.
+int StairLeft = 0;
+// The right edge of the stairs that Link is on.
+int StairRight = 0;
+// If the anchored stair has another above it.
+bool StairAbove = false;
+// If the anchored stair has another below it.
+bool StairBelow = false;
+// The y offset of the current stair.
+int StairY = 0;
+// The rentry stair pos when respawning after crush
+int RetStairMode = STAIR_NONE;
+
+//Solid/semidolidFFC vars.
+
+// ID of FFC Link riding
+int RidingFFCID = 0;
+// X offset between Link`s X pos ans FFC`s X pos
+int RidingFFCXOffset = 0;
+
+//Timer used to checká how much time is left between being pinched between solid stuff and registering crushing.
+int LinkCrushTimer = CRUSH_LEINENCY;
+ 
+////////////////
+//// Screen Change
+ 
+//// Screen State on the previous frame.
+// DMap from last frame.
+int OldDMap = -1;
+// DMap Screen from last frame.
+int OldDScreen = -1;
+// If the dmap has changed from the last frame.
+bool DMapChanged = false;
+// If the screen has changed from the last frame.
+bool ScreenChanged = false;
+// Used so that ScreenChanged is only set on the first frame
+// of a scrolling screen change.
+bool _ScreenChanged_ScrollFlag = false;
+// The ScreenChange FFC sets this so that maze screens can be used.
+bool _ScreenChanged_ForceFlag = false;
+// If the screen change has been handled by custom code.
+bool ScreenChangeHandled = true;
+// We're pretty sure that the screen change was caused by a warp of
+// some sort.
+const int SCREEN_CHANGE_WARP = -1;
+// Best guess for which direction we changed screens in
+// based on Link's current position.
+int ScreenChangeDir = SCREEN_CHANGE_WARP;
+// timer to prevent spawning enemies from being affected by solid FFC.
+int EnemySpawn = 5;
+//Greneric cycle timer. Counts up every frame. resets every 10 minutes.
+int cycletimer = 0;
+
+int twostate = 0;
+
+//Example of global script.
+global script PlatformActive {
+	void run() {	 
+		StartGhostZH();
+		SideviewEngineInit();	
+		
+		while (true) {
+		 	UpdateGhostZH1();
+			SideviewEngineUpdate1();
+			// Performs Game Logic.
+			Waitdraw();
+			
+		 	UpdateGhostZH2();
+			SideviewEngineUpdate2();
+			 
+			// Wait for the screen to draw.
+			// (You wouldn't think it from the name, right?)
+			Waitframe();
+		}
+	}
+}
+
+// When combining with other global scripts, place this statement before "While" loop.
+void SideviewEngineInit(){
+	RidingFFCID=0;
+	RidingFFCXOffset = 0;
+	if (LinkMode == LINK_MODE_ONPLATFORM) LinkMode = LINK_MODE_CUSTOM;
+	LinkX = Link->X;
+	LinkY = Link->Y;
+	LinkEntryX = LinkX;
+	LinkEntryY = LinkY;
+	StairMode = STAIR_NONE; // Don't carry over various states.
+	LinkVy = 0;
+	LinkVx = 0;
+	LinkCrushTimer = CRUSH_LEINENCY;
+	RetStairMode = STAIR_NONE;
+	RetStairMode = StairPos;
+	RetLinkMode = LINK_MODE_CUSTOM;
+}
+
+// Place this function inside "while" loop before "Waitdraw()".
+void SideviewEngineUpdate1(){
+	OldLink_Update1();
+	ScreenChange_Update1();
+	Stair_Update1();
+	Input_Update1();
+	if (EnemySpawn>0) EnemySpawn--;
+	UpdateTwoStateCombos();
+}
+
+// And place this command after "Waitdraw()" and before "Waitframe()".
+void SideviewEngineUpdate2(){
+	ScreenChange_Update2();
+	DetermineLinkMode();
+	
+	// If we're not using custom movement, update Link's positioning
+	// variables to match whatever the engine says.
+	if (LinkMode == LINK_MODE_ENGINE) {
+		LinkX = Link->X;
+		LinkY = Link->Y;
+		//if(Link->Action!=LA_SCROLLING) LinkVy = Link->Jump * -1;
+		if (!IsSideview())StairMode=STAIR_NONE;
+	}
+	// Perform custom movement.
+	if (LinkMode == LINK_MODE_CUSTOM) {
+		StairMode = STAIR_NONE;
+		LinkCustomOnScreenChange();
+		LinkCustomUpdatePosition();
+		LinkCustomJump();
+		LinkCustomMountStair();
+		LinkLadderMount();
+		LinkEnterWater();
+		BottomlessPits();
+	}
+	// We could possibly switch to stair movement at this point.
+	if (LinkMode == LINK_MODE_STAIR) {
+		Link->Jump = 0;
+		RidingFFCID=0;
+		RidingFFCXOffset = 0;
+		LinkStairUpdatePosition();
+		LinkStairOnScreenChange();
+	}
+	if (LinkMode == LINK_MODE_STAIR) {
+		LinkStairFindStair();
+		LinkStairFallOff();
+		LinkStairJump();
+	}
+	//Riding moving FFC
+	if (LinkMode == LINK_MODE_ONPLATFORM){
+		Link->Jump=0;
+		LinkPlatformUpdate();
+		LinkCustomMountStair();
+		LinkLadderMount();
+		LinkEnterWater();
+		BottomlessPits();
+	}
+	if (LinkMode == LINK_MODE_ONPLATFORM){
+		LinkPlatformOnScreenChange();
+		LinkPlatformFallOff();
+	}
+	//Climbing ladders, vines, nets etc.
+	if (LinkMode == LINK_MODE_LADDER){
+		Link->Jump = 0;
+		RidingFFCID=0;
+		RidingFFCXOffset = 0;
+		LinkLadderMove();
+		LinkLadderOnScreenChange();
+		LinkLadderFallOff();
+	}
+	//Swimming
+	if (LinkMode == LINK_MODE_WATER){
+		Link->Jump=0;
+		LinkSwimUpdate();
+		LinkWaterOnScreenChange();
+		LinkWaterFallOff();
+	}
+	//Respawning after crush, like T-1000
+	if (LinkMode == LINK_MODE_CRUSHED){
+		ProcessHardCrush(0, 0);
+	}
+	
+	SolidFFCsUpdate(); //Solid FFC Interaction;
+	
+	LinkAdjust();//Finalize Link`s position.
+	
+	cycletimer++;
+	if (cycletimer>= 36000)cycletimer=0;
+	
+	SideviewAnim();
+	
+	//DebugStuff();//Self explanatory.//BOOKMARK
+}
+
+// If the combo location (in units of tiles) is valid, it is returned.
+// otherwise, -1 is returned.
+int FindLoc(int tx, int ty) {
+	if (tx < 0 || tx > 15 || ty < 0 || ty > 10) return -1;
+	return tx + (ty << 4);
+}
+ 
+// Determine whether we'll be relying on the ZC engine for movement or on this custom code. 
+// Place after Waitdraw, and before anything that needs to know Link's mode.
+void DetermineLinkMode() {
+	if (LinkCrushTimer < -1) LinkMode = LINK_MODE_CRUSHED;
+	// Check for various situations in which we want to fall-back on
+	// the built-in ZC engine.
+	else if (// If we're not a sideview screen, we definitely want
+	// to use the ZC engine.
+	!IsSideview() ||
+	// If Link is Frozen, he's probably using the hookshot.
+	// If the screen is scrolling, we can't do anything anyway.
+	Link->Action == LA_SCROLLING ||
+	// If he's hurt, we want to rely on the built-in knockback.
+	//Link->Action == LA_GOTHURTLAND ||
+	//Link->Action == LA_GOTHURTWATER ||
+	//Drowning
+	Link->Action == LA_DROWNING ||
+	//Riding raft
+	Link->Action== LA_RAFTING||
+	//Warping via Cave combo
+	Link->Action == LA_CAVEWALKDOWN||
+	Link->Action == LA_CAVEWALKUP||
+	//Casting spells
+	Link->Action==LA_CASTING//||
+	//Charging & spinning
+	//Link->Action == LA_CHARGING||
+	//Link->Action == LA_SPINNING
+	) {
+		// Rely on the engine.
+		if (Link->Action==LA_RAFTING)StairMode = STAIR_NONE;
+		LinkMode = LINK_MODE_ENGINE;
+		if (Link->Action == LA_GOTHURTLAND || Link->Action == LA_GOTHURTWATER ||Link->Action==LA_CHARGING||Link->Action==LA_FROZEN){			
+			StairMode = STAIR_NONE;
+			RidingFFCXOffset = 0;
+			RidingFFCID=0;
+			if (OldLinkMode!=LINK_MODE_WATER)OldLinkMode = LINK_MODE_CUSTOM;
+		}
+		return;
+	}
+	// There's a reason not to, so use our custom engine ...
+	else if (LinkCrushTimer < -1) LinkMode = LINK_MODE_CRUSHED;
+	else if (StairMode != STAIR_NONE) LinkMode = LINK_MODE_STAIR;
+	else if (RidingFFCID>0) LinkMode = LINK_MODE_ONPLATFORM;
+	else if (OldLinkMode== 4 || OldLinkMode == 5) LinkMode = OldLinkMode;
+	else if (LinkMode <=2){
+		//Update Link`s position when respawning after drowning.
+		if (OldLinkAction==LA_DROWNING || OldLinkAction==LA_RAFTING){
+			StairMode = STAIR_NONE;
+			LinkX = Link->X;
+			LinkY = Link->Y;
+		}
+		LinkMode = LINK_MODE_CUSTOM;
+	}
+	
+	InterruptorUpdate(); //Check if Link has been engulfed by eating enemy, caught by whirlwind and other stuff.
+		// If true, switch to engine movement. 
+}
+ 
+// Return true if the combo at the given position is a stair.
+bool IsStair(int x, int y) {
+	if (x < 0 || x >= 256 || y < 0 || y >= 176) return false;
+	else return IsStair((y & 240) + (x >> 4));
+}
+ 
+bool IsStair(int loc) {
+	if (loc == -1) return false;
+	int ct = Screen->ComboT[loc];
+	return CT_NEG <= ct && ct <= CT_POS;
+}
+ 
+bool IsValidStair(int loc) {
+	if (StairMode == STAIR_NEG) return IsNegStair(loc);
+	else if (StairMode == STAIR_POS) return IsPosStair(loc);
+}
+ 
+bool IsValidStair(int x, int y) {
+	if (StairMode == STAIR_NEG) return IsNegStair(x, y);
+	else if (StairMode == STAIR_POS) return IsPosStair(x, y);
+}
+ 
+bool IsPosStair(int x, int y) {
+	if (x < 0 || x > 255 || y < 0 || y > 175) return false;
+	else return IsPosStair((y & 240) + (x >> 4));
+}
+ 
+bool IsPosStair(int loc) {
+	if (loc == -1) return false;
+	int ct = Screen->ComboT[loc];
+	return ct == CT_CROSS || ct == CT_POS;
+}
+ 
+bool IsNegStair(int x, int y) {
+	if (x < 0 || x > 255 || y < 0 || y > 175) return false;
+	else return IsNegStair((y & 240) + (x >> 4));
+}
+ 
+bool IsNegStair(int loc) {
+	if (loc == -1) return false;
+	int ct = Screen->ComboT[loc];
+	return ct == CT_CROSS || ct == CT_NEG;
+}
+
+bool IsSolidStair(int x, int y){
+	int loc = ComboAt(x,y);
+	return IsSolidStair(loc);
+} 
+
+bool IsSolidStair(int loc){
+	if (loc == -1) return false;
+	if (ComboFI(loc, CF_SOFT)) return false;
+	int cs = Screen->ComboS[loc];
+	int ct = Screen->ComboT[loc];
+	if (ct == CT_NEG) return cs==14;
+	if (ct == CT_POS) return cs==11;
+	return false;
+}
+
+// Gets the block type at the given position on screen.
+int GetBlockType(int x, int y) {
+	int loc = ComboAt(x,y);
+	// Outside the screen is always considered open.
+	if (x < 0 || x >= 256 || y < 0 || y >= 176) return BLOCK_EMPTY;
+	// Non-solid blocks are always empty.
+	else if (!Screen->isSolid(x, y)) return BLOCK_EMPTY;
+	// Otherwise, if has the soft flag or is a stair,
+	// it is a soft block.
+	else if (ComboFI(x, y, CF_SOFT)) return BLOCK_SOFT;
+	else if (Screen->ComboT[loc]==CT_LADDER) return BLOCK_SOFT;
+	else if (IsStair(x, y)){
+		if (LinkMode==LINK_MODE_STAIR) return BLOCK_SOFT;
+		if (Screen->ComboT[loc]==CT_CROSS) return BLOCK_SOFT;
+		if (Screen->ComboS[loc]==15) return BLOCK_HARD;
+		if (IsSolidStair(loc)) return BLOCK_HARD;
+		else return BLOCK_SOFT;	
+	}
+	// Otherwise it is hard.
+	else return BLOCK_HARD;
+}
+ 
+// Updates Old Link position when the screen changes.
+void LinkUpdateOldOnScreenChange() {
+	// Set old link position to the edge of the screen we came in from.
+	if (ScreenChangeDir == DIR_UP) OldLinkY = 160;
+	else if (ScreenChangeDir == DIR_DOWN) OldLinkY = 0;
+	else if (ScreenChangeDir == DIR_LEFT) OldLinkX = 240;
+	else if (ScreenChangeDir == DIR_RIGHT) OldLinkX = 0;
+	
+	//Also set Link`s respawning position after unpleasant, but non lethal events, such as crushing.
+	LinkEntryX = LinkX;
+	LinkEntryY = LinkY;
+	RetStairMode = StairPos;
+	if (LinkMode != LINK_MODE_ONPLATFORM)RetLinkMode = LinkMode;
+	else RetLinkMode = LINK_MODE_CUSTOM;
+	//Damn ZC bug causes screen scroll when Link respawn too low on the screen.
+	if (ScreenChangeDir == DIR_UP)LinkEntryY -=8;
+}
+ 
+ 
+// Various actions to perform if the screen changed on us.
+void LinkCustomOnScreenChange() {
+if (ScreenChangeHandled) return;
+ 
+	// Respect any warps or such.
+	LinkX = Link->X;
+	LinkY = Link->Y;
+	
+	//Don`t clip into fully solid ramps downwards
+	if (ScreenChangeDir == DIR_DOWN){
+		if (Screen->isSolid(LinkX+1, LinkY +15) || Screen->isSolid(LinkX +11, LinkY +15)){
+			int cmb = ComboAt(LinkX +1, LinkY +15);
+			if (IsSolidStair(cmb) && Screen->ComboS[cmb]==11){
+				LinkX+=16;
+				LinkX = GridX(LinkX);
+			}
+			cmb = ComboAt(LinkX +11, LinkY +15);
+			if (IsSolidStair(cmb) && Screen->ComboS[cmb]==14){
+				LinkX-=8;
+				LinkX = GridX(LinkX);
+			}
+		}
+	}
+	//leftwards
+	if (ScreenChangeDir == DIR_LEFT){
+		if (Screen->isSolid(LinkX +7, LinkY +15)){
+			int cmb = ComboAt(LinkX +15, LinkY +15);
+			if (IsSolidStair(cmb) && Screen->ComboS[cmb]==11){
+				MountStair(LinkX + 15, LinkY + 15, STAIR_POS);
+				StairPos = STAIR_MIDDLE;				
+			}
+		}
+	}
+	//rightwards
+	if (ScreenChangeDir == DIR_RIGHT){
+		if (Screen->isSolid(LinkX +9, LinkY +15)){
+			int cmb = ComboAt(LinkX , LinkY +15);
+			if (IsSolidStair(cmb) && Screen->ComboS[cmb]==14){
+				MountStair(LinkX , LinkY + 15, STAIR_NEG);
+				StairPos = STAIR_MIDDLE;				
+			}
+		}
+	}
+ 
+	LinkUpdateOldOnScreenChange();
+ 
+	// Mark as being handled.
+	ScreenChangeHandled = true;
+}
+ 
+// Perform the actual movement of Link.
+void LinkCustomUpdatePosition() {
+	//Get current Link`s speed modifier, taking account of various circumstances, such as Slow Walk floor combo type.
+	int tempspeedmodifier=1;
+	int pegasus = 0;
+	if (Link->Item[I_SIDEVIEWPEGASUSBOOTS]){
+		itemdata it = Game->LoadItemData(I_SIDEVIEWPEGASUSBOOTS);
+		if (InputRun) pegasus = it->Power/10;
+	}
+	if (AffectedByCombo(CT_WALKSLOW)) tempspeedmodifier /= 2;
+	 
+	// First, move according to player input.
+	if (// We can only move if we're standing still or walking.
+	Link->Action == LA_NONE || Link->Action == LA_WALKING ||Link->Action == LA_CHARGING||
+	Link->Action == LA_SPINNING||
+	// Or we're in the air and attacking.
+	(Link->Action == LA_ATTACKING && LinkBlock == BLOCK_EMPTY)) {
+	// Then move left or right, but not both.
+		if ((Link->InputLeft)){
+			if ((AffectedByFlag(CF_SLIPPERY))&&(!(Link->Item[I_NOSLIP]))) LinkVx = Max(walkspeed*-1, LinkVx-0.05);
+			else LinkX -= walkspeed*tempspeedmodifier+pegasus;
+			
+		}
+		else if ((Link->InputRight)){
+			if ((AffectedByFlag(CF_SLIPPERY))&&(!(Link->Item[I_NOSLIP]))) LinkVx = Min(walkspeed, LinkVx+0.05);
+			else LinkX += walkspeed*tempspeedmodifier+pegasus;
+			
+		}
+	}
+	//Respect Knockback
+	ProcessKnockback(KNOCKBACK_SPEED);
+
+	// Then move Link according to his horizontal velocity.
+	LinkX += LinkVx;
+
+	//Check if Link is moved by conveyer belts.
+	ProcessConveyors();
+	
+	//If this option enabled, Link can control his vertical velocity with Jump button, for instance, not to jump too high
+	//and avoid bumping his head against enemies or damage combos.
+	if ((CONTROLS_ALLOW_VERTICAL_VELOCITY_CONTROL>0)&&(LinkVy<-1)&&(!InputJump)&&(HasJumped)) LinkVy = -1;	
+	
+	// Gravity.
+	if ((Link->Action != LA_GOTHURTLAND)&&(Link->Action != LA_GOTHURTWATER)){
+		int grv = LINK_GRAV;
+		if (AffectedByCombo(CT_LOW_GRAVITY_WELL)) grv *= LOW_GRAVITY_MODIFIER;
+		else if (AffectedByCombo(CT_HIGH_GRAVITY_WELL)) grv *= HIGH_GRAVITY_MODIFIER; 
+		LinkVy = Min(LinkVy + grv, LINK_TERM);
+	}
+	
+	if ((UsingHookshot())&&(LinkY>=152)&&(LinkVy>0)) LinkVy=0;
+	
+	//Process Hover Boots
+	if ((LinkHoverBootsTimer>0)&&(LinkY > OldLinkY)&&(LinkVy>0)&&((AUTOMATIC_HOVER_BOOTS>0)||(InputJump))){
+		if ((LinkHoverBootsTimer==hoverboot)&&(LinkBlock==BLOCK_EMPTY))Game->PlaySound(SFX_HOVER);
+		if ((Link->InputDown)&&(AUTOMATIC_HOVER_BOOTS>0)) LinkHoverBootsTimer=0;
+		LinkHoverBootsTimer--;
+		LinkVy = 0;
+	}
+	
+	// Then move Link according to his vertical velocity.
+	LinkY += LinkVy;
+	
+	 
+	// Check against running into a hard block above.
+	if (// First check that we're moving up.
+	LinkY < OldLinkY &&
+	(// Then check against Link's middle-left and middle-right.
+	GetBlockType(LinkX + 4, LinkY) == BLOCK_HARD ||
+	GetBlockType(LinkX + 12, LinkY) == BLOCK_HARD)) {
+		// If he hit, move Link down to the next multiple of 8.
+		LinkY += 8 - (LinkY % 8);
+		// and get rid of his vertical velocity.
+		LinkVy = 0;
+	}
+ 
+	// Check against running into a block below, and assign the block type
+	// below Link to LinkBlock for this round.
+	// First check to make sure we're moving down.
+	if (LinkY > OldLinkY) {
+		// Get the hardest type of platform below Link.
+		// Check against his middle-left and middle-right.
+		LinkBlock = Max(GetBlockType(LinkX +4, LinkY + 16), GetBlockType(LinkX + 12, LinkY + 16));
+		// See if we ran into a block.
+		if (// A hard block always counts.
+			LinkBlock == BLOCK_HARD ||
+			// A soft block counts as long as we're not holding the down and jump
+			// button down, or we started out past it.
+			(LinkBlock == BLOCK_SOFT &&
+			!(InputJump && Link->InputDown) &&
+			!(OldLinkY > (LinkY & 0x1FFF8)))) {
+				// If he hit, move Link up to the previous multiple of 8.
+				LinkY &= 0x1FFF8;
+				// reset Link`s hover Boot and Double Jump counters. 
+				LinkDoubleJumpCounter = multijump;
+				LinkHoverBootsTimer = hoverboot;
+				HasJumped = false;
+				// and get rid of his vertical velocity.
+				LinkVy = 0;
+				if (!AffectedByFlag(CF_SLIPPERY)) LinkVx=0;
+			}
+		}
+	// Otherwise, we're in the air.
+	else LinkBlock = BLOCK_EMPTY;
+	
+	
+	// Check against running into a walls horizontally.
+	HorizWallCollisionUpdate();
+ 
+	Link->Jump = -LinkVy;
+	Link->Z = 0;
+	
+	//No slipping in midair 
+	if ((LinkBlock == BLOCK_EMPTY)&&(RETAIN_HORIZONTAL_VELOCITY_IN_MIDAIR==0)) LinkVx=0;
+	else if ((Abs(LinkVx)>0)&&(LinkBlock == BLOCK_EMPTY)){
+		if (Abs(LinkVx)>0.04){
+			if (LinkVx>0){
+				LinkVx-=0.04;
+				if (Link->InputLeft){
+					if (Abs(LinkVx)>0.04)LinkVx-=0.04;
+					else LinkVy=0;
+				}
+			}
+			if (LinkVx<0){
+				LinkVx+=0.04;
+				if (Link->InputRight){
+					if (Abs(LinkVx)>0.04)LinkVx+=0.04;
+					else LinkVy=0;
+				}
+			}
+		}
+		else LinkVx=0;
+	}	
+}
+
+//Check if Link is moved by conveyer belts.
+void ProcessConveyors(){
+	if (LinkMode==LINK_MODE_WATER){//Water Currents.
+		if (Link->Item[I_NOWATERCURRENTS]) return;
+		if (Screen->LayerMap(1)<=0) return;
+		int loc = -1;
+		int COLLPOINTSX[3] = {LinkX, LinkX+7, LinkX+15};
+		int COLLPOINTSY[3] = {LinkY, LinkY+7, LinkY+16};
+		int Xoffset = 0;
+		int Yoffset = 0;
+		for(int y=0; y<=2; y++){
+			for (int x = 0; x<=2; x++){
+				loc = ComboAt(COLLPOINTSX[x], COLLPOINTSY[y]);
+				int tp = GetLayerComboT(1, loc);
+				if (tp==CT_CVUP) Yoffset--;;
+				if (tp==CT_CVDOWN) Yoffset++;
+				if (tp==CT_CVLEFT) Xoffset--;
+				if (tp==CT_CVRIGHT) Xoffset++;
+			}
+		}
+		debugValue(1,Xoffset);
+		LinkX += Sign(Xoffset)*2*CONVEYOR_SPEED;
+		LinkY += Sign(Yoffset)*CONVEYOR_SPEED;
+		if (Yoffset!=0) LinkVy = Yoffset;
+	}
+	//Land conveyours
+	if (Link->Item[I_NOCONVEYOR]) return;
+	if ((AffectedByFlag(CF_SOFT))&&(LinkBlock==BLOCK_EMPTY)) return;
+	if ((AffectedByCombo(CT_CVLEFT))&&(LinkBlock>0)) LinkX -= CONVEYOR_SPEED;
+	if ((AffectedByCombo(CT_CVRIGHT))&&(LinkBlock>0)) LinkX += CONVEYOR_SPEED;
+}
+
+//Process knockback
+void ProcessKnockback(int speed){
+	if (Link->Item[I_NOKNOCKBACK]) return;
+	if ((Link->Action == LA_GOTHURTLAND)||(Link->Action == LA_GOTHURTWATER)){
+		if (Link->HitDir==DIR_UP) LinkY-= speed;
+		if (Link->HitDir==DIR_DOWN) LinkY += speed;
+		if (Link->HitDir==DIR_LEFT) LinkX -= speed;
+		if (Link->HitDir==DIR_RIGHT) LinkX += speed;
+		LinkVx=0;
+		LinkVy=0;
+		if(LinkMode == LINK_MODE_ONPLATFORM){
+			ffc f = Screen->LoadFFC(RidingFFCID);
+			RidingFFCXOffset = LinkX - f->X;
+		}
+		if (LinkCrushTimer>2)LinkCrushTimer=2;
+	}
+}
+
+//Checks for hitting solid combos from left or right side and adjust Link`s position in case of collision. 
+void HorizWallCollisionUpdate(){
+	int dam = 0;
+	int x = LinkX+1;
+	int y[3] = {LinkY+5,LinkY+8,LinkY+15};
+			
+	// Check against running into a wall to the left.
+	if (// First check that we moved left.
+	LinkX < OldLinkX &&
+	(// Then check for hard blocks at Link's top, middle, and bottom.
+	GetBlockType(LinkX, LinkY+5) == BLOCK_HARD ||
+	GetBlockType(LinkX, LinkY + 8) == BLOCK_HARD ||
+	GetBlockType(LinkX, LinkY + 14) == BLOCK_HARD)) {
+		for (int i=0; i<3; i++){
+			if (GetDamageComboPower(x, y[i])) dam = GetDamageComboPower(x, y[i]);
+		}
+		
+		// If he hit, move Link right to the next multiple of 8.
+		LinkX += 8 - (LinkX % 8);
+		//Update FFC Riding offset to match new Link`s X position.
+		if (LinkMode == LINK_MODE_ONPLATFORM){
+			if (RidingFFCID==0) LinkMode==LINK_MODE_CUSTOM;
+			ffc f = Screen->LoadFFC(RidingFFCID);
+			RidingFFCXOffset = LinkX - f->X;
+		}
+		if (Link->InputLeft || LinkVx<0){
+			if (dam>0) ProcessScriptedDamage(dam);
+		}	
+	}
+	 
+	x= LinkX+14;
+	// Check against running into a wall to the right.
+	if (// First check that we moved right.
+	LinkX > OldLinkX &&
+	(// Then check for hard blocks at Link's top, middle, and bottom.
+	GetBlockType(LinkX + 15, LinkY+5) == BLOCK_HARD ||
+	GetBlockType(LinkX + 15, LinkY + 8) == BLOCK_HARD ||
+	GetBlockType(LinkX + 15, LinkY + 14) == BLOCK_HARD)) {
+		for (int i=0; i<3; i++){
+			if (GetDamageComboPower(x, y[i])) dam = GetDamageComboPower(x, y[i]);
+		}
+		// If he hit, move Link left to the previous multiple of 8.
+		LinkX &= 0x1FFF8;
+		//Update FFC Riding offset to match new Link`s X position.
+		if (LinkMode == LINK_MODE_ONPLATFORM){
+			if (RidingFFCID==0) LinkMode==LINK_MODE_CUSTOM;
+			ffc f = Screen->LoadFFC(RidingFFCID);
+			RidingFFCXOffset = LinkX - f->X;
+		}
+		if (Link->InputRight || LinkVx>0){
+			if (dam>0) ProcessScriptedDamage(dam);
+		}
+	}
+} 
+ 
+//Determine Jumpspeed and perform a sideview jump.
+void SideviewJump() {
+	//if (LinkVy<0) return;
+	int cmb = ComboAt(LinkX+7, LinkY+18);
+	Game->PlaySound(SFX_JUMP);
+	// We're holding down, so only hop.
+	int jump = LinkJump;
+	if (Link->InputDown) jump = LinkHop;
+	//We stomped enemy, do full jump
+	else if (LinkHasStomped()) jump = LinkStompJump;
+	// Wea are jumping out of water.
+	else if (Screen->ComboT[cmb]==CT_SIDEVIEW_WATER) jump=LinkFrogJump;
+	//with all modifiers applied, do the jump
+	LinkVy = jump;
+	HasJumped = true;
+}
+ 
+// Jump according to custom mode rules.
+void LinkCustomJump() {
+	int lad = Screen->ComboT[ComboAt(LinkX+7,LinkY+18)];
+	if (// The Jump button is pressed.
+	PressJump &&
+	// Can't jump in the air.
+	((LinkBlock != BLOCK_EMPTY)||(LinkDoubleJumpCounter > 0)||((lad==CT_LADDER)&&(Link->InputUp))) &&
+	// Must have positive y velocity.
+	LinkVy >= 0 &&
+	// Can't be doing anything but walking.
+	(Link->Action == LA_NONE || Link->Action == LA_WALKING)) {
+		if (LinkBlock==BLOCK_EMPTY)LinkDoubleJumpCounter--;
+		// Jump!
+		if (RETAIN_HORIZONTAL_VELOCITY_IN_MIDAIR==0)LinkVx=0;
+		HorizWallCollisionUpdate();
+		SideviewJump();
+	}
+	//Goomba Springboard!
+	else if (LinkHasStomped()&&InputJump){
+		LinkDoubleJumpCounter = multijump;
+		LinkHoverBootsTimer = hoverboot;
+		// Jump!
+		if (RETAIN_HORIZONTAL_VELOCITY_IN_MIDAIR==0)LinkVx=0;
+		HorizWallCollisionUpdate();
+		SideviewJump();
+	}
+}
+
+//returns true,if Link has stomped enemy with StompBoots 
+bool LinkHasStomped(){
+	if (!Link->Item[I_STOMPBOOTS]) return false;
+	if (LinkVy<=0) return false;
+	for (int i=1;i<= Screen->NumNPCs(); i++){
+		npc en = Screen->LoadNPC(i);
+		if (en->Defense[NPCD_STOMP]>0) continue;
+		if (! en->CollDetection)continue;
+		if (!LinkCollision(en)) continue;
+		if ((LinkY+14 > (en->Y))&&(LinkY< en->Y) &&
+		(LinkX+3 < (en->X + en->HitWidth)) && (LinkX+12> en->X)) return true;
+	}
+	return false;
+}
+
+void BottomlessPits(){
+	if ((AffectedByFlag(CF_LAVA))&&((LinkMode==LINK_MODE_CUSTOM)||(LinkMode == LINK_MODE_ONPLATFORM))&&((LinkVy>0)||(LinkMode == LINK_MODE_ONPLATFORM))&&(LinkY>152)){
+		Trace(LinkMode);
+		if (LinkMode == LINK_MODE_ONPLATFORM){
+			RidingFFCXOffset = 0;
+			RidingFFCID=0;
+			LinkMode=LINK_MODE_CUSTOM;
+			OldLinkMode = LINK_MODE_CUSTOM;
+		}
+		LinkCrushTimer=1;
+		ProcessHardCrush(-1, BOTTOMLESS_PIT_DAMAGE);
+	}
+}
+
+// Check if we need to get onto stairs from custom mode.
+void LinkCustomMountStair() {
+	if (Link->Action==LA_FROZEN) return;
+	// We never get on a stair unless we're standing on something.
+	if (LinkBlock == BLOCK_EMPTY) return;
+	 
+	// We must have a positive or 0 y velocity.
+	if (LinkVy < 0) return;
+	
+ 
+	// We're moving up-left, so check an up-left going stair on the same
+	// tile as Link.
+	if (Link->InputLeft && Link->InputUp && IsPosStair(LinkX, LinkY + 15)) {
+		MountStair(LinkX, LinkY + 15, STAIR_POS);
+		StairPos = STAIR_BOTTOM;
+	}
+	
+	//Process auto-mounting solid stairs (POS)
+	else if ((Link->InputLeft) && (IsSolidStair(LinkX-1, LinkY+15)) &&
+	(IsPosStair(LinkX-1, LinkY + 15))) {
+		MountStair(LinkX-1, LinkY + 15, STAIR_POS);
+		StairPos = STAIR_BOTTOM;
+	}
+	
+	// We're moving up-right, so check an up-right going stair on the same
+	// tile as Link.
+	else if (Link->InputRight && Link->InputUp &&
+	IsNegStair(LinkX + 15, LinkY + 15)) {
+		MountStair(LinkX + 15, LinkY + 15, STAIR_NEG);
+		StairPos = STAIR_BOTTOM;
+	}
+	
+	//Process auto-mounting solid stairs (NEG)
+	else if ((Link->InputRight) && (IsSolidStair(LinkX+16, LinkY+15)) &&
+	(IsNegStair(LinkX + 16, LinkY + 15))) {
+		MountStair(LinkX + 16, LinkY + 15, STAIR_NEG);
+		StairPos = STAIR_BOTTOM;
+	}
+	 
+	// We're moving down-left, so check a down-left going stair on the
+	// tile below Link.
+	if (Link->InputLeft && Link->InputDown && IsNegStair(LinkX + 2, LinkY + 18)) {
+		MountStair(LinkX + 2, LinkY + 18, STAIR_NEG);
+		StairPos = STAIR_TOP;
+	}
+ 
+	// We're moving down-right, so check a down-right going stair on the
+	// tile below Link.
+	if (Link->InputRight && Link->InputDown &&
+	IsPosStair(LinkX + 13, LinkY + 18)) {
+		MountStair(LinkX + 13, LinkY + 18, STAIR_POS);
+		StairPos = STAIR_TOP;
+	}
+}
+ 
+// Causes Link to mount the stair at the given position.
+// Returns true if the stair was mounted.
+bool MountStair(int x, int y, int mode) {
+	// First, make sure there's actually a stair there.
+	int start = (y & 240) + (x >> 4);
+	if (x < 0 || x >= 256 || y < 0 || y >= 176 || !IsStair(start)) {
+		LinkMode = LINK_MODE_CUSTOM;
+		StairMode = STAIR_NONE;
+		return false;
+	}
+	
+	
+	//Clear FFC riding data, if we mounted stairs off moving FFC.
+	RidingFFCXOffset = 0;
+	RidingFFCID = 0;
+	
+	// Change to stair movement mode.
+	LinkMode = LINK_MODE_STAIR;
+	StairMode = mode;
+	StairLoc = ComboAt(x, y);
+  
+	// Mark the stairs being mounted this frame.
+	StairMount = true;
+ 
+	// Set the Y offset.
+	x = ComboX(start);
+	y = ComboY(start);
+	
+	LinkVx=0;
+ 
+	StairY =
+	// Start with the y position of the stair combo.
+	y
+	// Move to 1 cell above it.
+	- 16
+	// Adjust for the x position of the stair combo in the stair direction.
+	- x * StairMode;
+	return true;
+}
+
+//Clears "resently mounted stair" flag, as we already in the next frame of the game.
+void Stair_Update1() {
+	StairMount = false;
+}
+ 
+// Adjust Link's position if the screen changed.
+void LinkStairOnScreenChange() {
+	if (ScreenChangeHandled) return;
+ 
+	int stairTX = StairLoc % 16;
+	int stairTY = StairLoc >> 4;
+ 	
+ 	//Handle Screen change like in normal, non-stair-driven state.
+	LinkUpdateOldOnScreenChange();
+ 
+	// If we walked off the top of the screen.
+	if (ScreenChangeDir == DIR_UP) {
+		int adjust = (StairLoc >> 4) + 1;
+		stairTX -= adjust * StairMode;
+		stairTY = 10;
+		StairLoc = FindLoc(stairTX, stairTY);
+		LinkX = (stairTX + StairMode) * 16;
+		LinkY = 160;
+	}
+ 
+	// We walked off the bottom of the screen.
+	else if (ScreenChangeDir == DIR_DOWN) {
+		int adjust = 11 - stairTY;
+		// First check if there is actually a stair on the top of the new screen.
+		int loc = FindLoc(stairTX + StairMode * adjust, 0);
+		if (!IsValidStair(loc)) {
+			// If there isn't then just set Link's X to where that stair would be.
+			LinkX = ComboX(loc);
+			StairLoc = -1;}
+			// If there is, proceed as normal.
+			else {
+				stairTX += 2 * StairMode;
+				stairTY = 1;
+				StairLoc = FindLoc(stairTX, stairTY);
+				LinkX = stairTX * 16;
+			}
+		LinkY = 0;
+	}
+ 
+	// We walked off the left edge of the screen. Make sure that the
+	// stairs actually reached all the way to the left as well.
+	else if (ScreenChangeDir == DIR_LEFT &&
+		(// If we were on the edge stair, then we know it existed.
+		stairTX == 0 ||
+		// Check above or below based on stair direction
+		Cond(StairMode == STAIR_POS, StairAbove, StairBelow))) {
+			stairTX = 15;
+			// How far away the stair we're anchored to is from the wall.
+			int adjust = (StairLoc % 16) + 1;
+			stairTY -= adjust * StairMode;
+			StairLoc = FindLoc(stairTX, stairTY);
+			LinkX = 240;
+			LinkY = (stairTY - 1) * 16;
+			// If there isn't a valid stair there, and we were moving up, then
+			// move Link down a tile, because he never climbed it while the
+			// screen was scrolling.
+			if (StairMode == STAIR_POS && !IsValidStair(StairLoc)) LinkY += 16;
+	}
+ 
+	// We walked off the right edge of the screen. Make sure that the
+	// stairs actually reached all the way to the right as well.
+	else if (ScreenChangeDir == DIR_RIGHT &&
+	(// If we were on the edge stair, then we know it existed.
+	stairTX == 15 ||
+	// Check above or below based on stair direction
+	Cond(StairMode == STAIR_POS, StairBelow, StairAbove))) {
+		stairTX = 0;
+		// How far away the stair we're anchored to is from the wall.
+		int adjust = 16 - (StairLoc % 16);
+		stairTY += adjust * StairMode;
+		StairLoc = FindLoc(stairTX, stairTY);
+		LinkX = 0;
+		LinkY = (stairTY - 1) * 16;
+		// If there isn't a valid stair there, and we were moving up, then
+		// move Link down a tile, because he never climbed it while the
+		// screen was scrolling.
+		if (StairMode == STAIR_NEG && !IsValidStair(StairLoc)) LinkY += 16;
+	}
+ 
+	// Otherwise, cancel stairs.
+	else {
+		LinkX = Link->X;
+		LinkY = Link->Y;
+		StairMode = STAIR_NONE;
+		LinkMode = LINK_MODE_CUSTOM;
+	}
+ 
+	if (StairMode != STAIR_NONE){
+		MountStair(stairTX << 4, stairTY << 4, StairMode);
+		//Record stair related stuff, if needed to respawn Link on stairs after getting crushed
+		RetStairMode = StairMode;
+		LinkEntryX = LinkX;
+		LinkEntryY = LinkY;
+		//RetStairY = StairY;
+		if (ScreenChangeDir == DIR_UP) {
+			LinkEntryY -= 8;
+			LinkEntryX -= 8 * RetStairMode;
+		}
+	}
+	 
+	ScreenChangeHandled = true;
+}
+ 
+// Update Link's position based on the stair he's on.
+void LinkStairUpdatePosition() {
+	int pegasus = 0;
+	if (Link->Item[I_PEGASUSSTAIRS]){
+		itemdata it = Game->LoadItemData(I_PEGASUSSTAIRS);
+		if (InputRun) pegasus = it->Power/10;
+	}
+	// First, move according to player input.
+	if (// We can only move if we're standing still or walking.
+	(Link->Action == LA_NONE || Link->Action == LA_WALKING||Link->Action == LA_CHARGING||
+	Link->Action == LA_SPINNING)&&(Link->Action!=LA_FROZEN)) {
+		// Then move left or right, but not both.
+		if (Link->InputLeft) LinkX -= walkspeed*stairspeedmodifier+pegasus;
+		else if (Link->InputRight) LinkX += walkspeed*stairspeedmodifier+pegasus;
+		else if (Link->InputUp){
+			if (StairMode==STAIR_POS) LinkX -= walkspeed*stairspeedmodifier+pegasus;
+			else if (StairMode==STAIR_NEG) LinkX += walkspeed*stairspeedmodifier+pegasus;
+		}
+		else if (Link->InputDown){
+			if (StairMode==STAIR_POS) LinkX += walkspeed*stairspeedmodifier+pegasus;
+			else if (StairMode==STAIR_NEG) LinkX -= walkspeed*stairspeedmodifier+pegasus;
+		}
+	}
+	
+ 
+	// If we're at the top or bottom of the stair, check against running
+	// into walls.
+	if (StairPos != STAIR_MIDDLE) {
+		// Check against running into a wall to the left.
+		if (// First check that we moved left.
+		LinkX < OldLinkX &&
+		// Then check that we're not at the top of a negative stair.
+		(StairPos != STAIR_TOP || StairMode != STAIR_NEG) &&
+		(// Then check for hard blocks at Link's top, middle, and bottom.
+		GetBlockType(LinkX, LinkY) == BLOCK_HARD ||
+		GetBlockType(LinkX, LinkY + 8) == BLOCK_HARD ||
+		GetBlockType(LinkX, LinkY + 15) == BLOCK_HARD)) {
+			// If he hit, move Link right to the next multiple of 8.
+			LinkX += 8 - (LinkX % 8);
+			if (((Screen->ComboS[StairLoc] & 5)==5)&&(Link->InputUp)){
+				StairMode = STAIR_NONE;
+				LinkMode = LINK_MODE_CUSTOM;
+				OldLinkMode = LINK_MODE_CUSTOM;
+				return;
+			}
+		}
+ 
+		// Check against running into a wall to the right.
+		if (// First check that we moved right.
+		LinkX > OldLinkX &&
+		// Then check that we're not at the top of a positive stair.
+		(StairPos != STAIR_TOP || StairMode != STAIR_POS) &&
+		(// Then check for hard blocks at Link's top, middle, and bottom.
+		GetBlockType(LinkX + 15, LinkY) == BLOCK_HARD ||
+		GetBlockType(LinkX + 15, LinkY + 8) == BLOCK_HARD ||
+		GetBlockType(LinkX + 15, LinkY + 15) == BLOCK_HARD)) {
+			// If he hit, move Link left to the previous multiple of 8.
+			LinkX &= 0x1FFF8;
+			if (((Screen->ComboS[StairLoc] & 5)==5)&&(Link->InputUp)){
+				StairMode = STAIR_NONE;
+				LinkMode = LINK_MODE_CUSTOM;
+				OldLinkMode = LINK_MODE_CUSTOM;
+				return;
+			}
+		}
+	}
+ 
+	//// Then adjust y positioning.
+	// If we're at the middle of the stair, use the standard formula.
+	LinkY = LinkX * StairMode + StairY;
+ 
+	// If we're at the bottom, align Link with the anchored stair.
+	if (StairPos == STAIR_BOTTOM &&
+	((StairMode == STAIR_NEG && LinkX <= ComboX(StairLoc) - 16) ||
+	(StairMode == STAIR_POS && LinkX >= ComboX(StairLoc) + 16))) {
+		LinkY = ComboY(StairLoc);
+	}
+	// If we're at the top, align Link with the cell above the anchored stair.
+	else if (StairPos == STAIR_TOP &&
+	((StairMode == STAIR_NEG && LinkX >= ComboX(StairLoc) - 1) ||
+	(StairMode == STAIR_POS && LinkX <= ComboX(StairLoc) + 1))) {
+		LinkY = ComboY(StairLoc) - 16;
+	}
+}
+ 
+// Find the stair that Link is currently standing on.
+void LinkStairFindStair() {
+ 
+	if (StairLoc == -1){
+		return;
+	}
+ 
+	//// First, check if we've moved off of the stair we're currently anchored to.
+	// Get the edge closest to the stair.
+	int x = LinkX + Cond(StairMode == STAIR_POS, 0, 15);
+	int stairX = ComboX(StairLoc);
+	int stairTX = StairLoc % 16;
+	int stairTY = StairLoc >> 4;
+	
+	// Direction we've shifted.
+	int shiftDir = 0;
+	
+	// We've moved off the left side of the stair, so move the StairLoc
+	// 1 to the left, plus up or down as appropriate.
+	if (x < stairX) {
+		stairTX--;
+		stairTY -= StairMode;
+		shiftDir = -1;
+	}
+	// We've moved off the right side of the stair, so move the StairLoc
+	// 1 to the right, plus up or down as appropriate.
+	else if (x >= stairX + 16) {
+		stairTX++;
+		stairTY += StairMode;
+		shiftDir = 1;
+	}
+ 
+	StairLoc = FindLoc(stairTX, stairTY);
+	StairPos = STAIR_MIDDLE;
+ 
+	// If we found the stairs, but we're on the top edge of a stair (and
+	// not on the edge of a screen), set to the top edge anyway.
+	if (IsValidStair(StairLoc) &&
+	((StairMode == STAIR_POS && stairTX != 0) ||
+	(StairMode == STAIR_NEG && stairTX != 15))) {
+		int aboveLoc = FindLoc(stairTX - StairMode, stairTY - 1);
+		if (!IsValidStair(aboveLoc)) StairPos = STAIR_TOP;
+	}
+ 
+	// Check for a stair to the side.
+	if (// First, make sure that we didn't already find a stair.
+	!IsValidStair(StairLoc) &&
+	// And then also make sure that we didn't shift up the stair,
+	// because we're shifting up again and a double shift doesn't
+	// make sense.
+	shiftDir * StairMode != -1) {
+		StairLoc = FindLoc(stairTX - StairMode, stairTY - 1);
+		// If we're on the bottom of the screen, assume there's more
+		// stairs on the next screen.
+		if (stairTY - 1 < 10) StairPos = STAIR_BOTTOM;
+	}
+ 
+	// Then check for a stair diagonally downward.
+	if (!IsValidStair(StairLoc)) {
+		StairLoc = FindLoc(stairTX + StairMode, stairTY + 1);
+		StairPos = STAIR_TOP;
+	}
+ 
+	// Check if we failed.
+	if (!IsValidStair(StairLoc)) {
+		StairLoc = -1;
+		return;
+	}
+ 
+	// Set StairLeft and StairRight to the proper values for Link's position.
+	if (StairPos == STAIR_MIDDLE) {
+		StairLeft = -16;
+		StairRight = 271;
+	}
+	else {
+		stairTX = StairLoc % 16;
+		StairLeft = (stairTX - 1) * 16 -0;
+		StairRight = (stairTX + 1) * 16 +0;
+	}
+ 
+	// Find if there's a stair above and below.
+	StairAbove = IsValidStair(FindLoc(stairTX - StairMode, stairTY - 1));
+	StairBelow = IsValidStair(FindLoc(stairTX + StairMode, stairTY + 1));
+}
+ 
+// See if Link is leaving the stairs.
+void LinkStairFallOff() {
+	if (StairMount) return;//Make sure that we don`t fall off stairs the same frame as we successfully mounted them.
+	bool fall = false;
+	// Getting hurt knocks you off of stairs.
+	if ((Link->Action == LA_GOTHURTLAND || Link->Action == LA_GOTHURTWATER) && (!Link->Item[I_NOKNOCKBACK])) fall = true;
+	if (Link->Action == LA_RAFTING) fall = true;
+	if (HookshotGrabbed()) fall = true;
+	// If we couldn't locate a stair earlier, that means we fall off, too.
+	if (StairLoc == -1)fall = true;	
+	// Or if we've moved too far off of the top or bottom of a stair.
+	if (LinkX <= StairLeft || LinkX >= StairRight) fall = true;
+	if (fall) {
+		if (LinkX <= StairLeft || LinkX >= StairRight)LinkY &= 0x1FFF8;
+		StairMode = STAIR_NONE;
+		if (!HookshotGrabbed())LinkMode = LINK_MODE_CUSTOM;
+		OldLinkMode = LINK_MODE_CUSTOM;
+	}
+}
+ 
+// Jump according to stair mode rules.
+void LinkStairJump() {
+	if (// The Jump button is pressed.
+	PressJump &&
+	// Can't be doing anything but walking.
+	(Link->Action == LA_NONE || Link->Action == LA_WALKING)) {
+		StairMode = STAIR_NONE;
+		LinkMode = LINK_MODE_CUSTOM;
+		// Jump!
+		SideviewJump();
+	}
+}
+ 
+// Assigns all the OldLink variables for the upcoming frame.
+// Place before Waitdraw().
+void OldLink_Update1() {
+	OldLinkX = Link->X;
+	OldLinkY = Link->Y;
+	OldLinkAction = Link->Action;
+	if (LinkMode!=LINK_MODE_ENGINE && LinkMode != LINK_MODE_CRUSHED)
+	OldLinkMode=LinkMode;
+}
+ 
+// Record the current dmap and dscreen right before they are changed.
+// Place before Waitdraw().
+void ScreenChange_Update1() {
+	OldDMap = Game->GetCurDMap();
+	OldDScreen = Game->GetCurDMapScreen();
+	//if (LinkMode != LINK_MODE_ENGINE)OldLinkMode = LinkMode;
+}
+ 
+// Updates information dealing with changing screens.
+// Place after Waitdraw(), when the screen changes happen.
+void ScreenChange_Update2() {
+	// Grab current values.
+	int dMap = Game->GetCurDMap();
+	int dScreen = Game->GetCurDMapScreen();
+	// Compare with old values.
+	DMapChanged = dMap != OldDMap;
+	ScreenChanged = DMapChanged || dScreen != OldDScreen;
+ 
+	// Check for scrolling change to the same screen.
+	if (Link->Action == LA_SCROLLING) {
+		if (!ScreenChanged && !_ScreenChanged_ScrollFlag) {
+		ScreenChanged = true;
+		_ScreenChanged_ScrollFlag = true;
+		}
+	}
+	// We're no longer scrolling, so reset scroll flag.
+	else _ScreenChanged_ScrollFlag = false;
+ 
+	// Check for a forced screen change flag.
+	if (_ScreenChanged_ForceFlag) {
+		ScreenChanged = true;
+		_ScreenChanged_ForceFlag = false;
+	}
+ 
+	// Find the screen change direction.
+	if (ScreenChanged) {
+		// Mark the screen change as needing to be handled.
+		ScreenChangeHandled = false;
+		// Try to guess the direction.
+		if (Link->Y >= 160) ScreenChangeDir = DIR_UP;
+		else if (Link->Y <= 0) ScreenChangeDir = DIR_DOWN;
+		else if (Link->X >= 240) ScreenChangeDir = DIR_LEFT;
+		else if (Link->X <= 0) ScreenChangeDir = DIR_RIGHT;
+		else {ScreenChangeDir = SCREEN_CHANGE_WARP;
+		EnemySpawn = 4;
+		}
+	}
+}
+
+
+
+// Adjust some of Link's variables after all the mechanical
+// manipulation is done.
+void LinkAdjust(){
+	// Don't do anything in engine mode.
+	if (LinkMode == LINK_MODE_ENGINE) return;
+	 //Let hookshot pull Link from any kind of danger
+	 if (HookshotGrabbed()) return;
+	 
+	// Update Link's actual position.
+	Link->X = Round(LinkX);
+	Link->Y = Round(LinkY);
+	 
+	//Don`t set Link`s direction, if he is charging or spinning.	 
+	if (Link->Action == LA_CHARGING||
+	Link->Action == LA_SPINNING) return;
+	 
+	// Set the direction according to input.
+	if (Link->InputUp)Link->Dir = DIR_UP;
+	else if (Link->InputDown)Link->Dir = DIR_DOWN;
+	else if (Link->InputLeft) Link->Dir = DIR_LEFT;
+	else if (Link->InputRight) Link->Dir = DIR_RIGHT;	
+}
+	 
+// General input handling. You may remap jump button (default is Ex1) and run button (default is Ex2) 
+void Input_Update1() {
+	if (IsSideview()) {
+		InputJump = Link->InputEx1;
+		PressJump = Link->PressEx1;
+		InputRun = Link->InputEx2;
+		
+		//Disable Up&Down to force Link to always face sideways if such swimming option is turned on.
+		if (LinkMode == LINK_MODE_WATER){
+			int itm =  GetCurrentItem(IC_FLIPPERS);
+			itemdata it = Game->LoadItemData(itm);
+			int swim = it->Power;
+			if (swim<3){
+				Link->InputUp=false;
+				Link->InputDown=false;
+			}
+			if ((swim<2)&&(LinkBlock==BLOCK_EMPTY)){
+				PressJump= false;
+			}
+		}
+	}
+}
+ 
+// Change the inputs so the engine doesn't set Link facing a weird
+// direction or something else we don't want.
+void Input_Update2() { 
+	// If we're not in engine mode, up and down take preference for
+	// direction.
+	if (LinkMode != LINK_MODE_ENGINE &&
+	(Link->InputUp || Link->InputDown)) {
+		Link->InputLeft = false;
+		Link->InputRight = false;
+		Link->PressLeft = false;
+		Link->PressRight = false;
+	}
+}
+
+//Force switching to default ZC engine mode on non-standard events, like getting caught in whirlwind or eaten by enemy.
+void InterruptorUpdate(){
+	if (LinkEngulfed()){//Like Like gets nom nom...
+		LinkMode = LINK_MODE_ENGINE;
+		return;
+	}
+	else if (Link->Action == LA_INWIND){ //Engulfed by whistle whirlwind.
+		LinkMode = LINK_MODE_ENGINE;
+		return;
+	}
+	else if (Link->Action== LA_FROZEN){// Either using hookshot, or swept away by Windrobe`s eweapon.
+		Link->InputDown = false;
+		Link->InputLeft = false;
+		Link->InputUp = false;
+		Link->InputRight = false;
+		if (HookshotGrabbed()){
+			StairMode = STAIR_NONE;
+			RidingFFCXOffset = 0;
+			RidingFFCID=0;
+			LinkMode = LINK_MODE_ENGINE;
+		}
+		return;
+	}
+}
+
+//Returns TRUE, of Link is engulfed by eating enemy.
+bool LinkEngulfed(){
+	npc eater;
+	for (int n=1; n<= Screen->NumNPCs(); n++){
+		eater = Screen->LoadNPC(n);
+		if ( eater->Type == NPCT_WALK){
+			if ((eater->Attributes[6]>=7)&&( eater->Attributes[6]<=10)){
+				if (LinkCollision(eater)){
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+} 
+ 
+//Mount ladders
+void LinkLadderMount(){
+	if (Link->Action==LA_FROZEN) return;
+	if (((Link->InputUp)||(Link->InputDown)) &&//Input for ladder mounting
+	AffectedByCombo(CT_LADDER)){//Touching ladder to grab onto
+		LinkVy=0;
+		LinkVx=0;
+		Link->Jump=0;
+		HasJumped = false;
+		if (LINK_LADDER_GRIDSNAP>0)LinkLadderSnap();
+		LinkMode = LINK_MODE_LADDER;		
+	}
+}
+
+//Snaps Link`s position to ladder combo.
+void LinkLadderSnap(){
+	int loc = -1;
+	int COLLPOINTSX[3] = {LinkX+7, LinkX, LinkX+15};
+	int COLLPOINTSY[3] = {LinkY+7, LinkY, LinkY+16};
+	for(int y=0; y<=2; y++){
+		for (int x = 0; x<=2; x++){
+			loc = ComboAt(COLLPOINTSX[x], COLLPOINTSY[y]);
+			if (Screen->ComboT[loc]==CT_LADDER){
+				LinkX = ComboX(loc);
+				return;
+			}
+		}
+	}
+}
+
+//Update Ladder movement
+void LinkLadderMove(){
+	LinkVy=0;
+	LinkVx=0;
+	int pegasus = 0;
+	if (Link->Item[I_PEGASUSLADDER]){
+		itemdata it = Game->LoadItemData(I_PEGASUSLADDER);
+		if (InputRun) pegasus = it->Power/10;
+	}
+	
+	if (Link->Action!=LA_FROZEN){//Process directional input.
+		if(LINK_LADDER_GRIDSNAP==0){
+			if (Link->InputLeft) LinkX -= walkspeed*ladderspeedmodifier+pegasus;
+			else if (Link->InputRight) LinkX += walkspeed*ladderspeedmodifier+pegasus;
+		}
+		if (Link->InputUp) LinkY -= walkspeed*ladderspeedmodifier+pegasus;
+		else if (Link->InputDown) LinkY += walkspeed*ladderspeedmodifier+pegasus;
+	}
+	
+	// Check against running into a hard block above.
+	if (// First check that we're moving up.
+	LinkY < OldLinkY &&
+	(// Then check against Link's middle-left and middle-right.
+	GetBlockType(LinkX + 5, LinkY) == BLOCK_HARD ||
+	GetBlockType(LinkX + 11, LinkY) == BLOCK_HARD)) {
+		// If he hit, move Link down to the next multiple of 8.
+		LinkY += 8 - (LinkY % 8);
+	}
+	//And below
+	if (LinkY > OldLinkY) {
+		// Get the hardest type of platform below Link.
+		// Check against his middle-left and middle-right.
+		LinkBlock = Max(GetBlockType(LinkX + 5, LinkY + 16), GetBlockType(LinkX + 11, LinkY + 16));
+		// See if we ran into a block.
+		if (// A hard block always counts.
+			LinkBlock == BLOCK_HARD ||
+			// A soft block counts as long as we're not holding the jump
+			// button down, or we started out past it.
+			(LinkBlock == BLOCK_SOFT &&
+			!(Link->InputDown) &&
+			!(OldLinkY > (LinkY & 0x1FFF8)))) {
+				// If he hit, move Link up to the previous multiple of 8.
+				LinkY &= 0x1FFF8;
+				// reset Link`s hover Boot and Double Jump counters. 
+				LinkDoubleJumpCounter = multijump;
+				LinkHoverBootsTimer = hoverboot;
+				// and get rid of his vertical velocity.
+				LinkMode == LINK_MODE_CUSTOM;
+			}
+		}
+	// Otherwise, we're in the air.
+	else LinkBlock = BLOCK_EMPTY;	
+	// Check against running into walls horizontally.
+	HorizWallCollisionUpdate();
+	if (// The Jump button is pressed.
+	PressJump &&
+	// Can't be doing anything but walking.
+	(Link->Action == LA_NONE || Link->Action == LA_WALKING)) {
+		LinkMode = LINK_MODE_CUSTOM;
+		// Jump!
+		SideviewJump();
+	}
+}
+
+//Process handling screen changes while climbing ladders
+void LinkLadderOnScreenChange(){
+	if (ScreenChangeHandled) return;
+	LinkX = Link->X;
+	LinkY = Link->Y;
+	//Handle Screen change like in normal state.
+	LinkUpdateOldOnScreenChange();
+	//Set Link mode to climbing again.
+	LinkMode=LINK_MODE_LADDER;
+	
+	ScreenChangeHandled = true;
+}
+
+//Drop off ladders
+void LinkLadderFallOff(){
+	if ((Link->Action == LA_GOTHURTLAND || Link->Action == LA_GOTHURTWATER) && (!Link->Item[I_NOKNOCKBACK])){
+		LinkMode = LINK_MODE_CUSTOM; //I hate knockbacks!
+		OldLinkMode = LINK_MODE_CUSTOM;
+		return;
+	}
+	int loc = -1;
+	int COLLPOINTSX[3] = {LinkX, LinkX+7, LinkX+15};
+	int COLLPOINTSY[3] = {LinkY, LinkY+7, LinkY+15};
+	for(int y=0; y<=2; y++){//Ladders can disappear.
+		for (int x = 0; x<=2; x++){
+			loc = ComboAt(COLLPOINTSX[x], COLLPOINTSY[y]);
+			if (Screen->ComboT[loc]==CT_LADDER) return;
+		}
+	}
+	LinkMode = LINK_MODE_CUSTOM;
+	OldLinkMode = LINK_MODE_CUSTOM;
+}
+
+// Link falls into water. Hope he has flippers ready!
+void LinkEnterWater(){
+	if (LinkIsInWater()){
+		int flipper =  GetCurrentItem(IC_FLIPPERS);
+		if (LinkMode==LINK_MODE_ONPLATFORM){
+			if (flipper==-1){
+				RidingFFCXOffset = 0;
+				RidingFFCID=0;
+				LinkMode=LINK_MODE_CUSTOM;
+				OldLinkMode=LINK_MODE_CUSTOM;
+			}
+			else if ((AffectedByFlag(CF_LAVA))&&(!Link->Item[I_VARIASUIT])){
+				RidingFFCXOffset = 0;
+				RidingFFCID=0;
+				LinkMode=LINK_MODE_CUSTOM;
+				OldLinkMode=LINK_MODE_CUSTOM;
+			}
+			else return;
+		}
+		if (OldLinkMode==LINK_MODE_CUSTOM){
+			CreateLinkWaterSplashAnim();//Play water splash animation.
+		}
+		if ((flipper==-1)||((AffectedByFlag(CF_LAVA))&&(!Link->Item[I_VARIASUIT]))){//process drowning.
+			LinkCrushTimer=1;
+			if (AffectedByFlag(CF_LAVA))ProcessHardCrush(-1, LAVABURN_DAMAGE);
+			else ProcessHardCrush(-1, DROWNING_DAMAGE);
+			return;
+		}
+		LinkMode=LINK_MODE_WATER;
+		itemdata it = Game->LoadItemData(flipper);
+		int swim = it->Power;
+		if (swim<3){
+			if ((Link->Dir==DIR_UP)||(Link->Dir==DIR_DOWN))Link->Dir==DIR_RIGHT;
+		}
+		LinkVx=0;//Kill velocity.
+		LinkVy=0;
+		HasJumped = false;
+		LinkDoubleJumpCounter = 0; 
+		LinkHoverBootsTimer = hoverboot;
+	}
+}
+
+
+//Process basiñ handling of Link swimming underwater.
+void LinkSwimUpdate(){
+	int pegasus = 0;
+	if (Link->Item[I_PEGASUSSWIM]){
+		itemdata it = Game->LoadItemData(I_PEGASUSSWIM);
+		if (InputRun) pegasus = it->Power/10;
+	}
+	//Process input
+	if (Link->Action!=LA_FROZEN){
+		if (Link->InputLeft) LinkX -= walkspeed*swimspeedmodifier+pegasus;
+		else if (Link->InputRight) LinkX += walkspeed*swimspeedmodifier+pegasus;
+		if (Link->InputUp) LinkY -= walkspeed*swimspeedmodifier+pegasus;
+		else if (Link->InputDown) LinkY += walkspeed*swimspeedmodifier+pegasus;
+	}
+	
+	//Respect Knockback
+	ProcessKnockback(KNOCKBACK_SPEED*0.33);
+	
+	//Check if Link is moved by conveyer belts.
+	ProcessConveyors();
+	
+	if (PressJump){
+		Game->PlaySound(SFX_JUMP);
+		LinkVy = LinkFrogJump*swimspeedmodifier;
+		int itm =  GetCurrentItem(IC_FLIPPERS);
+		itemdata it = Game->LoadItemData(itm);
+		int swim = it->Power;
+		if (swim==1) LinkVy = LinkJump*swimspeedmodifier;
+				
+	}
+		
+	if ((CONTROLS_ALLOW_VERTICAL_VELOCITY_CONTROL>0)&&(LinkVy<-1)&&(!InputJump)) LinkVy = -1;	
+	
+	//Gravity, effect is cut in 4-fold.
+	if ((Link->Action != LA_GOTHURTLAND)&&(Link->Action != LA_GOTHURTWATER)&&(!Link->InputUp))
+	LinkVy = Min(LinkVy + LINK_GRAV/4, LINK_TERM/2);
+	else LinkVy=0;
+ 	
+ 	if ((UsingHookshot())&&(LinkY>=152)&&(LinkVy>0)) LinkVy=0;
+ 	
+	// Then move Link according to his vertical velocity.
+	LinkY += LinkVy;
+	
+	// Check against running into a hard block above.
+	if (// First check that we're moving up.
+	LinkY < OldLinkY &&
+	(// Then check against Link's middle-left and middle-right.
+	GetBlockType(LinkX + 5, LinkY) == BLOCK_HARD ||
+	GetBlockType(LinkX + 11, LinkY) == BLOCK_HARD)) {
+		// If he hit, move Link down to the next multiple of 8.
+		LinkY += 8 - (LinkY % 8);
+		LinkVy=0;
+	}
+	//And below
+	if (LinkY > OldLinkY) {
+		// Get the hardest type of platform below Link.
+		// Check against his middle-left and middle-right.
+		LinkBlock = Max(GetBlockType(LinkX + 5, LinkY + 16), GetBlockType(LinkX + 11, LinkY + 16));
+		// See if we ran into a block.
+		if (// A hard block always counts.
+			LinkBlock == BLOCK_HARD ||
+			// A soft block counts as long as we're not holding the jump
+			// button down, or we started out past it.
+			(LinkBlock == BLOCK_SOFT &&
+			!(Link->InputDown) &&
+			!(OldLinkY > (LinkY & 0x1FFF8)))) {
+				// If he hit, move Link up to the previous multiple of 8.
+				LinkY &= 0x1FFF8;
+				LinkDoubleJumpCounter = multijump;
+				LinkHoverBootsTimer = hoverboot;
+				// and get rid of his vertical velocity.
+				LinkVy=0;
+			}
+		}
+	// Otherwise, we're not landed on anything.
+	else LinkBlock = BLOCK_EMPTY;	
+	// Check against running into walls horizontally.
+	HorizWallCollisionUpdate();
+	
+	if ((AffectedByFlag(CF_LAVA))&&(!Link->Item[I_VARIASUIT])){
+		LinkCrushTimer=1;
+		CreateLinkWaterSplashAnim();
+		ProcessHardCrush(-1, LAVABURN_DAMAGE);
+	}
+	
+	Link->Jump = 0;
+	Link->Z = 0;
+}
+	
+//Process screen change handling when swimming.
+void LinkWaterOnScreenChange(){
+	if (ScreenChangeHandled) return;
+	LinkX = Link->X;
+	LinkY = Link->Y;
+	//Handle Screen change like in normal state.
+	LinkUpdateOldOnScreenChange();
+	//Set Link mode to swimming again.
+	LinkMode=LINK_MODE_WATER;
+	if ((ScreenChangeDir==DIR_UP)&&(LinkVy)>-1) LinkVy=-1;
+	ScreenChangeHandled = true;
+}
+
+//Link falls off water, like waterfall.
+void LinkWaterFallOff(){
+	if (!LinkIsInWater()){
+		int cmb = ComboAt(LinkX+7, LinkY+18);
+		if (Screen->ComboT[cmb]==CT_SIDEVIEW_WATER){
+			if((Link->InputUp)||(LinkVy<=0))SideviewJump();
+		}
+		LinkMode = LINK_MODE_CUSTOM;
+	}
+}
+
+
+//Returns TRUE, if Link touches or is inside a combo of specific type.
+bool AffectedByCombo(int type){
+	int loc = -1;
+	int COLLPOINTSX[3] = {LinkX, LinkX+7, LinkX+15};
+	int COLLPOINTSY[3] = {LinkY, LinkY+7, LinkY+16};
+	for(int y=0; y<=2; y++){
+		for (int x = 0; x<=2; x++){
+			loc = ComboAt(COLLPOINTSX[x], COLLPOINTSY[y]);
+			if (Screen->ComboT[loc]==type) return true;
+		}
+	}
+	return false;
+}
+
+//Returns TRUE, if Link touches or is inside a combo with specific flag.
+bool AffectedByFlag(int type){
+	int loc = -1;
+	int COLLPOINTSX[3] = {LinkX, LinkX+7, LinkX+15};
+	int COLLPOINTSY[3] = {LinkY, LinkY+7, LinkY+16};
+	for(int y=0; y<=2; y++){
+		for (int x = 0; x<=2; x++){
+			loc = ComboAt(COLLPOINTSX[x], COLLPOINTSY[y]);
+			if (ComboFI(loc, type)) return true;
+		}
+	}
+	return false;
+}
+
+//Returns true, if Link falls into water. Don`t use default water, it`s buggy!
+bool LinkIsInWater(){
+	int cmb = -1;
+	int COLLPOINTSX[3] = {LinkX+2, LinkX+7, LinkX+13};
+	int COLLPOINTSY[3] = {LinkY+2, LinkY+7, LinkY+15};
+	for(int y=0; y<=2; y++){
+		for (int x = 0; x<=2; x++){
+			cmb = ComboAt(COLLPOINTSX[x], COLLPOINTSY[y]);
+			if (Screen->ComboT[cmb]== CT_SIDEVIEW_WATER) return true;
+		}
+	}
+	return false;
+}
+
+//If you have No Screen Scrolling quest rule on, place this FFC script in the screens with wraparound, 
+//like maze paths, tricky side warps etc.
+ffc script ScreenChange {
+void run() {
+	_ScreenChanged_ForceFlag = true;
+	}
+}
+ 
+
+// D0 -  Link's full jump speed.
+// D1 - Link's jump speed while holding down.
+// D2 - Link`s out of water jump apeed
+// D3 - Link`s stomping speed
+// All above arguments must be negative ones.
+// D4 - Number of midair jumps before having to land.
+// D5 - Hover boot duration. 
+// D6 - String to display on item puckup.
+item script AdjustLinkJump {
+	void run (int jumpSpeed, int hopSpeed, int frogjumpspeed, int stompjumpspeed, int multijumppower, int hoverpower, int msg) {
+		if(jumpSpeed<0) LinkJump = jumpSpeed;
+		if(hopSpeed<0) LinkHop = hopSpeed;
+		if (frogjumpspeed<0) LinkFrogJump = frogjumpspeed;
+		if (stompjumpspeed<0) LinkStompJump = stompjumpspeed;
+		if (multijumppower>0) multijump = multijumppower;
+		if (hoverpower>0) hoverboot = hoverpower;
+		if (multijumppower>0) LinkDoubleJumpCounter = multijump;
+		Screen->Message(msg);
+		
+	}
+}
+
+// D0 - Link`s walking speed.
+// D1 - Link`s stair movement speed, relative to his ground movement.
+// D2 - Link`s swim speed, relative to his ground movement.
+// D3 - String to display on item puckup.
+// D4 - Ladder climbing speed modifier.
+ item script AdjustLinkSpeed{
+	void run (int Linkspeed, int Stairspeed, int Swimspeed, int msg, int LadderSpeed){
+		if(Linkspeed>0) walkspeed = Linkspeed;
+		if(Stairspeed>0) stairspeedmodifier = Stairspeed;
+		if (Swimspeed>0) swimspeedmodifier = Swimspeed;
+		if (LadderSpeed>0) ladderspeedmodifier = LadderSpeed;
+		if (AffectedByFlag(CF_SLIPPERY)) LinkVx=0;
+		if (this->Family==IC_FLIPPERS) Link->Item[I_FLIPPERS] = true;
+		Screen->Message(msg);
+	}
+}
+
+//Processing interaction with solid FFC`s 
+void SolidFFCsUpdate(){
+	if (!IsSideview()) return;
+	if (!(Link->CollDetection)) return;
+	if (Link->Action==LA_SCROLLING) return;
+	int hitbox[4] = {LinkX, LinkY, LinkX+15, LinkY+15};
+	if ((LinkBlock>0)&&(true)) hitbox[3]++;
+	for (int i=1; i<=32; i++){
+		ffc f = Screen->LoadFFC(i);
+		if (EnemySpawn==0){
+			if (GHOST_SOLID_FFC_PUSH_GHOSTED_ENEMIES>0) GhostSolidFFCUpdatePush(f);
+			else SolidFFCUpdatePushEnemy(f);
+		}
+		if (LinkMode == LINK_MODE_CRUSHED) continue;
+		if (HookshotGrabbed())continue; //Skip collision to avoid breaking buggy hookshot interaction.
+		if (f->Misc[FFC_MISC_SOLIDITY]==0) continue; //skip non solid FFCs, and skip one Link is riding
+		if (RidingFFCID == i) continue;
+		
+		if (!RectCollision(hitbox[0], hitbox[1], hitbox[2], hitbox[3], f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))) continue; 
+		if (f->Misc[FFC_MISC_SOLIDITY]==1){//process interaction with semisolid FFCs.
+				if (LinkMode== LINK_MODE_ONPLATFORM){
+					ffc rd = Screen->LoadFFC(RidingFFCID);
+					if ((RidingFFCID < i)&&(rd->Y < f->Y )) continue;
+				}
+				if (LinkVy<0) continue;
+				if (LinkY+15 >= f->Y + SEMISOLID_LANDING_LEINENCY)continue;
+				if ((Link->InputDown)&&(InputJump)) continue;
+				LinkY = f->Y - 16;
+				StairMode = STAIR_NONE; //clear stair mode.
+				LinkVy=0; //reset velocity
+				HasJumped = false;
+				RidingFFCXOffset = LinkX - f->X; //set up moving FFC variables
+				RidingFFCID = i;				
+				LinkBlock = f->Misc[FFC_MISC_SOLIDITY]; //Set what Link is standing on
+				LinkMode = LINK_MODE_ONPLATFORM;
+				//return;
+		}
+		int angle = Angle((CenterX(f)), (CenterY(f)), (LinkX+8), (LinkY+8));//Determine Angle to push Link away from solid FFC
+		int dir = GetFFCTouchDir(f, angle);
+		if (dir == DIR_UP){
+			if (LinkMode== LINK_MODE_ONPLATFORM){
+				ffc rd = Screen->LoadFFC(RidingFFCID);
+				if ((RidingFFCID < i)&&(rd->Y < f->Y )) continue;
+			}
+			LinkY = f->Y - 16;; //Push link away from FFC.
+			CheckCrush(f, dir);//Check, if crush against wall occurs.
+			if ((LinkVy>=0)&&(LinkX < (f->X + f->EffectWidth))){
+				if (Link->InputDown)StairMode = STAIR_NONE; //clear stair mode.
+				LinkVy=0; //reset velocity
+				HasJumped = false;
+				RidingFFCXOffset = LinkX - f->X; //set up moving FFC variables
+				RidingFFCID = i;
+				LinkBlock = f->Misc[FFC_MISC_SOLIDITY]; //Set what Link is standing on
+				LinkMode = LINK_MODE_ONPLATFORM;
+				//return;
+			}
+		}
+		//Check other directions only if FFC is fully solid.
+		if (f->Misc[FFC_MISC_SOLIDITY]!=2) continue;
+		else if (dir == DIR_DOWN){
+			while (LinkY < (f->Y + f->EffectHeight)){
+				LinkY++;//Push link away from FFC.
+				if (LinkMode == LINK_MODE_STAIR) LinkX += StairMode;
+				else LinkY = f->Y + f->EffectHeight;
+				if ((SEMISOLID_FFC_CEILING_CRUSH==0)&&(f->Misc[FFC_MISC_SOLIDITY]==BLOCK_SOFT)&&(LinkMode==LINK_MODE_ONPLATFORM)){
+					LinkY++;
+					LinkY+= SEMISOLID_LANDING_LEINENCY;
+					RidingFFCID=0;
+					RidingFFCXOffset = 0;
+					LinkMode = LINK_MODE_CUSTOM;
+				}
+			} 
+			if (LinkVy<0)LinkVy=0; //Kill vertical velocity.
+			CheckCrush(f, dir);//Check, if crush against wall occurs.
+		}
+		else if (dir == DIR_LEFT){
+			LinkVx=0;//Kill horizontal velocity.
+			LinkX = f->X - 16; //Align Link`s position to just touch solid FFC
+			if (LinkMode == LINK_MODE_ONPLATFORM){
+				ffc rd = Screen->LoadFFC(RidingFFCID);
+				RidingFFCXOffset = LinkX - rd->X; //update offset, if Link is riding platform
+			}
+			if ((IsPosStair(LinkX, LinkY+15))&&(LinkMode!=LINK_MODE_STAIR)){
+				if (IsSolidStair(LinkX, LinkY+15)){ 
+					MountStair(LinkX, LinkY+15, STAIR_POS);
+					StairPos = STAIR_MIDDLE;
+				}
+			}
+			CheckCrush(f, dir);//Check, if crush against wall occurs.
+		}
+		else if (dir == DIR_RIGHT) {
+			LinkVx=0;//Kill horizontal velocity.
+			LinkX = f->X + f->EffectWidth; //Align Link`s position to just touch solid FFC
+			if (LinkMode == LINK_MODE_ONPLATFORM){
+				ffc rd = Screen->LoadFFC(RidingFFCID);
+				RidingFFCXOffset = LinkX - rd->X; //update offset, if Link is riding platform
+			}
+			if ((IsNegStair(LinkX+15, LinkY+15))&&(LinkMode!=LINK_MODE_STAIR)){
+				if (IsSolidStair(LinkX+15, LinkY+15)){ 
+					MountStair(LinkX+15, LinkY+15, STAIR_NEG);
+					StairPos = STAIR_MIDDLE;
+				}
+			}
+			CheckCrush(f, dir);//Check, if crush against wall occurs.
+		}
+		else if (dir == DIR_RIGHTUP) {
+			LinkX = f->X + f->EffectWidth;
+			LinkY = f->Y - 16;
+			LinkVx=0;//Kill horizontal velocity.
+		}
+		else if (dir == DIR_LEFTUP){
+			LinkX = f->X -16;
+			LinkY = f->Y -16;
+			LinkVx=0;//Kill horizontal velocity.
+		}
+		else if (dir == DIR_LEFTDOWN){
+			LinkX = f->X -16;
+			LinkY = f->Y + f->EffectHeight;
+			LinkVx=0;//Kill horizontal velocity.
+			if (LinkVy<0)LinkVy=0; //Kill vertical velocity.
+		}
+		else if (dir == DIR_RIGHTDOWN) {
+			LinkX = f->X + f->EffectWidth;
+			LinkY = f->Y + f->EffectHeight;
+			LinkVx=0;//Kill horizontal velocity.
+			if (LinkVy<0)LinkVy=0; //Kill vertical velocity.
+		}
+		//If Link was riding FFC, update his relative position accordingly. 
+		if (LinkMode==LINK_MODE_ONPLATFORM){
+			f = Screen->LoadFFC(RidingFFCID);
+			RidingFFCXOffset = LinkX - f->X; 
+		}
+	}
+}
+
+//Return direction to push Link awa from FFC.
+int GetFFCTouchDir(ffc f, int angle){
+	int centerx = CenterX(f);
+	int centery = CenterY(f);
+	int x1 = f->X-8;
+	int x2 = f->X + f->EffectWidth+8;
+	int y1 = f->Y-8;
+	int y2 = f->Y + f->EffectHeight+8;
+	int AngleTopRight = Angle(centerx, centery, x2, y1);
+	int AngleBottomRight = Angle(centerx, centery, x2, y2);
+	int AngleTopLeft = Angle(centerx, centery, x1, y1);
+	int AngleBottomLeft = Angle(centerx, centery, x1, y2);
+	if ((angle<AngleBottomRight)&&(angle > AngleTopRight)) return DIR_RIGHT;
+	else if ((angle>AngleTopLeft)&&(angle < AngleTopRight)) return DIR_UP;
+	else if ((angle > AngleBottomRight)&&(angle < AngleBottomLeft)) return DIR_DOWN;
+	else if (angle== AngleTopRight) return DIR_RIGHTUP;
+	else if (angle== AngleTopLeft) return DIR_LEFTUP;
+	else if (angle== AngleBottomRight) return DIR_RIGHTDOWN;
+	else if (angle== AngleBottomLeft) return DIR_LEFTDOWN;
+	return DIR_LEFT;	
+}
+
+//Check if Link was pinched between two walls and process crushing, if so.
+void CheckCrush(ffc f, int dir ){
+	if (LinkMode == LINK_MODE_CRUSHED) return; //Don`t crush already flattened poor guy... 
+	int SqleftX = 0;
+	int SqleftY = 0;
+	int SqrightX = 0;
+	int SqrightY = 0;
+	if (dir==DIR_UP){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = LinkX+3;//Get collision points dor crush detection.
+		SqleftY = LinkY+2;
+		SqrightX = LinkX+12;
+		SqrightY = LinkY+2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (WithinSolidFFC(SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (WithinSolidFFC(SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			//Check if Link was riding solid-on-top FFC while it was attempting to crush Link against ceiling
+			//and if specific option is set to OFF, drop through FFC instead.
+			if ((SEMISOLID_FFC_CEILING_CRUSH==0)&&(f->Misc[FFC_MISC_SOLIDITY]==BLOCK_SOFT)&&(LinkMode==LINK_MODE_ONPLATFORM)){
+				LinkY+= SEMISOLID_LANDING_LEINENCY + 1;
+				RidingFFCID=0;
+				RidingFFCXOffset = 0;
+				LinkMode = LINK_MODE_CUSTOM;
+			}
+			else  ProcessHardCrush(dir, CRUSH_DAMAGE); //Crunch! Poor guy...
+			return;
+		}
+		else if (LinkCrushTimer>0) LinkCrushTimer = CRUSH_LEINENCY;
+	}
+	if (dir==DIR_DOWN){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = LinkX+3;//Get collision points dor crush detection.
+		SqleftY = LinkY+13;
+		SqrightX = LinkX+12;
+		SqrightY = LinkY+13;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (WithinSolidFFC(SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (WithinSolidFFC(SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			ProcessHardCrush(dir, CRUSH_DAMAGE);//Crunch! Poor guy...
+			return;
+		}
+		else if (LinkCrushTimer>0) LinkCrushTimer = CRUSH_LEINENCY;
+	}
+	if (dir==DIR_LEFT){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = LinkX+2;//Get collision points dor crush detection.
+		SqleftY = LinkY+3;
+		SqrightX = LinkX+2;
+		SqrightY = LinkY+12;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (WithinSolidFFC(SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (WithinSolidFFC(SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			ProcessHardCrush(dir, CRUSH_DAMAGE);//Crunch! Poor guy...
+			return;
+		}
+		else if (LinkCrushTimer>0) LinkCrushTimer = CRUSH_LEINENCY;
+	}
+	if (dir==DIR_RIGHT){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = LinkX+13;//Get collision points dor crush detection.
+		SqleftY = LinkY+3;
+		SqrightX = LinkX+13;
+		SqrightY = LinkY+12;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (WithinSolidFFC(SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (WithinSolidFFC(SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			ProcessHardCrush(dir, CRUSH_DAMAGE);//Crunch! Poor guy...
+			return;
+		}
+		else if (LinkCrushTimer>0)LinkCrushTimer = CRUSH_LEINENCY;
+	}
+}
+
+//Process Solid FFCs enemy pushing.
+void SolidFFCUpdatePushEnemy(ffc f){
+	if (f->Misc[FFC_MISC_ENEMY_SOLIDITY]==0)return;
+	int newenemX;
+	int newenemY;
+	for (int i = 1; i<= Screen->NumNPCs(); i++){
+		npc n = Screen->LoadNPC(i);
+		if (!CanBePushedBySolidFFC(n)) continue; //Some enemies cannot be pushed.
+		if (n->HP<=0)continue; // Don`t crush already dead monster.
+		int hitX1 = n->X + n->HitXOffset;
+		int hitY1 = n->Y + n->HitXOffset;
+		int hitX2 = hitX1+ n->HitWidth-1;
+		int hitY2 = hitY1 + n->HitHeight-1;
+		if (!RectCollision(hitX1, hitY1, hitX2, hitY2, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))) continue;
+		int angle = Angle((CenterX(f)), (CenterY(f)), (CenterX(n)), (CenterY(n)));//Determine Angle to push enemy away from solid FFC
+		int dir = GetFFCTouchDir(f, angle);
+		if (dir == DIR_UP){
+			newenemY = f->Y - n->HitHeight + n->HitYOffset; //Push enemy away from FFC.
+			if (newenemY  <-n->HitXOffset-n->HitWidth) Remove(n);
+			n->Y= newenemY;
+			EnemyCheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			continue;
+		}
+		if (f->Misc[FFC_MISC_ENEMY_SOLIDITY]==1)return;
+		if (dir == DIR_DOWN){
+			newenemY = f->Y + f->EffectHeight + n->HitYOffset; //Push enemy away from FFC.
+			n->Y= newenemY;
+			if (n->Y>176) Remove(n);
+			EnemyCheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			continue;
+		}
+		if (dir == DIR_LEFT){
+			newenemX = f->X - n->HitWidth + n->HitXOffset; //Push enemy away from FFC.
+			n->X= newenemX;
+			if (n->X<-n->HitYOffset-n->HitHeight) Remove(n);
+			EnemyCheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			continue;
+		}
+		if (dir == DIR_RIGHT){
+			newenemX = f->X + f->EffectWidth + n->HitXOffset; //Push enemy away from FFC.
+			n->X= newenemX;
+			if (n->X> 256) Remove(n);
+			EnemyCheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			continue;
+		}
+	}
+}
+
+//Process Solid FFCs enemy crushing against solid stuff.
+void EnemyCheckCrush(ffc f, npc n, int dir){
+	int SqleftX = 0;
+	int SqleftY = 0;
+	int SqrightX = 0;
+	int SqrightY = 0;
+	int hitX1 = n->X + n->HitXOffset;
+	int hitY1 = n->Y + n->HitXOffset;
+	int hitX2 = hitX1+ n->HitWidth-1;
+	int hitY2 = hitY1 + n->HitHeight-1;
+	if (dir==DIR_UP){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX1+2;
+		SqleftY = hitY1+2;
+		SqrightX = hitX2+2;
+		SqrightY = hitY1+2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f,SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){ //Hasta la Vista, T-800!
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);
+			n->HP=0;
+			return;
+		}
+	}
+	if (dir==DIR_DOWN){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX1+2;
+		SqleftY = hitY2-2;
+		SqrightX = hitX2-2;
+		SqrightY = hitY2-2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f, SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);//Hasta la Vista, T-800!
+			n->HP=0;
+			return;
+		}
+	}
+	if (dir==DIR_LEFT){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX1+2;
+		SqleftY = hitY1+2;
+		SqrightX = hitX1+2;
+		SqrightY = hitY2-2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f, SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);//Hasta la Vista, T-800!
+			n->HP=0;
+			return;
+		}
+	}
+	if (dir==DIR_RIGHT){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX2-2;
+		SqleftY = hitY1+2;
+		SqrightX = hitX2-2;
+		SqrightY = hitY2-2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f,SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);//Hasta la Vista, T-800!
+			n->HP=0;
+			return;
+		}
+	}
+}
+
+//Returns true, if enemy can be pushed by solid FFCs. //Credit goes to Moosh.
+bool CanBePushedBySolidFFC(npc n){
+	int type = n->Type;
+	//If the enemy is invulnerable, don't push it
+	if(Abs(n->HitXOffset)>=1000||Abs(n->HitYOffset)>=1000)	return false;
+	if (!n->CollDetection) return false; 
+	//If the enemy is in the air, don't push it
+	if(n->Z>0)return false;
+	//Check if the enemy is a type that can be pushed
+	if(type==NPCT_WALK)	return true;
+	if(type==NPCT_TEKTITE)return true;
+	if(type==NPCT_LEEVER)return true;
+	if(type==NPCT_ZORA)	return true;
+	if(type==NPCT_GHINI)return true;
+	if(type==NPCT_ARMOS)return true;
+	if(type==NPCT_WIZZROBE)	return true;
+	if(type==NPCT_OTHERFLOAT)return true;
+	if(type==NPCT_OTHER)return true;	
+	return false;
+}
+
+//Reurns TRUE, if point at given coordinates is within any solid FFC
+bool WithinSolidFFC(int x, int y){
+	for (int i =1; i<= 32; i++){
+		ffc f=Screen->LoadFFC(i);
+		if (f->Misc[FFC_MISC_SOLIDITY]!=BLOCK_HARD) continue;
+		if (!RectCollision(x, y, x, y, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))) continue;
+		return true;
+	}
+	return false;
+}
+
+//Reurns ID of first FFC that collides with given point.
+int GetFFCColliding(int x, int y, bool allow_semisolid){
+	for (int i =1; i<= 32; i++){
+		ffc f=Screen->LoadFFC(i);
+		if (f->Misc[FFC_MISC_SOLIDITY]==BLOCK_EMPTY) continue;
+		if (f->Misc[FFC_MISC_SOLIDITY] == 1){
+			if (!allow_semisolid)continue;
+			if (!RectCollision(x, y, x, y, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + SEMISOLID_LANDING_LEINENCY-1))) continue;
+			return i;
+		}
+		if (!RectCollision(x, y, x, y, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))) continue;
+		return i;
+	}
+	return 0;
+}
+//Processes crushing and respawning after crushing/drowning
+void ProcessHardCrush(int dir, int damage){
+	if ((LinkMode!= LINK_MODE_CRUSHED)&&(LinkCrushTimer>=0)){
+		LinkCrushTimer--; //Prosess respawning after getting crushed.
+		if (LinkCrushTimer<=0){
+			Link->HP -= damage;
+			if (dir>=0)LinkCrushAnim(dir);
+			ProcessCrushAudio();
+			Link->Action = LA_NONE;
+			Link->Invisible = true;
+			Link->CollDetection = false;
+			RidingFFCXOffset = 0;
+			RidingFFCID=0;
+			LinkCrushTimer = -61;
+			LinkVx=0;
+			LinkVy=0;
+			StairMode = STAIR_NONE;
+			LinkMode = LINK_MODE_CRUSHED;
+		}
+	}
+	else {
+		LinkCrushTimer++;
+		Link->Jump=0;
+		if (LinkCrushTimer>=-1){
+			LinkX = LinkEntryX;
+			LinkY = LinkEntryY;
+			RidingFFCID=0;
+			HasJumped = false;
+			RidingFFCXOffset = 0;		
+			Link->Invisible = false;
+			Link->CollDetection = true;			
+			LinkMode = RetLinkMode;
+			if (RetLinkMode == LINK_MODE_STAIR){
+				if (RetStairMode == STAIR_NEG) MountStair(LinkX+15, LinkY+16, STAIR_NEG);
+				else if (RetStairMode == STAIR_POS) MountStair(LinkX, LinkY+16, STAIR_POS);
+				StairPos = STAIR_MIDDLE;
+			}
+			LinkCrushTimer = CRUSH_LEINENCY;
+		}
+	}
+}
+
+//Handle sound to be p[layed when link gets crushed, falls into bottomless pit or lava.
+void ProcessCrushAudio(){
+	Game->PlaySound(SFX_OUCH);
+	if (AffectedByFlag(CF_LAVA)){
+		if ((LinkIsInWater())&&(!Link->Item[I_VARIASUIT]))Game->PlaySound(SFX_LAVABURN);
+		else Game->PlaySound(SFX_FALL);
+	}
+	else if ((!LinkIsInWater()) || (Link->Item[I_FLIPPERS]))Game->PlaySound(SFX_CRUSH);
+}
+
+//Process riding moving FFC`s
+void LinkPlatformUpdate(){
+	ffc f = Screen->LoadFFC(RidingFFCID);
+	if (f->Misc[FFC_MISC_SOLIDITY]==0)return;
+	int pegasus = 0;
+	if (Link->Item[I_SIDEVIEWPEGASUSBOOTS]){
+		itemdata it = Game->LoadItemData(I_SIDEVIEWPEGASUSBOOTS);
+		if (InputRun) pegasus = it->Power/10;
+	}
+	int tempspeedmodifier = 1;
+	if (Link->Action!=LA_FROZEN){//Move Link when firing hookshot.
+		if (Link->InputLeft) RidingFFCXOffset -= walkspeed*tempspeedmodifier+pegasus;
+		else if (Link->InputRight) RidingFFCXOffset += walkspeed*tempspeedmodifier+pegasus;
+	}
+	if (RidingFFCID<=0) LinkMode=LINK_MODE_CUSTOM;//Update position with riding FFC`s coordinates.
+	LinkX = f->X + RidingFFCXOffset;
+	LinkY = f->Y - 16;
+	ProcessKnockback(KNOCKBACK_SPEED);
+	LinkBlock = f->Misc[FFC_MISC_SOLIDITY];
+	
+	HorizWallCollisionUpdate();//Check for horizontal wall collisions.
+	
+	//Process jumping off solid FFCs.
+	if (// The Jump button is pressed.
+	PressJump &&
+	// Can't be doing anything but walking.
+	(Link->Action == LA_NONE || Link->Action == LA_WALKING)) {
+		RidingFFCID=0;
+		RidingFFCXOffset = 0;
+		LinkMode = LINK_MODE_CUSTOM;
+		if (LinkIsInWater()){
+			LinkMode=LINK_MODE_WATER;
+			LinkVy = LinkHop;
+		}
+		// Jump!
+		SideviewJump();
+		return;
+	}
+	
+	if (LinkY > OldLinkY) {
+		// Get the hardest type of platform below Link.
+		// Check against his middle-left and middle-right.
+		int Block = Max(GetBlockType(LinkX + 1, LinkY + 16), GetBlockType(LinkX + 14, LinkY + 16));
+		// See if we ran into a block.
+		if (Block > 0) {
+			// If he hit, move Link up to the previous multiple of 8.
+			LinkY &= 0x1FFF8;
+			// reset Link`s hover Boot and Double Jump counters. 
+			LinkDoubleJumpCounter = multijump;
+			LinkHoverBootsTimer = hoverboot;
+			//and clear riding platform status
+			RidingFFCID=0;
+			RidingFFCXOffset = 0;
+			LinkEnterWater();
+			if (LinkMode!= LINK_MODE_WATER)LinkMode = LINK_MODE_CUSTOM;
+			return;
+		}
+	}
+	// Riding crushers is always dangerous.
+	CheckCrush(f, DIR_UP);
+}
+
+//Screen change handling for Riding FFCs,
+void LinkPlatformOnScreenChange(){
+	if (ScreenChangeHandled) return;
+	LinkX = Link->X;
+	LinkY = Link->Y;
+	//Handle Screen change like usual.
+	LinkUpdateOldOnScreenChange();
+	//No FFC can ride across screens
+	RidingFFCID=0;
+	LinkMode=LINK_MODE_CUSTOM;
+	if (LinkIsInWater()) LinkMode=LINK_MODE_WATER; //Don`t play splash FX if Link wasd riding FFC while underwater.
+	RetLinkMode = LinkMode;
+	ScreenChangeHandled = true;
+}
+
+//Falling off moving FFC`s
+void LinkPlatformFallOff(){
+	if (RidingFFCID==0) return;
+	//Link gets hurt or started riding raft/elevator.
+	if (Link->Action == LA_GOTHURTLAND || Link->Action == LA_GOTHURTWATER || Link->Action == LA_RAFTING ){
+		RidingFFCXOffset = 0;
+		RidingFFCID=0;
+		LinkMode=LINK_MODE_CUSTOM;
+		OldLinkMode = LINK_MODE_CUSTOM;
+		return;
+	}
+	ffc f = Screen->LoadFFC(RidingFFCID);
+	if ((RidingFFCXOffset<= -15)||//Link walks or get pushed off moving platform.
+	(RidingFFCXOffset >= ((f->EffectWidth)))||// Platform itself becomes non-dolid.
+	(f->Misc[FFC_MISC_SOLIDITY]==0)||(LinkVy<0)){
+		RidingFFCID=0;
+		if (LinkIsInWater()) LinkMode=LINK_MODE_WATER; //Don`t play splash FX if Link wasd riding FFC while underwater.
+		else LinkMode=LINK_MODE_CUSTOM;
+	}
+}
+
+// Test Solid FFC script.
+// D0: 1-Solid-top, 2-fully solid.
+// D1: 1-rotating.
+// D2, D3, D4 are used only if D1 is set to 1.
+// D2: starting angle
+// D3: Rotating speed, in degrees, use negative to reverse direction.
+// D4: Distance from Axis, in pixels
+ffc script GenericSolidFFC{
+	void run(int solidity, int mode, int angle, int speed){
+		this->Misc[FFC_MISC_SOLIDITY]=solidity;
+		this->Misc[FFC_MISC_ENEMY_SOLIDITY]=solidity;
+		int axisx = this->X;
+		int axisy = this->Y;
+		while (true){
+			if (mode!=0){
+				this->X = axisx + 32*Cos(angle);
+				this->Y = axisy + 32*Sin(angle);
+				angle += speed;
+			}
+			Waitframe();
+		}
+	}
+}
+
+//returns true, if Link is using hookshot at that time.
+bool UsingHookshot(){
+	if (Link->Action != LA_FROZEN) return false;
+	for (int i=1; i <= Screen->NumLWeapons(); i++){
+		lweapon l = Screen->LoadLWeapon(i);
+		if (l->ID == LW_HOOKSHOT){
+			return true;
+		}
+	}
+	return false;
+}
+
+//Returns true, if Link is being pulled by hookshot. Damn janky hitbox calibration.
+bool HookshotGrabbed(){
+	for (int i=1; i <= Screen->NumLWeapons(); i++){
+		lweapon l = Screen->LoadLWeapon(i);
+		if (l->ID == LW_HOOKSHOT){
+			int lx1 = l->X+l->HitXOffset;
+			int ly1 = l->Y+l->HitYOffset;
+			int lx2 = lx1+l->HitWidth-1;
+			int ly2 = ly1+l->HitHeight-1;
+			if (Link->Dir==DIR_UP){
+				
+				lx2-=9;
+			}
+			else if (Link->Dir==DIR_DOWN)	lx1+=9;
+			else{
+				lx1+=2;
+				lx2-=2;
+				ly1+=7;
+				ly2-=1;
+			}
+			for (int i=0; i<176;i++){
+				if (Screen->ComboT[i]!=CT_HSGRAB) continue;
+				int cx1 = ComboX(i)+2;
+				int cy1 = ComboY(i);
+				int cx2 = cx1+12;
+				int cy2 = cy1+9;
+				if (Link->Dir==DIR_UP){
+					cx1++;
+					cy2+=2;
+				}
+				if (Link->Dir==DIR_DOWN){
+					cx2-=2;
+				}
+				if (RectCollision(lx1, ly1, lx2, ly2, cx1,cy1,cx2,cy2)) return true;
+			}
+		}
+	}
+	return false;
+}
+
+//Processes sripted damage with given knockback direction.
+void ProcessScriptedDamage(int damage, int knockbackdir){
+	eweapon e = FireEWeapon(EW_SCRIPT10, Link->X+InFrontX(Link->Dir, 12), Link->Y+InFrontY(Link->Dir, 12), 0, 0, damage, -1, -1, EWF_UNBLOCKABLE);
+	e->Dir = Link->Dir;
+	e->DrawYOffset = -1000;
+	SetEWeaponLifespan(e, EWL_TIMER, 1);
+	SetEWeaponDeathEffect(e, EWD_VANISH, 0);
+}
+
+//Same as previous function, but relies on engine to determine knockback direction.
+void ProcessScriptedDamage(int damage){
+	int dir = OppositeDir(Link->Dir);
+	ProcessScriptedDamage(damage, dir);
+}
+
+//Returns power of damage combo at given coordinates, or 0, if either it`s not a damage combo, or Link has boots.
+int GetDamageComboPower(int x, int y){
+	if (Link->Item[I_BOOTS]) return 0;
+	int cmb = ComboAt(x,y);
+	if (Screen->ComboT[cmb] == CT_DAMAGE1) return 2;
+	else if (Screen->ComboT[cmb] == CT_DAMAGE2) return 4;
+	else if (Screen->ComboT[cmb] == CT_DAMAGE3) return 8;
+	else if (Screen->ComboT[cmb] == CT_DAMAGE4) return 16;
+	else if (Screen->ComboT[cmb] == CT_DAMAGE5) return 32;
+	else if (Screen->ComboT[cmb] == CT_DAMAGE6) return 64;
+	else if (Screen->ComboT[cmb] == CT_DAMAGE7) return 128;
+	else	return 0;
+}
+
+//Main function that checks state of switch and update combos, csets and flags. Must be in main loop of active global script.
+void UpdateTwoStateCombos(){
+	for (int i=1;i<176;i++){
+		if ((ComboFI(i,CF_TWOSTATE_OFF))&&(twostate>0)){
+			Screen->ComboD[i]++;
+			Screen->ComboF[i] = CF_TWOSTATE_ON;
+		}
+		else if ((ComboFI(i,CF_TWOSTATE_ON))&&(twostate==0)){
+			Screen->ComboD[i]--;
+			Screen->ComboF[i] = CF_TWOSTATE_OFF;
+		}
+		if (ComboFI(i,CF_TWOSTATE_OFF)) Screen->ComboC[i] = CSET_TWOSTATE_OFF;
+		if (ComboFI(i,CF_TWOSTATE_ON)) Screen->ComboC[i] = CSET_TWOSTATE_ON;
+	}
+}
+
+ffc script TwoStateSwitch{
+	void run (int ID, int sound){
+		int cd = 0;
+		while(true){
+			if (cd==0){
+				for (int i = 1; i<=Screen->NumLWeapons();i++){
+					lweapon l = Screen->LoadLWeapon(i);
+					if ((l->ID != ID)&&(ID>0)) continue;
+					if (Collision(this, l)){
+						Game->PlaySound(sound);
+						if (twostate == 0){
+							twostate = 1;
+							this->CSet = CSET_TWOSTATE_ON;
+						}
+						else{
+							twostate = 0;
+							this->CSet = CSET_TWOSTATE_OFF;
+						}
+						cd = 60;
+					}
+				}
+			}
+			else if (cd>0) cd--;
+			Waitframe();
+		}
+	}
+}
+
+ffc script TwoStateButton{
+	void run(int state){
+		int origdata = this->Data;
+		while(true){
+			if (twostate==state){
+				if (LinkCollision(this)){
+					if (twostate == 0) twostate = 1;
+					else twostate = 0;
+				}
+			}
+			this->Data = origdata+twostate;
+			Waitframe();
+		}
+	}
+}
+
+//Various variables and drawings used for debugging this engine. BOOKMARK
+void DebugStuff(){
+	Screen->Rectangle(2, LinkX, LinkY, LinkX+15, LinkY+15, 1, 1, 0, 0, 0, false, OP_OPAQUE);
+	debugValue(2, LinkY);
+	debugValue(1, LinkX);
+	debugValue(3, LinkMode);
+	debugValue(4,LinkVx, 2);
+	//debugValue(5, StairPos);
+	//debugValue(6, StairMode);
+	if (Link->PressEx2) Screen->TriggerSecrets();
+}

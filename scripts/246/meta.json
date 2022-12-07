@@ -1,0 +1,17 @@
+{
+  "name": "ghost.zh",
+  "author": "Emily",
+  "added": null,
+  "updated": "08 Jan 2020",
+  "tags": [
+    "#Global",
+    "#Library"
+  ],
+  "rating": "12",
+  "downloads": "401",
+  "info": "An enemy scripting library.",
+  "description": "CURRENT DOWNLOAD LINKS: 2.53.0, Github Repo\nghost.zh is a library for scripting enemies. It provides functions that simplify movement, allow complex eweapon behaviors, and automatically handle details like flashing and getting stunned. For version 2.55, it will be set up to use NPC scripts.\n\nOriginally by Saffith",
+  "setup": "See included documentation.",
+  "has_zip": true,
+  "has_popup": false
+}

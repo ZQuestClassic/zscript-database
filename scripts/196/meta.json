@@ -1,0 +1,19 @@
+{
+  "name": "Links Awakening Alpha 0.63",
+  "author": "Timelord",
+  "added": "06 Jul 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC",
+    "#Global",
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": "113",
+  "info": "This is an expansion on the 'Link's Awakening' Power-Up Items script, that adds enemy explosions, and many other features.",
+  "description": "This script does all of the following:Adds Guardian Acorn, Piece of Power, Secret Shell, and Stone Beak items.Automates power-ups when a specified number of enemies are killed:Pieces of Power are awarded for a number of kills set in the script settings.Guardian Acorn power-ups are awarded for a specified number of consecutive likks, without Link being damaged.Stone Beaks unlock the ability to receive hints in dungeons.Piece of Power (full power-ups) increase Link's walking speed.Secret Shells now have a corresponding 'Seashell Manor' to give the player a bonus item after collecting enough. This further replicates the 'bonus' shell awards, for visiting the Seashell Mansion with specific numbers of shells.Enemy Explosion Animations: All, or any enemies may now easily have death explosions. This is grouped as follows:Standard EnemiesMinibossesBossesFinal BossOther (catch-all)\nEach type may have unique sprites, a set number of explosions (per type), and other variables all set by enemy type.\n\nThis runs from an FFC script by default, but a back-up global routine is also in the script file, if you wish to avoid using FFCs.\n\nExplosions are timed, their coordinate offsets randomised, and have sound effects. They are essentially similar to Ghost.zh explosions, except that you no longer need to make Ghost scripts for any or all of your enemies to explode.\n\nLists are defined, that allow you to easily modify what enemies use each animation style.\n\nThere are also numerous other details in the present version of this script, that pay homage to 'Link's Awakening', so download it, play with the example quest, and have a blast!\n\n(Future versions, and expansion packages are planned.)",
+  "setup": "Set-up is defined, in a detailed SETUP text document, included with the package.Requires: std.zh, ffcscript.zh, and stdExtra.zh. The latter two are bundled with the package for easy access.The quest file has fully-set-up code, including all headers, and related constants, in the buffer. All combos, sprites, sounds, and other details are assigned, so it is possible to build a new quest from the included example quest.",
+  "has_zip": true,
+  "has_popup": false
+}

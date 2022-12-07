@@ -1,0 +1,103 @@
+//Line Wallmaster 
+//Like wallmaster, but moves in straight line.
+//Step speed used.
+//Attribute 0 - >0 - Can grab Link and send him to dungeon entrance.
+//Walls must be on higher layer.
+ffc script LineMaster{
+	void run(int enemyID){
+		npc ghost = Ghost_InitAutoGhost(this, enemyID);
+		
+		int HF = ghost->Homing;
+		int HR = ghost->Haltrate;
+		int RR = ghost->Rate;
+		int HNG = ghost->Hunger;
+		int SPD=0.25;
+		int WPND = ghost->WeaponDamage;
+		
+		int Grab = Ghost_GetAttribute(ghost, 0, 0);
+		
+		ghost->Extend=3;
+		
+		Ghost_SetFlag(GHF_IGNORE_ALL_TERRAIN);
+		Ghost_SetFlag(GHF_MOVE_OFFSCREEN);
+		Ghost_SetFlag(GHF_SET_DIRECTION);
+		
+		int OrigTile = ghost->OriginalTile;
+		int State = 0;
+		int haltcounter = 60;
+		int dir = Rand(3);
+		int hidecmb = -1;
+		ghost->CollDetection=false;
+		bool grabbed=false;
+		while(true){
+			if (haltcounter==60){
+				if (dir==DIR_UP){
+					Ghost_X =Link->X;
+					Ghost_X = GridX(Ghost_X);
+					Ghost_Y = 160;
+				}
+				if (dir==DIR_DOWN){
+					Ghost_X =Link->X;
+					Ghost_X = GridX(Ghost_X);
+					Ghost_Y = 0;
+				}
+				if (dir==DIR_LEFT){
+					Ghost_Y =Link->Y;
+					Ghost_Y = GridX(Ghost_Y);
+					Ghost_X=240;
+				}
+				if (dir==DIR_RIGHT){
+					Ghost_Y =Link->Y;
+					Ghost_Y = GridX(Ghost_Y);
+					Ghost_X=0;
+				}
+				SPD=0.25;
+				Ghost_X = GridX(Ghost_X);
+				Ghost_Y = GridY(Ghost_Y);
+			}
+			if (haltcounter>0){
+				haltcounter--;
+				if (haltcounter==0){
+					SPD = ghost->Step/100;
+					ghost->CollDetection=true;
+				}
+			}
+			else {
+				if (!grabbed){					
+					if (LinkCollision(ghost) && Grab>0){
+					Game->PlaySound(SFX_OUCH);
+						grabbed=true;
+						Link->HP-=ghost->Damage*4;
+					}
+				}
+				else {
+					Link->X = ghost->X;
+					Link->Y = ghost->Y;
+					ghost->CollDetection=false;
+					Link->Action=LA_WALKING;
+					NoAction();
+				}
+				bool out =false;
+				if (dir==DIR_UP && Ghost_Y<0)out=true;
+				if (dir==DIR_DOWN && Ghost_Y>160)out=true;
+				if (dir==DIR_LEFT && Ghost_X<0)out=true;
+				if (dir==DIR_RIGHT && Ghost_X>24)out=true;
+				if (out){
+				if (grabbed) Link->Warp(Game->LastEntranceDMap, Game->LastEntranceScreen);
+					dir = Rand(3);
+					haltcounter=60;
+					ghost->CollDetection=false;
+				}
+			}
+			Ghost_Move(dir, SPD, 0);
+			Animation(ghost, OrigTile, State, 2);
+			Ghost_Waitframe(this, ghost);
+		}				
+	}	
+}
+
+
+void Animation(npc ghost, int origtile, int state, int numframes){
+	int offset = 0;
+	ghost->OriginalTile = origtile + offset;
+}			

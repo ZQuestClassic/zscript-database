@@ -1,0 +1,17 @@
+{
+  "name": "Mobile Line of Sight Sentry (Guard)",
+  "author": "Timelord",
+  "added": null,
+  "updated": "12 Oct 2017",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "19",
+  "info": "A Line of Sight patrol that warps Link away if they see him. Updated 12th Oct, 2017 with minor bugfix (v0.4.4).",
+  "description": "This ffc script can be implemented either as a stationary, or a mobile guardian, that warps Link away if Link crosses into his Line of Sight (LoS). Solid combos can block LoS, if desired, and the movement of the guard works via FFC changers, so that you can set up as complex a path as you wish.",
+  "setup": "This script requires very little special setup.\n\nYou will need to make a new weapon sprite, via Quest->Graphics->Sprites->Weapons/Misc.\nThis sprite should use a blank tile, and have no animations. It is used for determining LoS around solid combos.\n\nAdd the script FFC_MovingSentinal, and its associated constants into your script buffer, or import it along with your other scripts.\n\nAssign the constant FFC_SENTINEL_SPR_BLANK to the ID of the sprite that you created. The default value is 88, which is the lowest unused sprite in most tilesets.\n\nYou may wish to assign a default sound, and a default string, to the constants FFC_SENTINEL_SFX_WHISTLE and FFC_SENTINEL_DEFAULT_STRING respectively. If you do this, then FFCs with these values unset, will default to the values that you assign to the constants.\n\nThe constants FFC_SENTINEL_SOUND_DELAY and FFC_SENTINEL_MESSAGE_WARP_DELAY represent the time (in frames) between playing the sound and showing the string; and between showing the string, and warping, respectively.\n\nOnce compiled, add the ffc to a screen, and give it a combo with a blank tile, with an ID higher than 0.\n\nAssign the script args as follows:D0: Sound effect to play, when spotted..D1: String to display, when spotted.D2: Destination DMap to warp Link, when spotted.D3: Destination Screen to warp Link, when spotted. Remember that the FFC args are DECIMAL, and screen IDs in ZQuest are in HEXADECIMAL, so you will need to convert the hex value to decimal for this field!D4: NPC to use (for display purposes). Suggest: 50.This enemy should have Step, Random, Rate, and Homing each set to 0.D5: Initial facing direction, where 0 == UP, 1 == DOWN, 2 == LEFT, 3 == RIGHT\nSet the initial Velocity X or Y component.\nDO NOT set both!\nAdd changers to the screen as desired to define the path of the ffc.\n\nRequires: std.zh from ZC 2.50.0, or later.",
+  "has_zip": true,
+  "has_popup": true
+}

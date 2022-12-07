@@ -1,0 +1,16 @@
+{
+  "name": "Sideviw Step Combos",
+  "author": "Mero",
+  "added": "05 Jun 2015",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Solid Sideview Step Combos, like those crumbling bridges in Zelda 2.",
+  "description": "Allows for Link to trigger solid step combos in Sideview from above!",
+  "setup": "Import, set the sfx constant you want to play every time to step on a step->*** combo. Use the global script provided or add this after Waitdraw();\n\t\t\tif(IsSideview())\n\t\t\t\tSideviewStep();",
+  "has_zip": false,
+  "has_popup": true
+}

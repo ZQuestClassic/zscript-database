@@ -1,0 +1,255 @@
+// Styles constants and functions to set them up
+
+const int STYLE_PLAIN = 0;
+const int STYLE_NAVI = 1;
+const int STYLE_JAPANESE = 2;
+const int STYLE_POPUP = 3;
+const int STYLE_ZELDA = 4;
+const int STYLE_LINK = 5;
+const int STYLE_CURRENT_COLOR = 6;
+
+// Backdrop of Zelda's message for zelda.z.
+int zeldaFrame[]= {
+    TANGO_DRAW_RECT_TRANS,
+        0,       // CSet
+        11,      // Color
+        4, 5,    // X, Y offsets from slot position (pixels)
+        216, 70, // Width, height (pixels)
+    TANGO_DRAW_TILE,
+        867, // Tile
+        9,    // CSet
+        8, 8, // X, Y (pixels)
+        4, 4, // Width, height (tiles)
+    TANGO_DRAW_TILE,
+        940,
+        1,
+        0, 0,
+        14, 5,
+    TANGO_DRAW_END
+};
+
+// Backdrop of Link's message for zelda.z.
+int linkFrame[]= {
+    TANGO_DRAW_RECT_TRANS,
+        1,
+        5,
+        4, 5,
+        216, 70,
+    TANGO_DRAW_TILE,
+        875,
+        9,
+        8, 8,
+        4, 4,
+    TANGO_DRAW_TILE,
+        940,
+        1,
+        0, 0,
+        14, 5,
+    TANGO_DRAW_END
+};
+
+void SetUpStyles()
+{
+    SetUpPlainStyle();
+    SetUpNaviStyle();
+    SetUpJapaneseStyle();
+    SetUpPopupStyle();
+    SetUpCurrentColorStyle();
+    SetUpZeldaStyle();
+    SetUpLinkStyle();
+}
+
+void SetUpPlainStyle()
+{
+    // STYLE_PLAIN corresponds to style slot 0.
+    
+    // Backdrop properties...
+    // Tile 1126, 10x4 tiles, opaque, CSet 8.
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_BACKDROP_TYPE, TANGO_BACKDROP_TILE);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_BACKDROP_TILE, 1126);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_BACKDROP_CSET, 8);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_BACKDROP_WIDTH, 10);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_BACKDROP_HEIGHT, 4);
+    
+    // Text properties...
+    // FONT_ORACLE_EXTENDED is the oracle font with an character, tile 1062.
+    // The text is at 8, 6 on the backdrop and up to 144x52 pixels.
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_FONT, FONT_ORACLE_EXTENDED);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_X, 8);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_Y, 6);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_WIDTH, 144);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_HEIGHT, 52);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_COLOR, 1);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_SPEED, 5);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_TEXT_SFX, 18);
+    
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_FLAGS,
+        TANGO_FLAG_ENABLE_SPEEDUP | TANGO_FLAG_ENABLE_SUPER_SPEED);
+    
+    // These set up the combo used as the cursor in text menus and
+    // the menu sounds.
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MENU_CURSOR_COMBO, 707);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MENU_CURSOR_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MENU_CURSOR_MOVE_SFX, 66);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MENU_SELECT_SFX, 67);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MENU_CANCEL_SFX, 68);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MENU_CHOICE_INDENT, 10);
+    
+    // These set the combo that's shown to prompt the player to press A.
+    // Combo 710 drawn at 160, 48 on the backdrop.
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MORE_COMBO, 710);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MORE_CSET, 10);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MORE_X, 160);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_MORE_Y, 48);
+    
+    // Alt. CSet and color 1 are applied to text in (( ))
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_ALT_CSET_1, 1);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_ALT_COLOR_1, 7);
+    
+    // Alt. CSet and color 2 are applied to text in [[ ]]
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_ALT_CSET_2, 8);
+    Tango_SetStyleAttribute(STYLE_PLAIN, TANGO_STYLE_ALT_COLOR_2, 6);
+}
+
+void SetUpNaviStyle()
+{
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_BACKDROP_TYPE, TANGO_BACKDROP_TILE);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_BACKDROP_TILE, 1140);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_BACKDROP_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_BACKDROP_WIDTH, 6);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_BACKDROP_HEIGHT, 4);
+    
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_FONT, FONT_ORACLE_EXTENDED);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_X, 6);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_Y, 6);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_WIDTH, 84);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_HEIGHT, 36);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_COLOR, 15);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_SPEED, 2);
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_TEXT_SFX, 63);
+    
+    Tango_SetStyleAttribute(STYLE_NAVI, TANGO_STYLE_FLAGS, TANGO_FLAG_AUTO_ADVANCE);
+}
+
+void SetUpJapaneseStyle()
+{
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_BACKDROP_TYPE, TANGO_BACKDROP_TILE);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_BACKDROP_TILE, 1206);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_BACKDROP_WIDTH, 8);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_BACKDROP_HEIGHT, 4);
+    // Skipped CSet because it's 8-bit
+    
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_FONT, FONT_JAPANESE);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_X, 10);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_Y, 8);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_WIDTH, 108);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_HEIGHT, 40);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_COLOR, 1);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_SPEED, 5);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_TEXT_SFX, 18);
+    
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_FLAGS,
+        TANGO_FLAG_ENABLE_SPEEDUP | TANGO_FLAG_ENABLE_SUPER_SPEED);
+    
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_MORE_COMBO, 710);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_MORE_CSET, 10);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_MORE_X, 128);
+    Tango_SetStyleAttribute(STYLE_JAPANESE, TANGO_STYLE_MORE_Y, 40);
+}
+
+void SetUpPopupStyle()
+{
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_BACKDROP_TYPE, TANGO_BACKDROP_COLOR_TRANS);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_BACKDROP_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_BACKDROP_COLOR, 15);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_BACKDROP_WIDTH, 110);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_BACKDROP_HEIGHT, 24);
+    
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_FONT, TANGO_FONT_SMALL_EXTENDED);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_X, 4);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_Y, 4);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_WIDTH, 102);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_HEIGHT, 16);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_COLOR, 1);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_SPEED, 0);
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_TEXT_SFX, 0);
+    
+    Tango_SetStyleAttribute(STYLE_POPUP, TANGO_STYLE_FLAGS,
+        TANGO_FLAG_INSTANTANEOUS |
+        TANGO_FLAG_AUTO_ADVANCE |
+        TANGO_FLAG_CARRY_OVER);
+}
+
+void SetUpZeldaStyle()
+{
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_BACKDROP_TYPE, TANGO_BACKDROP_COMPLEX);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_BACKDROP_DATA, zeldaFrame);
+    
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_FONT, TANGO_FONT_LTTP_OUTLINE);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_X, 80);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_Y, 10);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_WIDTH, 131);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_HEIGHT, 68);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_COLOR, 1);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_SPEED, 8);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_SFX, 64);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_TEXT_END_SFX, 65);
+    
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_FLAGS,
+        TANGO_FLAG_LINE_BY_LINE | TANGO_FLAG_BLOCK_INPUT);
+    
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_MORE_COMBO, 710);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_MORE_CSET, 10);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_MORE_X, 220);
+    Tango_SetStyleAttribute(STYLE_ZELDA, TANGO_STYLE_MORE_Y, 64);
+}
+
+void SetUpLinkStyle()
+{
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_BACKDROP_TYPE, TANGO_BACKDROP_COMPLEX);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_BACKDROP_DATA, linkFrame);
+    
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_FONT, TANGO_FONT_LTTP_OUTLINE);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_X, 80);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_Y, 10);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_WIDTH, 131);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_HEIGHT, 68);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_COLOR, 1);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_SPEED, 8);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_SFX, 64);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_TEXT_END_SFX, 65);
+    
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_FLAGS,
+        TANGO_FLAG_LINE_BY_LINE | TANGO_FLAG_BLOCK_INPUT);
+    
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_MORE_COMBO, 710);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_MORE_CSET, 10);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_MORE_X, 220);
+    Tango_SetStyleAttribute(STYLE_LINK, TANGO_STYLE_MORE_Y, 64);
+}
+
+void SetUpCurrentColorStyle()
+{
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_BACKDROP_TYPE, TANGO_BACKDROP_TILE);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_BACKDROP_TILE, 1255);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_BACKDROP_CSET, 5);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_BACKDROP_WIDTH, 5);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_BACKDROP_HEIGHT, 2);
+    
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_TEXT_FONT, FONT_ORACLE_EXTENDED);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_TEXT_X, 8);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_TEXT_Y, 8);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_TEXT_WIDTH, 64);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_TEXT_HEIGHT, 16);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_TEXT_CSET, 0);
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_TEXT_COLOR, 1);
+    
+    Tango_SetStyleAttribute(STYLE_CURRENT_COLOR, TANGO_STYLE_FLAGS,
+        TANGO_FLAG_INSTANTANEOUS | TANGO_FLAG_PERSISTENT | TANGO_FLAG_CENTERED);
+}

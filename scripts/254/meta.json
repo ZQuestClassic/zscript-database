@@ -1,0 +1,16 @@
+{
+  "name": "Zelda 3 Style Chest Minigame",
+  "author": "Timelord",
+  "added": null,
+  "updated": "28 Nov 2016",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "31",
+  "info": "A chest minigame in the style of the one in Thief's Town in Zelda 3.",
+  "description": "For everyone who has wanted a Thief's Town Chest Game for Zelda Classic, that is precisely what this is.Updated to v0.4.3 (Final Release). This adds the option to flag any chest game so that it is always replayable without leaving the screen, or force leaving the screen, independent of the general setting.Updated to v0.4.4, embedding Xor().",
+  "setup": "Create the following four combos:Closed chest: This should have a type of 'none', a flag of 'none', and be solid.Open chest: This should be immediately after the closed chest in your combo table, with a type of 'none' and a flag of 'none'.Shop price icon: I used a 50-rupee tile for this.Blank combo. This should be immediately after the shop price icon.Note the combo ID of the chest combo, and set the constant 'CMB_CHEST_GAME_CLOSED' to this value.Create a message string for the chest game rules, and a second with a 'chest game over' type of message. Assign the values of these strings to the constants 'MSG_CHEST_GAME_RULES' and 'MSG_CHEST_GAME_OVER', respectively.Assign sound effects from Quest->Audio->Sound Effects to the following constants: SFX_OPEN_CHEST, SFX_CHEST_GAME_SPECIAL_PRIZE_FANFARE, SFX_CHEST_GAME_START.Modify the general settings, as desired, or needed.Edit the chestPrizes table in the ffc script, as desired. Each number in the table represents a 1% chance of generating an item with that ID.Compile the script.Create a screen, placing any number of chests on it, using the special chest combo that you created for this.Place the ffc on the screen, and assign its combo to be the 'price icon' combo that you created earlier.Set the 'Script' field in the ffc editor to 'ChestMiniGame'.Set the D-Args in the ffc editor as follows:D0: Number of chests to allow the player to open, per play.D1: ID of special prize to award.D2: Percentage chance of awarding special prize.D3: Backup prize, if special prize already awarded (e.g. 100 rupees, instead of a heart piece). Set to '0' to not offer a backup prize.D4: Cost per play.Optionally, you may set these. if you do, they override the general settings assigned to the constants, for this instance of the ffc:D5: String for game rules.D6: String to play at end of game.This allows you to have multiple rules strings, and end of game strings, for different chest games in your quest.D7: Set to '1' to allow replaying without leaving the screen. Set to '-1' to forbid replaying. These override the general setting, and allow you to make some chest gaems in a quest either replayable, or not, at a ehim.You're done. Try the chest game, and enjoy|!",
+  "has_zip": true,
+  "has_popup": true
+}

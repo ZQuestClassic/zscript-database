@@ -1,0 +1,17 @@
+{
+  "name": "Fairy Mouse",
+  "author": "Master Maniac",
+  "added": null,
+  "updated": "26 Apr 2014",
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "2",
+  "downloads": "44",
+  "info": "This script gives the player a mouse pointer that acts like a fairy companion. Optional features include:Messages on clicking enemies\"Emotes\" on mousing over a FFC with the appropriate script attached.",
+  "description": "Credits\nAvataro, for helping me sort out the mouse to direction setup\nSaffith for helping me sort out the click messages.",
+  "setup": "For the global portion of this script:You need to set up 4 combos for your cursor, arranged in Up, Down, Left, Right order.Change FAIRY_COMBO to the first of these 4 combos. The script will automatically handle direction changing.Change FAIRY_CSET to the desired CSet of your mouse icon.The above instructions handle the visual part of this. The next portion is a bit more complicated, and involves a bit more setup.Change FAIRY_ESTRING_OFFSET to the ID of the first string tied to your first enemy on the list. The list is explained below.Change FAIRY_TOTAL_ENEMIES to the total number of enemies you're using messages for. If you don't want to use click messages, set this to zero.Next, add your enemy ID's to the FAIRY_ESTRINGS array. This is what's used to identify which enemies to use messages for.(Note, be sure to place a comma at the end of each one, If it's the last one on the list, don't put a comma. This is due to how arrays work.)Now all you need to do is add your strings in ZQ! Remember to add them in the same order as listed in the array, even if you add more enemies. For example, as this script is currently set up, string number 4 should be tied to \"Octorock Level 1 Fast\", and message 10 should be for \"Rope level 1\".For the FFC script, setup is simple.Place an FFC with a non-zero invisible combo selected. Change the tile width and tile height to the selected area. Set your arguments as follows:D0: The combo to draw over the cursor.D1: The CSet to draw the combo in.",
+  "has_zip": true,
+  "has_popup": true
+}

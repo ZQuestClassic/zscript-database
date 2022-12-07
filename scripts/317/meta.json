@@ -1,0 +1,17 @@
+{
+  "name": "Vision Rod",
+  "author": "jsm116",
+  "added": null,
+  "updated": "21 Sep 2018",
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "14",
+  "info": "Display combo over secret flags",
+  "description": "Lens of Truth style item that can be customized to display a combo of your choice over combos that have certain secret flags. Works with both A and B buttons. Written and tested in 2.50.Thanks to Saffith for guidance and pointing out a dumb error during the early stages.",
+  "setup": "Create a custom item with any custom itemclass (be sure to add it to your active subscreen so you can select it). Check that it's an equipment item. DO NOT associate any sound or script with the item.Variables for sound and graphics are controlled in the constants at the top of the script.",
+  "has_zip": true,
+  "has_popup": true
+}

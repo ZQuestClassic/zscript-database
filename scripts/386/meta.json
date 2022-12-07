@@ -1,0 +1,17 @@
+{
+  "name": "Simple Shop^2",
+  "author": "Mani Kanina",
+  "added": "29 Apr 2021",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "An expanded and modified version of Tabletpillow's Simple Shop script",
+  "description": "A FFC based shop that can be placed arbitrarily, and depending on configuration will display the item's graphics before buying and the price to purchase in whatever font defined in the configuration. Multiple can be placed on the same screen but you should generally avoid overlapping the FFCs. This version of the script can take any counter reference as input for the shop, meaning you can have a shop that costs arrows, bombs, a scripted counter, etc. By default everything costs rupees but it can be tweaked on an FFC by FFC basis.This script fixes the biggest glaring flaw with the old version: That FFCs needed to be aligned with the 16x16 grid otherwise hitbox detection for purchasing would be off, it is now fully arbitrary.While very little of Joe123's original script remains, this is a pretty nested script at this point, so credits to them and Tablepillow for the old version.",
+  "setup": "Requires std.zh\n\nWhen using this script it's recommended to place the FFC on a solid combo, though not required.\n\nD0: ID of the item\nD1: Price of the item\nD2: Message that plays when the item is bought\nD3: Message that plays when you don't have enough currency/rupees\nD4: Input type to buy 0=A 1=B 2=L 3=R\nD5: Font colour (for price)\nD6: Counter Reference to use (0 or negative values uses the default, which is configured to be rupees by default)\n\nThe script file itself contains a variety of options you can tweak near the top of the script file, if you're using wealth medals you might want to look them over to make sure the values matches what you have your wealth medals be in your quest. This is also where you configure font type, etc, see below:\n//A few constants to configure:\n//offsets for where the item is shown and where the price is listed.\nconst int S_SHOP_DISPLAY_X = 0;\nconst int S_SHOP_DISPLAY_Y = -8;\nconst int S_SHOP_PRICE_X = 0;\nconst int S_SHOP_PRICE_Y = -16;\nconst int S_SHOP_TEXT_CSET = 0x0F;\n\n//If you don't want the shop to display the item, set this to 0:\nconst int S_SHOP_DISPLAY_ITEM = 1;\n//same for price\nconst int S_SHOP_DISPLAY_PRICE = 1;\n\n//font choice, for the proper values see std_constants.zh or ask a scripter (I guess).\nconst int S_SHOP_FONT = 0;\n\n//Default counter reference\t\t(if you want shops to be able to cost life you NEED to set this to \"0\")\nconst int S_SHOP_CR = 1;\t\t//CR_RUPEES\n\n//Combo the FFC changes to when the script starts running, set to 0 to not use this feature\nconst int S_SHOP_REPLACECOMBO = 1;\n\n//Wealth medals only apply if the price is in Rupees, set to 0 to turn off, 1 to on.\nconst int S_SHOP_WMEDAL_A = 1;\n\n//wealth Medals\nconst int S_SHOP_WMEDAL1 = 109;\nconst float S_SHOP_WM1_MOD = 0.95;\nconst int S_SHOP_WMEDAL2 = 110;\nconst float S_SHOP_WM2_MOD = 0.90;\nconst int S_SHOP_WMEDAL3 = 111;\nconst float S_SHOP_WM3_MOD = 0.80;",
+  "has_zip": false,
+  "has_popup": true
+}

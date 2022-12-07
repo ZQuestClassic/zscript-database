@@ -1,0 +1,17 @@
+{
+  "name": "Screen Corner Debug",
+  "author": "Bagu",
+  "added": "22 Sep 2021",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Hero"
+  ],
+  "rating": "1",
+  "downloads": "5",
+  "info": "Tired of always have to set screen corner barriers, to avoid scrolling crashes?\nThis (very simple) function will always check if you come too close, to the edges,\nin each screen corner and fixes any buggy behavior.",
+  "description": "It check Link's (pxl) position on the screen, and kill all relevant button inputs,\nif you are to far up&left, up&right, down&left or down&right.\n\nFor example:\nif Link's X-Position AND Link's Y-Position is below \"4\"\n...you won't be abled to go any further left or up\n...you can just move right or down (AWAY FROM THE CORNER!)\n\n...dont forget to leave a rating",
+  "setup": "...not much to say...Put the function declaration anywhere in your script or imported/included headerand place \"ScreenCornerDebug();\" in the \"while(true)\" loop of your active global- or hero script.",
+  "has_zip": true,
+  "has_popup": true
+}

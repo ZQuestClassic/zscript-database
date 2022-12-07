@@ -1,0 +1,16 @@
+{
+  "name": "Scripted Damage Combos",
+  "author": "Moosh",
+  "added": "22 Aug 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "14",
+  "info": "This is a substitute for ZC's somewhat less than desirable damage combo hit detection.",
+  "description": "This is a substitute for ZC's somewhat less than desirable damage combo hit detection. In particular it's to fix a few problems with sideview present in 2.53 and (somewhat) 2.55.\n\nUsing the script you can:Have damaging spikes and FFC hitboxes that don't phantom hit Link when he's standing on land in sideviewHave solid damage combos that only take up quarter tilesHave a delay before solid damage combos damage LinkHave damage combos that don't deal knockback",
+  "setup": "First off, set the constants if needed:SCRIPTEDDAMAGECOMBO_ONLYFACING: If 1, Link will only get hurt when walking into spikes in the direction he's facing at a diagonal. Otherwise they can hit him from the sides too.SCRIPTEDDAMAGECOMBO_DAMAGEONHEADBONK: If 1, Link is hurt by the bottom part of spikes when jumping into them in sideview. Otherwise they're harmless from the bottom.DELAY_SCRIPTEDDAMAGECOMBO: Delay in frames (60ths of a second) before Link takes damage walking into a solid damage combo.DELAY_SCRIPTEDDAMAGECOMBO_SIDEVIEW: Same as above, but only in sideview.\nNext place your combos on any layer with a script screen flag (98-102 or anything else that doesn't do anything in your quest) of your choice on layer 0. The placed combos will have scripted behavior and so can be left as type (None). If the script is using an FFC hitbox and not screen placed combos, you can skip this.\n\nPlace down an FFC with the following D0-D7 arguments:D0: The flag marking which combos the FFC is controlling. If 0, the FFC itself is treated as a scripted damage combo.D1: How much base damage the combo does. 4 = 1 heart without tunics.D2: If 1, the damage pierces rings (see details on ring function below).D3: If >0, the script uses a different damage delay from the default when Link pushes against it.D4: If 1, the combos being flagged aren't solid and use different collision logic.D5: If 1, the script won't deal knockback\nIf you're using piercing spikes and have different defensive items from the default 3 rings, you'll have to alter the ScriptedDamageCombo_GetTunicMultipliers() function:\nint ScriptedDamageCombo_GetTunicMultipliers(){\n\t//Return the divisor of the highest level ring\n\tif(Link->Item[I_RING3])\n\t\treturn 8;\n\telse if(Link->Item[I_RING2])\n\t\treturn 4;\n\telse if(Link->Item[I_RING1])\n\t\treturn 2;\n\t//Otherwise no ring and damage is normal\n\treturn 1;\n}\n\nThe gist of it is it's checking each of Link's rings in order from highest to lowest and if he has one and then returns its damage multiplier so the script can undo it. The words in [] are the item IDs for the items (you can just use numbers instead when editing it). The values after return are the damage divisors of the rings. It's a pretty simple function to edit if need be.\n\nThis script uses std.zh and ghost.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

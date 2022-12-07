@@ -1,0 +1,17 @@
+{
+  "name": "[2.55] Slope Combo",
+  "author": "Moosh",
+  "added": "08 Jun 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Combo"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A simple script for sloped surfaces in top-down.",
+  "description": "A simple script for sloped surfaces in top-down.",
+  "setup": "Make sure you have Combos Run Scripts on Layer 0 checked under ZScript->Quest Script Settings so combo scripts can run.\n\nPlace this script on your combo and set arguments as follows:InitD[0]: Horizontal steepness of the slope. If the slope goes upwards when travelling right this value is negative. Else it's positive.InitD[1]: Vertical steepness of the slope. Link is pushed down by this much when walking up or down. Used for front or back face slopes.\n\nThis script requires std.zh and LinkMovement.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Basic Save Combo",
+  "author": "Moosh",
+  "added": "25 Sep 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Combo"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A basic combo script that opens a save menu when you press A under it.",
+  "description": "A basic combo script that opens a save menu when you press A under it. \n\nI wrote this because ZC's save combos are bad.",
+  "setup": "Set CMB_SAVEPROMPT and CS_SAVEPROMPT to the combo and cset for the save prompt animation. Place the script on your save point combo. That's about it.",
+  "has_zip": false,
+  "has_popup": true
+}

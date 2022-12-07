@@ -1,0 +1,94 @@
+const int JF_STATE_JUMPING = 0;
+const int JF_STATE_IDLE = 1;
+
+const int SFX_JF_JUMP = 13;
+
+ffc script JumpingFireball{
+	void run(int enemyID, int dir, int splash){
+		this->Data = FFCS_INVISIBLE_COMBO;
+		npc ghost = Ghost_InitCreate(this, enemyID);
+		
+		int Attribute = Ghost_GetAttribute(ghost, 0, 0);
+		
+		ghost->Extend=3;
+		
+		Ghost_SetFlag(GHF_NORMAL);
+		Ghost_SetFlag(GHF_MOVE_OFFSCREEN);
+		Ghost_SetFlag(GHF_IGNORE_ALL_TERRAIN);
+		Ghost_SetFlag(GHF_IGNORE_NO_ENEMY);
+		Ghost_SetFlag(GHF_NO_FALL);
+						
+		int OrigTile = ghost->OriginalTile;
+		int State = 0;
+		int storevel = 0;
+		int waittimer = 20;
+		int dwell = 0;
+		SetJFGravity(dir);
+		
+		while(true){
+			if (State==JF_STATE_JUMPING){
+				if (waittimer>0)waittimer--;
+				else{
+					int loc = ComboAt(CenterX(ghost), CenterY(ghost));
+					if ((Screen->ComboT[loc]==CT_SIDEVIEW_WATER)||(ComboFI(loc,CF_LAVA))){
+						if (splash>0)JF_Splash(ghost, dir, splash);
+						storevel = Max(Abs(Ghost_Vx), Abs(Ghost_Vy));
+						Ghost_Vx=0;
+						Ghost_Vy=0;
+						Ghost_Ax=0;
+						Ghost_Ay=0;
+						ghost->CollDetection=false;
+						ghost->DrawXOffset=1000;
+						State = JF_STATE_IDLE;
+						waittimer = 120;
+					}
+				}
+			}
+			else if (State==JF_STATE_IDLE){
+				waittimer--;
+				if (waittimer==0){
+					Game->PlaySound(SFX_JF_JUMP);
+					if (splash>0)JF_Splash(ghost, dir, splash);
+					ghost->CollDetection=true;
+					ghost->DrawXOffset=0;
+					if (dir==DIR_UP) Ghost_Vy = -storevel;
+					if (dir==DIR_DOWN) Ghost_Vy = storevel;
+					if (dir==DIR_LEFT) Ghost_Vx = storevel;
+					if (dir==DIR_RIGHT) Ghost_Vx = -storevel;
+					SetJFGravity(dir);
+					waittimer=20;
+					State = 0;
+				}
+			}
+			JF_Animation(ghost, OrigTile, State, 1);
+			Ghost_Waitframe(this, ghost);
+		}
+	}
+}
+
+void SetJFGravity(int dir){
+	if (dir==DIR_UP) Ghost_Ay = GRAVITY;
+	if (dir==DIR_DOWN) Ghost_Ay = -GRAVITY;
+	if (dir==DIR_LEFT) Ghost_Ax = -GRAVITY;
+	if (dir==DIR_RIGHT) Ghost_Ax = GRAVITY;
+}
+
+void JF_Animation(npc ghost, int origtile, int state, int numframes){
+	int offset = 0;
+	if (Ghost_Vy>0) offset=1;
+	if (Ghost_Vx<0) offset=2;
+	if (Ghost_Vx>0) offset=3;
+	ghost->OriginalTile = origtile + offset*numframes;
+}
+
+//Creates sideview water splash anumation
+void JF_Splash(npc ghost, int dir, int sprite){
+	bool burn = false;
+	lweapon l = CreateLWeaponAt(LW_SPARKLE, ghost->X, ghost->Y);
+	l->UseSprite(sprite);
+	l->CollDetection = false;
+	l->DeadState = Max(l->ASpeed*l->NumFrames-1, 1);
+	if (dir==DIR_DOWN) l->Flip = 2;
+	if (dir==DIR_LEFT)l->Flip =4;
+	if (dir==DIR_RIGHT) l->Flip = 7;
+}

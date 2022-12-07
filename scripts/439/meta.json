@@ -1,0 +1,16 @@
+{
+  "name": "Tiered Passwords",
+  "author": "Alucard648",
+  "added": "25 Feb 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "Made as a part of a puzzle requested by SkyFlare",
+  "description": "Tiered passwords. Input multiple passwords in sequence to trigger multiple secrets.Each password is separate FFC. Any way to change combos can be used.",
+  "setup": "Build password panel (4 combos).Place FFC at validation button.D0 - Screen D bit that must be set to True prior to inputing password.D1 - D4 Password   #####.____ - combo ID   _____.#### - combo position.D5 - Screen D bit to set on correct password input.D6 - if set to >= 0 - ID of combo to change to next one. -1 for standard secret trigger.D7 - If set to >0, password won`t trigger automatically. Link must stand on combo underneath FFC, make sure it matches FFC`s orig data and press EX1 to check validity of password.",
+  "has_zip": true,
+  "has_popup": true
+}

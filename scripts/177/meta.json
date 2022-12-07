@@ -1,0 +1,16 @@
+{
+  "name": "particles.zh",
+  "author": "Alucard648",
+  "added": "20 Apr 2015",
+  "updated": null,
+  "tags": [
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": "28",
+  "info": "A header used to create particle effects based on Lweapons",
+  "description": "Unlike Grayswandir`s animation.zh it has more features regarding controlling particle movement. Particles use DrawOffset variables to actually display particle at it`s position so it does not disappear on touching screen edges.",
+  "setup": "1. Import header like any other headers.2. Global script combining: Put \"UpdateAnimations();\"between Waitdraw() and Waitframe() in your global script.Headers: none beyond std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

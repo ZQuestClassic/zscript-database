@@ -1,0 +1,16 @@
+{
+  "name": "Real Map",
+  "author": "justin",
+  "added": "22 Feb 2015",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "57",
+  "info": "This item shows you screens on your spacebar map that you may not have visited yet.",
+  "description": "An item pickup script to attach to the map item, or a custom item, or whatever.  The item sets the screen state of whatever screens you choose to visited so they show up on your spacebar map, even though you may not have actually visited them yet.Note:  because this is using maps and not DMaps, any shared screens will show up as visited on all the associated DMaps.The setup is a bit complex as it involves arrays.",
+  "setup": "Only std.zh is required.Detailed instructions included with the script file.",
+  "has_zip": true,
+  "has_popup": true
+}

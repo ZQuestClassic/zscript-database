@@ -1,0 +1,16 @@
+{
+  "name": "Kill all Enemies + Quake effect.",
+  "author": "Anthus",
+  "added": "20 Sep 2016",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Slap this into the item pick-up slot on a \"Kill All Enemies\" item to add a quake effect, and a sound effect to the item. Simple, but creates an extra layer of detail.",
+  "description": "Very easy. Just compile it, and add it into the item's pick-up script slot. Note that it can be technically attached to any item to make the effect, but the enemies won't die unless it is a Kill All Enemies item.\n\nD0 in the item script tab is the sound effect to play. I recommend the AlttP 'quake' sfx, but default sound 15 works well too.\n\nExample Quest",
+  "setup": "judasrising\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 22 September 2016 - 01:10 PM\n\t\t\t\n\n\t\t\t\tThank you AnthusNice little script\n\t\t\t\t\n\t\t\t\n\n\n\n\t\t\n\t\t\t\t\n\tAnthus\n\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\tlikes this",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,33 @@
+// An item pickup script that displays an "item obtained" message.
+//
+// This demonstrates moving a text slot using commands in the string itself and
+// lodaing a partial string.
+
+item script ItemObtained
+{
+    void run()
+    {
+        int slot=Tango_GetFreeSlot(TANGO_SLOT_POPUP);
+        if(slot==TANGO_INVALID)
+            Quit();
+        
+        // Item obtained
+        // Partial item name
+        // Followed by commands to move up, wait, and move back down
+        int obtained[]="Item obtained@26";
+        int itemName[64];
+        int movement[]="@while(@greater(@y 130) @inc(@y -3))@delay(120)@while(@less(@y 168) @inc(@y 3))";
+        
+        this->GetName(itemName);
+        
+        Tango_ClearSlot(slot);
+        
+        Tango_LoadString(slot, obtained);
+        Tango_AppendString(slot, itemName, '%'); // Only display the part of the name after '%'
+        Tango_AppendString(slot, movement);
+        
+        Tango_SetSlotStyle(slot, STYLE_POPUP);
+        Tango_SetSlotPosition(slot, 144, 168);
+        Tango_ActivateSlot(slot);
+    }
+}

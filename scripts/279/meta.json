@@ -1,0 +1,16 @@
+{
+  "name": "Randomized Hurt SFX",
+  "author": "Moosh",
+  "added": "04 Oct 2017",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A simple global script to randomize the SFX when Link gets hurt.",
+  "description": "A simple global script to randomize the SFX when Link gets hurt.",
+  "setup": "Set the three SFX_LINKHURT constants to the sounds that can play when Link is hurt. If you want more or less hurt sounds, you can add/remove constants from the hurtSFX[] array and the list of constants. The first number in the array keeps track of Link's state so don't change that one.Requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

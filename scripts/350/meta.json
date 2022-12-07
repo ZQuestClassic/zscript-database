@@ -1,0 +1,18 @@
+{
+  "name": "Breath of the Wild Guardian",
+  "author": "Timelord",
+  "added": "13 Aug 2019",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Enemy",
+    "#NPC"
+  ],
+  "rating": null,
+  "downloads": "27",
+  "info": "A 1x1 BotW Guardian enemy that walks around and shoots lasers.",
+  "description": "A 1x1 BotW Guardian enemy that walks around and shoots lasers.",
+  "setup": "Please refer to the example quest.In the Enemy Editor, select and edit 'Guardian'The InitD fields are clearly marked. The laser shot damage is set as the enemy weapon damage.",
+  "has_zip": true,
+  "has_popup": true
+}

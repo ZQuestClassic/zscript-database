@@ -1,0 +1,16 @@
+{
+  "name": "Tree Layers",
+  "author": "Mr. Z",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Handles proper layering for tree layers when using items such as Roc's Feather.",
+  "description": "I'm sure you've met this problem with trees and other layered objects:\nYou have the Roc's Feather and decide to jump around. Now there are two ways to set up your layers and init data to determine if Link will appear over or below the layer of the trees.\nMethod 1: Trees appear above you when jumping. Probably the most used in quests, but when you're standing below the tree, it will still appear over Link! That's nasty...\nMethod 2: Trees appear below you when jumping. This way you can stand below a tree and not appear below it when jumping, but when you stand behind it you'll suddenly show up in front...",
+  "setup": "Simple. For a clean global script I suggest you import this script as a file: import \"TreeLayers.z\"\nThen just put \"TreeLayers();\" in your main loop so this script gets called every frame.\n\nDon't forget to import \"std.zh\" as well.\n\"std_functions.zh\" misses GetLayerComboC and GetLayerComboI, so I added those to this script. You'll still need to import \"std.zh\" for GetLayerComboT though.\n\nYou can use a combo type or an inherent flag type for the tree combos.\nRight now it's set up to transform Overhead combos (since those don't work on layers, if they did this script would have been easier to make)\nTreetops that have been placed on layer 4 will be overlayered to layer 5. In the quest I used to test this I had my Jump Sprite Layer Threshold set to 5.\n\n\nResources\n\nstd.zh",
+  "has_zip": false,
+  "has_popup": true
+}

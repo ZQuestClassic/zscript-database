@@ -1,0 +1,17 @@
+{
+  "name": "Bottomless Pits & Lava",
+  "author": "Mero",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "3",
+  "downloads": null,
+  "info": "This script adds Pit and Lava functionally to the quest.",
+  "description": "1. Find or add a sprite and sound effect each for falling in pits and drowning in lava.2. Change type of all Pits and Lava to \"No Ground Enemies\" and make them fully walkable.3. Edit the constants to be compatible with your other quest. Do NOT change the value of CT_HOLELAVA!4. For inherent flags add CF_PIT to the pit combos, and CF_LAVA to the the lava combos.5. Combine the global script with your others if any.6. The ffc script is only needed for screens that require the following functionality.D0: Activates the sidewarp specified, A,B,C & D are 1 through 4 respectfully.D1: Whether or not to move link to the position of the ffc when he falls or drowns. 0 false, 1 true.D2: If this is set, the amount specified is the damage that will be inflicted on Link instead of the constant HOLELAVA_DAMAGE.Requires std.zh and ffcscript.zh",
+  "setup": "No reviews found!",
+  "has_zip": false,
+  "has_popup": true
+}

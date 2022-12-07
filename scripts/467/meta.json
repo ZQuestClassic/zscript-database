@@ -1,0 +1,17 @@
+{
+  "name": "death.zh",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "09 Jun 2022",
+  "tags": [
+    "#FFC",
+    "#Library"
+  ],
+  "rating": "1",
+  "downloads": "12",
+  "info": "\"FATALITY\"\n\nMade as part of request bt SkyFlare",
+  "description": "A library for making alternate death animations for Link. Unleash the pure shocking expierenceUpdate 9.6.2022 Unhardcoded lots of stuff in demo scripts. Details of how to setup them are inside script file.",
+  "setup": "1.Import and compile the library. Assign FFC script slots for death sequence scripts and test scripts.2.In subscreen editor, edit HP gauge, so \"1 HP\" tile looks like \"0 HP/empty\".////A note for scripting custom death animations. Instead of Waitframe, use WaitNoAction to prevent escapes offscreen.//Also make sure Link is not moved by anything, like sideview gravity, again to prevent escapes.//Always end those scripts with Link->HP=0; to kill Link for real.void AltDamageLink(int damage, int deathtype, int args, bool scream )//Main function that deals damage to Link and executes alternate death animation, if it drives Link`s HP to <= 0.//Damage - damage//Deathtype - FFC script slot number//args - pointer for array, containing arguments for script//scream - play SFX_LINK_DEATH_SCREAM sound in additional to and sounds played by script.--ffc script LinkDeathCutInHalf//Link gets cut in half. Blades, chompers, lasers etc.//D0 - 0-sliced horizontally, 1-sliced vertically//D1 - sprite for left/top half//D2 - sprite for bottom/right half//D3 - part flight speed//D4 - sound to play at the start of horror//D5 - total duration of sequence, in frames.//D6 - >0 - Link`s remnants are affected by sideview gravity.--ffc script LinkDeathExplosion//Link gets blasted into stuff. Explosives, curses etc.//D0 - Blast size: 0-normal, 1-super//D1 - Sprite used for remnants//D2 - Remnant splatter area, in tiles//D3 - total duration of sequence, in frames.--ffc script LinkDeathFire//Burnt to nothing by hell fire. Anything fire-based//D0 - delay between spawning flames, in frames.//D1 - total duration of sequence, in frames.--ffc script LinkDeathGeneric//Generic Link death animation. Frozen, Petrified, impaled etc.//D0 - Sprite used for remnants//D1 - sound to play at the start of horror//D2 - Remnant splatter area, in tiles//D3 - >0 - Link`s remnants are affected by sideview gravity.//D4 - total duration of sequence, in frames.//D5 - initial upwards velocity, for sideview areas.--ffc script Guillotineffc script Crusherffc script RE_Laserffc script RE_Laser2ffc script RE_LaserHorizffc script KillerSpikesffc script KillerLava//Test scripts. FFC kills on touch, except guillotine, that kills only, if FFC`s Vy is>0. Setup details are inside script file.",
+  "has_zip": true,
+  "has_popup": true
+}

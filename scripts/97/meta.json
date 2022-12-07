@@ -1,0 +1,16 @@
+{
+  "name": "Trippy Floor",
+  "author": "Mero",
+  "added": "01 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "32",
+  "info": "This makes the floor spin and you can make the center move around by linking it to another ffc.",
+  "description": "This makes the floor spin and you can make the center move around by linking it to another ffc.",
+  "setup": "First check that the flag \"Layer 2 is Background\" is on. Otherwise it'll drawover the ground layers. Place a ffc at the top left corner of the screen and attach this script. Then place transparent combos where ever you want to see the trippy floor. You can optionally Link this combo to another ffc to move the center of the spin The D arguments are as follows:\n\nD0: bitmap to use\nD1: spin step\nD2: floor combo\nD3: floor cset.\n\nRequires just good ole' std.zh. If you want extra trippiness link it to a ffc running a circular motion script, you can get such a script here.",
+  "has_zip": true,
+  "has_popup": true
+}

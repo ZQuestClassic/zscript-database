@@ -1,0 +1,16 @@
+{
+  "name": "Frictionless Ice combos",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "09 Apr 2022",
+  "tags": [
+    "#Global"
+  ],
+  "rating": "2",
+  "downloads": "13",
+  "info": "\"Why I can`t control slipping... Whaaa!\"",
+  "description": "Frictionless IceA common hazard in verious RPG and puzzle games. As soon as one steps on this cruel combo, he will slide indefinetly, across atright line, out of control, until either hitting solid combo, non-slippery stuff, or stright into hazard.Update 8.04.2022 - removed debug stuff.Update 9.04.2022 - fix stupid compile error, fixed misplaced docs inside script file",
+  "setup": "Global script combining. Put\nint oldscreen = Game->GetCurScreen();\nint iceconveyor[176];\nSetupIce2Combos(iceconveyor);\n\nbefore main loop, then before Waitdraw command, inside loop, put\nUpdateIcyInput();\n\nAnd after Waitdraw command before Waitframe command inside global script, put\nFrictionlessIceUpdate(iceconveyor);\noldscreen = Game->GetCurScreen();\n\n//You can place flags #62(up), #63(down), #64(left), 65(right) to turn frictionless ice combos into irresistible conveyer belts. Only placed flags work.",
+  "has_zip": true,
+  "has_popup": true
+}

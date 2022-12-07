@@ -1,0 +1,17 @@
+{
+  "name": "LA Secret Medicine",
+  "author": "Demonlink",
+  "added": "17 May 2016",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": "28",
+  "info": "An item that simulates LA's secret medicine.",
+  "description": "If Link has the secret medicine, when he dies, it will automatically restore his full health.",
+  "setup": "You will need ffcscript.zh and stdExtra.zh for this one. Make sure you set the constants in the mentioned header files before continuing. Import both of them as well as string.zh.\n\nCreate a new item and give it a custom itemclass. Make sure it's an equipable item. For a fancier effect, set the item in your subscreen, but also make it unselectable; as in, go to the item's subscreen attributes and set it's position to -1.\n\nChange MEDICINE_ID to the item's ID value in the script. After that, simply combine it with your global script.",
+  "has_zip": true,
+  "has_popup": true
+}

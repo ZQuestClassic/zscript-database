@@ -1,0 +1,18 @@
+{
+  "name": "Better Stone of Agony",
+  "author": "Avaro",
+  "added": "02 Aug 2017",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": "33",
+  "info": "A replacement for ZC's stone of agony. This one can make link vibrate and/or play a sound effect and/or show an indicator above link's head. It can detect trigger flags and/or a script flag.",
+  "description": "Check out the demo quest. It's unpassworded of course.",
+  "setup": "Set up the constants in the scriptfile to your liking! Then import the script.\n\nThe global active script is needed if you use vibrating. If you already have an active global script, you need to combine them (the horror! :O).\n\nPlace the FFC script on any screen where you want your stone of agony to detect something.\n\nD0: How to detect secrets\n0 = Detect trigger flags\n1 = Detect the script flag\n2 = Detect both trigger flags and the script flag\n\nD1: Condition for detecting secrets\n0 = Always detect\n1 = Don't detect if permanent secrets are activated\n\nIt will detect flags on all layers!\n\nRequires std.zh, which comes with ZC.",
+  "has_zip": true,
+  "has_popup": true
+}

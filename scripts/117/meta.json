@@ -1,0 +1,16 @@
+{
+  "name": "Encrypted Signboard",
+  "author": "Alucard648",
+  "added": "07 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A signboard, that is written in a hyeroglyphic language. Requires special item to read.Update #1: Allow specific signboards to require different item for decrypting.",
+  "description": "A signboard, stone tablet, or other similar thing that contains text written in Hylian, Zorian or other non-easily readable language. Upon reading normally, it displays a text in approriate language. When read with needed item in inventory, it prints a normally readable text (actually a different string). Use it to place important clues in your quest.Also optionally the signboard can trigger secrets when decphered.",
+  "setup": "1. Find the constant named I_BOOK_OF_DECRYPTING, and change it to ID of your deciphering item (like Book of Mudora).2. Import and compile the script.3. Place FFC at the bottom of your signboard/tablet.4. Set the aguments as followed://D0: String number for encrypted message.//D1: String number for decrypted message.//D2:// 0 - No secret triggering, when decrypting message.// 1 - Trigger temporary secrets after decrypting message.// 2+ - Trigger permanent secrets after decrypting message.D3: ID of item needed to decrypt text. Use this if you want to require different item for deciphering. Leave as 0 to use default item ID written in constant.5. Assign the script to FFC.6. Test and enjoy.Headers: none beyond \"std.zh\".",
+  "has_zip": false,
+  "has_popup": true
+}

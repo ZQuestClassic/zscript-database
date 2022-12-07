@@ -1,0 +1,16 @@
+{
+  "name": "Rotating/Moving corner puzzle",
+  "author": "Alucard648",
+  "added": "25 Feb 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "Pushblock With Rotating Corner + Non-solid glass slideblock With Rotating Corner2 FFC scripts sharing the same puzzle mechanic - tumbling corner. Made on request by SkyFlare.",
+  "description": "Large Pushable blocks. Every time you push it. marked corner rotates. Push all FFC at target positions, so their corners face target direction. Can only be pushed, if all enemies are dead.Glass moving panel. Stand on it, face desired direction and press EX1 to move it. Every time you push it. marked corner rotates. Land the mark on target combo for all glass panels to solve the puzzle.Credit goes to Moosh for help with large pushblocks.",
+  "setup": "//Large push blockEffect Width and Height used and is automatically set to be tile dimensions multiplied by 16.D0 - starting rotation of marked corner. 0 - top-left, 1- top-right, 2-bottom-right, 3- bottom-left.D1 - ID of corner combo to render on FFC.D2 - target combo position for marked corner to land into (0 - unused)D3 - bracelet level requirement.D4 - allowed push directions. Add together - 1-up, 2-down, 4-left, 8-right. 0 for all directions.--//Glass Moving PanelEffect Width and Height used and is automatically set to be tile dimensions multiplied by 16.D0 - starting rotation of marked corner. 0 - top-left, 1- top-right, 2-bottom-right, 3- bottom-left.D1 - ID of corner combo for marked marked corner to render on FFC.D2 - target combo position of marked corner to land intoD3 - bracelet level requirement.D4 - allowed push directions. Add together - 1-up, 2-down, 4-left, 8-right. 0 for all directions.",
+  "has_zip": true,
+  "has_popup": true
+}

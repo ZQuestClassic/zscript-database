@@ -1,0 +1,16 @@
+{
+  "name": "Advanced Grass",
+  "author": "eNJuR",
+  "added": null,
+  "updated": "28 Apr 2014",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "69",
+  "info": "This script allows you to use relational Tall Grass combos such as those in Gonken's DoR Pack Screenshot 6. (where I got the tiles for the demo)",
+  "description": "This script allows you to use relational Tall Grass combos such as those in Gonken's DoR Pack Screenshot 6. (where I got the tiles for the demo)",
+  "setup": "D0 = Combo Type to check for (57=tallgrass, 141=tallgrass->next, and 136=tallgrass continuous)\nD1 = First Tile *see below\nD2 = Cset\nD3 = Layer to draw on\n\n*How to lay out your tiles:\n\n(Lone, DownVertEnd, UpVertEnd, Vertical, RightHorzEnd, DownRight, UpRight, Right, LeftHorzEnd, DownLeft, UpLeft, Left, Horizonal, Down, Up, Middle)",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,335 @@
+Link's Awakening Set-Up
+v0.61
+
+THis will guide you through setting up this header in a quest file. SHould you wish to avoid all the mandatory 
+steps, please consider using the quest template packaged with this header. It's based on the EZGB tileset, and 
+is very user-friendly, with all the LA Buff Items code, and global code installed, and in the buffer.
+
+( ! ) You can expand it as desired.
+
+Link's Awakening Buff Items and Secret Shells Set-Up
+PLEASE REFER TO THE EXAMPLE QUEST BEFORE, AND WHILE, USING THIS HEADER.
+
+1. If you have an existing ~Init script, comment out the global script Init in the LinksAwakening.z code, 
+   and add this instruction to myour ~Init script:
+	InitZ4(); //Set up the initial values used by this script. 
+   
+   If you do not have an ~Init script, or don't even know that that is, you may ignore this step.
+
+2. Add tiles for the following:	
+	Guardian Acorn
+	Piece of Power
+	Secret Shell
+
+3. Add Sound Effects for each of the following:
+		( ! ) If you already have sounds for any of these, you may safely skip adding them.
+	Piece of Power Pick-Up
+	Guardian Acorn Pick-Up
+	Secret Shell Pick-Up
+	Sound to play when attack (sword power) is buffed by Pieces of Power.
+	Sound to play when defence (ring, armour) is buffed by Guardian Acorns
+	Sound to play when effect of Pieces of Power expires.
+	Sound to play when effect of Guardian Acorns expires.
+	Sound to play when unlocking a shell secret.
+	Sound to play for explosions when enemies, or bosses die.
+	Sound to play when awarding a full power-up for defeating enemies.
+		
+4. Add SPRITES ( Quest->Graphics->Sprites->Weapons/Misc ) for each of the following:
+	Ordinary Enemy Explosion
+	Miniboss Enemy Explosion
+	Boss Enemy Explosion
+	FINAL BOSS Enemy Explosion.
+
+5. Add the following items to the item editor:
+	( ! ) Note the ITEM NUMBER for each of these, as you will need it presently.
+	Green Ring
+		Settings:
+		Level: 1
+		Power (Damage Divisor): 1
+		Class: Rings
+		Link Sprite Pal: 0
+	Piece of Power
+		Settings:
+		Level: 1
+		Class: Custom Item Class 01, or whatever you wish to use. 
+		Pick-Up Script: Piece of Power
+		Pick-Up Sound: Whatever you added for 'Piece of Power Pick-Up'
+	Guardian Acorn:
+		Settings:
+		Level: 1
+		Class: Custom Item Class 02, or whatever you wish to use. 
+		Pick-Up Script: GuardianAcorn
+		Pick-Up Sound: Whatever you added for 'Guardian Acorn Pick-Up'
+	Secret Shell:
+		Settings:
+		Level: 1
+		Class: Custom Item Class 03, or whatever you wish to use. 
+		Pick-Up Script: SecretShell
+		Pick-Up Sound: Whatever you added for 'Secret Shell Pick-Up'
+	
+	NOTE THE ITEM NUMBER OF EACH
+			
+6. Add the following items to desired dropsets:
+		Piece of Power
+		Guardian Acorn
+		Secret Shell
+
+7. If you are using miniboss, or boss enemies other than the stock set, note the Enemy ID ( the
+   value from the Enemy Editor) for each, separating them as follows:
+	Miniboss
+	Boss
+	FINAL BOSS - > The Final Boss in your game.
+	( ! ) This is a critical step, and you MUST make this list!
+
+8. Set up all of your SCRIPT SETTINGS, as follows:
+
+ ( A ) 	VARIABLE CONSTANTS
+	Each of these is used to establish a value called by the scripts. You can safely use the defaults 
+	for each of these, or customise them as you desire.
+		NEEDED_PIECES_OF_POWER = 3; //Number of Pieces of power needed for temporary boost.
+					    //Default value: 3
+		NEEDED_ACORNS = 3; //Number of Acorns needed for temporary boost.
+	                           //Default value: 3
+		REQUIRED_SECRET_SHELLS = 20; //Number of Secret Shell items to unlock the secret.
+		BUFF_TIME = 900; //Duration of boost, in frames. Default is 15 seconds.
+		REQUIRE_CONSECUTIVE_KILLS = 12; 	//The number of enemies the player must kill without 
+							//being hurt, to obtain a free Guardian Acorn.
+		REQUIRE_KILLS_PIECE_OF_POWER_MIN = 35; 	//The minimum number of enemies to kill (random number 
+							//min) to obtain a free Piece of Power.
+		REQUIRE_KILLS_PIECE_OF_POWER_MAX = 45; 	//The maximum number of enemies to kill (random number 
+							//max) to obtain a free Piece of Power.
+		BONUS_SHELL_DIVISOR = 5; //Award bonus Secret Shell if number on hand is this number, on each 
+					 //visit to Seashell mansion.
+		WALK_SPEED_POWERUP = 4; //Number of extra Pixels Link walks when he has a Piece of Power
+		WALK_TIME = 10; //Increase this value to slow the speed at which Link walks when sped up, 
+				//and to speed him up when slowed down.
+
+( B )	BOOLEAN SETTINGS:
+	Each of these acts as a toggle switch, to change script behaviour. Enable them by setting
+	their value to '1', and disable them by setting their value to '0'.
+	
+	A select few of these act as *both* BOOLEAN SETTINGS * and * as VARIABLE SETTINGS:
+		PLAY_ACORN_MESSAGE = 0; //Set to 0 to turn off Guardian Acorn messages.
+					//If set to aq value of '1' or higher, when the player obtains a
+					//Guardian Acorn, ZC will display a Screen->Message string using
+					//the ID equal to the value you assign here. 
+		PLAY_PIECE_OF_POWER_MESSAGE = 0; //Set to 0 to disable messages for Piece of Power power-ups.
+						 //If set to aq value of '1' or higher, when the player obtains 
+						 //a Guardian Acorn, ZC will display a Screen->Message string 
+						 //using the ID equal to the value you assign here. 
+
+		RANDOMISE_PER_PLAY = 0; //Set to '1' if you want to randomise the number of kills 
+					//on each load (continue).
+
+		PLAY_POWERUP_MIDI = 1; //Set to '1' to play a MIDI while a power-up boost is in effect.
+
+		REMOVE_ATTACK_BOOST_WHEN_PLAYER_DAMAGED = 0; //Set to '0' to disable removing the boost 
+							     //when player is damaged X times.
+			//! This is UNIMPLEMENTED, or partially implemented at present.
+		NUM_HITS_TO_LOSE_POWER_BOOST = 3; //The number of times a player with a Piece of Power power-up 
+						  //boost must be hit, before the effect prematurely ends.
+			//! This is UNIMPLEMENTED, or partially implemented at present.
+
+		ENEMIES_ALWAYS_EXPLODE = 1; //Set to '0' if enemies only explode when a player has a Piece of 
+					    //Power power-up.
+		EXPLOSIONS_RUN_WITH_FFCS = 1; //If set to 1, enemy explosions on death will run from FFCs
+					      //rather than from the global active infinite loop.
+					
+		ENEMY_POWERUPS_ARE_FULL = 1; //If set to '1' awarded Pieces of Power and Guardian Acorns from 
+					     //killing enemies
+					     //grant an instant *full* power-up. Otherwise, if set to '0', they 
+					     //only give a single power-up item.
+					
+		KILL_AWARDS = 1; //Set to '0' to disable automatic awards of Pieces of Power and Guardian Acorns
+				 //based on enemy kill counts.
+				
+		FINAL_BOSS_EXPLOSIONS = 1; //Set to '0' if you are using the stock Ganon as a final boss! 
+				           //Disabling this, disables explosion animations for the enemy specified 
+					   //as FINAL_BOSS_ID in variable settings, below.
+					   
+		RESET_ENEMY_COUNT_ON_CONTINUE = 0; //Reset the count of enemies killed for a Piece of Power 
+						   //when continuing. Set to '1' to enable, or '0' to disable.
+		CONSECUTIVE_ENEMY_COUNT_ON_CONTINUE = 0; //Reset thenumber of consecutive ennemies killed when continuing. 
+							 //Set to '1' to enable, or '0' to disable.
+
+
+
+9. Fill in the item, sound constants, for the following items, using the item numbers
+   that you noted in Step 7:
+	I_GREEN_RING = ???; //Item number of Green Ring. Default is 144.
+	I_PIECE_POWER = ???; //Item number of Piece of Power. Default is 145.
+	I_ACORN = ???; //Item number of Acorn. Default is 146.
+	I_SHELL = ???; //Item number of Secret Shell. Default is 147.
+
+10. In the script file, assign the constants for sounds:
+	SFX_POWER_BOOSTED = ??; //Sound to play when Attack Buffed
+	SFX_SECRET_SHELL = ??; //Sound to play when unlocking shell secret.
+	SFX_GUARDIAN_DEF = ??; //Sound to play when Defence buffed.
+	SFX_NERF_POWER = ??; //Sound to play when Piece of Power buff expires.
+	SFX_NERF_DEF = ??; //Sound to play when Guardian Acorn buff expires
+	SFX_BONUS_SHELL = ??; //Sound to play when awarded a bonus Secret Shell.
+	SFX_ENEMY_EXPLOSION = ??; //Explosion SFX
+	SFX_KILL_BONUS_POWERUP = ??; //Sound effect for a power-uop awarded by killing enemies.
+
+11. Set up the following ENEMY EXPLOSION values, as they pertain to your quest.
+	( ! ) It is safe to use the default values here, EXCEPT for this constant:
+		FFC_ENEMY_EXPLODE
+		You must assign the slot number of the FFC to this. O
+		( ! ) For the present, leave it set to '1', then after you compile, and
+		      assign the ffc script 'Explosion' to a slot, note the slot, go back
+		      and change this value to match, and RECOMPILE.
+	
+	FFC_ENEMY_EXPLODE = 1; //Set to FFC script slot for death explosion FFC animation.
+	FFC_NUM_OF_EXPLOSIONS = 4; //Base number of explosions when killing an enemy.
+	FFC_EXPLOSION_SPRITE = 0; //Sprite for the explosion.
+	FFC_EXPLOSION_EXTEND = 3; //Size of explosion eweapon.
+	FFC_EXPLOSION_TILEWIDTH = 1; //Width of explosion, in tiles.
+	FFC_EXPLOSION_TILEHEIGHT = 1; //Height of explosion, in tiles.
+
+	FFC_EXPLOSIONS_MINIBOSS_EXTRA = 4; //Add this many explosions if the enemy is a miniboss.
+	FFC_EXPLOSIONS_BOSS_EXTRA = 12; //Add this many explosions if the enemy is a full boss.
+	FFC_EXPLOSIONS_FINALBOSS_EXTRA = 16; //Add this many explosions if the enemy is the FINAL boss.
+
+	FFC_EXPLOSION_SPRITE_NORMAL_ENEM = 87; //Sprite to use for ordinary enemy explosions.
+	FFC_EXPLOSION_SPRITE_ENEM_MINIBOSS = 9; //Sprite for explosions if the enemy is a mini-boss.
+	FFC_EXPLOSION_SPRITE_ENEM_BOSS = 17; //Sprite for explosions if the enemy is a Boss.
+	FFC_EXPLOSION_SPRITE_ENEM_FINAL_BOSS = 81; //Sprite for explosions if the enemy if the FINAL BOSS 
+						   //in the game.
+
+	FFC_EXPLOSION_DELAY = 4; //The delay in frames between explosions.
+
+	FFC_EXPLOSION_PIECE_OF_POWER_EXTRA_BLASTS = 2; //Number of extra explosions if player has Piece of Power
+							//power-up (attack) boost.
+							 
+	EXPLODE_INVIS_COMBO = 735; //A general use invisible combo, that we never actually use. This is here 
+				   //as a reference only.
+	( ! ) You do not need to modify the value of EXPLODE_INVIS_COMBO It is here as a catch-all 
+	      during development.
+	EXPLOSION_TWO_DIST = 2; //The distance modifier (in PIXELS) for the second explolsion 
+				//effect (layered explosions).
+	EXPLOSION_THREE_DIST = 3; //The distance modifier (in PIXELS) for the third explolsion 
+				  //effect (layered explosions).
+	EXPLOSION_FOUR_DIST = 4; //The distance modifier  (in PIXELS)for the fourth explolsion 
+				 //effect (layered explosions).
+
+	EXPLOSION_DIST_NORMAL = 8; 	//The -N and +N values to Randomise for distance of explosion 
+					//FFC for normal enemies.
+	EXPLOSION_DIST_MINIBOSS = 12; 	//The -N and +N values to Randomise for distance of explosion 
+				        //FFC for Mini-Boss enemies.
+	EXPLOSION_DIST_BOSS = 16; 	//The -N and +N values to Randomise for distance of explosion
+					//FFC for Boss enemies.
+	EXPLOSION_DIST_FINAL_BOSS = 24; //The -N and +N values to Randomise for distance of explosion 
+					//FFC for your FINAL BOSS enemy.
+	EXPLOSION_DIST_OTHER = 10;  	//The -N and +N values to Randomise for distance of explosion FFC 
+					//as a CATCH_ALL for enemies not included elsewhere.
+
+12. Take the notes that you made during STEP 6, and examine the following arrays:
+	BossList[]
+	MiniBossList[]
+	
+	( A ) Add any new mini-boss enemies by their number to the array MiniBossList[] as follows:
+		EXAMPLE, add Enemy ID 200 to this list:
+			Find a spot in the table to add the value, and enter it:
+			
+			ORIGINAL TABLE:
+			int MiniBossList[]={	59, 	66,	67,	68,	
+						69, 	70,	71,	74,	
+						75};
+						
+			AFTER ADDING AN ENEMY (ID 200):
+				int MiniBossList[]={	59, 	66,	67,	68,	
+							69, 	70,	71,	74,	
+							75,	200};
+		( ! ) Array values are separated by commas, EXCEPT for the last value. 
+			
+	( B ) Add any new BOSS enemies to the array BossList[], ad follows:
+		EXAMPLE: Add enemy ID 201 to this list:
+			Find a spot in the table to add the value, and enter it:
+		
+		ORIGINAL TABLE: 
+		int BossList[]={	58,	61,	62,	63, 
+					64, 	65, 	71, 	72, 
+					73, 	76, 	77, 	93, 	
+					94, 	103, 	104, 	105, 	
+					109, 	110, 	111, 	112, 	
+					114, 	121, 	122};
+		
+		TABLE AFTER ADDING AN ENEMY (ID 201):
+		int BossList[]={	58,	61,	62,	63, 
+					64, 	65, 	71, 	72, 
+					73, 	76, 	77, 	93, 	
+					94, 	103, 	104, 	105, 	
+					109, 	110, 	111, 	112, 	
+					114, 	121, 	122, 	201};
+		( ! ) Array values are separated by commas, EXCEPT for the last value. 
+	
+	( C ) 	Assign the value of your FINAL BOSS to this constant:
+		
+		FINAL_BOSS_ID = 78; //Enemy ID of the FINAL boss. Ganon, by default.
+			      //Note: The standard Ganon battle has its own, SPECIAL DEATH ANIMATION 
+			      //that is incompatible with custom explosion animations. 
+			      //Change this value to your actual, custom, final boss.
+			      //If you are using the stock Ganon, you will need to disable FINAL_BOSS_EXPLOSIONS.
+		
+13. Set up MIDI constants, if desired:
+	
+	POWERUP_MIDI = 10; //Set the the number of a MIDI to play while a Power-Up is in effect.
+	PLAYING_POWER_UP_MIDI = 256;
+	NORMAL_DMAP_MIDI = 0; //Used for two things: Array index of normal DMap MIDIs (base), 
+				//and as parameter in function PlayPowerUpMIDI()
+
+
+
+14. If you DO NOT have global scripts for 'Active', 'OnContinue', 'OnExit', you may use the included 
+   skeleton template scripts. Otherwise, for your GLOBAL ACTIVE SCRIPT, place the following function
+   calls BEFORE Waitdraw(); in the EXACT ORDER that they appear, below: 
+   
+	StoreLinkHurt();
+	ResetConsecutiveKills();
+	KillRoutines();
+	EnemyPieceOfPower();
+	EnemyGuardianAcorn();
+	ReduceBuffTimers();
+	LinksAwakeningItems();
+	GivePowerUps();
+	
+   If you do not have a Waitdraw() instruction in your global active script, you add it in the infinite
+   ( while (true) ) loop, before Waitframe();. Use the included example as a guide.
+   
+   If you have either (or both) OnContinue, OnExit, add the following instructions to each of them, at
+   the very top of each:
+   
+	Z4_ItemsAndTimers[DEF_TIMER] = 0;
+	Z4_ItemsAndTimers[POWER_TIMER] = 0;
+	
+   Again, use the included examples as a guide for statement/instruction placement. 
+   ( ! ) If you do not have any of the scripts mentioned in this step, you may safely use the EXAMPLE scripts
+         distributed with this package.
+   
+
+15. COMPILE, and assign scripts to slots.
+	( ! ) If you have not previously done this:
+	
+	1. Go to the ZQ menu, and select: Quest->Scripts->COmpile ZScript
+	   Either add an import directive to your existing buffer, or use the import button to
+	   copy the code of LinksAwakening.z to your buffer. If you do this, be sure to enable
+	   ' import "std.zh" ' at the very top, by removing the slashes. 
+	2. Click 'Compile'.
+	3. You will see the compiler working. When it is finished, it will return 'Success'.
+	4. Press 'OK'.
+	5. You will be prompted to assign scripts to slots.
+	6. Assign the global scripts Active, OnContinue, and OnExit to the slots with matching names.
+	7. Assign the item scripts to free slots.
+	8. Click 'OK'.
+	9. You may export assembly code, if you desire.
+	10. Click the final 'OK' prompt to complete this process.
+
+
+16. Go back to the script, and set the constants for FFC_ENEMY_EXPLODE as detailed in Step 11, then RECOMPILE. 
+	
+17. You are done, and ready to use the new items. Their use is automated by the global scripts, and
+    requires no further tinkering. 
+
+18. SAVE ( ! ) your quest file with a NEW FILENAME !
+    
+PLEASE REFER TO THE EXAMPLE QUEST IF YOU RUN INTO ANY STUMBLING POINTS.

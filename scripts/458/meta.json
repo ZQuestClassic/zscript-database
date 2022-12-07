@@ -1,0 +1,16 @@
+{
+  "name": "Matrix Sequence Password",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "08 Jun 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "4",
+  "info": "Made on request by SkyFlare",
+  "description": "Hit triggers in specific order -> secretIpdate 9.6.2022 - Added option to stand on triggerd and press EX1 to activate them.",
+  "setup": "Place invisible FFC anywhere in the screen.- There are two ways to build switch puzzle:D7 = 0 - Flag all switches with CF_MATRIX_SEQUENCE_PIECED7 > 0 - Use CT_MATRIX_SEQUENCE_PIECE combo type for switches.Recommended you use Trigger->Self only flags for triggers, but Trigger->Self only must be inherent flag and weapon trigger flag must be a placed one. And each trigger cannot be used more than once in the password. Damn flag disappearance on hit.Any way to change trigger combo counts as hit and is checked by script, whether it`s a correct or wrong hit, according to password.D0 to D5 - Switch order password. Mouse over switch combo in ZQuest editor and read number labeled as Pos:###D0 #####.____ - #1, ____.#### - #2D1 #####.____ - #3, ____.#### - #4And so on, Max 12 entries in passwordD6 - Use custon cooldown, in frames, between switch hits, instead of default one.D7 - 1->Flag for alternate setup process,  +2->No sound, +4 - allow changing combos by standing on them and press EX1, +8 - rotation animation",
+  "has_zip": true,
+  "has_popup": true
+}

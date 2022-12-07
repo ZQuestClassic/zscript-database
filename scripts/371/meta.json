@@ -1,0 +1,17 @@
+{
+  "name": "Active Rings",
+  "author": "Bagu",
+  "added": "17 Feb 2020",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Become the lord of thousand rings...\nTried to add a little spice to the ring items.\nSpecial thanks to Avaro and Jamian, for their support.\n\n(Bagu)",
+  "description": "This code is written for 2.55\n\nIt will only work, if you enable the following function in your qst file.\n\"Item Scripts Continue To Run\" (ZScript -> Quest Script Settings -> Item Scripts Continue To Run)\n\nThe Script is made to create active \"B\" Button ring items, by using dummy rings.\nYou can have selectable rings with duration, costs, activate and deactivate sounds.\n1. it adds a variable item (rings in this case) to the inventory silently\n2. plays a variable sfx to proof that ring effects are active.\n3. removes rings, after variable time (in frames)\n4. plays a second sfx when the (true) ring is removed again and effects are over.\nEDIT:\nI made a new version of the script (including regeneration time)",
+  "setup": "- required headers: \"std.zh\"\n\nCreate a dummy ring and load the \"ActiveRings\" script in the active slot.\n\nD0 = Item ID (chose the ring, with the effect you want to use by the dummy ring)\nD1 = SFX played when the effect timer starts\nD2 = Ring effect duration (in frames)\nD3 = SFX played when the ring effect ends.\nD4 = Regeneration time (in frames) - leave this at \"0\" for no delay.\n\nUse the properties of the dummy item to modify costs.\nYou don't need the real rings, in your subscreen.\n(cause you surely don't want em to be visible)\n\nThey only have to be \"equipment items\".",
+  "has_zip": false,
+  "has_popup": true
+}

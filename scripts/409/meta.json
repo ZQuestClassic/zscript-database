@@ -1,0 +1,16 @@
+{
+  "name": "NokNok (Diversified OW Doors)",
+  "author": "Bagu",
+  "added": "08 Sep 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "FFC Script, to make better (and possibly BIGGER Overworld Doors)",
+  "description": "This is a script to replace 1, 2 or 4 solid (closed door) Combos, by variable, walkable open door comboswhen the player faces the door and presses the \"A\" Button....it allows different Door types.1) Opening by pressing \"A\"2) Knocking before opening3) Requires Item, to open4) Depends on the Flag, under the Hero5) Depends on a certain Counter Value",
+  "setup": "The script knows by itself what size of door you want to open, by checking\nif just one, two or four open door combos are assigned.\n\nD0 = Open Door CMB #1\nD1 = Open Door CMB #2\nD2 = Open Door CMB #3\nD3 = Open Door CMB #4 \n\nIf used for a 1Tile (16x16) Door... just place it on the closed door combo \n\n...otherwise if a 16x32 Door... place the (invisible Changer) FFC at the bottom combo\nIt will replace both closed door, solid combos, with open door combos.\n\nIf its a 32x32 Door at the left bottom combo...\nin this case it counts like this:\n\ncombo2 combo3\ncombo 1 combo4\n\n(chose a transparent combo for the ffc or check FFC Flag \"is a Changer - invisible\")\n\n\nD4 = Door Type\n0 = just Press \"A\" to open\n1 = knock before open\n2 = requires item\n3 = depends on flag\n4 = depends on counter value\n\n(....set by D5)\n\n\nD5 = Item ID, Flag Number or Counter Value\n(depending on D4)\n\nD6 = Counter to check \nThe counter you want to check ( if D4 = 4).\n\nD7 = No Entry String \n(Message String Number, that should be played, if Link doesn't meet the requirements of a Type 2-4 Door)",
+  "has_zip": false,
+  "has_popup": true
+}

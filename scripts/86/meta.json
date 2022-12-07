@@ -1,0 +1,17 @@
+{
+  "name": "MirrorShot",
+  "author": "Orithan",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "...And I introduce you with a new weapon called the Mirrorshot. It fires a shot that reflects enemy projectiles that it touches and if they are stationary, it just erases them. It's rather simple to use and it works well as a puzzle mechanic.",
+  "description": "...And I introduce you with a new weapon called the Mirrorshot. It fires a shot that reflects enemy projectiles that it touches and if they are stationary, it just erases them. It's rather simple to use and it works well as a puzzle mechanic.\n\nUpdate - 1.65: It can now trigger the reflected weapon flags and also has shield-styled reflect flags.\n\nCurrent Version: v1.66. Made for 2.5 RC2. (Works in RC3, too)",
+  "setup": "The D# Variables are listed in comments just before the item portion of the script.1. Choose what LWeapons to use and set them in the constants in the top.2. Combine the global script with any other global script you have3. Compile the script, remebering to have std.zh imported.4. Find/Make/Rip the tiles for the projectile to use, remeber to set them facing in this order: UP, DOWN, LEFT, RIGHT. Also, set D5 to the tile that the UP-facing sprite uses.5. Set all other D# values as needed.6. Enjoy!Notes:- It can work well as a puzzle mechanic - think creativeley.- It's worth using in SHUMP-styled bullet hell scenarios (if you ever put any in your quests), as even \"unblockable\" bullets can be reflected.- It will erase any bullets with zero step speed - this includes the flame trails.- I may add support for having multiple projectiles on the screen at a time in the future.",
+  "has_zip": false,
+  "has_popup": true
+}

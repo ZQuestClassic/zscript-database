@@ -1,0 +1,17 @@
+{
+  "name": "Warp Doll",
+  "author": "Fox",
+  "added": "01 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": "64",
+  "info": "This item acts as a custom warp-point for the player. The first time it is used on the screen, a doll is dropped. When you go somewhere else on the same screen and use the item again, Link and the doll swap positions.",
+  "description": "This item acts as a custom warp-point for the player. The first time it is used on the screen, a doll is dropped. When you go somewhere else on the same screen and use the item again, Link and the doll swap positions. This can be used multiple times in a row. When you're ready to pick it up, just stand on top of it and press the item button once more.I've included a demo to better illustrate how the item works. It's actually a short (8-screen) mini-dungeon with a puzzle in each room that requires the doll to solve. While the dungeon is puzzle-focused, this item could also work nicely with appropriately designed custom enemies or bosses, or with time-based challenges.Tested in 2.50 official release.",
+  "setup": "Upon compiling the script, assign the item script and the two ffc scripts to slots of your choice. Create a new item in the item editor, and assign it the item script under \"Action Script.\" Set the variables of the item as follows:\n\nD0: The slot of the FFC script switchLink.\nD1: The slot of the FFC script appearAtLink\nD2: The combo number that the Warp Doll should use when placed.\nD3: The CSet of the Warp Doll when placed.\nD4: The combo to use for Link as he is warping. If set to 0, Link's current frame of animation is used, and D5 is ignored.\nD5: The CSet to use for the combo in D4.\nD6: The number of seconds the animation takes to complete.\nD7: The animation type. Setting this to 1 will use straight lines to switch. Setting this to 2 will use circular switching.\n\nBy default, the item plays the whistle whirlwind sfx when used. However, this can be changed by changing the value of sfx_num at the beginning of the ffc script switchlink.\n\nRequires ffcscript.zh",
+  "has_zip": true,
+  "has_popup": true
+}

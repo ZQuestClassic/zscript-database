@@ -1,0 +1,16 @@
+{
+  "name": "screen_change.zh",
+  "author": "grayswandir",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": "26",
+  "info": "A very simple bit of code that lets you test if the screen changed during this frame. Just put ScreenChange_Update() in your main loop, and then ScreenChanged and DMapChanged will be updated to be true on the frames where those changes happen.",
+  "description": "A very simple bit of code that lets you test if the screen changed during this frame. Just put ScreenChange_Update() in your main loop, and then ScreenChanged and DMapChanged will be updated to be true on the frames where those changes happen.",
+  "setup": "Code\nCall ScreenChange_Update() in your main loop, preferably right after the call to Waitframe().",
+  "has_zip": true,
+  "has_popup": true
+}

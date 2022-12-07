@@ -1,0 +1,16 @@
+{
+  "name": "LA Hatrobe",
+  "author": "Dimi",
+  "added": "28 Mar 2018",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "2",
+  "downloads": "27",
+  "info": "Hat wizards! You know, from Link's Awakening. Like teleporting wizzrobes, but polite enough to stay still! Comes with customization too, to create a gentleman wizzrobe that's right for you!",
+  "description": "Made these babies for Hyrule Fantasy, and figuring the surge in Gameboy popularity, I think I'll make them public.",
+  "setup": "Requires ghost.zh, std.zh, and stdExtra.zh.\n\nMake sure ghost.zh is set up! And make sure you assign the HatWizzrobe script to a ffc script slot when compiling!\n\nCreate 20 combos in the editor, in the following order: \n4 Invisible\n4 Hats, in the order of Up, Down, Left, and Right\n4 Rising-from-hat, in the order of Up, Down, Left, and Right\n4 Idle/Standing, in the order of Up, Down, Left, and Right\n4 Firing, in the order of Up, Down, Left, and Right.\n\nCreate a new enemy. Set it to other type, and set the HP, Damage, and WeaponDamage to whichever you please. Set the enemy weapon to whichever weapon you wish it to fire. Then head over to the attributes/data 2 panel.\n\nAttribute 1: Speed of the weapon the enemy shoots.\nAttribute 2: Set to above 0 if you wish the enemy to turn to face you right after it finishes rising from the hat. Otherwise, leave it at 0 to have it only face you before rising from the hat.\nAttribute 3: Whether the enemy will angle their shot towards you. Leave at 0 to have it just fire directly in front of it in a straight line. Set to a negative number to have it aim directly at you (think Goriya 3's).\n\nOtherwise, set to any number above 0 to have it slightly arc it's shot in Link's direction. What number you set it to will determine how much it arcs it shot toward Link away from the direction it's facing, in either direction. For example, setting this to 45 will allow it to arc as much as 45 degrees away from the direction it would normally fire at if this was 0.\n\nAttribute 4 and 5: the maximum and minimum random time between surfacing and re-emerging. Set both of these to the same value to have a constant delay time of that value.\n\nAttribute 11: The first of the 20 combos you created earlier.\n\nAttribute 12: The number of the ffc script slot you assigned the \"HatWizzrobe\" script to.\n\nYou may set the rest of the settings as you please.",
+  "has_zip": true,
+  "has_popup": true
+}

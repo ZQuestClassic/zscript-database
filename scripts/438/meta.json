@@ -1,0 +1,17 @@
+{
+  "name": "Assorted Enemy Scripts and FFC scripts 1",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "24 Apr 2022",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "22",
+  "info": "4 enemy scripts and 3 FFC scripts. Made on request by SkyFlare.Update 24.04.2022Line Wallmaster enemy",
+  "description": "//GhostZigZagFlyer. (autoghost)Flies in randomized ZigZag pattern. Every now and then, it becomes translucent, ignoring all damage.//SMB2 Tweeter (autoghost)Constant Walk. Every Nth frame, he jumps. His every Mth jtmp is higher than normal.Frenziable enemy (autoghost)//Constant Walk. When HP falls below specific attribute, gains new attributes.//Ambush. (FFC)Spawns an enemy, when Link is near.//Sandstorm(FFC)Reduces Link`s movement speed, if Link does not have specific item.//CustomizableDropsetCombosDropset combos. Create random dropset item when specific combo changes into another one. Once per combo.//Line Wallmaster (autoghost)Like wallmaster, but moves in straight line.",
+  "setup": "//GhostZigZagFlyer. (autoghost)Use 8-dir enemy animation.Random rate, hunger, homing factor, step speed are used.Attribute 0 - Max delay between changing directions.Attribute 1 - Delay for between changing between ghost form and normal form, in frames. -1 for no ghost form.---//SMB2 Tweeter (autoghost)Random rate, hunger, homing factor, step speed are used.Attribute 0 - normal jump height.Attribute 1 - max jump heightAttribute 2 - delay between jumps, in frames, counted after landing.Attribute 3 - every X jump is big one.---//Frenziable enemy (autoghost)Random rate, hunger, homing factor, step speed are used.Attribute 1 - damage threshold.Attribute 2 - new Random RateAttribute 3 - new step speed.Attribute 4 - new homing factorAttribute 5 - new weapon damage, if >0, fires eweapons, like death knightAttribute 6 - cset to recolor intoAttribute 7 - sound to play on getting frenzied//Attribute 8 - delay between shots, in frames---//Ambush. (FFC)Place FFC at enemy hiding spot.D0 - ID of enemyD1 - detection radius.D2 & D3 - size offset for larger enemies.D4 - Set to -1 - replace combo underneath FFC with screen`s undercombo, orpositive number to replace destroyed combo with ID, using FFC`s CSet.D5 - Sound to play on ambush.---//SandstormRequires LinkMovement.zhPlace FFC anywhere in the screen.//D0 - ID of protective item//D1 - speed penalty multiplier---//CustomizableDropsetCombosPlace FFC anywhere in the screen.//D0 - Combo ID to check//D1 - Dropset to use.//D2 - Sound to play on dropping item---//Line Wallmaster (autoghost)//Step speed used.//Attribute 0 - >0 - Can grab Link and send him to dungeon entrance.//Walls must be on higher layer.",
+  "has_zip": true,
+  "has_popup": true
+}

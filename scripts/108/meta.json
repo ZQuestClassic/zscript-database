@@ -1,0 +1,16 @@
+{
+  "name": "Shooter",
+  "author": "LinktheMaster",
+  "added": "12 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": "59",
+  "info": "This is a basic Freeform Combo script which allows the FFC to fire weapons either in a specific direction or at Link. They can be used for statues that shoot things other than fireballs, or if used with inherit combo flags and FFC changers, it can be used to help spruce up \"2.10 custom bosses.\"",
+  "description": "Setup Instructions\n\nThe only header that is required is std.zh.\n\nAfter adding this to your scripts, simply add a FFC with the script attached to it and set any parameters you want. With no parameters modified, it'll shoot fireballs at Link at a relatively slow pace.\n\nFFC Script Parameters\nd0 - This is the weapon ID you wish to attach. EW_ values listed in std_constants will work, or you can use...\n\n\n\n0 = Fireball\n1 = Boss fireball\n2 = Rock\n3 = Fire (short distance)\n4 = Fire (long distance)\n5 = Wind\n6 = Bomb\nd1 - This is the direction to fire in. You can use DIR_ constants, but you have to add 1 to them\n\n\n\n0 = At Link\n1 = Up\n2 = Down\n3 = Left\n4 = Right\n5 = Left Up\n6 = Right Up\n7 = Left Down\n8 = Right Down\nd2 - Frequency (60 is about 1 shot per second) (DEFAULT: 120)\nd3 - Speed (100 = 60 pixels a second) (DEFAULT: 100)\nd4 - Damage (DEFAULT: 1)\nd5 - Sound effect ID (DEFAULT: Fireball)\nd6 - Initial Delay before firing\nd7 - Flags\n\n\n\n0 = No Flags. Normal shooter\n1 = Weapons fired are unblockable\n2 = Stops when the FFC's combo changes\n3 = Unblockable and stops when the FFC's combo changes\n\nThe download consists of the example quest you see in the video.",
+  "setup": "ZeldaPlayer\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 11 June 2014 - 08:54 AM\n\t\t\t\n\n\t\t\t\tThis is an amazing script!\n\t\t\t\t\n\t\t\t\n\n\n\n\n\n\n\n\u00a0\n\n\n\n\n\n\t\t\t\n\tjudasrising\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 12 May 2014 - 05:00 PM\n\t\t\t\n\n\t\t\t\tHiI give 5 for this. This script adds some more things i can play around with.\n\t\t\t\t\n\t\t\t\n\n\n\n\n\n\n\n\u00a0\n\n\n\n\n\n\t\t\t\n\tAvaro\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 12 May 2014 - 02:35 PM\n\t\t\t\n\n\t\t\t\tA very simple, yet effective script.  It is nothing special, but due to the fact that this can easily enhance quests in many different ways, it's an easy 5 stars for me.",
+  "has_zip": true,
+  "has_popup": true
+}

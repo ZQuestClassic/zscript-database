@@ -1,0 +1,16 @@
+{
+  "name": "Item Pick Up Message",
+  "author": "Joe123",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Item"
+  ],
+  "rating": "10",
+  "downloads": null,
+  "info": "When the player picks up an item with this script in its pick up slot, it will display a string.",
+  "description": "When the player picks up an item with this script in its pick up slot, it will display a string.",
+  "setup": "Set this script in the Pickup Slot of any item you wish to have a message show up when the player picks it up.D0 is the string number to display when the player picks up the item.",
+  "has_zip": false,
+  "has_popup": true
+}

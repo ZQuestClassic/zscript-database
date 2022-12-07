@@ -1,0 +1,17 @@
+{
+  "name": "Bari & Biri",
+  "author": "Mero",
+  "added": "29 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a replica of those jellyfish enemies from the game A Link to the Past. They move around shock link if he attacks them while electrified.",
+  "description": "Not much else to it.",
+  "setup": "Constants\nconst int BARI_SHOCK_TIME: //Time link is shocked for.\nconst int BARI_SFX_SHOCK: //Sound to play when link is shocked.\nconst int BARI_WPS_SHOCK: //Sprite to used for link when he is shocked.\nData\nType: Walker. //So the red ones can split.\nAnimation: None\nFrame Rate: 0\nWeapon Damage is the damage dealt to Link if he slashes it while it's using it's shock attack.\nHalt Rate is used as Turning Frequency, which is what the fliers use.\nRandom Rate, Homing Factor, Hunger, and Step Speed; are treated as normal.\n\nAttributes\nExtra Shots(5) is the the 1/n chance of starting a shock attack. Default is 150\n\t    If Extra Shots is negative it will not pause its' movement while shocking itself.\nEffect Strength(7) is how long in frames these shock attacks last. Default is 48\n11 is the normal combo to use for the enemy. The one immediately following should be the shocked combo.\n12 is the script slot you inported the ffc script into.\n\nResources\nRequires std.zh, string.zh, and ghost.zh.\nThe sound from ALTTP was LTTP_LINK_SHOCK and from Link's Awakening LA_LINK_SHOCK. These can be found here.",
+  "has_zip": false,
+  "has_popup": true
+}

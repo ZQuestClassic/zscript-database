@@ -1,0 +1,16 @@
+{
+  "name": "Scripted secret triggers",
+  "author": "Moosh",
+  "added": "09 Feb 2018",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "This script adds basic scripted secret triggers, mainly for use with scripted items.",
+  "description": "I noticed a lot of the time when I make scripted items that use the script weapon types, a consistent problem people encounter with them is that they can't trigger secrets because there's no secret flag for the script weapon types. So I wrote this script to hopefully solve that problem. When this script is placed on the screen, any combo with a specified flag hit by a specified type of weapon will change to a trigger combo and trigger the screen's secrets based on the type of secret.",
+  "setup": "Place an FFC down on the screen with the following arguments:D0: This is the weapon type that triggers the secrets. Check the LW_ constants in std_constants.zh for the list of weapon types and their IDs.D1: This is the script flag (98-102, or any other flag without behavior) used to mark trigger combos on layer 0. If 0, the FFC carrying the script acts as the trigger in place of a combo.D2: This is the type of secret to use:0: Self Only1: Screen Secrets (Temp)2: Screen Secrets (Perm)3: Hit All Triggers (Temp)4: Hit All Triggers (Perm)D3: Combo triggers should change to when hit. If 0, they'll change to the next combo in the list relative to what they were.D4: CSet triggers should change to when hit.D5: SFX to play when the trigger is hit\n\nRequires std.zh and ffcscript.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

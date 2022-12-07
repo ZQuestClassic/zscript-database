@@ -1,0 +1,16 @@
+{
+  "name": "Get Boss Key On Heart Container",
+  "author": "AdmiralJaden",
+  "added": null,
+  "updated": "26 Mar 2016",
+  "tags": [
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": "18",
+  "info": "My first script.This script allows you to get a boss key for a specific level (as defined in the script, by you), once you get a certain number of heart containers in total (also defined by you).***The demo file that shows off this script contains a subscreen that shows you the boss key after getting the heart container***",
+  "description": "My first script.This script allows you to get a boss key for a specific level (as defined in the script, by you), once you get a certain number of heart containers in total (also defined by you).The applications for this type of item gain are many (seemingly). For example: You could set up a chest in the overworld (or anything else that's level 0) that requires the boss key to open, but only as a reward for gaining that many heart containers. This makes for a fantastic reward system for playing the game long enough to gather the heart pieces around your world.That's just one example (I'm personally using it to give the player the master sword at a certain point in the game), but it could be used for a lot of similar things.***The demo file that shows off this script contains a subscreen that shows you the boss key after getting the heart container***EDIT: I included the ability to display messages on pickup, for those who are using the message on pickup scripts. It should be noted that if you don't intend on giving the player the boss key, but still want a message to display on pickup, you should use a text on pickup script, rather than this one for that item.",
+  "setup": "Import the script like any other.Change the LEVEL number in the script (on the line that has \"LEVEL = 0;\") to match the level you want the boss key for;For example. If you want the boss key for level 10, you'd set this to 10. If you want it on level 3, set it to 3.(import again, if need be, unless you edited the buffer)Place the script in your Heart Container Item's \"Pickup Script\" box.Set D0 to the number of heart containers you want to have as the requirement (minus one: If you want to get it on your 12th heart container, set D0 to 11. Or if you want it on heart 4, then set D0 to 3. Etc. It must be one number lower than your target)If you want a message to display on pickup as well, set D1 to the string you want to display. If you don't want a message, keep D1 as zero (make sure string zero is blank, if it's not, you'll have to set up a blank string and use it).And that's it. You can now get a boss key for that level number, once you've collected D0's amount of heart containers total.I hope that made sense, but if you're confused, please feel free to ask me about it and I'll refine this as I can.",
+  "has_zip": true,
+  "has_popup": true
+}

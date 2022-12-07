@@ -1,0 +1,17 @@
+{
+  "name": "Ex1-4 Wand Item",
+  "author": "TheLink",
+  "added": "12 Jul 2017",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A script that allows you to shoot stuff with the Ex1-4 buttons when you have a certain item.",
+  "description": "When I couldn't script, I wished there was a scripted item that allowed you to shoot stuff using the Ex1-4 buttons and at the time there weren't and now I couldn't find any. So, now I made one, due o the fact that I recently learnt scripting.The script allows you to press the Ex1, Ex2, Ex3, Ex4 buttons to shoot different projectiles (some just stay where link is, e.g. explosions or bait). You must first pick up a specified item for this to happen. A noise is also made upon the shooting of the projectile.Bear in mind that this is my first script and there are many ways in which it could be made more user-firendly/better. If there is a change you require, ask me and I may be able to do so, but I may not, due to limited knowledge of scripting.",
+  "setup": "std.zh is required for this script.\n\nStep 1 - Setting Constants:\nThe first 2 constants are simple to set up. The four after that require a number from below for the projectile type.\n\nProjectile types:\nArrow = 8\nSword Beam = 2\nBoomerang = 3\nBomb = 6\nBomb Explosion = 4\nSuper bomb = 7\nSuper bomb Explosion = 5\nFire = 9\nWhistle Noise = 10 (Kills Digdogger)\nBait = 11\nMagic = 13\nWhistle Whirlwind = 15 (Warps Link if he comes into contact with it)\nSparkle Trail = 23 (link leaves behind a trail of sparkles - no damage)\nFire Sparkle Trail = 24 (link leaves behind a trail of sparkles - damage dealing)\n\nStep 2 - Combining Global Script: (If you already have a global script in your quest)\nIf you already are using a global script in the active slot, you will need to add some more code to it.\nGet lines 22-42 and copy/paste them into your global script.\nMake sure to put them in between the lines Waitdraw() and Waitframe().\nIf you need help with this, be sure to ask!",
+  "has_zip": false,
+  "has_popup": true
+}

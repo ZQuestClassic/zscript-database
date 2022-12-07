@@ -1,0 +1,17 @@
+{
+  "name": "Link Locator",
+  "author": "Ben",
+  "added": "19 Nov 2016",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Draws a combo above Link for a brief period.",
+  "description": "Draws a combo one tile above Link for two seconds on Layer 6. Useful for locating Link when he respawns from falling into pits.",
+  "setup": "Requires std.zh. ffcscript.zh recommended.Replace the COMBO and CSET constants to the combo and CSet you want to use. Call this FFC from within another script, preferably with RunFFCScript (which is part of ffcscript.zh.)",
+  "has_zip": false,
+  "has_popup": true
+}

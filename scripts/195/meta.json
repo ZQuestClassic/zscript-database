@@ -1,0 +1,17 @@
+{
+  "name": "Iron Knuckle (Autoghost)",
+  "author": "ywkls",
+  "added": null,
+  "updated": "25 Feb 2021",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": "97",
+  "info": "Creates an enemy that was inspired by Iron Knuckle from Adventure of Link.",
+  "description": "This enemy is shielded in front and periodically throws an axe at you. As its HP drops, it moves faster and it throws the axe more frequently. Enemy sprites proved by DaLInk. Axe sprites by FireSeraphim.Update-8-16-15- Added explosive death animation. Axes now split into 4 random directions on impact.2-25-21Updated to new sprites supplied by EtherAdded demo video",
+  "setup": "Requires-std.zhstring.zhghost.zhSet up combos in this order- Up, down, left and right. Select top left tile of each 2 x 2 graphic for each combo and put the number of the first in Miscellaneous Attribute 11. Be sure to create the Axe sprite as shown and change the constant in the script to match.",
+  "has_zip": true,
+  "has_popup": true
+}

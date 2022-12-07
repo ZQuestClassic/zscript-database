@@ -1,0 +1,16 @@
+{
+  "name": "Locked Dungeon Entrance",
+  "author": "LinktheMaster",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Basically, this mimics the behavior of the GB Zelda games were oftentimes you'd have to get a special key to open up certain dungeons. Essentially, the player can only open it when Link has any item of your choosing.",
+  "description": "This was requested by multiple people in this topic. It's an alternative to the the old \"lockeddungeon\" script, though this isn't compatible with the old version.\n\nBasically, this mimics the behavior of the GB Zelda games were oftentimes you'd have to get a special key to open up certain dungeons. Essentially, the player can only open it when Link has any item of your choosing.\n\nNote: You can only trigger the dungeon entrance from below.",
+  "setup": "1. Create two combos for the dungeon entrance. The locked combo, then the open combo to its right (like you would setup a locked block). Do not set the locked version to a \"lock block\" combo type!\n2. Put this FFC over the locked combo on the screen with this script attached, and the following variables set:\n\nd0: The combo number of the locked combo\nd1: The item required to open the lock block\nd2: The message that is displayed if you do not have a lock block (leave as 0 if not desired)\nd3: The sound effect played when opening the lock block (leave as 0 to use the shutter SFX)\nd4: Set as 1 if you want the item to be removed from Link's inventory\n3.  If you wish the change to span across multiple combos, follow steps 1 & 2 for all other combos on the screen. If one of these is setup and triggered, they are all simultaneously triggered.\n\nNote: Do not have a normal lock block on the screen!\n\nRequires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

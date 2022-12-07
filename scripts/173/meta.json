@@ -1,0 +1,16 @@
+{
+  "name": "Fireball Shooter Traps",
+  "author": "Demonlink",
+  "added": null,
+  "updated": "05 Apr 2015",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "25",
+  "info": "An FFC script that shoots Fireballs towards your position.",
+  "description": "Two variations of the same script are included. The first version shoots a fireball towards Link's position when he attacks (candle, wand, hammer, etc). The other variation can shoot multiple fireballs when Link attacks (default are 5 fireballs by 20 frames delayed in each). Useful to spice up your traps in dungeons (or overworld if you're crazy!)Credits to MoscowModder for providing a simple fix and LinktheMaster for his FFC shooter script, which I looked into for setting up the angle and position.",
+  "setup": "You only need \"std.zh\" for this baby.\n\nFIREBALL SHOOTER TRAP\nA trap that fires a fireball towards your current position when you attack with an item (candle, bow, wand, etcetera).\nD0 is the value for a custom SFX. If it's 0, it will play the SFX_FIREBALL sound.\nD1 is the damage done in quarters of a heart. If the value is 0, it will deal one whole heart of damage.\n\nCONSTANT FIREBALL SHOOTER TRAP\n\nA trap that fires constant fireballs towards your current position when you attack with an item (candle, bow, wand, etcetera).\nD0 is the value for a custom SFX. If it's 0, it will play the SFX_FIREBALL sound.\nD1 is the damage done in quarters of a heart. If the value is 0, it will deal one whole heart of damage.\nD2 is the number of Fireballs you want to be shot. If the value is 0, it will shoot 5 fireballs.\nD3 are the frames to wait (or frequency) until the next fireball is shot. If left on 0, the default is 20 frames.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Summoner",
+  "author": "Emily",
+  "added": null,
+  "updated": "31 May 2021",
+  "tags": [
+    "#2.55",
+    "#NPC"
+  ],
+  "rating": null,
+  "downloads": "22",
+  "info": "Make any type of enemy a summoner; with settable limits, and the ability to make killing the summoner kill its' summons.",
+  "description": "Simply assign the NPC script to whatever NPC (walking, flying, etc; doesn't matter), and set up the parameters.You can set a cap on how many summons it can have alive (anywhere from 1 to 512)You can set how often it summons (in frames)You can set if killing the summoner will kill its' summonsAnd, you can set up to 5 NPC IDs for it to randomly choose from when summoning.",
+  "setup": "No headers requiredAssign 'Summoner' NPC script to the NPC you wantSet the parameters:\nD0: Max summons at a time\nD1: Summon rate (in frames; minimum 1)\nD2: If non-0, killing the summoner will kill it's summons as well, ringleader-style\nD3, D4, D5, D6, D7: Enemy IDs for it to pick from (evenly randomly). Leave at '0' if you don't want an ID in that slot.That's it. Just place the enemy normally, and it's done. You can set it's properties like any other enemy editor enemy; step speed, HP, defenses, etc.",
+  "has_zip": true,
+  "has_popup": false
+}

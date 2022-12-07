@@ -1,0 +1,22 @@
+{
+  "name": "Confusion Effect Feature",
+  "author": "Bagu",
+  "added": "25 Dec 2021",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Enemy",
+    "#Global",
+    "#Hero",
+    "#NPC",
+    "#Item",
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": "6",
+  "info": "A tiny Script and Function Package to create Confusion Touch Effects for Enemies...including heal- and protection- options.",
+  "description": "Create NPCs that will confuse the Hero on Collision.Cure Confusion by healing Items....or peramenently protect the Hero from certain Enemies' confusing effects,by assigning variable protection Item IDs to the scripted NPC's D0-7 Attributes.Contained scriptsConfusor NPCHeal ItemExample Global or Hero script(cause functions can be used by both kind of scripts)",
+  "setup": "All instructions contained in the file\n\nDrop the file in your ZC \"Include\" folder and add \n#include \"Confusion.zh\"\n\nto your current Script or a general Header\n\nDoesn't require any further Headers, but \"std.zh\"",
+  "has_zip": true,
+  "has_popup": true
+}

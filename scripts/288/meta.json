@@ -1,0 +1,16 @@
+{
+  "name": "Play SFX at certain Frames",
+  "author": "Tabletpillow",
+  "added": "10 Nov 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "My first script. It's very simple, yet no one has done this as far as I can tell.",
+  "description": "This is mainly used for cutscenes, as the play secret SFX at entry don't apply to timed or tile wraps. But this can also be an ambient sound effect with the loop mechanic, one where you can actually control the time of where it plays.",
+  "setup": "Create a FFC, set it to an invisible combo that's not combo 0.D0: The sound effect to play.D1: How many frames to wait until the sound effect plays.D2: Set this to anything other than 0 to have the sound effect loop.Requires std.zh",
+  "has_zip": false,
+  "has_popup": true
+}

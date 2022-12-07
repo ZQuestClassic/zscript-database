@@ -1,0 +1,17 @@
+{
+  "name": "Laser Sentry/Beamos",
+  "author": "MoscowModder",
+  "added": "29 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "The laser sentry is nearly identical to the LttP beamos, but... different. It uses a laser pointer to mark its range and direction, and then shoots a beam that can be dodged (depending on its delay settings).",
+  "description": "The laser sentry is nearly identical to the LttP beamos, but... different. It uses a laser pointer to mark its range and direction, and then shoots a beam that can be dodged (depending on its delay settings).",
+  "setup": "1. Find sound effects for the sentry detecting and shooting Link, and set the SFX_ constants at the top to their IDs\n2. Compile the script and remember the FFC script slot you put it in\n3. (Optional) Make a combo for the sentry's graphics. It can be an animated, spinning head, an eyeball, or whatever you want\n4. Make a new enemy, and set the following data:\nType: Other\nSprite: Even if using the combo for its graphics, choose the right CSet here\nHP and Weapon damage: Whatever you please\nMisc Attribute 1: Rotation speed in degrees per frame (Recommended 3)\nMisc Attribute 2: Sight radius in pixels (Recommend 70)\nMisc Attribute 3: Delay between sighting and shooting (0 for instant shot)\nMisc Attribute 4: Cooldown between shooting and looking again (Highly recommend more than 0, like 120)\nMisc Attribute 5: Laser color (CSet# * 16 + color number in CSet)\nMisc Attribute 11: Either the combo from step 3, or -1 to use the enemy's graphics\nNOTE: If your version of ghost.zh doesn't have __GH_INVISIBLE_ALT, set this to the value of GH_INVISIBLE_COMBO to use the enemy graphics\nMisc Attribute 12: The FFC script slot number from step 2\n\nResources\n\nghost.zh\nstring.zh (Included in recent builds of ZC)",
+  "has_zip": false,
+  "has_popup": true
+}

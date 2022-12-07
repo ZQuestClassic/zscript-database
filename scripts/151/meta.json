@@ -1,0 +1,16 @@
+{
+  "name": "Consumable Weapons",
+  "author": "justin",
+  "added": null,
+  "updated": "29 Dec 2014",
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "45",
+  "info": "Want a sword that can only be used 4 times?A boomerang that breaks when it hits something?Even a ladder that can only cross 10 gaps, think of the puzzles!This is the script for you!",
+  "description": "Make weapons \"consumable\" in that they only have a specified number of times that they can be used before they are destroyed (removed from inventory).You specify whether the item is consumed with each use, or with each successful collision.Works with Swords, Bow&Arrow, Candle, Wand, Bait, Hammer, Boomerang, Whistle. Untested with anything else.Update:- a whole lot more functionality and customization- weapons can be consumed with simple use (as before), but also with Enemies, Solids, Water, or any combination.  So you can have a candle that shoots fire than can't cross water.  or sword beams that don't go through solids.  or give make every solid combo a \"block-flag\" for a boomerang.- the weapon doesn't actually have to be consumable, so the bonus functions add a lot of flexibility to weapon customization- weapons can have two consumable checking for two different lw types. so a sword that \"breaks\" when it hits enemies, and its beam that dies when it hits solids.- a consumable ladder (global script)- probably lots more",
+  "setup": "Requires std.zh, and ffcscript.zh.\n\nDetailed instructions, and notes on various tested weapons are included in with the script. And includes a demo qst.\n\nThe demo qst also shows off my Passive Subscreen A/B Counter Fix script found here https://www.purezc.ne...=scripts&id=144, and has a few other scripts in the buffer.",
+  "has_zip": true,
+  "has_popup": true
+}

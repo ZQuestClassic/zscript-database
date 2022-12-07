@@ -1,0 +1,16 @@
+{
+  "name": "FFC Follower Script",
+  "author": "Purplemandown",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script will make the ffc of your choice, using the graphics of your choice, follow link as long as he has the item of your choice. It's better than the FFC version because you don't have the ugliness of an ffc in the top left corner until the script kicks in, which is nice.",
+  "description": "This script will make the ffc of your choice, using the graphics of your choice, follow link as long as he has the item of your choice. It's better than the FFC version because you don't have the ugliness of an ffc in the top left corner until the script kicks in, which is nice.",
+  "setup": "First things first, you'll need to set the 8 combos to use. They need to be:still upstill downstill leftstill rightmoving upmoving downmoving leftmoving rightin that order, and they must be consecutive. Make note of the first combo, and set it in the constants at the beginning.Also, set the CSet, item number, and the ffc you want to use.After that, the script does the rest. You'll have a follower as long as Link has the item. Take it away, the follower disappears.Make sure to import std.zh at the top of your script file, and combine with any other global scripts.",
+  "has_zip": false,
+  "has_popup": true
+}

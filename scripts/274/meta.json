@@ -1,0 +1,16 @@
+{
+  "name": "Object Rotation",
+  "author": "Avaro",
+  "added": "14 Aug 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "7",
+  "downloads": null,
+  "info": "Lets you rotate anything.",
+  "description": "This script makes FFCs rotate. This does not affect their collision hitboxes. You can make things rotate in either direction and at any speed.\n\nLink to the showcasing video: https://www.youtube....h?v=1UFs1rcTucU",
+  "setup": "First off set the \"const int ObjectRotation_BlankCombo\" in the scriptfile, like instructed in the scriptfile.Import the script and stick it to any FFC.D0 is the layer to draw the rotating object on.D1 is the direction and speed to rotate at. If it's positive it rotates clockwise, if it's negative it rotates counter-clockwise. A speed of 6 would be one full rotation per second.",
+  "has_zip": false,
+  "has_popup": true
+}

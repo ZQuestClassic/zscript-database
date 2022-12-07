@@ -1,0 +1,16 @@
+{
+  "name": "Linked Secrets",
+  "author": "ywkls",
+  "added": null,
+  "updated": "22 Mar 2017",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": "48",
+  "info": "An ffc that links the secrets of two or more rooms together in a chain.",
+  "description": "This script allows you to use multiple secrets in the same room, with sounds customized to each and with different items as triggers. Further, you can chain secrets from one room to another and even use flags not normally used by scripts to change its layout.Demo quest and original script idea by L\u00fct.3-18-17- Fixed flag error.3-19-17- Updated test quest with better combo graphics, thanks to L\u00fct.",
+  "setup": "Requires std.zh//D0: Whether this is a screen that has a trigger, or one that is changed by a trigger elsewhere.// Set to zero if it's a trigger and non-zero otherwise.//D1: What type of trigger this is.// If set to zero, it will scan for a certain combo ID, such as a step switch, and if that changes; trigger secrets.// If not, it will scan for a certain LWeapon of this ID type, and if that LWeapon hits the FFC; trigger secrets.// See std_constants.zh to find out about LWeapon types.//D2: If D1 is zero, this is the combo ID to look for.// If D1 is one, this is the flag to look for.// All combos with the flag will get changed when the secret is triggered.//D3: What index of the array to store completion in.// In other words, this is the number of the chain. Every chain needs a unique number.// If a trigger in a chain is triggered, it affects all FFCs in this chain globally.// There is no limit to the number of FFCs that can be part of the chain.//D4: How many combos difference there are between the original combos and the desired ones.// The easiest way to do this is to create a set of combos the same size as the originals.// Then, place them a certain distance away.//D5: Sound to play, if any. Set to zero for no sound.After importing this script be sure to use a new save file.",
+  "has_zip": true,
+  "has_popup": true
+}

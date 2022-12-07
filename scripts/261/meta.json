@@ -1,0 +1,16 @@
+{
+  "name": "Button disabler (For cutscenes)",
+  "author": "Avaro",
+  "added": "24 Feb 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": null,
+  "info": "Put an FFC with this script on a screen to disable all button inputs on that screen. Good for cutscenes.In my opinion it's a hassle to make a new DMap for cutscenes to disable Link's items and letting Link use items during cutscenes is unprofessional. So here's a simple script for that situation.",
+  "description": "Put an FFC with this script on a screen to disable all button inputs on that screen. If you use \"Messages freeze all actions\" you'll still be able to adcance message strings on that screen.",
+  "setup": "Put an FFC with this script on any screen where you want to use it.Needs only std.zh which comes with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

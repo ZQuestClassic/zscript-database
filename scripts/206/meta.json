@@ -1,0 +1,16 @@
+{
+  "name": "Donation Shop",
+  "author": "Alucard648",
+  "added": "19 Oct 2015",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "\"For the sake of peace in Hyrule...\nWould you, please, make a donation?\"",
+  "description": "An NPC begs Link to make donations until target is reached, then rewadrs him, by either an item,  secret triggering, or information, like clue to maze path. Step on icon and press A to make donation displayed. Keep performing donations until target is reached.",
+  "setup": "1. Place FFC where you want for link to step to perform donation. Assign combo that looks like a ?ounter icon to this FFC.2. Set up 3 srings. One for invitation, which is displayed every time Link enters this screen, one that`s displayed on every successful donation and one to display when target is reached.3. Import and compile the script. No headers required beyond std.zh. Assign it to FFC script slot.4. Assign FFC sript and set D values:D0 - Screen->D to keep track on donation progress even in save file.D1 - Counter to donate in question. Blood donations (hearts) require at least one extra full heart of health in reserve to avoid nasty kind of death.D2 - Target total value of counter donated to trigger gratitude and reward.D3 - Pledge value. For instance, stepping on FFC requires and deducts 50 rupees until reaching target of 2000 rupees donated.D4 - Reward on reaching target. Positive values result in item reward with item ID, -1 results in permanent secret triggering.D5 - String to display on entering screen with this script.D6 - String to display on every successful donation.D7 - String to display when donations are no longer needed. The same string plays once the target is reached.//5. Test and enjoy.",
+  "has_zip": false,
+  "has_popup": true
+}

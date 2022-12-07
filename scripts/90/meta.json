@@ -1,0 +1,17 @@
+{
+  "name": "Rocks & Boulders with SFX",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script causes Rocks and Boulders when attached to them through AutoGhost to play a sound when they \"fake\" hitting the ground.",
+  "description": "This script causes Rocks and Boulders when attached to them through AutoGhost to play a sound when they \"fake\" hitting the ground.",
+  "setup": "Load every enemy of the type rock and change it's attributes as follows.\nAttribute 2: SFX to play when the hitting ground.\nAttribute 11: GH_INVISIBLE_COMBO \"1 by default\"\nAttribute 12: Script slot number with the above script assigned\n\nResources\n\nstd.zh\nstring.zh\nghost.zh",
+  "has_zip": false,
+  "has_popup": true
+}

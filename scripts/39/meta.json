@@ -1,0 +1,17 @@
+{
+  "name": "AcidHandla",
+  "author": "MoscowModder",
+  "added": null,
+  "updated": "28 Apr 2014",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "99",
+  "info": "The AcidHandla is an upgraded, redesigned version of the venerable (and vulnerable) Manhandla boss from LoZ.",
+  "description": "I made this boss for my own use, but I thought someone out there might want to try it for themselves.The AcidHandla is an upgraded, redesigned version of the venerable (and vulnerable) Manhandla boss from LoZ. This version has the potential to be MUCH nastier. At first it may seem like an ordinary Manhandla, but when you start cutting off heads, not only does it speed up but it starts dropping acid puddles, too!As if that wasn't bad enough, before you cut off all 4 heads its defense will be greatly increased, and once all 4 are gone it survives to grow them back! Once it gets to half health, it starts spreading fog throughout the screen, causing one of 4 adverse effects: slow down, speed up, regrow a head instantly, and reverse your direction and weapon inputs. With this dizzying (yes, dizzying) arsenal of sneaky attacks, this boss is sure to keep the unprepared adventurer on his toes!",
+  "setup": "Once you've compiled the script and set the constants at the top, create two enemies and set the following attributes:\n\nBody (place this one on the screen)\nType: Other\nSprite: Set up normally\nAttrib 1: ID of head enemy\nAttrib 2: Max time between head sockets dropping acid (Recommend 120)\nAttrib 3: Acid combo (Set the CSet2 attribute so that it looks right with CSet 0)\nAttrib 4: Acid duration (120)\nAttrib 5: Maximum time between mist changes (240)\nAttrib 6: Minimum time between mist changes (180)\nAttrib 7: Time until heads respawn (240)\nAttrib 11: -1\nAttrib 12: Slot # of this script\nWeapon damage: Frames between acid damaging Link (10)\nRandom rate: Frames before changing direction / 10 (e.g. 4 = 40 frames)\nHP, Damage, Step, Frame Rate: Set as normal\n\nHead enemy (spawned automatically)\nType: Walking enemy\nSet up all attributes as normal, including weapon of choice\n\nRequires ghost.zh and ffcscript.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

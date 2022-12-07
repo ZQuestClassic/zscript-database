@@ -1,0 +1,16 @@
+{
+  "name": "Ledge Jumping Combo",
+  "author": "Mr. Z",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": null,
+  "info": "A ledge jumping script like Beefster's, but shorter and easier to use.Instead of using FFC's to jump from a ledge, this piece of script allows you to use script specific combos instead.Just approach a ledge and Link will automatically jump and keep falling until he reaches a combo that is not a ledge. This script also allows you to fall between screens without stopping.",
+  "description": "A ledge jumping script like Beefster's, but shorter and easier to use.Instead of using FFC's to jump from a ledge, this piece of script allows you to use script specific combos instead.Just approach a ledge and Link will automatically jump and keep falling until he reaches a combo that is not a ledge. This script also allows you to fall between screens without stopping.",
+  "setup": "Import LedgeJumping.z to your Global Active script.After that you only need to place combos of the type Script 1 (number 142) where you need them and you're good to make some craters. (figuratively)",
+  "has_zip": false,
+  "has_popup": true
+}

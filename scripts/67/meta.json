@@ -1,0 +1,16 @@
+{
+  "name": "Hot Room",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script allows for a screen flag to cause the extreme heat time in OOT when you die if you run out of time.",
+  "description": "This script allows for a screen flag to cause the extreme heat time in OOT when you die if you run out of time.",
+  "setup": "1. Set the constants to be compatible with your quest and other scripts.2. Combine the scripts, you simply need to include Update_HotRoom() in the main loop of the active global script.3. To initialize the hotroomtimer simply set the screen flag you assign to the constant HOTROOM_FLAG.4. It is cleared if you have the item with the ID number equal to the constant I_FIRETUNIC, or when you enter a screen without the flag set.Requires std.zh and string.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

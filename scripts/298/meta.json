@@ -1,0 +1,16 @@
+{
+  "name": "Terrible Conveyors",
+  "author": "Emily",
+  "added": "30 Jan 2018",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "\"Better\" conveyors!",
+  "description": "2 seperate scripts, one which makes default conveyors function better (with configurable speed!) and another which adds the ability to place DIAGONAL conveyors.",
+  "setup": "Headers: Only std.zh.Place an FFC with a transparent combo other than combo 0 anywhere on the screen. Attach whichever script you wish to use. (Place a separate FFC for each script if using both).Fill in the arguments as stated at the top of each script, which is also repeated below. Place your conveyors on screen, and there you go!\nConveyors: Both scripts use the combo ID's you give as arguments for it's conveyors.\n\n\nArguments:\nfullConveyor:\nD0: Combo ID for Up conveyors (what combo, when placed, acts as this conveyor?)\nD1: Combo ID for Down conveyors (what combo, when placed, acts as this conveyor?)\nD2: Combo ID for Left conveyors (what combo, when placed, acts as this conveyor?)\nD3: Combo ID for Right conveyors (what combo, when placed, acts as this conveyor?)\nD4: Speed. 1 is standard, 0 is irresistible. Higher is slower.\nD5: If 1, enemies are unaffected. If 0, enemies are affected. Affects all enemies.\n\ndiagConveyor:\nD0: Combo ID for Down-Right conveyors (what combo, when placed, acts as this conveyor?)\nD1: Combo ID for Down-Left conveyors (what combo, when placed, acts as this conveyor?)\nD2: Combo ID for Up-Right conveyors (what combo, when placed, acts as this conveyor?)\nD3: Combo ID for Up-Left conveyors (what combo, when placed, acts as this conveyor?)\nD4: Speed. 2 is standard, 0 is irresistible. Higher is slower.\nD5: If 1, enemies are unaffected. If 0, enemies are affected. Affects all enemies.\n\nScript compatibility warnings:\nfullConveyor has no compatability warnings.\ndiagConveyor has no compatibility warnings.\nD0: Combo ID for Up conveyors (what combo, when placed, acts as this conveyor?)\nD1: Combo ID for Down conveyors (what combo, when placed, acts as this conveyor?)\nD2: Combo ID for Left conveyors (what combo, when placed, acts as this conveyor?)\nD3: Combo ID for Right conveyors (what combo, when placed, acts as this conveyor?)",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Scrollwarping Doors",
+  "author": "Avaro",
+  "added": null,
+  "updated": "02 May 2018",
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "2",
+  "downloads": "36",
+  "info": "Lets you put 1x1 doors, as well as shutters away from screen edges. If you don't understand what this is, try the example quest.",
+  "description": "This script is hacked together and kind of awful if you look at it.",
+  "setup": "1. Get ffcscript.zh.\n\n2. Combine global script if necessary.\n\n3. Set the constants in the script file.\n\n4. When using moosh pits, remove the \"//\" in the line with \"mooshpit\" in it.\n\n5. When using 2.55, remove the \"//\" in the line with \"Screen->Entry\" in it.\n\n6. Now you can place door combos with the combo type you've specified in the script file anywhere on the screen.\nThe direction of the door is determined by it's walkability (so a north door would have it's upper 2 corners solid). Link will scroll to the next screen and come out of the door that lines up with the one he entered.\nYou do not need to place the \"ScrollwarpingDoors\" ffc.\n\n7. For shutters, set up combos so that closed shutters are followed by half-open shutters, like in the following picture. Also make them solid.\n\n\n\nShutters are placed as ffcs using the included shutter script. Enable \"Run Script At Screen Init\"! Set the combo to a closed shutter.\n\nSet it's D0 as follows:\n0 = one way only\n1 = killing all enemies opens shutter (temporary)\n2 = permanent secrets opens shutter\n3 = shutter opens when no flag 16 is found (temporary)",
+  "has_zip": true,
+  "has_popup": true
+}

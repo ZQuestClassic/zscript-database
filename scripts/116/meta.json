@@ -1,0 +1,16 @@
+{
+  "name": "AutomaticBigEnemy",
+  "author": "kurt91",
+  "added": "02 Jul 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A global script that will automatically apply BigEnemy settings to every enemy added into it, without any FFC use. Just set it up once, and never have to worry about it again!\n\nWritten by Alucard648. All I did was fill out the submission form.\n\nEDIT: Now includes a demo quest: http://purezc.magesg...igenemydemo.qst",
+  "description": "This is probably the most powerful BigEnemy script possible! At the expense of a slight bit of ease-of-use, you get ZC to automatically make all your enemies the exact size and dimensions you want, with no extra work on your end other than initial setup.And of course, with the setup directions included here, that extra bit of difficulty shouldn't be any problem at all!",
+  "setup": "Open up the script and scroll down to \"SetBigEnemySettings\". Make a new entry marked as follows for each new enemy:\n\n\"BigEnemy(n, A0, A1, A2, A3, A4, A5, A6, A7, A8, A9);\"\n\nEach slot has been marked similar to the arguments of an FFC for the purposes of these instructions. Replace each slot with the following data the same way you would fill out the appropriate arguments.\n\nA0: Enemy ID of the target enemy (Found in Enemy Editor)\nA1: Draw X Offset\nA2: Draw Y Offset\nA3: Hitbox X Offset\nA4: Hitbox Y Offset\nA5: Hitbox Width (Measured in pixels)\nA6: Hitbox Height (Measured in pixels)\nA7: Tile Width (Measured in tiles)\nA8: Tile Height (Measured in tiles)\nA9: Custom Animation Flags\n\n== Custom Animation Flags ==\n\nJust like setting up shields in the Item Editor, add up the following numbers for combinations\n\n1 - Enable Custom Animation\n2 - Allow 8-Way Animation\n4 - Always Face Link (Tracking)\n8 - Use Separate Animations when NPC is Halting (Firing)\n\nCustom animations for the Test Goomba would be set up like this:\n\n\n\nCustom animation is compatible with the following settings \"None, 2-Frame, 3-Frame, 4-Frame\".",
+  "has_zip": false,
+  "has_popup": true
+}

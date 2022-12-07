@@ -1,0 +1,16 @@
+{
+  "name": "Falling Snow",
+  "author": "Mr. Z",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script makes snow (or any other tile) randomly fall down the screen.You can decide how many tiles will be dedicated to snow, so they won't all have to be the same graphic.",
+  "description": "This script makes snow (or any other tile) randomly fall down the screen.You can decide how many tiles will be dedicated to snow, so they won't all have to be the same graphic.",
+  "setup": "Make an FFC, attach the script, enjoy the scenery.constant integers:SNOWFLAKE_TILE1 - The first tile used for snowflakes. Earlier tiles fall faster.You can increase the next value if you want to randomize the graphics of the snowflakes.SNOWFLAKE_TILE2 - The last of the tiles used for snowflakes. The last tile falls 40% slower than the first.SNOWFLAKE_CSET - The cset used for snowflakesSNOWFLAKE_COUNT - Number of snowflakes on the screen. Standard set to 100. Change the values of the arrays manually if you want a different amount.Requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

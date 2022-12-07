@@ -1,0 +1,17 @@
+{
+  "name": "Grenades",
+  "author": "MoscowModder",
+  "added": "27 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Allows you to throw a bomb like a grenade.",
+  "description": "This script allows you to throw bombs like grenades, instead of just dropping them on the ground. You can customize how high and far they go - but be sure not to throw them at a wall too close to you!I know it's been done before, but the previous grenade script had some bugs in recent versions of ZC and also required a global script.",
+  "setup": "Once you've compiled the script, remember the slot you put the grenadeFFC script into. Next, make a new grenade item (should be a Custom Item Class, not a bomb item), attach the grenade item script in its action slot, and set the following arguments:\nD0: Damage to deal (Wooden sword does 2)\nD1: Distance to travel (I recommend 60)\nD2: Max height (18)\nD3: Sprite to use (from the weapon/misc sprites)\nD4: # of grenade FFC script slot\n\nBy default, the grenade will use up bombs, but you can edit the CR_GRENADES constant to make it use another counter instead.\n\nRequires ffcscript.zh",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Deku Leaf",
+  "author": "Mero",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global",
+    "#Item"
+  ],
+  "rating": "2",
+  "downloads": "110",
+  "info": "This highly customizable collection of scripts allows you to do two things. One you can create gust of wind with it that when you use it on the ground, and these gust can be made to spin link and enemies into the air. You can also use it as a parachute when used in the air.",
+  "description": "This highly customizable collection of scripts allows you to do two things. One you can create gust of wind with it that when you use it on the ground, and these gust can be made to spin link and enemies into the air. You can also use it as a parachute when used in the air.",
+  "setup": "First set your constants. If you don't understand what a constant does. Post here and I'll explain it to you. Second you need to create two items the selectable deku leaf item and a second unselectable passive equipment item \"Deku Leaf LTM\" that changes his sprite to the gliding sprite. Oh and you must have Expanded Link Tile Modifiers or the graphics will be glitchy when facing up. Now for the arguments of these two items, they are split between two items for easy access. Now to make it spin npcs the npc's attribute 12 must not be 0. If it's 0 it won't be spinnable. So go through all your enemies and set the ones you want to be spinnable to 1. And remember that not all enemy types can be spinnable moldorms for example.\n\nDeku Leaf\n\nD0 = the ffc script slot with the GustofWind script.\nD1 = the initial step speed of the whirlwind.\nD2 = the sprite of the whirlwind\nD3 = the sound played when a whirlwind is fired.\nD4 = the lifespan of the whirlwind.\n\nDeku Leaf LTM\n\nD0 = the first of 4 tiles ordered up, down, left, right used to draw the leaf above Link. Divide this number by 10. So tile 1 would be .1.\nD1 = the cset to use for the leaf tile.\n\nYou will need both std.zh and ffcscript.zh for this to compile and function.",
+  "has_zip": true,
+  "has_popup": true
+}

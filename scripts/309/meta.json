@@ -1,0 +1,18 @@
+{
+  "name": "Bug Causing Net",
+  "author": "Moosh",
+  "added": "17 Mar 2018",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item",
+    "#Misc"
+  ],
+  "rating": "3",
+  "downloads": "23",
+  "info": "Warning: This is a novelty item. Using it will massively break the intended sequence of your quest, and can even cause ZC to crash. The effects of the script are harmless for your quest file and ZC, but it can permanently brick saves.",
+  "description": "Warning: This is a novelty item. Using it will massively break the intended sequence of your quest, and can even cause ZC to crash. The effects of the script are harmless for your quest file and ZC, but it can permanently brick saves.\n\nEdit: Apparently there was some confusion about the above warning. To be clear, when I said the script can brick saves, I'm just talking about the quest you run it in in. Your other quests' saves are as safe as they are any other day.\n\nSo I dug around in the Moosh ZScript Vault and discovered this amusing gem. The Bug Causing Net has a variety of game breaking features when used including:Scrambing tiles in the tile pages.Changing combos, csets, and flags on the screenRandomizing Screen->D[] valuesRandomizing warpsBreaking scripts\nI've included a copy of ItLKotBBG with the script included as an example of how it works. Add it to your own quest and play around with it for a laugh.",
+  "setup": "Set the constants TIL_BUGCAUSINGNET and CS_BUGCAUSINGNET to the tile and CSet to use for the net (optional, given the thing's purpose). Load both the item and FFC scripts into slots and assign the item script to an item's active script slot. With that done, you're good to go.There's some other constants you can tweak in the script to alter the frequency of some of the effects.This script requires std.zh, ffcscript.zh, ghost.zh, and string.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Spin Attack Check",
+  "author": "Avaro",
+  "added": "14 Aug 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "This script triggers screen secrets after Link has performed a spin attack.",
+  "description": "Useful for example when you want to have a guy that only opens Link the way if he's proven he's worthy.",
+  "setup": "After importing the script, place an FFC with this script on the screen where you want to use it.It triggers secrets, permanently, after Link has performed a spin attack (normal spin attack or hurricane spin doesn't matter).Leave D0 as 0 if you want it to play the default secret sfx (27). Set it to any number above 0 if you want the sfx of that number to play instead. Set it to -1 if you want no sfx to be played.Requires std.zh which comes with ZC.",
+  "has_zip": false,
+  "has_popup": true
+}

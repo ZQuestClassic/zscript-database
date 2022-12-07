@@ -1,0 +1,16 @@
+{
+  "name": "Simple Buttons",
+  "author": "Evan20000",
+  "added": "07 Feb 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "If you step on it, it triggers secrets and plays a noise. It's also designed to (hopefully) play nice with most other scripts out there. But when you step off it, the button pops back up and can be repressed again later. Works with pushblocks and -should- be compatible with most types of scripted pushblocks.",
+  "description": "Known limitations:If there's demand for a version that requires multiple buttons to be pressed simultaneously to open a door, I'll make a version that does that, but for now enjoy the simple mono-button one.It also probably won't work if you put it on screen borders, set the pressed combo to be the same as the raised one and walk onto it, and the FFC is set to load on screen init.",
+  "setup": "Set the constant in the script file to be the default sound effect for buttons being pressed and compile the script+assign it a script slot.Place the raised button combo on the screen on layer 0, then place a blank FFC with no graphics over it and assign it the script.Arg 0: Set to 1 if you want the secret to be permanent.Arg 1: Set to the combo of the pressed button. It will share the CSet of the raised button combo.Arg 2: The type of button this is. 0 can be pressed by Link and blocks. 1 can be pressed by the player only. 2 is block only.Arg 3: An override for the sound constant you set up earlier. If you wanted a specific button to make a specific noise but not change the sound of every button in the quest, set this. Otherwise leave it at 0 for the default.Arg 4: Set to 0 for now. If set to 1, it'll cause the button to not trigger secrets. Sorta useless unless you intend to use it in tandem with another script.",
+  "has_zip": false,
+  "has_popup": true
+}

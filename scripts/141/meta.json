@@ -1,0 +1,16 @@
+{
+  "name": "CarryoverSecret Preview",
+  "author": "Mero",
+  "added": "29 Oct 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Do you have a Secret Carryover and have no idea how to show the player that something happen and it is not a bug? Well fear not. With this script you now have a way!",
+  "description": "This script stops ghost.zh scripts from executing. \"optional\" as well as draws a preview of the specified screen. \"Level Palette will be ignored.\"",
+  "setup": "Step 1: Set the WAIT_TIME Constant. Or leave it at 84 which is what I used.Step 2: Make a Preview ScreenStep 3: Place a ffc on the screen that triggers the carryover to the other screen. And set it's d attributes as follows.d0: Map with the prevew screen. NOT DMap.d1: Preview Screen in decimal format with the secret applied or being applied which ever you prefer.d2: Bitmap to use values 0-5 \"Bitmaps 1 through 6 respectfully\" d3: The time in frames that it takes the secret to trigger \"optional\"",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "RandoMessage",
+  "author": "Timelord",
+  "added": "26 Aug 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "Allows displaying a random string on a screen.",
+  "description": "This ffc script allows setting up to seven strings on a screen, of which one will be selected at random, and displayed.\n\nIt is intended to be used in conjunction with a Screen Guy, (e.g. Abei) and thus it has a delay factor built in, that you may change, or disable.",
+  "setup": "Add this script to your existing scripts buffer, or import it.Recompile, and assign this to an ffc script slot.Go to the screen where you want to use this, and open the FFC Editor.Select an unused ffc, and edit it.Set the ffc Data (Combo) to a blank combo that is not Combo 0.I typically use Combo 1 for this.Set the script RandoMessage as the ffc action script.Go to the Arguments tab in the FFC Editor for this ffc.For the fields D0, D1, D2, D3, D4, D5, and D6:Populate these with the IDs of strings that you want to randomly display.If you want fewer than seven strings, you may leave some fields as 0.If you wish to increase the chance of a specific string being selected, you may use the same string ID in multiple D fields.You may set the delay time before displaying the string using D7.The default value is five frames, as it takes five frames for a Screen Guy to spawn.A value of 0 will result in a five frame delay.A positive value other than 0 will be the number of frames of delay.To disable delay, set D7 to -1.Exit the FFC Editor, by clicking the 'OK' button. You are done.\nThe ffc script will run every time that you revisit the screen.",
+  "has_zip": false,
+  "has_popup": true
+}

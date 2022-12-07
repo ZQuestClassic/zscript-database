@@ -1,0 +1,16 @@
+{
+  "name": "Madagascar Peg Solitaire Puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "25 Feb 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "7",
+  "info": "ZC adaptation for peg solitaire puzzle. 2.53.1 beta 55",
+  "description": "A number of pegs are placed in holes on a board. You can remove a peg by jumping an adjacent peg over it\n(horizontally or vertically) to a vacant hole on the other side.\nYour goal is to remove all but one of the pegs initially present.\nStand on peg, press Ex1, then stand on valid hole and press A to Make the move.\n\nUpdate 24.02.2022 on request by SkyFlare;Operation button remapped to Ex1.Added animation for jumping/eating peg, complete with shadow, if set up.",
+  "setup": "1. Check out constants at the top of script file.\n2. Set up 4 consecutive combos. 1 for empty space, 1 for space occupied by peg, 1 for selected peg for jumping and 1 for jumping peg animation.\n3. Import and compile the script. It requires chess.zh in addition to default libraries.\n4. Build board on the screen using first 2 combos from step 2. Make sure that at least 2 pegs are on the board.\n5. Place FFCin a position, where you want to have the only peg remaining, when player reenters screen with already solved puzzle.\n  D0 - ID of the empty space combo.",
+  "has_zip": true,
+  "has_popup": true
+}

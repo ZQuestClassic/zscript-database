@@ -1,0 +1,17 @@
+{
+  "name": "Simplified GBShield",
+  "author": "MoscowModder",
+  "added": "27 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": "3",
+  "downloads": "104",
+  "info": "Equip a shield to A or B and press the button to hold it up, like in the GB games.",
+  "description": "Requested by Jared. This is a much-simplified version of a GBShield script I found previously. Note: Not originally by me! It lets you hold up your shield by using a button as in the GB games. Unlike the original, it has no strafing and is equipped to A or B, so it's more like the GB games.",
+  "setup": "First, combine the global script with your existing code. Then, make two items for each shield in your game. The first shield is the actual shield item (shield itemclass), with a Link Tile Modifier that makes Link appear to hold a shield in front of him. The second item is the equippable shield. You will need to add it to your subscreen and assign the gbshield item script to it and set its D0 argument to the item # of the real shield. You can optionally set an LTM that makes Link appear to hold the shield to the side or on his back.",
+  "has_zip": true,
+  "has_popup": true
+}

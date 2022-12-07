@@ -1,0 +1,17 @@
+{
+  "name": "Lightning/Flash Effect",
+  "author": "Demonlink",
+  "added": "07 Jul 2015",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Misc"
+  ],
+  "rating": "1",
+  "downloads": "36",
+  "info": "A simple script that simulates a lightning effect with an SFX. Useful so you don't have to calculate the frames until the SFX and flash sync together",
+  "description": "A simple script that simulates a lightning effect with an SFX. Useful so you don't have to calculate the frames until the SFX and flash sync together manually  By this I mean it's mostly just plug and play. There are two versions of my script:The first version (Lightning Effect A) needs to be set only once, and after that, you just attach it to an FFC and etc. Useful for putting this effect on various areas.The second version (Lightning Effect B), has to be set each time you use it. Useful for making different screens than the rest, or something like that",
+  "setup": "VERSION A:\n\nconst int LIGHTNING_DELAY    = 0;     //Delay in frames until the effect repeats itself. \nconst int LIGHTNING_SFX         = 0;     //SFX to use. Self explanatory.\nconst int LIGHTNING_LAYER    = 0;     //Layer to draw the rectangle to. (Needs to be used by the screen).\nconst int LIGHTNING_COLOR   = 0;     //The rectangle is drawn using the specified index into the entire 256-element palette: for instance, passing in a color of 17 would use color 1 of cset 1.\n\n\n\nVERSION B\n\nThe version that's not plug and play.\nArguments are as follows:\nD0 is the delay in frames until the effect repeats itself. \nD1 is the SFX to use. Self explanatory.\nD2 is the Layer to draw the rectangle to. (Needs to be used by the screen).\nD3 is the color of the rectangle using the specified index into the entire 256-element palette: for instance, passing in a color of 17 would use color 1 of cset 1.",
+  "has_zip": true,
+  "has_popup": true
+}

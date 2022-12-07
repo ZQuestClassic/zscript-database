@@ -1,0 +1,75 @@
+//Eye boss for demon wall script. Moves along the wall, fires magic lasers. Kill the eye to destroy Demon Wall
+//Set up demon wall script
+//Place and set up Demon_Wall_Eye onto wall, using enemy placement flags.
+//Set demon wall FFC`s D0 to slot used by eye boss enemy.
+
+ffc script Demon_Wall_Eye{
+	void run(int enemyID){
+		npc ghost = Ghost_InitAutoGhost(this, enemyID);
+		
+		int SPD = ghost->Step;//movement speed along the wall.
+		int WPND = ghost->WeaponDamage;
+		
+		int dir = Ghost_GetAttribute(ghost, 0, DIR_LEFT);//initial movement direction. Use No enemy fags to prevent boss from moving offscreen.
+		int EWType = Ghost_GetAttribute(ghost, 1, EW_MAGIC);//Projectile type
+		int wallslot = Ghost_GetAttribute(ghost, 2, 1);//FFC script slot for demon wall script
+		int firedir = Ghost_GetAttribute(ghost, 3, DIR_DOWN);//Weapopn firing direction
+		int Aspeed = Ghost_GetAttribute(ghost, 4, 60);//Animation/firing delay, in frames
+		int EWSprite = Ghost_GetAttribute(ghost, 5, -1);//Sprite used for eweapon.
+		int ewsizex = Ghost_GetAttribute(ghost, 6, 1);//Eweapon size, in tiles
+		int ewsizey = Ghost_GetAttribute(ghost, 7, 1);
+		
+		ghost->Extend=3;
+		Ghost_SetSize(this, ghost, 2, 2);
+		Ghost_SetHitOffsets(ghost, 8, 8, 8, 8);
+		
+		
+		//Ghost_SetFlag(GHF_NORMAL);
+		Ghost_SetFlag(GHF_IGNORE_ALL_TERRAIN);
+		Ghost_SetFlag(GHF_NO_FALL);
+		
+		int OrigTile = ghost->OriginalTile;
+		int State = 0;
+		int haltcounter = -1;
+		int str[] = "DemonWall";
+		int scr = Game->GetFFCScript(str);
+		ffc w = Screen->LoadFFC(wallslot);
+		if (w->Script!=scr){
+			lweapon	explosion=Screen->CreateLWeapon(LW_SBOMBBLAST);
+			explosion->X=ghost->X;
+			explosion->Y=ghost->Y;
+			explosion->CollDetection=false;
+			ghost->HP=0;
+			Quit();
+		}
+		
+		int defs[18];
+		Ghost_StoreDefenses(ghost,defs);
+		Ghost_SetAllDefenses(ghost, NPCDT_BLOCK);
+		
+		while(true){			
+			if (!Ghost_CanMove(dir, SPD/100, 0))dir=OppositeDir(dir);
+			Ghost_Move(dir, SPD/100, 0);
+			Ghost_X+=w->Vx;
+			Ghost_Y+=w->Vy;
+			haltcounter++;
+			if (haltcounter>240) haltcounter-=240;
+			if (haltcounter%(Aspeed*2)>=Aspeed){
+				ghost->OriginalTile=OrigTile+ghost->TileWidth;
+				Ghost_SetDefenses(ghost, defs);
+				if (haltcounter%(Aspeed*2)==Aspeed){
+					eweapon e =  FireBigNonAngularEWeapon(EWType, CenterX(ghost)-8, CenterY(ghost)-8, DIR_DOWN, 300, WPND,  EWSprite, -1, 0, ewsizex, ewsizey);
+				}
+			}
+			else {
+				// shotcounter=0;
+				ghost->OriginalTile=OrigTile;
+				Ghost_SetAllDefenses(ghost, NPCDT_BLOCK);
+			}
+			if (!Ghost_Waitframe(this, ghost, false, false)){
+				Ghost_DeathAnimation(this, ghost, GHD_EXPLODE);
+				Quit();
+			}
+		}
+	}
+}

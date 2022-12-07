@@ -1,0 +1,18 @@
+{
+  "name": "Futhark Quest Items (Replace the Triforce!)",
+  "author": "Timelord",
+  "added": null,
+  "updated": "13 May 2014",
+  "tags": [
+    "#Global",
+    "#Item",
+    "#Misc"
+  ],
+  "rating": "1",
+  "downloads": "38",
+  "info": "Futhark.z is a script with global functions that use Elder Futhark (Norse Elder Runes), instead of Triforce pieces, and other game items. The instructions, and details all follow, inside the script file.",
+  "description": "Are you tired of the Triforce as the main gimmick in ZC quests? Do you want a system that gives the player both the Triforce, and the items, invisibly, using a clever dynamic?\n\nThe 'Futhark' script set both gives the player the Triforce, and gives out items, by spelling out the names of Norse Gods, via collecting RUNE STONES, that are each individually marked with a single rune from the Elder Futhark.\n\nWhenever you assemble enough runes that can be arranged to spell the name of a Norse god (as provided in the script), you will be given the corresponding item. When you collect all twenty-four (that you can divide up any way you wish, including 24 different levels, 12 levels with two each, or a standard eight levels, each with three RUNE STONES, the player is given the full Triforce, to pass any Triforce Check rooms.\n\nI created this for MabusThedark, to use in his quest Saving Midgard, and I ultimately don't know if he will use it, but as you all probably know, all of my scripts are open-source, and I felt that this was complete, and usable enough to add to the database.\n\nIt's rather topical, but you can always modify it to suit your needs, or base other ideas on it. You could make any new set of magical trinkets, that combine to give the player the use of items, and entirely replace the normal Triforce Pieces, with some minor to moderate modifications to this script.\n\nThis includes a base global active script, with each component isolated into a function, plus one item script, used as a pick-up script to give a standard Triforce fanfare, complete with music, health & magic refills, and level exiting animation, using standard dummy item trickery.\n\nCombine this with Bolt, or other weapon scripts, to make unique items, for a new style of adventure!",
+  "setup": "All set-up information is in the script file. The only required header is std.zh.\n\nYou may also want the bolt.z scripts (including the FFC script, tile sheets, sounds, and dependencies; that are all listed on the bolt.z script DB page), for making a lightning bolt spell to use with this script.",
+  "has_zip": true,
+  "has_popup": true
+}

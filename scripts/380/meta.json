@@ -1,0 +1,16 @@
+{
+  "name": "Mog Shop",
+  "author": "Avaro",
+  "added": "13 Jan 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "30",
+  "info": "A flexible shop script. (mog means mega omega glorious)",
+  "description": "This shop script covers the basic features, as well as:- Automatically displaying price tags- Items you can only buy once- Other currency than rupees- Can be placed on the floor or on top of tables, which alters the FFCs behavior",
+  "setup": "Set the const ints inside the script file. When you're done with that import the script. Only requires std.zh.\n\nPressing A plays an info message and pressing R buys the item. Make sure to let the player know about this!\n\nEach shop item is an FFC. Give it a combo and place it on the screen.\n\nD0: Item ID.\nD1: Info message.\nD2: Price.\nD3: Currency. -1 = rupees; 2 = bombs; 3 = arrows; 4 = magic; 5 = normal keys; 6 = super bombs; 7 = script 1; 8 = script 2; ...etc\nD4: -1 = can be bought more than once. Otherwise set this to the Screen->D index to use (a number from 0 to 7). Two shop items on the same screen can't use the same index.\nD5: Message for when you can't afford the item. -1 = uses your default message.\nD6: Shop style. 0 = items on the floor; 1 = items on top of tables.\n\nItems \"on the floor\" can be placed on solid combos too. The difference for items on tables is that their hitbox is 8 pixels below the FFC and they can only be approached from south. Check out the example quest.",
+  "has_zip": true,
+  "has_popup": true
+}

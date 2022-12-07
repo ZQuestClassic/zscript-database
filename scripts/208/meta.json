@@ -1,0 +1,18 @@
+{
+  "name": "Enemy Returner",
+  "author": "justin",
+  "added": "03 Dec 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "Trick ZC into respawning enemies when it normally wouldn't.Update:  Now with a global version and the original FFC version.",
+  "description": "Tired of players leaving just 1 enemy on the screen so they don't reset, well screw them!Can also be used to make enemies return faster without being \"Always Return\"Trick ZC into respawning enemies when it normally wouldn't.The update provides a global version that will run on every screen in your quest and respawn enemies to their original number after a set number of visits to a screen. The original FFC version is unchanged and can be used on a screen-by-screen basis.You can- set a screen flag to not run Global version on that screen- use the FFC version with the above screen flag to provide better control- FFC version can set number of visits per screen, or number of enemies that should respawn",
+  "setup": "Only requires std.zhSet the two constants to suit your quest.ERETURNER_ENEMY is the enemy# of an immobile enemy. It will never be seen. Something like the Fire enemy (#85 in classic set) works great.ERETURNER_SCREEND. Screen->D[] registers are variables specific to each screen. Other scripts might use these. Choose a number 0-7 unused by other scripts in your quest.--- these next three only needed for Global versionERETURNER_NUMVISITS. To the number of screen visits required in the global version. Adjust ERETURNER_SFMISCGS if other scripts use the General Use (script) screen flags, see notes in code about how to change.Add glb_EReturner(); to somewhere before Waitframe(); in global loop (or use sample global if no other global scripts running).---- Attach script to FFCD0 = Number of enemies the script should reset to. ie The number of enemies originally on screen.D1 = Number of visits to the screen for it to be reset.D2 = set to 1 to not run if no enemies on screen (let ZC do its normal respawning in this case). Leave at 0 to always runNotes on FFC- Number of visits doesn't count when number of enemies onscreen is greater or equal to D0.- Setting D0 to greater than number of enemies originally onscreen doesn't seem to break anything, but probably not a good idea.- Setting D1 to 1 would be like Enemies Always Return screen flag, but with greater control like only respawning 4 of the 8 enemies everytime.",
+  "has_zip": false,
+  "has_popup": true
+}

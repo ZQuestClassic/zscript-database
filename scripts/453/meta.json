@@ -1,0 +1,16 @@
+{
+  "name": "Simon Says Minigame",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "09 Jun 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "5",
+  "info": "Pattern memorization minigame",
+  "description": "You are given a keyboard. After certaain time, keys start playing in a sequence. Your objective is to memorize the pattern and reproduce it by standing on keyboard keys and pressing Ex1. Then process repeats with longer and faster patterns until either wrong button is pressed, which may result in deadly lighning strike, or certain limit is reached, which is rewarded either by item or secret trigger.Update 9.6.2022 Added piano sounds, added option to turn puzzle into a normal piano, used for fun, or in other puzzles.",
+  "setup": "ghost.zh required.1.Set up sequence of sounds for key tones, max 16.2.Set SFX_SIMONGAME_ARR_INPUT constant to ID of 1st sound in sequence.3.Set up combos for keys - Unpressed, then pressed.4.Build keyboard, place CF_SIMONGAME_BUTTON flags on keys,one per column, max 16.5.Place invisible FFC with script anywhere in the screen.D0 - number of keys in staerting sequence. 0 to turn into normal piano, to be used just for fun, or in other puzzles.D1 - number of keys in final sequence, one step away from reward. Max 16.D2 - Add together: 1 - memorized sequence must be replayed in reverse, 2 - randomize entire sequence, instead of adding one note at the end.D3 - Delay between notes playing in demonstration, in frames.D4 - Reduction of delay each round, making demonstration play fater with each round.D5 - Reward on victory: >0 - ID if prize item, -1 - secret trigger.D6 - Penalty for failure, in 1/4ths of heart in damage caused by lightning strike",
+  "has_zip": true,
+  "has_popup": true
+}

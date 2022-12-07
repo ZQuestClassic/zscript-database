@@ -1,0 +1,16 @@
+{
+  "name": "Press Start to Warp",
+  "author": "Avaro",
+  "added": "20 Dec 2018",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "An FFC script useful for title screens. Press start to warp.",
+  "description": "An FFC script useful for title screens. Press start to warp.",
+  "setup": "Put the FFC with the script on the screen. Set Side Warp A to warp where you want it to warp.Set the D-values as follows:D0: The time in frames to wait before the player can press start. (leave at 0 if not needed)D1: SFX for pressing start. (leave at 0 if not needed)D2: The time in frames to wait before warping after the player pressed start. (leave at 0 if not needed)D3: The combo ID of an invisible Auto Sidewarp A combo.D4: Set to 1 if you want the script to disable all button presses other than start.",
+  "has_zip": false,
+  "has_popup": true
+}

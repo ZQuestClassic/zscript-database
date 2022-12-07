@@ -1,0 +1,17 @@
+{
+  "name": "Enemy Waves / Fall From Ceiling",
+  "author": "justin",
+  "added": "24 Dec 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A couple of small scripts to be used together, or individually, or for something like the Enemy Waves script to expand upon.Enemy Waves - spawns another wave of enemies after you've killed all the screen's original enemiesFall From Ceiling - fake the \"fall from ceiling\" enemy spawn method",
+  "description": "Enemy Waves- spawns another wave of enemies after you've killed all the screen's original enemies- current setup allows two waves of enemies of any amount.- could easily add more waves- need to add what happens when you've finished going through all the waves of enemies- currently, each wave is set to spawn the same enemy type, could be modified.- can choose whether the wave should spawn normally, or fall from ceiling.Fall From Ceiling-  fake the \"fall from ceiling\" enemy spawn method- enemies that are falling should have their spawn type set to \"Instant\"- if not, their Puff or Flicker looks really weird- if using, a different spawn type, there is a hack method to draw the enemy offscreen while it spawns, then drop it from the ceiling- enemy needs to be created before being passed to this function.ComboFIRange function- a small little modification of the std.zh function, ComboFI.  - instead of just checking the combo for one flag, it'll search for a range of flags.- specify the min and max flag values.- used here to look for Enemy Placement Flags.",
+  "setup": "Only std.zh required.1. Set the Shadow sprite constants.  Currently set to unedited classic set defaults.2. Place Enemy_Waves as an FFC on the wave screen, set the arguments (in script comments)3. Place Enemy Placement Flags on the spots you want the wave enemies to spawn.  4. Make sure you have enough flag placements (they don't acutually need to be different flags), for the number of enemies you are spawning5. Add in whatever you want to happen trigger secrets etc (or add more waves), where I've commented to do so.The other functions are to be used with other scripts, and scripters should know what to do with them.",
+  "has_zip": false,
+  "has_popup": true
+}

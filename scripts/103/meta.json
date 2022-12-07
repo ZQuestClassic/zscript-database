@@ -1,0 +1,16 @@
+{
+  "name": "Z2 Boss Health Meter",
+  "author": "James24",
+  "added": "01 May 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script displays the boss's health as in Zelda 2: The Adventure of Link. When the boss is at full health, all rectangles are red and as the boss loses health the squares become white.",
+  "description": "This script displays the boss's health as in Zelda 2: The Adventure of Link. When the boss is at full health, all rectangles are red and as the boss loses health the squares become white. Note that the boss is defined to be the NPC with the most health on a given screen. Further, the meter can be moved by changing variable values in the code. Assumes that the quest maker is using the pure tileset palette which has red as 108 but this value can be changed.",
+  "setup": "Its a standard ffc script - the usual setup in the compiler and then a ffc for the screen with the code.Requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

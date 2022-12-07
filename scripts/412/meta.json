@@ -1,0 +1,16 @@
+{
+  "name": "Dynamic Lockblocks EX",
+  "author": "Alucard648",
+  "added": "08 Oct 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "8",
+  "info": "Requested by SkyFlare",
+  "description": "Extended variety of dynamic lockblock that can be unlocked and reset. Can require eith counters, or items in any combination. And items can get stun in lockblock, causing it to behave like normal lockblock. Also there is a trigger FFC script that counts number of unlocked lockblocks and sets/unsets screen state, updating combos real-time.",
+  "setup": "1. Set up items that add to counters in Item Editor.2. Set up 2 sequential combos. 1 for locked state, 1 for unlocked one. Set their type to None and solidity to full-solid.3. Set SCREEN_D_LOCK constant to avoid conflicts with other scripts.4. Import and compile the script. Nothing beyond default libraries is needed. Assign 2 FFC script slots.5. Place 1 invisible FFC for each dynamic lockblock onto combo in the screen from step 1, assign MultiitemDynamicLock script. D0 to D5: item requirements and counter costs as following:   if D>=0 - #####.____ - Counter to check.                  _____.#### - Counter cost.    if D<0  - Abs(D) - ID of item required.  All of those conditions must be met simultaneously to unlock lockblock.  D6 - Screen D bit used to track lockblock state. Must be unique for each lockblock in the screen.  D7 - Abs->String to display when cannot afford unlocking.   If D7 id set to <0, items will get stuck in lockbock, rendering it stay unlocked permanently.6. Place 1 invisible FFC with LockBlockTrigger script. D0 - Number of dynamic lockblocks needed to be unlocked to trigger. D1 - Screen State to track. Only use 8-LockBlock, 9-BossLockBlock, 10-TreasureChest, 11-LockedChest and 12-       BossLockedChest screen states. D2 - Quake power to trigger when unlocked. if set to <0, also stops music.Check out example quest to see how lockblock FFCs are set up.",
+  "has_zip": true,
+  "has_popup": true
+}

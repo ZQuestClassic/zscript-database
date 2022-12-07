@@ -1,0 +1,16 @@
+{
+  "name": "Light Path Puzzle",
+  "author": "Moosh",
+  "added": "21 Feb 2018",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "33",
+  "info": "A script for light path puzzles. As requested in this topic.",
+  "description": "A script for light path puzzles. As requested in this topic.",
+  "setup": "First off set the constant SFX_LIGHTPANEL_TURN in the script to the sound you want to play when a panel is turned.\n\nNext, map the tiles for your paths to combos in the exact same order shown in the example image. You'll want three groups of paths:Rotating Paths: Lit and unlit. 32 combos total.Fixed Paths: Lit and unlit. 32 combos total.Start and End Nodes: Lit and unlit. 32 combos total.\nYou can make your own tiles for the puzzle, but they have to be mapped in the exact order or it won't work right. The rotating tiles should also have rotational symmetry for the best effect. And yeah...I realize some of these combos are completely pointless in an actual puzzle. \n\nOnce the tiles are mapped you can place them on layer 0 of your screen. Place unlit versions of all tiles, except for the starting nodes which should be the lit ones. Place an invisible FFC with the script on the screen and give it the following arguments:D0: The combo number of the first of the 32 start/end nodes.D1: The combo number of the first of the 32 rotating pathsD2: The combo number of the first of the 32 fixed pathsD3: If you want a special secret sound, set this to something >0.\nThis script requires std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

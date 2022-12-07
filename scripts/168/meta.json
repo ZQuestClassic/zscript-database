@@ -1,0 +1,17 @@
+{
+  "name": "Delayed Enemy Spawner",
+  "author": "Ben",
+  "added": "28 Feb 2015",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This is a fairly simple script that spawns an enemy every y number of frames. You can have it stop after z number of enemies as well.",
+  "description": "Remember those rooms in Misery Mire in Link to the Past that had enemies that would just spawn in constantly? That's what this does. They just poof in at random locations on the screen. Each time, the default summon FX plays, but obviously you can change this if you want to.Includes a function borrowed from TheRandomHeader.zh as this script requires it. If you don't have that script imported you can just plop this entire thing into your FFC script file.",
+  "setup": "Create a FFC with this script attached to it.Argument 1 is the enemy ID of the enemy you want to spawn.Argument 2 is the interval in frames between each enemy spawning. I recommend at least 30, though you could have fun with lower numbers Argument 3 is after how many enemies the script should stop spawning anything else -- if you leave this at zero, it will continue spawning enemies forever.",
+  "has_zip": false,
+  "has_popup": true
+}

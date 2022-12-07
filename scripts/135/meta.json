@@ -1,0 +1,16 @@
+{
+  "name": "ALttP Bumpers",
+  "author": "Moosh",
+  "added": null,
+  "updated": "10 Sep 2015",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": "144",
+  "info": "This is a script for the bumper trap from A Link to the Past.",
+  "description": "A couple people asked for it and so here you go: ALttP bumper traps. If you're unfortunate enough to bump into one of these, it'll send you flying back in the direction you collided with it and most likely into the nearest pit.\n\nUpdate 10/6/14: Fixed the bug where too many bumpers in close proximity would make Link teleport.\nUpdate 9/10/15: Changed the mechanics behind moving Link and added a Z-axis check for a certain feather item.",
+  "setup": "First, set the SFX_LTTP_BUMPER constant in the script as well as the LTTP_BUMPER_FORCE and LTTP_BUMPER_ANIM_SPEED constants (optional).\n\nNext, set up your bumper combos like so:Stationary bumperRetracted bumperStationary bumperExtended bumper\nNext place an FFC that uses the first of the four combos and give it the script. Set its D0 to the number of frames it should knock Link back for.\n\nBe sure to test your rooms after placing down bumpers. It's possible that poorly placed bumpers may result in Link bouncing between them forever, requiring an F6.\n\nAlso that std.zh thing. You should probably have it.",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Ropa (Autoghost)",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a recreation of the Ropa from LTTP that hop towards Link, halting after each jump for Rand( 8 )<<4 frames or what Zol's use.",
+  "description": "This is a recreation of the Ropa from LTTP that hop towards Link, halting after each jump for Rand( 8 )<<4 frames or what Zol's use.",
+  "setup": "Set up the enemy as follows.\nType: Other\nAnimation: 2-Frame, 3-Frame, 4-Frame, Flip, or None\nSpawn Animation: Instant\nStep Speed is used\nAttribute 11: GH_INVISIBLE_COMBO or GH_INVISIBLE_ALT (normallly -1)\nAttribute 12: Script slot\n\nResources\n\nRequires ghost.zh, std.zh, and string.zh\nGraphics can be found here.",
+  "has_zip": false,
+  "has_popup": true
+}

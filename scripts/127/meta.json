@@ -1,0 +1,16 @@
+{
+  "name": "Mirror Darknut (Autoghost)",
+  "author": "Mero",
+  "added": null,
+  "updated": "20 Sep 2014",
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": null,
+  "downloads": "56",
+  "info": "I decided to give Darknuts the mirror shield. This is the horrifying result. O_O",
+  "description": "These guys will reflect magic and sword beams both from the player and enemies. This makes for interesting puzzles involving mirrorrobes as the demo shows.",
+  "setup": "Create a darknut.Misc Attribute 11: GH_INVISIBLE_COMBO.Misc Attribute 12: MirrorDarknut Script Slot.Voila, you just created a wolf in sheep's clothing.",
+  "has_zip": true,
+  "has_popup": true
+}

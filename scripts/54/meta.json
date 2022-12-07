@@ -1,0 +1,17 @@
+{
+  "name": "DS-Style Control System",
+  "author": "Isdrakth\u00fcl",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This script disables the use of the keyboard, except for the Ex keys, and allows Link to be controlled via the mouse instead. It is meant to be used with diagonal movement and without selectable A-button items. Left-click an area away from Link to make him walk; clicking near him will cause him to use his sword. Right-clicking uses the item equipped to the B button. Scrolling up is equivalent to pressing the L key; scrolling down is used for the R key.",
+  "description": "This script disables the use of the keyboard, except for the Ex keys, and allows Link to be controlled via the mouse instead. It is meant to be used with diagonal movement and without selectable A-button items. Left-click an area away from Link to make him walk; clicking near him will cause him to use his sword. Right-clicking uses the item equipped to the B button. Scrolling up is equivalent to pressing the L key; scrolling down is used for the R key.",
+  "setup": "Be sure \"Click to freeze\" is turned OFF in ZC's settings or this script will not work properly!\n\nSet the following values in the global script:\n\nints:\nSWORDDISTANCE = The minimum distance between the cursor and Link that will cause Link to walk instead of using his sword.\ncursoritem = The item Link must have in order for the cursor to appear.\n\nconst ints:\ncCSet = The CSet of the cursor.\ncFirstTile = The first tile in the cursor's animation.\ncSpeed = The animation speed of the cursor.\ncFrames = The number of tiles in the cursor's animation.\ncOpaq = The cursor's opacity. Set to 64 for translucent, 128 for opaque.\ncLayer = The layer that the cursor is drawn on.\n\nbool:\nhomingBrang = Whether boomerangs should follow the cursor while the right mouse button is held.\n\n\nffc script setControlSys allows you to set data about the cursor and the sword distance. To leave a variable unchanged, set its corresponding D-value to -1.\n\nD-Values:\nD0 = The new SWORDDISTANCE.\nD1 = The new cursoritem.\nD2 = The new cCSet.\nD3 = The new cFirstTile.\nD4 = The new cSpeed.\nD5 = The new cFrames.\nD6 = The new cOpaq.\nD7 = The new cLayer.\nRequires std.zh, included in ZC",
+  "has_zip": false,
+  "has_popup": true
+}

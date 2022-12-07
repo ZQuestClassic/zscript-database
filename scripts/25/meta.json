@@ -1,0 +1,16 @@
+{
+  "name": "Sound effect for drowning",
+  "author": "Avaro",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "This simple script plays a sound effect when Link drowns in \"walkable water\".",
+  "description": "This simple script plays a sound effect when Link drowns in \"walkable water\". You need to have the quest rule for drowning enabled, or else Link can't drown.",
+  "setup": "1. Get a sound effect for drowning. Import it into your quest. Keep track of the sound effect number.2. Copy the script into your script file. Combine it with your existing global script (if there is one).3. Replace the \"0\" for the LinkDrownSFX with your sound effect number for drowning.4. Import, compile and assign the script (as you do with any other scripts).Requires std.zh (comes with downloading Zelda Classic).",
+  "has_zip": false,
+  "has_popup": true
+}

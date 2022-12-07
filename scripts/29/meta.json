@@ -1,0 +1,17 @@
+{
+  "name": "Z4 Crab",
+  "author": "Mitchfork",
+  "added": "26 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A recreation of the crab enemies from Link's Awakening.",
+  "description": "This script approximately recreates the movement pattern of crabs found on Toronbo Shores in Link's Awakening. These enemies will wander around, but immediately zoom towards Link whenever he's close to horizontally aligned with them.In more technical terms, this script creates an AutoGhosted enemy that walks around, without stopping, in random 4-way directions for bounded random distances. If Link gets in its horizontal path, it speeds up by a factor determined by misc. attributes and zooms in his direction.",
+  "setup": "Setup the enemy as type: Other. It needs at least 1 HP, and the animation/graphics can be set up however you like. The following enemy attributes are used:Step Speed: Determines the normal move speed of the enemy (standard: 25)Misc. Attr. 1: Minimum pixel distance for each movement (default: Misc. Attr. 2: Maximum pixel distance for each movement (default: 16)Misc. Attr. 3: Amount step rate is multiplied by while zooming (default: 6)Misc. Attr. 11: GH_INVISIBLE_COMBOMisc. Attr. 12: Script Slot\nRequires ghost.zh, std.zh, and string.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

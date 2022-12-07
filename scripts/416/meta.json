@@ -1,0 +1,18 @@
+{
+  "name": "Litems.zh",
+  "author": "Alucard648",
+  "added": "02 Nov 2021",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item",
+    "#Library"
+  ],
+  "rating": null,
+  "downloads": "6",
+  "info": "Custom level specific items.",
+  "description": "This simple library allows custom level specific items by using higher bits from Game->Litems array (0x20, 0x40, 0x80 etc.)This library features example script - Link`s awakening Stone Beak item and Hint Bird Statue FFC that displays message, when stone beak from the same level is inserted into statue.Subescreens are jank-mcjunk. There is no way to render custom level specific items beyond default ones in subscreen.",
+  "setup": "Import and compile the library. Nothing extra is needed beyond default libraries. Assign 1 item an\u0432 1 FFC script slots.LevelItem//Item script that grants level specific items.//D0 - Litem ID. Must be a power of 2, or you will give Link multiple level specific items at once.//D1 - Message string ID.LAHintBirdStatue//Link`s Awakening bird statue. If Link inserts stone beak from the same level, it displays message.//Place at bird statue`s location.//D0 - Message ID.",
+  "has_zip": true,
+  "has_popup": true
+}

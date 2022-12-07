@@ -1,0 +1,17 @@
+{
+  "name": "Helmasaur",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "Helmasaurs move towards Link at a constant rate, and are stunned when hit in the front with the sword.",
+  "description": "Helmasaurs move towards Link at a constant rate, and are stunned when hit in the front with the sword.",
+  "setup": "Size: 1x1\nEnemies Used: 1\nCombos Used: 1\n\nCombos\nGhost Invisible Combo is the only one so this section is empty.\n\nEnemies\nMain Enemy: Helmasaur.\nType: Other\nHP, Damage, Step and Animation are used.\nAttribute 1 is the time it is stunned when you hit it in the front.\nAttribute 11 is GH_INVISIBLE_COMBO\nAttribute 12 is the script slot for the FFC\n\nResources\n\nRequires ghost.zh",
+  "has_zip": false,
+  "has_popup": true
+}

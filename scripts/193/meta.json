@@ -1,0 +1,17 @@
+{
+  "name": "Big Wizzrobe Trio (Autoghost)",
+  "author": "ywkls",
+  "added": null,
+  "updated": "27 Feb 2021",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "80",
+  "info": "Creates 3 foes, only one of which is real. The real one periodically shots a lightning bolt at you.A work in progress attempt to recreate the fight against Agahnim from LTTP.",
+  "description": "This foe attempts to recreate the behavior of Agahnim in LTTP, without the ability to bounce the magic he sends at you back with the sword. Instead, it is set up to use the Mirror Shield and only be vulnerable to those shots like the Mirror Wizzrobe.Update-8-17-15-  Changed name.2-27-21Removed laser.zhRevised script completelyUpdated to 2.53",
+  "setup": "Create 2 foes, a real one vulnerable only to reflected magic and a fake one, vulnerable to nothing.Both foes are 2 x 2. Set combos in order up, down, left and rightRequires-std.zhffcscript.zhstring.zhghost.zh",
+  "has_zip": true,
+  "has_popup": true
+}

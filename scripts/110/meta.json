@@ -1,0 +1,17 @@
+{
+  "name": "Fire Keese",
+  "author": "LinktheMaster",
+  "added": "17 May 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a ghosted version of a keese that flies around (without stopping).  Oh, and it's on FIRE.  And we all know that fire makes everything better!  In this particular case it means that Link will get hurt if he hits it with the sword, hammer, or wand handle.",
+  "description": "THIS SCRIPT REQUIRES GHOST.ZH TO BE SETUP.  So make sure you have that properly setup first!\n\nOther than that, the setup for this script is pretty easy.\n\nWhen you have ghost setup, go ahead and create an enemy for the keese.  Here are the properties you need for this script to work:\n\nType: Other (Floating)\nE. Anim/F. Rate: Set this to whatever is most applicable to the tiles you have handy.  (Make sure you use one of the flying options if you have multiple directions.)  For the tiles I included in the second screenshot, set it to 4-Frame and a frame rate of around 8.\nRandom Rate: This is number of 8-pixel segments the keese will fly before changing directions.  1 is 8 pixels, 2 is 16 pixels, etc.\nHoming Factor: This is the percentage chance (0-100) that the keese will go after Link when changing directions\nMisc Attr. 11 (Under Data 2): Set this to the value of GH_INVISIBLE_COMBO or -1.\nMisc Attr. 12 (Under Data 2): Set this to the script number you assign FireKeese to\n\nIf you want the keese to be hurt by the level 0 boomerang, be sure to check \"Damaged by Power 0 Weapons\" under Misc. Flags!",
+  "setup": "No reviews found!",
+  "has_zip": false,
+  "has_popup": true
+}

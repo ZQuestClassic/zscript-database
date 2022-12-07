@@ -1,0 +1,16 @@
+{
+  "name": "Puzzle Checker",
+  "author": "Beefster",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This script generically checks FFC-based puzzles. It runs through a sequence of FFCs (which you can set) checking a certain index of their Misc for a certain state. You can prevent it from doing its magic with a concurrency lock. (This is often necessary to get puzzles to work right, due to concurrency issues)This is intended for other scripters, as it interacts with other FFCs, requiring the scripts to interface with them.",
+  "description": "This script generically checks FFC-based puzzles. It runs through a sequence of FFCs (which you can set) checking a certain index of their Misc for a certain state. You can prevent it from doing its magic with a concurrency lock. (This is often necessary to get puzzles to work right, due to concurrency issues)This is intended for other scripters, as it interacts with other FFCs, requiring the scripts to interface with them.",
+  "setup": "Constants:Set up your two constants such that they don't interfere with scripts you're already using. (Involving FFC->Misc and Screen->D)When writing a script, you must do the following:- FFCs involved in the puzzle must set their corresponding Misc values (use the constant, FFCMISC_PUZZLECHECK) to their \"state\" as you want the puzzle checker to see them. For example, if you have a whole bunch of dials that have to be set correctly, set the Misc value to 1 if it's correct.- If multiple FFCs can change at the same time, it is HIGHLY recommended that you set Screen->D[SCREEND_PUZZLELOCK] to nonzero during the change, with some delays involved. This prevents problematic race conditions involved with concurrency. (This may be necessary in other cases as well.)Lastly, setting up the script instances:-Make sure that your FFCs involved in the puzzle are all in a \"cluster\" (In sequence with no gaps) in the FFC list.- D0: desired state to check for- D1: First FFC in the \"cluster\"- D2: Last FFC in the \"cluster\"This script is unnecessary if you don't use any scripts that interface with it.",
+  "has_zip": false,
+  "has_popup": true
+}

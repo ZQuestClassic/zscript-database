@@ -1,0 +1,16 @@
+{
+  "name": "Trampoline",
+  "author": "Moosh",
+  "added": null,
+  "updated": "11 Oct 2014",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "82",
+  "info": "This is a script for trampolines that allow Link to jump over solid combos.",
+  "description": "This script turns an FFC into a trampoline that launches Link into the air when he steps on it. While in the air he can move over any solid combos marked by a specific flag.\n\nUpdate 10/11/14: Fixed the bug where setting the trampoline's jump to higher than the terminal velocity constant would cause the script to not work.",
+  "setup": "First, set the TRAMPOLINE_ANIMATION_FRAMES constant in the script.Next, place down an FFC using a trampoline combo. The combo after the trampoline in the combo list should be the trampoline with a bounce animation.Set the FFC's D0 to how high you want it to launch Link and its D1 to the flag that indicates which solid combos he can move over while in the air. The script only detects the flag on layer 0, so be sure you have it on the right layer. Avoid having barriers more than one combo thick so the player can't get stuck.Requires std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

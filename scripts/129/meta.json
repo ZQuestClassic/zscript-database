@@ -1,0 +1,16 @@
+{
+  "name": "FirePeahat (Autoghost)",
+  "author": "Mero",
+  "added": "21 Sep 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "2",
+  "downloads": "49",
+  "info": "I heard you liked Peahats, so I made a peahat so you can peahat while you peahat.",
+  "description": "This is a peahat that drops a firetrail every 16 pixels of movement.",
+  "setup": "Create a peahat, be sure to set weapon damage.Misc Attribute 11: GH_INVISIBLE_COMBOMisc Attribute 12: FirePeahat Script Slot Number",
+  "has_zip": true,
+  "has_popup": true
+}

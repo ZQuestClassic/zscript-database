@@ -1,0 +1,16 @@
+{
+  "name": "Play Enhanced Music (+ Boss music function)",
+  "author": "Avaro",
+  "added": "26 Jun 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": null,
+  "info": "FFC Script that plays enhanced music on the screen. Can be used for a boss encounter music too.",
+  "description": "FFC Script that plays enhanced music on the screen. Can be used for a boss encounter music too.",
+  "setup": "D0 should refer to a DMap that has your desired music set up. You don't have to actually use the DMap for anything.If D1 is set to 0, it just plays the music.If D1 is set to 1, then it only plays the music for as long as there are valid enemies on screen.",
+  "has_zip": false,
+  "has_popup": true
+}
