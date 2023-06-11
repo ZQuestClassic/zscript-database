@@ -1,0 +1,19 @@
+{
+  "name": "LWeapons.zh",
+  "author": "ywkls",
+  "added": null,
+  "updated": "31 Mar 2021",
+  "tags": [
+    "#FFC",
+    "#Global",
+    "#Item",
+    "#Library"
+  ],
+  "rating": "2",
+  "downloads": "78",
+  "info": "A custom script header for making relatively easy to use attacks which can be launched from existing items. Also allows for easily linking attacks and ffcs if so desired.And can create special effects upon contact with enemies or objects.Designed to mimic ghost.zh behavior and syntax.",
+  "description": "Lweapons.zh is used to create lweapons independent of ffcs that can have a variety of behaviors.A Lweapons.zh script should begin by calling one of the functions that launches the lweapons.This can be done in an item or ffc script. Several example scripts are included as is a demo.This sets up much of the lweapon's internal data. By calling UpdateLWZH1() before Waitdraw andUpdateLWZH2() afterwards in your global script, you activate the automatic handling of these lweapons.The global variables are used to set things such as flags for various behaviors,movement types,the life of the lweapon, what it does on dying as well as important data for proper combo interaction.Most lweapon attributes can be altered by these functions, to create a lweapon of the size and appearance that you desire.Most of the lweapons do not have to be of their intended type and when it comes to melee lweapons; using the original type is impossible. The sprites for the lweapons should have at least three tiles, in the order vertical, horizontal and diagonal.There are a number of functions used to create and control lweapons. Theycan be assigned a number of simple movements and can be made to vanish andspawn additional lweapons.To prevent conflicts with Lweapons.zh, scripts should avoid using the indexlweapon->Misc[LW_ZH_I_FLAGS]. This index is set to 15 by default, but that can be changed.Update:8-20-19- Added item monitor script for shovels.Changed movement type LW_BOUNCE to LW_CAROMUpdated fixes to collision detection.Fixed bug where sprites were rotated when they shouldn't be.Updated Ice Rod script to work better.\n11-28-20 \nUpdated script files to 2.53 standardsUpdated Cane of Somaria scriptUpdated melee weapons flags for pounding so as to affect hammer flags\nUpdated shovel script \nReacts to flag 3 (whistle), revealing under combo.Reacts to flag 13 (Dive->Item), using a screen's special item settings to create an item\nUpdated lwzh.txt to new settingsFixed bug where lweapons created by the header wouldn't react to magic mirrorsAdded flag for lweapons that freeze waterAdded death effect, 4 fires horizontal/verticalAdded some miscellaneous functionsAdjusted medallion scripts to adjust Link's collision detection internallyOptimized some codeNPC defense detection now reacts to more defense typesRemoved flag for disabling Link's collision detection globally due to bugsRemoved flag for creating artificial reflected lweapons since it never workedRemoved item monitor script, as it is no longer neededRenamed some files for compatibility\n3-31-21Added flag for lweapons to detonate bomb and super bomb flagsAdded flag for lweapons to set off fire flagsAdded lweapon death type, returns to Link on deathDefaults to next combo in the list.Updated shovel script to require script type 1 for spots that yield an itemCredit to Saffith for creating ghost.zh which was the basis from which this was born.Credit to ZoriaRPG for making the item pickup array.Credit to Moosh for making the hookshot routine.",
+  "setup": "Requires these script headers \nstd.zhstdExtra.zhffcscript.zhghost.zhstring.zh\nAfter importing the main \"lweapon.zh\" file, add the function \"UpdateLWZH1()\" before Waitdraw() in the global script and UpdateLWZH2() afterward.",
+  "has_zip": true,
+  "has_popup": false
+}

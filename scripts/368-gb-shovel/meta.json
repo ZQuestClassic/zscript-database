@@ -1,0 +1,17 @@
+{
+  "name": "GB Shovel",
+  "author": "Mani Kanina",
+  "added": null,
+  "updated": "09 Jan 2020",
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": "46",
+  "info": "A shovel script with functionality and animation similar to the shovel item in the Oracle of Ages/Seasons games.",
+  "description": "A gameboy zelda style shovel script.This is a rewrite of Jamian's shovel script to offer better animation, more customization, and more features. Authenticity to how the shovel looks and works in the GB games was the main focus here.",
+  "setup": "Headers needed:\nstd.zh\nffcscript.zh\n\nSet-up instructions:First configures all options at the start of the script file in regards to what combo IDs to use and combo types, etc. This is not an optional step, everything will probably be a mess for your quest if you don't!Import scripts and be sure to slot in both the item script and the two FFC scripts in appropriate spots. (Note: One of the FFCs needs to be in the numbered slot you define in the script file!)Next, set up an item in Zelda Quest that has the item script Shovel configured to it.Configure combos to be digable in your quest based on the pre-sets you configured.Dig away!For Special Items you can dig up or Dig Secrets use the specialized FFC for that:\nThe FFC needs to be placed *ON* the combo you want the desired effect on.\n(For you coders out there thats the ComboAt the FFC's X+4, Y+4 position, to give slight leeway).\n\nIf you give the FFC no data in the D variables it will spawn the screens Secret Item (if it has not been acquired) when you dig there.\nSpecial items that are dug up uses the RoomData, set room type to special item to use, then define the item ID.\nThe other use of the FFC (which does not spawn items) is to dig up a secret combo of your desire when you dig there.\nIf so you need to give the FFC the following info:\n\nD0: Combo ID of the combo you wish to be there after you have dug.\nD1: Set this to \"1\" if you want the Screen Secret to be triggered when you dig there. (Handy if you want it to be a thing you dig up once)\n\nNote: A good rule of thumb is to either have the combo of the FFC itself be nothing but transparent or have it only show up with lens of truth.",
+  "has_zip": true,
+  "has_popup": true
+}

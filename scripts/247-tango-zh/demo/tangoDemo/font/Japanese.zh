@@ -1,0 +1,30 @@
+// A very limited Japanese font. Contains only the necessary characters for
+// the Japanese equivalent of "It's dangerous to go alone! Take this."
+
+int FONT_JAPANESE[] = {
+    TANGO_FONT_CUSTOM,
+    TANGO_FONT_MONOSPACE,
+    0,    // Unused
+    1040, // Starting tile
+    12,   // Character height
+    2,    // Space between lines
+    12    // Character width
+};
+
+// Some constants to make the string slightly less ugly
+const int KNJ_ICHI    = 33; // 33 is the lowest number of printable character
+const int KNJ_JIN     = 34;
+const int HG_DE       = 35;
+const int HG_HA       = 36;
+const int KNJ_KI      = 37;
+const int KNJ_KEN     = 38;
+const int HG_JI       = 39;
+const int HG_SMALL_YA = 40;
+const int KUTEN       = 41;
+const int HG_KO       = 42;
+const int HG_RE       = 43;
+const int HG_WO       = 44;
+const int KNJ_JU      = 45;
+const int HG_KE       = 46;
+const int HG_YO       = 47;
+const int HG_U        = 48;

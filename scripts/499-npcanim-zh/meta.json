@@ -1,0 +1,17 @@
+{
+  "name": "NPCAnim.zh",
+  "author": "Moosh",
+  "added": null,
+  "updated": "16 Apr 2023",
+  "tags": [
+    "#2.55",
+    "#Library"
+  ],
+  "rating": "1",
+  "downloads": "21",
+  "info": "This is a header for handling enemy animations and movement for NPC scripts.",
+  "description": "This is a header for handling enemy animations and movement for NPC scripts.\n\nUpdate 9/10/22 - 1.1.0: Added two new functions.PlayDeathAnim() makes the enemy do a boss explode death animation.SetAnimMovementHitbox() lets the enemy use a different hitbox for movement and damage collisions.\nUpdate 4/16/23 - 1.2.0: Rewrote a large portion of the header to use new ZScript classes instead of the janky older array method. This will break backwards compatibility with older versions of scripts, but they should be very easy to update.New flag: ADF_VERTICAL, which will allow 4-way and 8-way animations to have their directions arranged vertically.New function: ExtendAnim() which can be called after AddAnim() to give individual animations different sizes and hitbox offsets.DEBUG_COLLISION_HITBOX config, allowing visual debugging collision hitboxes with the environment.A few small quality of life functions.",
+  "setup": "See the included readme for setup and documentation.",
+  "has_zip": true,
+  "has_popup": false
+}

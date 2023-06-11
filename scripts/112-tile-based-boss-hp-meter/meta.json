@@ -1,0 +1,16 @@
+{
+  "name": "Tile-based Boss HP meter",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "20 Feb 2023",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": "12",
+  "info": "Draws enemy`s HP meter in a similar way as Link`s HP and MP gauges are drawn in passive subscreen.",
+  "description": "While playing quests that feature custom bosses (especially ghosted ones), I was annoyed by one quite maddening fact: you can`t know how how many HP the boss still has left! Especially annoying when you are low on HP and have a dilemma: should you just drink valuable potion for a chance of finishing off that nasty monster, or hit F6 and restart. Even more annoying with bosses that require limited resources, like bombs or arrows, to defeat. I have seen a Z2-styled boss HP meter script, but it has hardcoded indicator setup and can`t be adapted to suit any other tileset beyond Classic.So I have created my own version of boss health meter that pretty much mimicks Link`s one in the passive subscreen.Update: Added an arguments to set font for boss name drawing and to alter boss HP meter`s Y position.Update #2 Added ability to draw customizable background beneath Boss HP gauge.Also added possibility to hide boss HP meter until Link obtains specific item.Credit goes to Gege for suggesting this feature as well as providing the screen shot.Update #3 Added intro string, Megaman-like intro HP generation and multi-row carryover for OP bosses on request by SkyFlare. It`s recommended to do full set up from scratch to update your quests to new version of this script.Update #4: Added option to cuatomize left and right caps for boss HP meter. See new constant in script file.",
+  "setup": "Requires std.zh and string.zh.1. Set up 5 consecutive tiles in a row in Tile Editor as following:1. Full heart.2. 3/4 heart.3. 1/2 heart.4. 1/4 heart.5. Empty heart.2. Note down ID of the first tile in the row (the \"Full Heart\" one).A. Set up the 3 x BACKDROP_NUMROWS tile sheet for backdrop that will be drawn beneath HP gauge.Set BACKDROP_TILE to ID of the top left corner tile of the sheet.3. Import and compile the script.4. In your boss screen, place the invisible FFC, one for each boss, if multiple bosses are in one screen, and assignthe script and the following arguments:D0: ID of the tile you noted down in step 2.D1: Slot number of the boss enemy, or his weak spot.D2: Hit Points per tile. Larger values means smaller life meter and vise versa.D3: Cset used for drawing the life gauge. Setting value exceeding 11 results in health meter flashing trough all csets.D4: X offset of boss name drawing. et to a negative to disable name drawing.Refer to the \"FONT_Y_OFFSET\" constant in the script file.D5: X margin on both sides of the screen. If settingsD6: Width of backdrop, in tiles plus one tile to the left and to the right.Set it to -1 for no background.D7: String to display at the start of the battle, accompanied by earthquake, if D1 is set to 1.Otherwise, it sets Y position of boss health gauge.5. Test and enjoy.",
+  "has_zip": true,
+  "has_popup": true
+}

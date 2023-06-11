@@ -1,0 +1,85 @@
+// Just a few functions common to the different scripts.
+
+bool linkAlreadyTalking;
+
+
+// Uses Tango to display a ZScript string (int[]). Returns the number of
+// the text slot used or TANGO_INVALID if the string could not be displayed.
+int ShowString(int string, int type, int style, float x, float y)
+{
+    int slot=Tango_GetFreeSlot(type);
+    if(slot==TANGO_INVALID)
+        return TANGO_INVALID;
+    
+    Tango_ClearSlot(slot);
+    Tango_LoadString(slot, string);
+    Tango_SetSlotStyle(slot, style);
+    Tango_SetSlotPosition(slot, x, y);
+    Tango_ActivateSlot(slot);
+    
+    return slot;
+}
+
+// Uses Tango to display a ZC message (Quest > Strings). Returns the number of
+// the text slot used or TANGO_INVALID if the message could not be displayed.
+int ShowMessage(int message, int type, int style, float x, float y)
+{
+    int slot=Tango_GetFreeSlot(type);
+    if(slot==TANGO_INVALID)
+        return TANGO_INVALID;
+    
+    Tango_ClearSlot(slot);
+    
+    // If a message contains '%', only the portion after that is loaded.
+    Tango_LoadMessage(slot, message,  '%');
+    Tango_SetSlotStyle(slot, style);
+    Tango_SetSlotPosition(slot, x, y);
+    Tango_ActivateSlot(slot);
+    
+    return slot;
+}
+
+// Returns true and sets linkAlreadyTalking to true if Link is trying
+// to talk to this NPC.
+bool StartTalking(ffc this)
+{
+    if(!Link->PressA || linkAlreadyTalking)
+        return false;
+    
+    bool talk=false;
+    
+    if(Link->Dir==DIR_UP)
+    {
+        if(Abs(Link->X-this->X)<8 && Abs(Link->Y-8-this->Y)<8)
+            talk=true;
+    }
+    else if(Link->Dir==DIR_DOWN)
+    {
+        if(Abs(Link->X-this->X)<8 && Abs(Link->Y+16-this->Y)<8)
+            talk=true;
+    }
+    else if(Link->Dir==DIR_LEFT)
+    {
+        if(Abs(Link->X-16-this->X)<8 && Abs(Link->Y-this->Y)<8)
+            talk=true;
+    }
+    else
+    {
+        if(Abs(Link->X+16-this->X)<8 && Abs(Link->Y-this->Y)<8)
+            talk=true;
+    }
+    
+    if(talk)
+    {
+        linkAlreadyTalking=true;
+        return true;
+    }
+    else
+        return false;
+}
+
+// Free up Link to talk to other NPCs.
+void StopTalking()
+{
+    linkAlreadyTalking=false;
+}

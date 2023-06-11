@@ -1,0 +1,16 @@
+{
+  "name": "Twilight Princess Statue Puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "12 Dec 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "6",
+  "info": "ZC adaptation of statue puzzle from Zelda: Twilight PrincessMade on request by SkyFlare",
+  "description": "Do you remember that statue puzzle that guards Master Sword in Legend of Zelda: Twilight Princess? That is it. Stand on remote controller, then press Ex2 to rotate all statues anti-clockwise, or press Ex1 to move each statue one combo in direction they facing, unless obstructed. Beware of collisions! Land all statues on trigger spaces simultaneously to solve the puzzle.Update 9.6.2022 - Jumping animation for statues and support for inherent trigger flags.Update 12.12.2022 - Kill controls on puzzle solving",
+  "setup": "1. Surround puzzle area with NoPushblocks flags. .2. Place flags 62 - 65 (Pushblock, one direction, many) to define starting position and orientation of statues.3. Flag trigger spaces with flag 66 (Block trigger).4. Set up 4 combos in sequence for statues Up-Down-Left-Right5. Place FFC with TP_StatuePuzzle scriptD0 - ID of 1st statue combo (statue facing upwards, step 4)D1 - Music to play until puzzle is solved.",
+  "has_zip": true,
+  "has_popup": true
+}

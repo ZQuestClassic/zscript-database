@@ -1,0 +1,16 @@
+{
+  "name": "True Push Block Under Combo",
+  "author": "Moosh",
+  "added": "10 Feb 2019",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": "18",
+  "info": "Ever have problems with ZC's under combo system and push blocks? Are you tired of them leaving ugly streaks on the ground and erasing ground details? Do you not like patching over these problems using layers? Then this is the script for you.",
+  "description": "Ever have problems with ZC's under combo system and push blocks? Are you tired of them leaving ugly streaks on the ground and erasing ground details? Do you not like patching over these problems using layers? Then this is the script for you.",
+  "setup": "Place down an FFC with this script on the screen and you're done. If you want each push block on the screen to have a different combo under it, you can also specify a reference map and screen to pull from:D0: The map of the screen to use as reference. 0 for no reference screen.D1: The screen to use as reference. Keep in mind that ZQuest lists screen numbers in hexadecimal while FFCs only accept decimal, so you'll have to convert your screen numbers from hex to decimal first.\nThis script uses std.zh.",
+  "has_zip": true,
+  "has_popup": true
+}

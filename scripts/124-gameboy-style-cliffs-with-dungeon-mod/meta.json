@@ -1,0 +1,16 @@
+{
+  "name": "Gameboy Style Cliffs (With Dungeon Mod)",
+  "author": "Moosh",
+  "added": null,
+  "updated": "24 Aug 2018",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "8",
+  "downloads": "217",
+  "info": "Jumping off of cliffs and somehow not breaking any bones has always been a staple of the Zelda series. Now you too can do this in ZC, provided you're using EZGBZ, Pure, or any other Gameboy inspired tileset. I've also provided a slightly modified version of the script for use in dungeons.",
+  "description": "Overworld VersionSet the CT_CLIFF and CLIFF_PAUSE constants in the scriptSet up your jump point combos to have whatever combo type CT_CLIFF is set to and be sure that they're half solid with the solid half pointing in the direction the player will jump off them.Place down an FFC with this script and it should do its magic\nNote: Jump points going left, right, or up can only be one tile thick and jump points can not go over screen boundaries.\n\nDungeon VersionSet up four new wall combos you can jump down in the order of Up, Down, Left, RightPlace down an FFC with this scriptSet D0 on the FFC to the combo number of the first of the four combos\nNote: Unlike the overworld version, the combos here can be any type. It might be a good idea to do something to make them stand out from your regular walls when editing and testing the quest, though. CSet2 in the combo editor could be useful for this.\n\nIf anything here is unclear, try looking at how it's set up in the example quest.",
+  "setup": "klop422\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 14 May 2020 - 12:21 PM\n\t\t\t\n\n\t\t\t\tIt's a fun little miniquest. A nice enough puzzle, not too hard, and not too obvious.Oh, and the script works decently well too.\n\t\t\t\t\n\t\t\t\n\n\n\n\n\n\n\n\u00a0\n\n\n\n\n\n\t\t\t\n\tPeteo\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 02 January 2020 - 02:23 PM\n\t\t\t\n\n\t\t\t\tThis is too good to be true! Awesome script!\n\t\t\t\t\n\t\t\t\n\n\n\n\n\n\n\n\u00a0\n\n\n\n\n\n\t\t\t\n\tLemmy Koopa\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 07 December 2014 - 03:44 AM\n\t\t\t\n\n\t\t\t\tHow do I give this a rating of 10/5?\n\t\t\t\t\n\t\t\t\n\n\n\n\t\t\n\t\t\t\t\n\tDeedee\n\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\tlikes this\n\t\t\t\n\t\n\n\n\n\u00a0\n\n\n\n\n\n\t\t\t\n\tZeldaPlayer\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 28 July 2014 - 04:48 PM\n\t\t\t\n\n\t\t\t\tThis is an amazing script!\n\t\t\t\t\n\t\t\t\n\n\n\n\n\n\n\n\u00a0\n\n\n\n\n\n\t\t\t\n\tSyrianBallaS\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tEdited 28 July 2014 - 02:01 AM\n\t\t\t\n\n\t\t\t\tYou my friend are a genius, something that seems simple is more complicated than it seems\n\t\t\t\t\n\t\t\t\n\n\n\n\n\n\n\n\u00a0\n\n\n\nView all reviews (7)",
+  "has_zip": true,
+  "has_popup": true
+}

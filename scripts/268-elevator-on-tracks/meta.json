@@ -1,0 +1,16 @@
+{
+  "name": "Elevator on Tracks",
+  "author": "Moosh",
+  "added": "13 May 2017",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": "34",
+  "info": "Elevate for 8 Red Coins!",
+  "description": "This is a script for an elevator that moves along a track. I've tested it mainly in sideview, but it may work in top down screens as well for something like the Somaria platforms in Turtle Rock in ALttP.",
+  "setup": "Firstly you'll want to set all the constants at the top of the script for your quest.Place down the tracks for your elevator with the combo flags CF_ELEVATOR for most of the track and CF_ELEVATORSTOP for places you can get off at. Place the elevator FFC on top of a CF_ELEVATORSTOP combo. If you're using a bigger than 1x1 elevator like I am in the example quest, set D0 and D1 to the X and Y offsets for the 1x1 hitbox for the elevator. You want this hitbox to be overlapping the CF_ELEVATORSTOP combo.If there's no CF_ELEVATORSTOP on the screen, put down an invisible elevator FFC with D2 set to what its combo should be. You need a copy of this script on every screen an elevator can pass through even if there's not one there.The FFC itself does not actually have a solid bottom (solid FFCs have a history of being buggy), so be sure you put safety platforms underneath your elevators.This script uses std.zh and ffcscript.zh (purely for the FFCS_INVISIBLE_COMBO constant).",
+  "has_zip": true,
+  "has_popup": true
+}

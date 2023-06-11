@@ -1,0 +1,17 @@
+{
+  "name": "Automated Weapon or Item (Auto-Fire)",
+  "author": "Timelord",
+  "added": null,
+  "updated": "06 May 2017",
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": "1",
+  "downloads": "52",
+  "info": "This code incorporates elements from Timers.zh, and ItemHandling.zh, to produce an automated item, that repeatedly activates, while maintaining hard-coded game effects.\n\nIt demonstrates what you can do with some of the functions in these headers, and provides a demo quest for use as an example.",
+  "description": "Update, v2.1:  I fixed issues with the last update from 2015, and I reduced all the global vars down to one array, with accessors. I further cleaned up the code a bit, and I modified the item to allow setting the repeating item and timer values from the item that enables them.\n\nThis set of functions permits the use of items that have hardcoded effects, called in an automatic manner. While this demo uses a self-shooting arrow, you can also do similar things with any item that the player has, and by varying the conditions, cause hardcoded effects created by items (e.g. Din's Fire) to occur without the player actually using the item.\n\nThe main drawback is that for a brief instant, the item that you are activating is visibly shifted into the B-button slot, and then, the item that was previously there is restored.",
+  "setup": "Import this library (AutoFire_v2.1.z), and its dependencies:\n\nstd.zh\nItemHandling.zh (v6.7 or higher)\nTimers.zh (v1.0 or higher)\n\nUsing this is relatively straightforward, assuming that you want a single item of this nature at any given time.\n\nAutofireInitiate() sets the condition on the item to use. If using an item that produces an lweapon, specify it with AutofireInitiate(item, true) , rather than AutofireInitiate(item).\n\n(This technically also allows you to use any item, even if it has instances on the screen, thus allowing machimne-gun type weapons, or other auto-weapons, based around a timer.)\n\nNote: The attached ZC Custrom Quest (AutoFire.qst) has all the functions needed to produce this effect in its buffer, so that you may see them as isolated functions, and understand what's happening, and required.\n\nSet Up the Item\nThe script uses an item to set an on and off repeat state. Apply the script 'repeatingWeapon' to an item, and set up the script arguments as follows:\n\nD0: The item that will be repeatedly activated. If unset, this defaults to I_REPEAT.\nD1: The timer duration between uses, including the initial activation. if unset, the default is 100.\nD2: The decrement rate of the timer. If unset, this defaults to '1'.\n\nUsing the Quest\n\nEnable the item that appears to be a longbow as the B-button item, then press B, and wait. Link will start firing arrows, on a regular basis; and you may select a different B-item, while still firing.\n\nThe automated item sue continues until you again select the bow item, and press B to turn it off, or press R to suspend it (thus, using the setRepeatOff() function).",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Scrolling Backgrounds",
+  "author": "Moosh",
+  "added": "28 Apr 2021",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Global"
+  ],
+  "rating": "4",
+  "downloads": "33",
+  "info": "This script allows for up to 6 layers of scrolling background and foreground effects. They're assigned to a DMap via an FFC when you enter and persist through scrolling transitions.",
+  "description": "This script allows for up to 6 layers of scrolling background and foreground effects. They're assigned to a DMap via an FFC when you enter and persist through scrolling transitions.\n\nUpdate 4/29/21: Added a new flag that will allow a layer to always use DrawScreen(). This is slower, but plays nicer with transparency on negative layers and will let you use full layered screens as a background.\nUpdate 5/27/21: Fixed a really stupid bug where I was excluding the script from drawing to screen 7F and beyond instead of 80.",
+  "setup": "First, combine the global script with your own.\n\nOn any DMap where you want to have a scrolling background, place down an FFC with the ScrollingLayer_Assign script on all entrance screens. Set D0-7 to the following:D0: Which scrolling layer slot to write over (0-5)D1: Which layer to draw toD2: The map to draw the layer fromD3: The screen to draw the layer from (in decimal)D4: The movement speed of the layer on the X-axisD5: The movement speed of the layer on the Y-axisD6: The opacity of the layer. 0 will erase the current layer. 64 will make it transparent. 128 will make it solid.D7: A sum of special flags applied to the layer:1: Layer only scrolls when Link moves on the X-axis2: Layer only scrolls when Link moves on the Y-axis4: Layer only scrolls when the screen is scrolling on the X-axis8: Layer only scrolls when the screen is scrolling on the Y-axis16: Layer uses a 2x2 screen block32: Layer uses a 3x3 screen block64: Layer uses a 4x4 screen block128: Layer will always use DrawScreen()\nIf you need finer control of your layer, you can also place down an FFC with the ScrollingLayer_Reposition script on the same screen as the first script. Set D0-7 to the following:D0: Which scrolling layer slot to adjust (0-5)D1: The new camera X position on the layerD2: The new camera Y position on the layerD3: The new width of the layer (this will override the flag settings)D4: The new height of the layer (this will override the flag settings)\nIf you want your layers to appear in the background, you'll need to use the Layer 2 is Background or Layer 3 is Background screen flags in the editor and use one of those layers. Transparency effects on background layers may be buggy.\n\nIf you're doing effects with scrolling layers, be sure the SCROLLINGLAYER_FASTSCROLLING constant is set the same as the rule.\n\nNote about transparency on layers -2 and -3: To get working transparency on a background layer in 2.53, set flag 128 (Layer will always use DrawScreen() ) on the FFC and set your reference screen to have its own layer with transparency set. This is a hack solution and not optimal for speed, but it works.",
+  "has_zip": true,
+  "has_popup": true
+}

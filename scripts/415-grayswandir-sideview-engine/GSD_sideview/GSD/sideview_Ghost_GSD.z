@@ -1,0 +1,395 @@
+//Handles solid FFCs pushing ghosted enemies
+void GhostSolidFFCUpdatePush(ffc f){
+	if (f->Misc[FFC_MISC_ENEMY_SOLIDITY]==0)return;
+	int newenemX;
+	int newenemY;
+	for (int i = 1; i<= Screen->NumNPCs(); i++){
+		npc n = Screen->LoadNPC(i);
+		if (!Ghost_CanBePushedBySolidFFC(f, n)) continue;
+		if (n->HP<=0)continue;
+		int ghostx = GetEnemyProperty(n, ENPROP_X);
+		int ghosty = GetEnemyProperty(n, ENPROP_Y);
+		int hitX1 = ghostx + n->HitXOffset;
+		int hitY1 = ghosty + n->HitXOffset;
+		int hitX2 = hitX1+ n->HitWidth-1;
+		int hitY2 = hitY1 + n->HitHeight-1;
+		if (!RectCollision(hitX1, hitY1, hitX2, hitY2, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))) continue;
+		int angle = Angle((CenterX(f)), (CenterY(f)), (CenterX(n)), (CenterY(n)));//Determine Angle to push enemy away from solid FFC
+		int dir = GetFFCTouchDir(f, angle);
+		if (dir == DIR_UP){
+			newenemY = f->Y - n->HitHeight + n->HitYOffset; //Push link away from FFC.
+			if (newenemY  <-n->HitXOffset-n->HitWidth) Remove(n);
+			Ghost_CheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			if (n->HP > 0)SetEnemyProperty(n, ENPROP_Y,newenemY);
+			SetEnemyProperty(n, ENPROP_JUMP,0);
+			continue;
+		}
+		if (f->Misc[FFC_MISC_ENEMY_SOLIDITY]==1)return;
+		if (dir == DIR_DOWN){
+			newenemY = f->Y + f->EffectHeight + n->HitYOffset; //Push link away from FFC.
+			if (newenemY>176) Remove(n);
+			Ghost_CheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			if (n->HP > 0)SetEnemyProperty(n, ENPROP_Y,newenemY);
+			continue;
+		}
+		if (dir == DIR_LEFT){
+			newenemX = f->X - n->HitWidth + n->HitXOffset; //Push link away from FFC.
+			if (newenemX<-n->HitYOffset-n->HitWidth) Remove(n);
+			Ghost_CheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			if (n->HP > 0)SetEnemyProperty(n, ENPROP_X,newenemX);
+			continue;
+		}
+		if (dir == DIR_RIGHT){
+			newenemX = f->X + f->EffectWidth + n->HitXOffset; //Push link away from FFC.
+			if (newenemX> 256) Remove(n);
+			Ghost_CheckCrush(f, n, dir);//Check, if crush against wall occurs.
+			if (n->HP>0) SetEnemyProperty(n, ENPROP_X,newenemX);
+			continue;
+		}
+	}
+}
+
+//Processes crushing ghosted enemies against solid stuff.
+void Ghost_CheckCrush(ffc f, npc n, int dir){
+	int SqleftX = 0;
+	int SqleftY = 0;
+	int SqrightX = 0;
+	int SqrightY = 0;
+	int ghostx = GetEnemyProperty(n, ENPROP_X);
+	int ghosty = GetEnemyProperty(n, ENPROP_Y);
+	int hitX1 = ghostx + n->HitXOffset;
+	int hitY1 = ghosty + n->HitXOffset;
+	int hitX2 = hitX1+ n->HitWidth-1;
+	int hitY2 = hitY1 + n->HitHeight-1;
+	if (dir==DIR_UP){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX1+2;
+		SqleftY = hitY1+2;
+		SqrightX = hitX2-2;
+		SqrightY = hitY1+2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f, SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);
+			SetEnemyProperty(n, ENPROP_HP, 0);
+			return;
+		}
+	}
+	if (dir==DIR_DOWN){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX1+2;
+		SqleftY = hitY2-2;
+		SqrightX = hitX2-2;
+		SqrightY = hitY2-2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f, SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);
+			SetEnemyProperty(n, ENPROP_HP, 0);
+			return;
+		}
+	}
+	if (dir==DIR_LEFT){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX1+2;
+		SqleftY = hitY1+2;
+		SqrightX = hitX1+2;
+		SqrightY = hitY2-2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f, SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);
+			SetEnemyProperty(n, ENPROP_HP, 0);
+			return;
+		}
+	}
+	if (dir==DIR_RIGHT){
+		bool squishleft = false;
+		bool squishright = false;
+		SqleftX = hitX2-2;
+		SqleftY = hitY1+2;
+		SqrightX = hitX2-2;
+		SqrightY = hitY2-2;
+		if (GetBlockType(SqleftX, SqleftY) == BLOCK_HARD) squishleft = true;
+		if (GetBlockType(SqrightX, SqrightY) == BLOCK_HARD) squishright = true;
+		if (!squishleft){
+			if (Ghost_WithinSolidFFC(f, SqleftX, SqleftY))squishleft = true;
+		}
+		if (!squishright){
+			if (Ghost_WithinSolidFFC(f, SqrightX, SqrightY))squishright = true;
+		}
+		if (squishleft || squishright){
+			if (n->HP>0)Game->PlaySound(SFX_CRUSH);
+			SetEnemyProperty(n, ENPROP_HP, 0);
+			return;
+		}
+	}
+}
+
+//Returns true, if ghosted enemy can be pushed by solid FFCs.
+bool Ghost_CanBePushedBySolidFFC(ffc f, npc n){
+	if ((n->Attributes[11]>0)||(n->Misc[__GHI_NPC_DATA]&0x10000)!=0){
+		if (GhostHasFlagSetOld (n, GHF_IGNORE_SOLIDITY)) return false;
+	}
+	int type = n->Type;
+	//If the enemy is invulnerable, don't push it
+	if(Abs(n->HitXOffset)>=1000||Abs(n->HitYOffset)>=1000)	return false;
+	if (!n->CollDetection) return false; 
+	//If the enemy is in the air, don't push it
+	if(n->Z>0)return false;
+	//Check if the enemy is a type that can be pushed
+	if(type==NPCT_WALK)	return true;
+	if(type==NPCT_TEKTITE)return true;
+	if(type==NPCT_LEEVER)return true;
+	if(type==NPCT_ZORA)	return true;
+	if(type==NPCT_GHINI)return true;
+	if(type==NPCT_ARMOS)return true;
+	if(type==NPCT_WIZZROBE)	return true;
+	if(type==NPCT_OTHERFLOAT)return !FFCGhostsNPC(f, n);
+	if(type==NPCT_OTHER)return !FFCGhostsNPC(f, n);	
+	return false;
+}
+
+//Returns true, if given FFC ghosts given NPC.
+bool FFCGhostsNPC(ffc f, npc n){
+	int scr2 = n->Attributes[11];
+	if (scr2==0) return false;
+	int scr= f->Script;
+	return scr==scr2;
+}
+
+
+//Returns True, if ghosted enemy`s flag is set. Old 16 flags are checked.
+bool GhostHasFlagSetOld (npc ghost, int flag){
+	if((ghost->Misc[__GHI_NPC_DATA]&0x10000)!=0){ //This flag is a check that what we're about to do is valid
+    		float aptr=ghost->Misc[__GHI_NPC_DATA]&0xFFFF; //This pulls the pointer for a size 24 array. That array is or'd with 0x10000 to forc value.m this mis
+    		if(aptr > 0){ //Make sure we have a valid array as an extra failsafe
+    			int flagset = aptr[15]; //Get flagset.
+	        return ((flagset & flag)>0); //And retrive flag. If result is > 0, return true. Otherwise, return false.
+		}
+	}
+	return false;
+}
+
+
+//Returns TRUE, if the enemy is currently on platform or solid FFC. Used in sideview areas.
+//Imprecision used to ignore certain amount of pixels on the edges, so Enemy can drop trough gaps that 
+//are as wide as enemy itself.
+bool Ghost_GSDOnSideviewPlatform( ffc n, npc ghost, int imprecision){
+	if (!IsSideview()) return ((ghost->Z)==0);
+	int ghx = ghost->X;
+	int ghy = ghost->Y;
+	int ghOffX = ghost->HitXOffset;
+	int ghOffY = ghost->HitYOffset;
+	int ghwidth = ghost->HitWidth;
+	int ghheight = ghost->HitHeight;
+	int TghX = ghx+ghOffX;
+	int TghY = ghy+ghOffY;
+	bool OnGround = false; 
+	if (Screen->isSolid((TghX+imprecision), (TghY+ghheight+1))) OnGround = true;
+	if (Screen->isSolid((CenterX(ghost)), (TghY+ghheight+1))) OnGround = true;
+	if (Screen->isSolid((TghX+ghwidth-imprecision), (TghY+ghheight+1))) OnGround = true;
+	int x = ghost->X+imprecision;
+	int y = ghost->Y+ghost->HitHeight;
+	int x2 = ghost->X+ghost->HitWidth-1-imprecision;
+	int y2 = ghost->Y+ghost->HitHeight+2;
+	for (int i =1; i<= 32; i++){
+		ffc f=Screen->LoadFFC(i);
+		if (f==n) continue;
+		if (f->Misc[FFC_MISC_SOLIDITY]==0) continue;
+		if (!RectCollision(x, y, x2, y2, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))){
+			OnGround = true;
+			break;
+		}
+	}
+	return OnGround;
+}
+
+//Returns TRUE, if the enemy is currently on sideview solid FFC.
+bool GhostGSDOnSideviewSolidFFC (ffc n, npc ghost){
+	bool OnGround = false;
+	if (!IsSideview()) return ((ghost->Z)==0);
+	int x = ghost->X;
+	int y = ghost->Y+ghost->HitHeight;
+	int x2 = ghost->X+ghost->HitWidth-1;
+	int y2 = ghost->Y+ghost->HitHeight+2;
+	for (int i =1; i<= 32; i++){
+		ffc f=Screen->LoadFFC(i);
+		if (f==n) continue;
+		if (f->Misc[FFC_MISC_SOLIDITY]==0) continue;
+		if (!RectCollision(x, y, x2, y2, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))){
+			OnGround = true;
+			break;
+		}
+	}
+	return OnGround;
+}
+
+//Returns True, if enemy can move in the given direction, assuming there are no solid FFCs in the way.//FIXME
+bool Ghost_GSDCanMove(ffc f, int dir, float step, int imprecision){
+	int COLLPOINTSX[3];
+	int COLLPOINTSY[3];
+	int ghx = Ghost_X;
+	int ghy = Ghost_Y;
+	int ghwidth = Ghost_TileWidth*16;
+	int ghheight = Ghost_TileHeight*16;
+	if (dir == DIR_UP){
+		COLLPOINTSX[0] = ghx;
+		COLLPOINTSX[1] = Ghost_X+Ghost_TileWidth*8-1;
+		COLLPOINTSX[2] = ghx+ ghwidth-1;
+		for (int i = 0; i<3; i++) COLLPOINTSY[i] = ghy-step;
+	}
+	if (dir == DIR_DOWN){
+		COLLPOINTSX[0] = ghx;
+		COLLPOINTSX[1] = Ghost_X+Ghost_TileWidth*8-1;
+		COLLPOINTSX[2] = ghx+ ghwidth-1;
+		for (int i = 0; i<3; i++) COLLPOINTSY[i] = ghy+ghheight+step-1;
+	}
+	if (dir == DIR_LEFT){
+		COLLPOINTSY[0] = ghy;
+		COLLPOINTSY[1] = Ghost_Y+ Ghost_TileHeight*8-1;
+		COLLPOINTSY[2] = ghy+ghheight-1;
+		for (int i = 0; i<3; i++) COLLPOINTSX[i] = ghx-step;
+	}
+	if (dir == DIR_RIGHT){
+		COLLPOINTSY[0] = ghy;
+		COLLPOINTSY[1] = Ghost_Y+ Ghost_TileHeight*8-1;
+		COLLPOINTSY[2] = ghy+ghheight-1;
+		for (int i = 0; i<3; i++) COLLPOINTSX[i] = ghx+ghwidth+step-1;
+	}
+	for (int i = 0; i<3; i++){
+		//Screen->PutPixel(7, COLLPOINTSX[i], COLLPOINTSY[i], 0x93, 0, 0, 0, OP_OPAQUE);
+		if (Ghost_WithinSolidFFC(f, COLLPOINTSX[i], COLLPOINTSY[i])) return false;
+	}
+	return Ghost_CanMove(dir, step, imprecision);
+}
+//Reurns TRUE, if point at given coordinates is within any solid FFC, except the given one.
+bool Ghost_WithinSolidFFC(ffc g, int x, int y){
+	for (int i =1; i<= 32; i++){
+		ffc f=Screen->LoadFFC(i);
+		if (f==g) continue;
+		if (f->Misc[FFC_MISC_ENEMY_SOLIDITY]!=BLOCK_HARD) continue;
+		if (!RectCollision(x, y, x, y, f->X, f->Y, (f->X + f->EffectWidth-1), (f->Y + f->EffectHeight-1))) continue;
+		return true;
+	}
+	return false;
+}
+
+//Returns true, if ghosted enemy was stomped this frame.
+bool Ghost_WasStomped(npc en){
+	if (!Link->Item[I_STOMPBOOTS]) return false;
+	if (LinkVy<=0) return false;
+	if (en->Defense[NPCD_STOMP]>0) return false;
+	debugValue(2, LinkVy);
+	if (!LinkCollision(en)) return false;
+	if ((LinkY+16 > (en->Y))&&(LinkY< en->Y) &&
+	(LinkX+3 < (en->X + en->HitWidth)) && (LinkX+12> en->X)) return true;
+}
+
+
+//Sets enemy solidity. 1 allows cranium riding, 2 is fully solid enemy that can push and crush anything except look-alike and incorporeal enemies.
+void Ghost_SetSolidity(ffc f, npc ghost, int solidity){
+	f->EffectWidth = ghost->HitWidth;
+	f->EffectHeight = ghost->HitHeight;
+	SetSideviewFFCSolidity(f, solidity);
+	if (solidity>0)ghost->HitYOffset+=4;
+	else ghost->HitYOffset = 0;
+	if (solidity>0)ghost->HitHeight= ghost->TileHeight*16-4;
+	else ghost->HitZHeight = ghost->TileHeight*16;
+}
+
+//Moves ghosted NPC to contact position so it`s in pixel perfect flush contact with stuff it collided.
+void Ghost_MoveToContactPosition(ffc f, npc ghost, int dir){
+	while(Ghost_GSDCanMove(f, dir, 1, 0)){
+		if (dir==DIR_UP) Ghost_Y--;
+		if (dir==DIR_DOWN) Ghost_Y++;
+		if (dir==DIR_LEFT) Ghost_X--;
+		if (dir==DIR_RIGHT) Ghost_X++;
+	}
+}
+
+bool RestrictToSideviewWater(npc ghost){
+	int COLLPOINTSX[2];
+	int COLLPOINTSY[2];
+	int ghx = Ghost_X;
+	int ghy = Ghost_Y;
+	int ghwidth = Ghost_TileWidth*16-1;
+	int ghheight = Ghost_TileHeight*16-1;
+	for (int i = 0; i<2; i++){
+		COLLPOINTSX[i] = ghx + ghwidth*i;
+		COLLPOINTSY[i] = ghy + ghheight*i;
+	}
+	for (int i = 0; i<2; i++){
+		for (int j = 0; j<2; j++){
+			//Screen->PutPixel(3, COLLPOINTSX[i], COLLPOINTSY[j], 0x93, 0, 0, 0, OP_OPAQUE);
+			int cmb = ComboAt(COLLPOINTSX[i], COLLPOINTSY[j]);
+			if (Screen->ComboT[cmb]!=CT_SIDEVIEW_WATER) return false;
+		}
+	}
+	return true;
+}
+
+bool RestrictToSideviewWater(npc ghost, bool reverse){
+		int COLLPOINTSX[2];
+	int COLLPOINTSY[2];
+	int ghx = Ghost_X;
+	int ghy = Ghost_Y;
+	int ghwidth = Ghost_TileWidth*16-1;
+	int ghheight = Ghost_TileHeight*16-1;
+	for (int i = 0; i<2; i++){
+		COLLPOINTSX[i] = ghx + ghwidth*i;
+		COLLPOINTSY[i] = ghy + ghheight*i;
+	}
+	for (int i = 0; i<2; i++){
+		for (int j = 0; j<2; j++){
+			//Screen->PutPixel(3, COLLPOINTSX[i], COLLPOINTSY[j], 0x93, 0, 0, 0, OP_OPAQUE);
+			int cmb = ComboAt(COLLPOINTSX[i], COLLPOINTSY[j]);
+			if (Screen->ComboT[cmb]!=CT_SIDEVIEW_WATER) return reverse;
+		}
+	}
+	return (!reverse);
+}
+
+bool Ghost_CanSwim(npc ghost, int dir){
+	int collpointX;
+	int collpointY;
+	if (dir==DIR_UP){
+		collpointX = CenterX(ghost);
+		collpointY = ghost->Y-1;
+	}
+	if (dir==DIR_DOWN){
+		collpointX = CenterX(ghost);
+		collpointY = ghost->Y+ghost->TileHeight*16;
+	}
+	if (dir==DIR_LEFT){
+		collpointX = ghost->X-1;
+		collpointY = CenterY(ghost);
+	}
+	if (dir==DIR_RIGHT){
+		collpointX = ghost->X-1;
+		collpointY = CenterY(ghost);
+	}
+	int cmb = ComboAt(collpointX, collpointY);
+	return (Screen->ComboT[cmb]==CT_SIDEVIEW_WATER);
+}

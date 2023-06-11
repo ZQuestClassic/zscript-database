@@ -1,0 +1,16 @@
+{
+  "name": "Burning Oil Floors and Bushes",
+  "author": "Moosh",
+  "added": "04 Dec 2016",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": "49",
+  "info": "This FFC script allows lighting bushes and water (for dungeons with oil floors) on fire. The fire will then spread to adjacent combos of similar type, damage enemies on top of them, and even trigger adjacent burn flags.",
+  "description": "This FFC script allows lighting bushes and water (for dungeons with oil floors) on fire. The fire will then spread to adjacent combos of similar type, damage enemies on top of them, and even trigger adjacent burn flags.",
+  "setup": "This script requires std.zh, string.zh, and ghost.zh in order to compile.\n\nBe sure you're using the ghost.zh global script. This makes the hitboxes that damage Link disappear when the fire goes out.\n\nMost of the script's setup is setting the constants at the top of the file and most of those constants are completely optional. Here are the more important ones:\nOILBUSH_CANTRIGGER: Set this to 1 if you want burning oil/bushes to trigger adjacent burn flags. Otherwise set it to 0.OILBUSH_DAMAGEENEMIES: Set this to 1 if you want burning oil/bushes to damage enemies as well as Link. Otherwise set it to 0.OILBUSH_BUSHESSTILLDROPITEMS: Set this to 1 if you want bushes to drop items from the tall grass dropset. Otherwise set it to 0.OILBUSH_DAMAGE: This sets how much damage the fires do to you and enemies. You may want to raise it depending on where in your quest these elements will be used.CMB_OIL_BURNING / CMB_BUSH_BURNING: These are the first in a series of combos showing the burning flames fading away over time. By default there are four combos it goes through over 16 frames, but this can be changed with the constants below. The first of the combos is what's drawn for the majority of the burn.CS_OIL_BURNING / CS_BUSH_BURNING: This is the cset the above combos are drawn inNPC_BUSHDROPSET: This is the ID of an Other type enemy that drops items from the tall grass dropset. It's used for having burning bushes leave behind drops\nThen place the FFC script on any screen with bushes or water you want to be burnable. It has two arguments:D0: Set to 1 to disable water burning.D1: Set to 1 to disable bush burning.\nIf you want to change the settings around further, all the constants have comments saying what they do.",
+  "has_zip": true,
+  "has_popup": true
+}

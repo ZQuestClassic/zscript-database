@@ -1,0 +1,53 @@
+// Circles around and talks to Link if he gets close.
+//
+// This is a demonstration of moving a text slot as it's updating. The message
+// also demonstrates @sfx(), @rand(), and extended font characters.
+
+const int NAVI_MISC_CENTER_X = 0;
+const int NAVI_MISC_CENTER_Y = 1;
+const int NAVI_MISC_ANGLE = 2;
+const int NAVI_MESSAGE = 1;
+
+ffc script Navi
+{
+    void run()
+    {
+        this->Misc[NAVI_MISC_CENTER_X]=this->X;
+        this->Misc[NAVI_MISC_CENTER_Y]=this->Y;
+        
+        while(true)
+        {
+            // Wait for Link to come close enough
+            while(Distance(this->X, this->Y, Link->X, Link->Y)>48)
+            {
+                Circle(this);
+                Waitframe();
+            }
+            
+            int slot=ShowMessage(NAVI_MESSAGE, TANGO_SLOT_NAVI, STYLE_NAVI,
+              this->X-80, this->Y-64);
+            
+            // Keep the message in place
+            while(Tango_SlotIsActive(slot))
+            {
+                Circle(this);
+                Tango_SetSlotPosition(slot, this->X-80, this->Y-64);
+                Waitframe();
+            }
+            
+            // Don't show the message again for at least three seconds
+            for(int i=0; i<180; i++)
+            {
+                Circle(this);
+                Waitframe();
+            }
+        }
+    }
+    
+    void Circle(ffc this)
+    {
+        this->Misc[NAVI_MISC_ANGLE]++;
+        this->X=this->Misc[NAVI_MISC_CENTER_X]+16*Cos(this->Misc[NAVI_MISC_ANGLE]);
+        this->Y=this->Misc[NAVI_MISC_CENTER_Y]+16*Sin(this->Misc[NAVI_MISC_ANGLE]);
+    }
+}

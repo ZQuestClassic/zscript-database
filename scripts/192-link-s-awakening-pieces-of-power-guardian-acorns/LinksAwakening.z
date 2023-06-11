@@ -1,0 +1,257 @@
+//Pieces of Power, Guardian Acorns, and Secret Shells v0.4.1
+
+
+//Set-up: Make a new item (Green Ring), set it up/ as follows:
+//Item Class Rings
+//Level: 1
+//Power: 1
+//CSet Modifier : None
+//Assign this ring to Link's starting equipment in Quest->Init Data->Items
+
+//Change the blue ring to L2, red to L3, and any higher above these. 
+
+int Z4_ItemsAndTimers[7]; //Array to hold the values for the Z4 items. 
+
+//Item Numbers : These are here for later expansion, and are unused at present.
+const int I_GREEN_RING = 143; //Item number of Green Ring  
+const int I_PIECE_POWER = 144; //Item number of Piece of Power
+const int I_ACORN = 145; //Item number of Acorn
+const int I_SHELL = 146; //Item number of Secret Shell
+
+//Settings
+const int NEEDED_PIECES_OF_POWER = 3; //Number of Pieces of power needed for temporary boost.
+const int NEEDED_ACORNS = 3; //Number of Acorns needed for temporary boost.
+const int BUFF_TIME = 900; //Duration of boost, in frames. Default is 15 seconds.
+
+
+//Array Indices
+const int POWER_TIMER = 0;
+const int DEF_TIMER = 1;
+const int NUM_PIECES_POWER = 2;
+const int NUM_ACORNS = 3;
+const int POWER_BOOSTED = 4;
+const int DEF_BOOSTED = 5;
+const int NUM_SHELLS = 6;
+
+//Sound effects constants.
+const int SFX_POWER_BOOSTED = 65; //Sound to play when Attack Buffed
+const int SFX_SECRET_SHELL = 66; //Sound to play when unlocking shell secret.
+const int SFX_GUARDIAN_DEF = 68; //Sound to play when Defence buffed.
+const int SFX_NERF_POWER = 72; //Sound to play when Piece of Power buff expires.
+const int SFX_NERF_DEF = 73; //Sound to play when Guardian Acorn buff expires.
+
+
+
+
+//int NerfedAttack[]="Attack power nerfed."; //String for TraceS()
+
+//////////////////////
+/// MAIN FUNCTIONS ///
+//////////////////////
+
+//Run every frame **BEFORE** both Waitdraw() **AND** LinksAwakeningItems();
+void ReduceBuffTimers(){
+	if ( Z4_ItemsAndTimers[POWER_TIMER] > 0 ) {
+		Z4_ItemsAndTimers[POWER_TIMER]--;
+	}
+	if ( Z4_ItemsAndTimers[DEF_TIMER] > 0 ) {
+		Z4_ItemsAndTimers[DEF_TIMER]--;
+	}
+}
+
+//Run every frame, before Waitdraw();
+void LinksAwakeningItems(){
+	PiecesOfPower();
+	Acorns();
+}
+
+
+///Functions called by MAIN functions:
+
+//Runs every frame from LinksAwakeningItems();
+void PiecesOfPower(){
+	if ( Z4_ItemsAndTimers[NUM_PIECES_POWER] >= NEEDED_PIECES_OF_POWER ) {
+		Z4_ItemsAndTimers[NUM_PIECES_POWER] = 0; 
+		Z4_ItemsAndTimers[POWER_TIMER] = BUFF_TIME;
+		BoostAttack();
+	}
+	NerfAttack();
+}
+
+//Runs every frame from LinksAwakeningItems();
+void Acorns(){
+	if ( Z4_ItemsAndTimers[NUM_ACORNS] >= NEEDED_ACORNS ) {
+		Z4_ItemsAndTimers[NUM_ACORNS] = 0; 
+		Z4_ItemsAndTimers[DEF_TIMER] = BUFF_TIME;
+		BoostDefence();
+	}
+	NerfDefence();
+}
+
+//Runs from PiecesOfPower()();
+void BoostAttack(){
+	if ( Z4_ItemsAndTimers[POWER_TIMER] && !Z4_ItemsAndTimers[POWER_BOOSTED] ) {
+		BuffSwords();
+	}
+}
+
+//Runs from PiecesOfPower()
+void NerfAttack(){
+	if ( Z4_ItemsAndTimers[POWER_BOOSTED] && Z4_ItemsAndTimers[POWER_TIMER] < 1 ) {
+		Z4_ItemsAndTimers[POWER_BOOSTED] = 0;
+		NerfSwords();
+		Z4_ItemsAndTimers[POWER_TIMER] = 0;
+	}
+}
+
+//Runs from Acorns();
+void BoostDefence(){
+	if ( Z4_ItemsAndTimers[DEF_TIMER] && !Z4_ItemsAndTimers[DEF_BOOSTED] ) {
+		BuffRings();
+	}
+}
+
+//Runs from Acorns()
+void NerfDefence(){
+	if ( Z4_ItemsAndTimers[DEF_BOOSTED] && Z4_ItemsAndTimers[DEF_TIMER] < 1 ) {
+		Z4_ItemsAndTimers[DEF_BOOSTED] = 0;
+		NerfRings();
+		Z4_ItemsAndTimers[DEF_TIMER] = 0;
+	}
+}
+
+//Runs from BoostDefence();
+void BuffSwords(){
+	float presentPower;
+	for ( int q = 0; q <= 255; q++ ) {
+		itemdata id = Game->LoadItemData(q);
+		if ( id->Family ==  IC_SWORD ) {
+			presentPower = id->Power;
+			id->Power = presentPower * 2;
+		}
+	}
+	Game->PlaySound(SFX_POWER_BOOSTED);
+	Z4_ItemsAndTimers[POWER_BOOSTED] = 1;
+}
+
+//Runs from BoostDefence();
+void BuffRings(){
+	float presentPower;
+	for ( int q = 0; q <= 255; q++ ) {
+		itemdata id = Game->LoadItemData(q);
+		if ( id->Family ==  IC_RING ) {
+			presentPower = id->Power;
+			id->Power = presentPower * 2;
+		}
+	}
+	Game->PlaySound(SFX_GUARDIAN_DEF);
+	Z4_ItemsAndTimers[DEF_BOOSTED] = 1;
+}
+
+//Runs from BoostDefence();
+void NerfSwords(){
+	float presentPower;
+	for ( int q = 0; q <= 255; q++ ) {
+		itemdata id = Game->LoadItemData(q);
+		if ( id->Family ==  IC_SWORD ) {
+			presentPower = id->Power;
+			id->Power = presentPower * 0.5;
+		}
+	}
+	Game->PlaySound(SFX_NERF_POWER);
+}
+
+//Runs from BoostDefence();
+void NerfRings(){
+	float presentPower;
+	for ( int q = 0; q <= 255; q++ ) {
+		itemdata id = Game->LoadItemData(q);
+		if ( id->Family ==  IC_RING ) {
+			presentPower = id->Power;
+			id->Power = presentPower * 0.5;
+		}
+	}
+	Game->PlaySound(SFX_NERF_DEF);
+}
+
+/////////////////////////
+/// Utility Functions ///
+/////////////////////////
+
+//Returns number of Secret Shells collected.
+int NumShells(){
+	return Z4_ItemsAndTimers[NUM_SHELLS];
+}
+
+////////////////////
+/// Item Scripts ///
+////////////////////
+
+//Piece of Power item PICKUP script. 
+item script PieceOfPower{
+	void run(){
+		Z4_ItemsAndTimers[NUM_PIECES_POWER]++;
+	}
+}
+
+//Acorn item PICKUP script. 
+item script GuardianAcorn{
+	void run(){
+		Z4_ItemsAndTimers[NUM_ACORNS]++;
+	}
+}
+
+//Shell item PICKUP script. 
+item script SecretShell{
+	void run(){
+		Z4_ItemsAndTimers[NUM_SHELLS]++;
+	}
+}
+
+
+/////////////////////////////
+/// Sample Global Scripts ///
+/////////////////////////////
+
+
+global script LA_Active{
+	void run(){
+		while(true){
+			ReduceBuffTimers();
+			LinksAwakeningItems();
+			Waitdraw();
+			
+			Waitframe();
+		}
+	}
+}
+
+global script LA_OnContinue{
+	void run(){
+		Z4_ItemsAndTimers[DEF_TIMER] = 0;
+		Z4_ItemsAndTimers[POWER_TIMER] = 0;
+		//Set timers back to 0, disabling the boost.
+	}
+}
+
+global script LA_OnExit{
+	void run(){
+		Z4_ItemsAndTimers[DEF_TIMER] = 0;
+		Z4_ItemsAndTimers[POWER_TIMER] = 0;
+		//Set timers back to 0, disabling the boost.
+	}
+}
+
+//void LinksAwakeningItems(int swords, int rings){
+//}
+
+
+//int TempBoostItems[6];
+//int TempBoostTimers[2];
+
+
+//int SwordItems[4]={1};
+//int DefItems[4]={64};
+
+
+

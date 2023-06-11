@@ -1,0 +1,32 @@
+ffc script MassBigEnemyContinious{
+	//Similar to MassBigEnemyEnemySpecific but also affects enemies that appear after initialization
+	//(like enemies summoned by SUMMON_LAYER spell). 
+    void run(int EnemyType,int Width, int Height, int XDraw, int YDraw, int XHit, int YHit, int animoverride){
+        Waitframes(4);
+        npc Boss;
+        while(true){
+         for (int i=1; i<= Screen->NumNPCs(); i++){
+          Boss = Screen->LoadNPC(i);
+          if (Boss->ID==EnemyType){
+          Boss->HitWidth = Width;
+          Boss->HitHeight = Height;
+          if (Width >= 16){
+        	   Boss->Extend=3;
+        	   Boss->TileWidth = Width/16;
+          }
+          if (Height>=16){
+        	  Boss->Extend=3;
+        	  Boss->TileHeight = Height/16;
+          }
+          Boss->DrawXOffset = XDraw;
+          Boss->DrawYOffset = YDraw;
+          Boss->HitXOffset = XHit;
+          Boss->HitYOffset = YHit;
+          if (Boss->Misc[NPC_MISC_ORIGTILE]==0) Boss->Misc[NPC_MISC_ORIGTILE] = Boss->OriginalTile;
+          else CustomAnimation(Boss, animoverride);
+          }
+        }
+        Waitframe();
+        }
+    }
+}

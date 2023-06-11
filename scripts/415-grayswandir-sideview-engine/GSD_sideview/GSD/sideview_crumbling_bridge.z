@@ -1,0 +1,104 @@
+//const int TILE_CRUMBLING_BRIDGE_FALLING_BLOCKS = 13050;// Tile used to render fallen bricks. They have no animation.
+const int CF_SIDEVIEW_CRUMBLING_BRIDGE_END = 67; //Combo flag used to as end point of crumbling bridge.
+const int SIDEVIEW_CRUMBLING_BRIDGE_SCREEN_QUAKE = 30;// Intansity of screen quake when bridge is crumbling.
+const int SFX_SIDEVIEW_CRUMBLING_BRIDGE_FALLING_BRICK = 3;//Sound to play when brick falls off bridge during crumbling.
+
+//Sideview Castlevania styled multi screen spanning crumbling bridge.
+//1. Build the bridge to be crumbled - a row of solid combos across multiple screens.
+//2. Place FFC at the start of bridge in 1st screen.
+//3. Place FFC anywhere on the bridge in subsequent screens.
+// D0 - Bridge crumbling speed, in pixels per frame
+// D1 - Must be 1 in starting screen, 0 in subsequent to ensure proper respawning of crumbled bridge.
+// D2 - Screen D register - to track bridge crumbling process across multiple screens.
+// D3 - Delay, in frames, between Link stepping on bridge and starting crumbling. Used only id D1 is set to 1.
+// D4 - Damage caused by falling bricks. Set to 0 to disable collision detection.
+// D5 - Sprite used for falling bricks.
+
+
+ffc script SideviewCrumblingBridge{
+	void run(int speed, int mode, int screenD, int delay, int damage, int sprite){
+		int cmb = ComboAt(CenterX(this), CenterY(this));
+		this->X = ComboX(cmb);
+		this->Y = ComboY(cmb);
+		bool active = false;
+		int curdmap = Game->GetCurDMap();
+		int curscreen =  Game->GetCurDMapScreen();
+		//Clear already crumbled bridge in previous screens.
+		if (Game->GetDMapScreenD(curdmap, curscreen+Sign(speed), screenD) < 0){
+			if (speed<0){
+				while(this->X> -16){
+					cmb = ComboAt(CenterX(this), CenterY(this));
+					Screen->ComboD[cmb] = Screen->UnderCombo;
+					Screen->ComboC[cmb] = Screen->UnderCSet;
+					this->X--;
+				}
+				if (mode== 1) Screen->D[curscreen] = 1000;
+			}
+			else{
+				while(this->X< 256){
+					cmb = ComboAt(CenterX(this), CenterY(this));
+					Screen->ComboD[cmb] = Screen->UnderCombo;
+					Screen->ComboC[cmb] = Screen->UnderCSet;
+					this->X++;
+				}
+				if (mode== 1) Screen->D[curscreen] = 1000;
+			}
+		}
+		if (mode== 1){
+			//Respawn the bridge
+			for (int i= 0; i< 127; i++){
+				if (Div(i, 16) == Div(curscreen, 16)) Game->SetDMapScreenD(curdmap, i, screenD, 1000);
+			}
+		}
+		else {
+			//Set FFC position in the middle of the bridge.
+			if (speed>0) this->X=0;
+			else this->X = 240;
+			if (Screen->D[screenD]==0)Screen->D[screenD]=1000;
+		}
+		while(true){
+			if (!active){
+				if (Screen->D[screenD]<1000) active=true; //Bridge is already crumbling, start havoc.
+				else if (Link->Y+16 == this->Y){// Wait until Link steps on the bridge.
+					if ((speed>0)&&(CenterLinkX()>CenterX(this)))active=true;
+					if ((speed<0)&&(CenterLinkX()<CenterX(this)))active=true;
+					if (active){
+						if (speed>0) Screen->D[screenD] = this->X*-1;
+						else if (speed<0) Screen->D[screenD] = this->X -256;
+						if (mode== 1)Screen->D[screenD] = delay;
+					}
+				}
+			}
+			else{
+				Screen->D[screenD]-= Abs(speed);
+				if (SIDEVIEW_CRUMBLING_BRIDGE_SCREEN_QUAKE>0)Screen->Quake = SIDEVIEW_CRUMBLING_BRIDGE_SCREEN_QUAKE;
+				if (speed>0) Game->SetDMapScreenD(curdmap, curscreen+1, screenD, (256 - (this->X)));
+				else Game->SetDMapScreenD(curdmap, curscreen-1, screenD, this->X);
+				if (Screen->D[screenD] <=0){
+					this->X+=speed;
+					cmb = ComboAt(CenterX(this), CenterY(this));
+					int ucmb = Screen->UnderCombo;
+					if (Screen->ComboD[cmb] != ucmb){//Play audio and setup falling bricks.
+						Game->PlaySound(3);
+						eweapon brick;
+						if (damage>0) brick = FireNonAngularEWeapon(EW_SCRIPT10, ComboX(cmb), ComboY(cmb), DIR_DOWN, 0, damage, sprite, SFX_SIDEVIEW_CRUMBLING_BRIDGE_FALLING_BRICK, EWF_UNBLOCKABLE);
+						else brick = FireNonAngularEWeapon(EW_FIRE, ComboX(cmb), ComboY(cmb), DIR_DOWN, 0, 0, sprite, SFX_SIDEVIEW_CRUMBLING_BRIDGE_FALLING_BRICK,(EWF_UNBLOCKABLE|EWF_NO_COLLISION));
+						SetEWeaponMovement(brick, EWM_FALL, 0, 0);
+						brick->CSet = Screen->ComboC[cmb];						
+						Screen->ComboD[cmb] = Screen->UnderCombo;
+						Screen->ComboC[cmb] = Screen->UnderCSet;
+						if (Screen->ComboF[cmb]==CF_NOBLOCKS) Quit();
+					}
+					if (Screen->D[screenD]<-512) Quit();//Prevent var overflow.
+				}
+				else {//Render distance (in pixels), if last crumbled brick is offscreen.
+					int drawx = 0;
+					if (speed<0) drawx = 232;
+					if (mode== 1) drawx = this->X;
+					Screen->DrawInteger(2, drawx, this->Y-8,0, 1,0, 0, 0, Screen->D[screenD], 0, OP_OPAQUE);
+				}
+			}
+			Waitframe();
+		}
+	}
+} 

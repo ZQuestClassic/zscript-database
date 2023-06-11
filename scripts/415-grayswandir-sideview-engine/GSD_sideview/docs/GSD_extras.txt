@@ -1,0 +1,172 @@
+////Here are optional things for sideview engine////
+
+
+* Yoshi Island Countdown Lift.
+
+You can jump on it limited amount of times. After that it disappears, falls, or explodes.
+
+const int SPR_DISAPPEAR - Sprite used for countdown lift disappearance.
+
+const int TILE_COUNTDOWN_LIFT_SMALL - Default tile used for small lift.
+const int TILE_COUNTDOWN_LIFT_LARGE - Default tile used for large lift.
+
+//Set up sequence of tiles showing lifts with numbers 9-0, including 2 frames of 0 flashing, when lift is about to explode.
+//Set up combo 
+//Place FFC with combo from step 2 script and "Run at Script Init" flag on.
+//D0 - number of jumps allowed.
+//D1 - lift type
+//    0. Disappears on 0.
+//    1. Falls on 0, crushing anyone beloy it.
+//    2. Explodes on 0 with damage od D2, in 1/4ths of heart.
+//D3 - Sound to play each time counter goes down.
+//D4 - first in sequence used to render countdown lift you set up in step 1.
+//D5 - solidity, 1 - top-solid, 2-fully solid 
+
+* RotatingHazard
+
+A script that encompassees variety of rotating hazards, like Firebars, Rotodisks and their variations
+
+//Set up 2 enemies, 1 for Rotodisk-like enemy, and 1 for firebar segment.
+//Import script, it requires ghost.zh
+//Place FFC at axis of firebar/rotodisk
+//D0 - ID of main rotatingenemy, like Rotodisk.
+//D1 - ID of firebar segment enemy. Want firebar? D1=D2
+//D2 - Rotation Speed, in degrees per second. Negative for reverse direction.
+//D3 - starting angle, in degrees.
+//D4 - Length/radius of hazard, in pixels.
+//D5 - number of inner enemies in firebar.
+//D6 - Radius fluctiation. If you D3 to 0 and D4 to radius, you ger Rosewind Rotodisk from Mario Forever.
+//D7 - Radius fluctiation speed.
+
+* Jumping Fireball/Podoboo
+
+A fire ball that jumps out of liquid, usually lava, in attempt to hit Link and Knock him into lava.
+
+const int SFX_JF_JUMP - sound to play when Podoboo jumps out of lava.
+
+//Set up enemy and his animation tiles Up-Down-Left-Right
+//Place invisible FFC at Podoboo`s highest point og jumping
+// D0 - ID of main enemy
+// D1 - Direction Up-Down-Left-Right.
+// D2 = Sprite to display when Podoboo jumps out of lava.
+
+* Moosh Lttp Bumper
+
+Moosh`s Lttp Bumper, Converted for sideview engine. Also if you land on top of it, you can hold Jump button to jump higher.
+
+const int LTTP_BUMPER_FORCE - How fast Link gets pushed back when he hits a bumper
+const int LTTP_BUMPER_ANIM_SPEED - How fast the bumpers animate in frames
+const int SFX_LTTP_BUMPER - The sound that plays when Link hits a bumper
+
+//Combo Setup: Each set of bumper combos should be arranged as so: 
+//Bumper Frame 1
+//Bumper Frame 2
+//Bumper Frame 3
+//Bumper Frame 4
+//Each of the four combos is a frame in the bumper's animation.
+//When Link hits the bumper it changes to frame 4 and then goes back a combo every LTTP_BUMPER_ANIM_SPEED frames.
+//The FFC should use the first of the four bumper combos.
+//D0: How many frames Link gets pushed back for when he hits the bumper
+
+* Moosh Damage Combos.
+
+This is a substitute for ZC's somewhat less than desirable damage combo hit detection. In particular it's to fix a few problems with sideview present in 2.53 and (somewhat) 2.55.
+
+Using the script you can:
+Have damaging spikes and FFC hitboxes that don't phantom hit Link when he's standing on land in sideview
+Have solid damage combos that only take up quarter tiles
+Have a delay before solid damage combos damage Link
+Have damage combos that don't deal knockback
+
+First off, set the constants if needed:
+	SCRIPTEDDAMAGECOMBO_ONLYFACING: If 1, Link will only get hurt when walking into spikes in the direction he's facing at a diagonal. Otherwise they can hit him from the sides too.
+	SCRIPTEDDAMAGECOMBO_DAMAGEONHEADBONK: If 1, Link is hurt by the bottom part of spikes when jumping into them in sideview. Otherwise they're harmless from the bottom.
+	DELAY_SCRIPTEDDAMAGECOMBO: Delay in frames (60ths of a second) before Link takes damage walking into a solid damage combo.
+	DELAY_SCRIPTEDDAMAGECOMBO_SIDEVIEW: Same as above, but only in sideview.
+	Next place your combos on any layer with a script screen flag (98-102 or anything else that doesn't do anything in your quest) of your choice on layer 0. The placed combos will have scripted behavior and so can be left as type (None). If the script is using an FFC hitbox and not screen placed combos, you can skip this.
+
+Place down an FFC with the following D0-D7 arguments:
+	D0: The flag marking which combos the FFC is controlling. If 0, the FFC itself is treated as a scripted damage combo.
+	D1: How much base damage the combo does. 4 = 1 heart without tunics.
+	D2: If 1, the damage pierces rings (see details on ring function below).
+	D3: If >0, the script uses a different damage delay from the default when Link pushes against it.
+	D4: If 1, the combos being flagged aren't solid and use different collision logic.
+	D5: If 1, the script won't deal knockback
+If you're using piercing spikes and have different defensive items from the default 3 rings, you'll have to alter the ScriptedDamageCombo_GetTunicMultipliers() function:
+	int ScriptedDamageCombo_GetTunicMultipliers(){
+		//Return the divisor of the highest level ring
+		if(Link->Item[I_RING3])
+			return 8;
+		else if(Link->Item[I_RING2])
+			return 4;
+		else if(Link->Item[I_RING1])
+			return 2;
+		//Otherwise no ring and damage is normal
+		return 1;
+	}
+The gist of it is it's checking each of Link's rings in order from highest to lowest and if he has one and then returns its damage multiplier so the script can undo it. The words in [] are the item IDs for the items (you can just use numbers instead when editing it). The values after return are the damage divisors of the rings. It's a pretty simple function to edit if need be.
+
+This script uses std.zh and ghost.zh.
+
+* Rinka 
+
+An enemy that flies torwards Link. Can be blocked by shield.
+
+Step - speed
+
+Attribute 1 - Shield level needed. 1 - nomral, 2 - magic, 3 - mirror.
+
+* Timed Enemy Spawner
+
+Spawns enemy every X seconds.
+
+//D0 - ID of enemy to spawn. 
+//D1 - delay between enemy spawning, in frames. 
+//D2 - Sound to play, when enemy spawns.
+
+* One-way solid block.
+
+Self explanatory.
+
+D0 - direction. Up means top-solid (no jumping down), Down - bottom-solid, etc.
+
+* Sideview Springboard.
+
+Springboard that catapults Link in air, when he jumps on top of it.  Have 3 different variations.
+
+//D0 - Launch power, if not pressing jump button.
+//D1 - Launch power, if pressing jump button.
+//D2 - Springboard type
+//  0 - normal springboard
+//  1 - does not lauch, unless holding Jump button.
+//  2 - Requires hammer strike to charge and then after certain delay, launches Link in midair. Always uses D1 for power.
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

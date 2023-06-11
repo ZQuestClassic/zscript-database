@@ -1,0 +1,191 @@
+======== SETUP ========
+
+The DialogueBranch_Advanced script is meant to be called by my NPCScript or NPCScript_Simple 
+scripts as an addon. It only takes one argument so it can fit on either. This argument (D0) 
+points to a ZQuest string that can then be used to chain a variety of commands together to 
+make different things happen with the strings. The script tell a command string apart from a 
+message string by whether or not it has #MCC at the start. Once it's given a regular ZQuest 
+string, though, the script will stop running as it doesn't have any more commands to process.
+
+An example command string might look like:
+
+#MCC #BRANCH 17, 18 19, 20 21
+
+With a string table such as:
+17: "Which do you prefer more? Yes or No?"
+18: "Yes"
+19: "No"
+20: "Ah, I see you prefer 'Yes'";
+21: "Ah, I see you prefer 'No'";
+
+This runs the BRANCH control code which displays a string, displays a number of strings you 
+can respond with, and then plays a corresponding response string. The response string can be 
+another code or even the same code controlling the branch you just came from, allowing for 
+multiple branches of commands or even recursive ones, like with the owl from Ocarina of Time.
+
+======== Control Codes ========
+
+Here are all the possible control codes you can put in a string. Most strings will only have 
+#MCC and one other. The only exception at the moment is #APPEND which can go at the end of a
+control string you want to extend.
+
+
+#MCC
+
+This tells the script that what it's looking at is supposed to be a control code. Each control 
+code string should have this at the very start.
+
+
+#APPEND <STRING>
+
+This will attach another string (specified by <STRING>) onto the end of the current one 
+starting at the # character of this code. This is not usually necessary, but if you somehow ran
+out of space in a ZQuest string, you can use this to get around it.
+
+
+
+
+#BRANCH <PROMPT>, <INPUT>, <OUTPUT>
+
+This will create a dialogue branch with up to 16 options each with their own output string.
+
+<PROMPT> - The string that plays before the dialogue branch appears. Can be 0 for no message.
+<INPUT> - This is any number of input strings you want, seperated by spaces. As soon as you 
+	  put a comma down after these it will start reading as outputs.
+<OUTPUT> - This is any number of output strings you want, seperated by spaces. There need to be
+	   the same number of these as inputs, otherwise it will return an error. Output 
+	   strings can be either a ZQuest string or a control code, which will continue the 
+	   chain of events.
+
+
+#SCRIPT <PROMPT>, <SCRIPT SLOT>, <D0>, <D1>, <D2>, <D3>, <D4>, <D5>, <D6>, <D7>
+
+This will run a FFC script and end the control code chain.
+
+<PROMPT> - The string that plays before the script runs. Can be 0 for no message.
+<SCRIPT SLOT> - The script slot the FFC script is assigned to in ZQuest
+<D0>-<D7> - The 8 arguments to pass into the script. Note that you can stop listing these at 
+	    any point and the control code will still run. It will leave the rest as 0.
+
+
+#GIVEITEM <PROMPT>, <ITEM ID>, <OUTPUT>
+
+This will give Link an item with a hold up animation.
+
+<PROMPT> - The string that plays before the item is given. Can be 0 for no message.
+<ITEM ID> - The ID of the item in ZQuest
+<OUTPUT> - The string that plays after the item is given. Output strings can be either a 
+	   ZQuest string or a control code, which will continue the chain of events.
+
+
+#HASITEM <PROMPT>, <ITEM ID>, <OUTPUT TRUE>, <OUTPUT FALSE>
+
+This will check if Link has an item and play different strings depending.
+
+<PROMPT> - The string that plays before the item is checked for. Can be 0 for no message.
+<ITEM ID> - The ID of the item in ZQuest
+<OUTPUT TRUE> - The string that plays if Link has the item. Output strings can be either a 
+	   	ZQuest string or a control code, which will continue the chain of events.
+<OUTPUT FALSE> - The string that plays if Link doesn't have the item. Output strings can be 
+		 either a ZQuest string or a control code, which will continue the chain of 
+		 events.
+
+
+#HASCOUNTER <PROMPT>, <COUNTER ID>, <COUNTER AMOUNT>, <OUTPUT TRUE>, <OUTPUT FALSE>, <SUBTRACT COUNTER>
+
+This will check if Link has enough of a certain counter and play different strings depending.
+It can also be set to take the amount from the counter to function like a shop.
+
+<PROMPT> - The string that plays before the counter is checked. Can be 0 for no message.
+<COUNTER ID> - The ID of the counter. Check CR_ constants in std_constants.zh for a list of
+	       all available counters and their IDs.
+<COUNTER AMOUNT> - How much to check for in the counter.
+<OUTPUT TRUE> - The string that plays if Link has enough. Output strings can be either a 
+	   	ZQuest string or a control code, which will continue the chain of events.
+<OUTPUT FALSE> - The string that plays if Link doesn't have enough. Output strings can be 
+		 either a ZQuest string or a control code, which will continue the chain of 
+		 events.
+<SUBTRACT COUNTER> - Set this to 0 if Link keeps the counter amount when the output string 
+		     plays. Set to 1 if Link loses the counter amount instantly on 
+		     OUTPUT FALSE. Set to 2 if it drains over time like in a shop.
+
+
+#SECRET <PROMPT>, <PERMANENT>, <OUTPUT>
+
+This will trigger the screen's secrets.
+
+<PROMPT> - The string that plays before the secret is triggered. Can be 0 for no message.
+<PERMANENT> - If this is 1, sets the screen's permanent secret state. Otherwise set it to 0.
+<OUTPUT> - The string that plays after the secret is set. Output strings can be either a 
+	   ZQuest string or a control code, which will continue the chain of events.
+
+
+#ISSECRET <PROMPT>, <OUTPUT TRUE>, <OUTPUT FALSE>
+
+This will play a different string depending on if the screen's permanent secret is set.
+
+<PROMPT> - The string that plays before the secret is checked. Can be 0 for no message.
+<OUTPUT TRUE> - The string that plays if the secret has been triggered. Output strings can 
+		be either a ZQuest string or a control code, which will continue the chain 
+		of events.
+<OUTPUT FALSE> - The string that plays if the secret hasn't been triggered. Output strings 
+		 can be either a ZQuest string or a control code, which will continue the 
+		 chain of events.
+
+
+#WARP <PROMPT>, <DMAP>, <SCREEN>, <DIRECT>
+
+This will warp Link and end the control code chain.
+
+<PROMPT> - The string that plays before warping. Can be 0 for no message.
+<DMAP> - The DMap to warp to.
+<SCREEN> - The screen to warp to. Keep in mind that this is in decimal while ZQuest counts 
+	   screens in hexadecimal. So you'll need to convert from hex to decimal first.
+<DIRECT> - Set to 1 if you want Link's position to be preserved in the warp. Otherwise
+	   set to 0 and Link will appear at warp return point A.
+
+
+#RAND <PROMPT>, <OUTPUT A>, <OUTPUT B>, <OUTPUT C>...
+
+This will play a random output string out of up to 16 different choices.
+
+<PROMPT> - The string that plays before playing a random string. Can be 0 for no message.
+<OUTPUT> - However many random output strings can be played. Put as many arguments here as 
+	   you need options for. Output strings can be either a ZQuest string or a control 
+	   code, which will continue the chain of events.
+
+
+#STRING <PROMPT>, <OUTPUT>
+
+This will play a string and then play an output string. It's mainly used for adding in strings
+where you otherwise couldn't. For example a dialogue branch having a "Would you like to hear
+what I said again?" before looping back in on itself.
+
+<PROMPT> - The string that plays before playing the output string. Can be 0 for no message.
+<OUTPUT> - The output string to play. Output strings can be either a ZQuest string or a 
+	   control code, which will continue the chain of events.
+
+
+#HASTRIFORCE <PROMPT>, <CHECK COUNT>, <TRIFORCES>, <OUTPUT TRUE>, <OUTPUT FALSE>
+
+This will check if Link has a number or set of triforces and play a different string 
+depending on the result. 
+
+<PROMPT> - The string that plays before the triforce is checked for. Can be 0 for no message.
+<CHECK COUNT> - Whether or not to check for total triforce count. If 0 it will check for a set of
+		specific triforce pieces. If 1 it will check for total count.
+<TRIFORCES> - Either the set of triforces to check for or the total count depending on <CHECK COUNT>
+<OUTPUT TRUE> - The string that plays if Link has the required triforces. Output strings can be 
+		either a ZQuest string or a control code, which will continue the chain of events.
+<OUTPUT FALSE> - The string that plays if Link doesn't have the required triforces. Output strings 
+		 can be either a ZQuest string or a control code, which will continue the chain of 
+		 events.
+
+This control code can work in two different ways depending on <CHECK COUNT>. <TRIFORCES> can be either 
+a list or a single value. For example:
+
+#HASTRIFORCE 17, 0, 4 5 7, 18, 19
+This would check if Link has triforce pieces 4, 5, and 7 before playing string 18 or 19.
+
+#HASTRIFORCE 17, 1, 4, 18, 19
+This would check if Link has at least 4 triforce pieces total before playing string 18 or 19.

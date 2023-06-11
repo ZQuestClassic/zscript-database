@@ -1,0 +1,16 @@
+{
+  "name": "Bait Weapons",
+  "author": "justin",
+  "added": null,
+  "updated": "17 Feb 2015",
+  "tags": [
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "47",
+  "info": "Add additional function to the bait item with these 4 new bait types.",
+  "description": "Some new bait items envisioned by SkyLizardGirl in this thread, https://www.purezc.ne...showtopic=66234\n\n- Poison bait delivers damage to enemies that eat the bait\n- Sleep bait puts enemies that eat it to sleep\n- Mine bait explodes when triggered by enemies\n- Baitchu, bait that moves away from Link.  No other flashy funciton, but it could easily be mashed with one of the other new bait types.\n\nUpdate:  added the baitchu!",
+  "setup": "std.zh and ffcscript.zh are required.detailed setup instructions included with the code.",
+  "has_zip": true,
+  "has_popup": true
+}

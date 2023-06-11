@@ -1,0 +1,18 @@
+{
+  "name": "Z4 Bomb Script",
+  "author": "Mitchfork",
+  "added": "20 Nov 2020",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Weapon",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "32",
+  "info": "Script for bombs you can pick up and throw.  Also includes support for a custom 2x2 bomb animation instead of the stock explosion sprites.  Includes an example quest and tile sheet for more setup information.",
+  "description": "These are bombs, but they allow you to pick them up and throw them after you place them.\nSupports the following features:Throw them around - bombs have \"\"\"\"physics\"\"\"\" and will bounce off walls and floors!Set a custom 2x2 animation for the explosion - just like in the Game Boy games!Bombs can be configured to change sprites when they're close to detonating!Bombs automatically sink and fizzle in water!  Wow!Bombs can fly over certain combo types/flags even if their solid, enabling more types of puzzles!Toggle between Link's Awakening and Oracle behavior for bomb fuses and throwing!\nAlso refer to the example tile sheet and quest if you have any questions about graphics and script setup.",
+  "setup": "Requires std.zh.\nRequires the Quest Script Settings:Objects>Sprite Coordinates are FloatObjects>Weapons Live One Extra Frame With WDS_DEAD\nIncludes the following scripts and types:Hero Active: heroActiveZ4BombSnipItem: z4bombItemLWeapon: z4bombLWeaponEWeapon: z4bombEWeapon\nAll setup instructions are included in the script file.",
+  "has_zip": true,
+  "has_popup": true
+}

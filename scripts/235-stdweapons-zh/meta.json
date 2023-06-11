@@ -1,0 +1,16 @@
+{
+  "name": "stdWeapons.zh",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "21 May 2019",
+  "tags": [
+    "#Library"
+  ],
+  "rating": "2",
+  "downloads": "134",
+  "info": "Create your own scripted weapons in ZC!",
+  "description": "The library is used for creating and manipulating Lweapons with FFC`s to make\nscripted weapons. WeaponLauncher item script runs FFC script with arguments\npassed to FFC. FFC controls movement, while Lweapon handles appearance and\ninteraction with enemies and stuff.\n\nDemo Quest: https://www.mediafir...nsDemo.qst/file",
+  "setup": "The setup process is described in the readme file.",
+  "has_zip": true,
+  "has_popup": false
+}

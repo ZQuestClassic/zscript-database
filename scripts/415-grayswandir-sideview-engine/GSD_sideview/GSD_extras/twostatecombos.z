@@ -1,0 +1,68 @@
+const int CF_TWOSTATE_OFF = 101;
+const int CF_TWOSTATE_ON = 102;
+
+const int CSET_TWOSTATE_OFF=7;
+const int CSET_TWOSTATE_ON=8;
+
+const int SFX_TWOSTATE_SWITCH = 60;
+
+int twostate = 0;
+
+void UpdateTwoStateCombos(){
+	for (int i=1;i<176;i++){
+		if ((ComboFI(i,CF_TWOSTATE_OFF))&&(twostate>0)){
+			Screen->ComboD[i]++;
+			Screen->ComboF[i] = CF_TWOSTATE_ON;
+		}
+		else if ((ComboFI(i,CF_TWOSTATE_ON))&&(twostate==0)){
+			Screen->ComboD[i]--;
+			Screen->ComboF[i] = CF_TWOSTATE_OFF;
+		}
+		if (ComboFI(i,CF_TWOSTATE_OFF)) Screen->ComboC[i] = CSET_TWOSTATE_OFF;
+		if (ComboFI(i,CF_TWOSTATE_ON)) Screen->ComboC[i] = CSET_TWOSTATE_ON;
+	}
+}
+
+ffc script TwoStateSwitch{
+	void run (int ID, int sound){
+		int cd = 0;
+		while(true){
+			if (cd==0){
+				for (int i = 1; i<=Screen->NumLWeapons();i++){
+					lweapon l = Screen->LoadLWeapon(i);
+					if ((l->ID != ID)&&(ID>0)) continue;
+					if (Collision(this, l)){
+						Game->PlaySound(sound);
+						if (twostate == 0){
+							twostate = 1;
+							this->CSet = CSET_TWOSTATE_ON;
+						}
+						else{
+							twostate = 0;
+							this->CSet = CSET_TWOSTATE_OFF;
+						}
+						cd = 60;
+					}
+				}
+			}
+			else if (cd>0) cd--;
+			Waitframe();
+		}
+	}
+}
+
+ffc script TwoStateButton{
+	void run(int state){
+		int origdata = this->Data;
+		while(true){
+			if (twostate==state){
+				if (LinkCollision(this)){
+					if (twostate == 0) twostate = 1;
+					else twostate = 0;
+				}
+			}
+			this->Data = origdata+twostate;
+			Waitframe();
+		}
+	}
+}

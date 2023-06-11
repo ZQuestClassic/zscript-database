@@ -1,0 +1,17 @@
+{
+  "name": "Armos (LttP)",
+  "author": "Saffith",
+  "added": "29 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "69",
+  "info": "This is a recreation of LttP's Armos. When activated, it simply jumps directly toward Link. It is designed to be spawned by Armos combos.",
+  "description": "This is a recreation of LttP's Armos. When activated, it simply jumps directly toward Link. It is designed to be spawned by Armos combos.",
+  "setup": "Set up an enemy as follows:\nType: Other\nAnimation: 2-Frame, 3-Frame, 4-Frame, Flip, or (None)\nSpawn animation: Instant\nStep speed is used\nAttribute 1: Sound played when coming to life\nAttribute 2: Sound played when jumping\nAttribute 11: GH_INVISIBLE_COMBO or GH_INVISIBLE_ALT (normally -1)\nAttribute 12: Script slot\n\nThe enemy should also have the \"Spawned By 'Armos' Combo Type\" flag checked.\n\nResources\n\nRequires ghost.zh, std.zh, and string.zh.\nSounds can be found here. In LttP, the sound LTTP_Link_Push is used when an Armos activates.",
+  "has_zip": true,
+  "has_popup": true
+}

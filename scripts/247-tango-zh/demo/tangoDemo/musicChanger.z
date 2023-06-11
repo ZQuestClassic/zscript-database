@@ -1,0 +1,64 @@
+// Lets the player change the DMap music.
+//
+// This is an example of a menu that doesn't close automatically when
+// a choice is made. Each time a menu item is selected, the script can see
+// what was chosen and decide how to respond. In this case, three choices
+// change the music, and one closes the menu.
+
+ffc script MusicChanger
+{
+    void run()
+    {
+        int str1[]="Would you like to change the music?@pressa()@26";
+        int str2[]="@choice(3)Light World@26@choice(1)Ordinary People@26@choice(4)Triple Concerto@26@choice(100)No, thanks@domenu(3)@close()";
+        // The 3 in @domenu() corresponds to
+        // TANGO_MENU_CAN_CANCEL | TANGO_MENU_PERSISTENT
+        
+        while(true)
+        {
+            if(StartTalking(this))
+            {
+                int slot=Tango_GetFreeSlot(TANGO_SLOT_NORMAL);
+                if(slot==TANGO_INVALID)
+                {
+                    StopTalking();
+                    continue;
+                }
+                
+                Tango_ClearSlot(slot);
+                Tango_LoadString(slot, str1);
+                Tango_AppendString(slot, str2);
+                Tango_SetSlotStyle(slot, STYLE_PLAIN);
+                Tango_SetSlotPosition(slot, 32, 32);
+                Tango_ActivateSlot(slot);
+                
+                // Wait until the menu is activated
+                while(!Tango_MenuIsActive())
+                    Waitframe();
+                
+                // The menu will run until the player presses B or
+                // select "No, thanks" (choice 100).
+                while(Tango_MenuIsActive())
+                {
+                    Waitframe();
+                    
+                    // Each selection is visible for a single frame. If a sound
+                    // is selected, it will be the last choice one time, then
+                    // it will be 0 again in the next frame.
+                    int choice=Tango_GetLastMenuChoice();
+                    if(choice==100)
+                        Tango_DeactivateMenu();
+                    else if(choice!=0)
+                    {
+                        Game->PlayMIDI(choice);
+                        Game->DMapMIDI[0]=choice;
+                    }
+                }
+                
+                StopTalking();
+            }
+            
+            Waitframe();
+        }
+    }
+}

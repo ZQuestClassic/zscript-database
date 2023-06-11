@@ -1,0 +1,16 @@
+{
+  "name": "Frogs and Toads Jumping puzzle EX",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "08 Jun 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "10",
+  "info": "Frogs and toads puzzle for ZC 2.53.1\nhttps://en.wikipedia...Toads_and_Frogs\nUpdate 9.6.2022 - Unhardcoded CSet for selected frog/toad",
+  "description": "7 spaces in 1 horizontal line. 3 spaces occupied by frogs facing right, 3 by toads facing left and 1 empty space in betweenToads and frogs can only move forward and jump 1 space forward, if occupied. Stand on piece that can be moved and press A.The goal is to swap all toads with frogs and vice versa.--Frogs and Toads EXExtended variety of Frogs and Toads puzzle with new features. Pieces can move and jump in any allowed directions.Swap frogs and toads to solve.Rewritten from scratch on request by Skyflare",
+  "setup": "1. Check out constants at the top of script file.2. Set up 3 combos. First, empty space, then frog facing right, then toad facing left.3. Import and compile the script.4. Place FFC at leftmost position of puzzle location in the screen. No prebuilding needed, as script builds and renders puzzle automatically.D0 - Empty space combo from step 2.--Frogs and Toads EX1. Set up 3 combos. First, empty space, then frog , then toad.2.Place FFC anywhere in the screen.D0 - Empty space combo.D1 - Combo for frogD2 - Combo for toad.D3 - Add together.1 - Frogs and toads must alternate turns.2 - Frogs and toads slide like on ice after moving/jumping.4 - Allow jumping over same type. Frogs over frogs etc.D5 - Allowed directions for frogs.D5 - Allowed directions for toads.D6 - CSet used for piece selection",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Dominion Rod",
+  "author": "Mero",
+  "added": "30 Apr 2014",
+  "updated": null,
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "96",
+  "info": "This item which is based off the one from twilight princess allows you to grant movement to ffcs by hitting them with a dominion sphere which are fired by the dominion rod. These statues have the option of damaging enemies, obey walkability, and can even activate certain switches. They move in the direction Link is facing constantly coming to a stop when they hit a pit, water, or a solid combo.",
+  "description": "This item which is based off the one from twilight princess allows you to grant movement to ffcs by hitting them with a dominion sphere which are fired by the dominion rod. These statues have the option of damaging enemies, obey walkability, and can even activate certain switches. They move in the direction Link is facing constantly coming to a stop when they hit a pit, water, or a solid combo.",
+  "setup": "First and forost set your constants for both this script and ffcscript.zh Second you need to create the rod item. It should be a melee weapon that can't fire projectiles on it's own. I personally prefer a wand or sword. Then you need to set up your statue combos. They should be organized like so. The first four should be the inactive combos, second four are the active idle combos, and the last four should be the active moving combos. Each set of four should be correlated up, down, left, and right. Now lastly you need to set up the dominion switches. These should be just regular combos and must always be placed on layer 0. Now for arguments, there's three scripts here so I will divide this into 3 sections.\n\nDominion RodD0 is the ffc script slot number with the DominionSphere script.D1 is the step speed of a dominion sphere in 100ths of a pixel per frame.D2 is the sprite used by a dominion sphere.D3 is the sound used when a dominion sphere is fired.D4 is whether or not to rotate the sprite. \"0 = false, 1 = true\"\nDominion StatueD0 is the velocity of the ffc when moving.D1 is the damage of the dominion statue when it collides with an enemy. You can disable npc collision by setting this to 0.D2 is the sound used when the statue is activated.D3 is the sound used when the statue is deactivated.\nDominion SwitchD0 is the ffc script slot number with the dominion statue script.D1 is the combo data of the switch when activated.D2 is the cset of the switch when activated.D3 is whether the secrets triggered by the switch are permanent.\nstd.zh is needed as well as ffcscript.zh",
+  "has_zip": true,
+  "has_popup": true
+}

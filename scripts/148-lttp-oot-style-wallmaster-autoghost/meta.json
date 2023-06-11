@@ -1,0 +1,17 @@
+{
+  "name": "LttP/OoT Style Wallmaster (AutoGhost)",
+  "author": "Lejes",
+  "added": null,
+  "updated": "07 Jun 2016",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "3",
+  "downloads": "90",
+  "info": "A Wallmaster that falls from the ceiling to grab Link.",
+  "description": "Instead of just sticking to walls, Wallmasters can now get the jump on Link anywhere in the room. Comes in both Link to the Past and Ocarina of Time flavors.",
+  "setup": "Use GhostZHActiveScript in your global active script slot, or combine ghost.zh global functions with your existing global active script. Adjust the SFX, tile, and color constants to your liking. And make sure to set the autowarp constant to an invisible combo with type \"Auto Side Warp [A]\".\n\nSet up the enemy as follows:\n\nType: Other\nTile: Invisible (this is handled in the script constants, and it will show up briefly when you enter the room if it isn't invisible to start with)\nMisc. Attr. 1: 0 for LttP style, 1 for OoT style.\nMisc. Attr. 2: Lower boundary for random interval before the Wallmaster starts to fall, in frames.\nMisc. Attr. 3: Upper boundary for random interval before the Wallmaster starts to fall, in frames.\nMisc. Attr. 11: -1\nMisc. Attr. 12: The slot number of this script, or -1 to try finding the script from the enemy name.\n\nWallmaster sound effects from the demo quest can be found here.",
+  "has_zip": true,
+  "has_popup": true
+}

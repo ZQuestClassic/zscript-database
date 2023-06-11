@@ -1,0 +1,18 @@
+{
+  "name": "Target Game",
+  "author": "ywkls",
+  "added": null,
+  "updated": "31 May 2015",
+  "tags": [
+    "#FFC",
+    "#Global",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "45",
+  "info": "This is designed to make a game with targets with varying points that will bounce horizontally around the room. Have up to 31 targets in a room. Set up so you can only win the game once.",
+  "description": "Consists of 3 scripts. A global script, to initialize the counter. A moving target script and a target game script. Can move vertically, horizontally or diagonally.",
+  "setup": "Std.zh is required.For the target script-Set Vx or Vy to positive to avoid unintended behavior.//D0- How many points this target gives.//D1- What Lweapon triggers it.For the Target Game script-//D0- How many points nets a prize.//D1- What you get for winning.//D2- Message to play when you get the item.//D3- What script number the targets run.",
+  "has_zip": true,
+  "has_popup": true
+}

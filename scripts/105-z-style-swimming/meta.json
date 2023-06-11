@@ -1,0 +1,16 @@
+{
+  "name": "Z3 Style Swimming",
+  "author": "Timelord",
+  "added": "04 May 2014",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": "49",
+  "info": "This is a global function, and a boolean, used together, to allow the player to 'paddle', by pressing the B button, when swimming, speeding up movement, as in The Legend of Zelda: Triforce of the Gods (Link to the Past)'.",
+  "description": "In 'The Legend of Zelda: Triforce frce of The Gods (Link to the Past)', when you swim, you can press a button to paddle, that makes a chugging noise, and move Link a but further than just pressing a direction button.\n\nThis global function replicates this, entirely, and you can modify it to suit your needs.",
+  "setup": "Add the boolean isSwimming, and the constant SwimPaddle to your main script, and assign a value to SwimPaddle from 'Quest->Audio->SFX Data'. THis is the sound that the player will hear when pressing B to paddle.The demo quest uses sound 26 'Ocean Ambiance', for the purposes of demonstration, and includes a few types of combos on Screen 00km to demonstrate what happens when the player is swimming, or paddling, onto dry land, or onto a solid object.This script obeys all object solidity, but FFCs that are solid may not act as such with it, so you nay need to fine-tune FFC scripts to be solid if LA_SWIMMING.Add the function void paddle() to your main script, and add paddle() to your main while loop, before Waitdraw().If you are not using any other scripts, you can import and compile this, and use it with no further set-up (aside from setting the value of the SwimPaddle sound effects).",
+  "has_zip": true,
+  "has_popup": true
+}

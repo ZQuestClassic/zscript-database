@@ -1,0 +1,32 @@
+// Shows a message when Link talks to it.
+//
+// This is a minimal usage example. It's also used to show messages that
+// demonstrate features that don't require any additional script support.
+
+ffc script NPC
+{
+    void run(int message)
+    {
+        while(true)
+        {
+            if(StartTalking(this))
+            {
+                // Display the assigned message
+                int slot=ShowMessage(message, TANGO_SLOT_NORMAL, STYLE_PLAIN,
+                  32, 32);
+                
+                // If the message was displayed successfully...
+                if(slot!=TANGO_INVALID)
+                {
+                    // Wait for it to be closed
+                    while(Tango_SlotIsActive(slot))
+                        Waitframe();
+                }
+                
+                StopTalking();
+            }
+            
+            Waitframe();
+        }
+    }
+}

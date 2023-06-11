@@ -1,0 +1,55 @@
+ffc script TimedEnemySpawner{
+	void run(int enemyID, int delay, int sound){
+		int timer= delay;
+		while(true){
+			timer--;
+			if(timer==0){
+				Game->PlaySound(sound);
+				npc n = CreateNPCAt(enemyID, this->X, this->Y);
+				timer=delay;
+			}
+			Waitframe();
+		}
+	}
+} 
+
+ffc script Rinka{
+	void run(int enemyID){
+		npc ghost = Ghost_InitAutoGhost(this, enemyID);
+		
+		int SPD = ghost->Step;
+		
+		Ghost_SetFlag(GHF_NORMAL);
+		Ghost_SetFlag(GHF_IGNORE_ALL_TERRAIN);
+		Ghost_SetFlag(GHF_IGNORE_NO_ENEMY);
+		Ghost_SetFlag(GHF_MOVE_OFFSCREEN);
+		Ghost_SetFlag(GHF_NO_FALL);
+		
+		int shieldblock = Ghost_GetAttribute(ghost, 0, 2);
+		int angle = Angle(CenterX(ghost), CenterY(ghost), CenterLinkX(), CenterLinkY());
+		int dir = AngleDir4(angle);
+		bool canblock = false;
+		if (Link->Item[I_SHIELD3]){
+			if (shieldblock<=3)canblock = true;
+		}
+		else if (Link->Item[I_SHIELD2]){
+			if (shieldblock<=2)canblock = true;
+		}
+		else if (Link->Item[I_SHIELD1]){
+			if (shieldblock<=1)canblock = true;
+		}
+		
+		
+		while(true){
+			Ghost_MoveAtAngle(angle, SPD/100, 0);
+			if (LinkCollision(ghost)){
+				if (canblock&&(Link->Dir==OppositeDir(dir))){
+					Game->PlaySound(6);
+					ghost->ItemSet=0;
+					Ghost_HP=0;
+				}
+			}
+			Ghost_Waitframe(this, ghost);
+		}
+	}
+}

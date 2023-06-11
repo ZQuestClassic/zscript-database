@@ -1,0 +1,16 @@
+{
+  "name": "Time-limited pushblocks",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "14 Jan 2023",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "8",
+  "info": "\"Push it before goes BOOM!\"Made on request by SkyFlare",
+  "description": "Time limited pushblocks. Push them all on triggers before time expires and they go boom. Straight from Goof Troop (SNES).Update 14.01.2023 - Fixed color-dependant triggers. Reworked defusing when landed on trigger (flag 64 in D2).",
+  "setup": "1.Set up solid combo with blank tile for CMB_TIMED_PUSHBLOCK_SOLID constant.2.Effect Width and Height used.D0 - bracelet level requirement.D1 - allowed push directions. Add together - 1-up, 2-down, 4-left, 8-right. 0 for all directions.D2 - add together: 1 - gets stuck after 1 push, 2 - gets stuck when landing on trigger (disarms timer), 4 - icy block, continue moving in direction until hitting obstacle, 8 - ignore triggers, 16 - require triggers with same CSet as FFC`s Cset. 32 - Start timer at screen init, 64 - defuse bomb by landing on trigger, 128 - superbomb explosionD3 - delay between frames, in frames,D4 - Number of framesD5 - Damage by explosion. 0 for simple vanish.",
+  "has_zip": true,
+  "has_popup": true
+}

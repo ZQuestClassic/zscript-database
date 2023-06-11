@@ -1,0 +1,18 @@
+{
+  "name": "No Cycle Spinning Tiles [2.55]",
+  "author": "Moosh",
+  "added": "15 Jan 2022",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": null,
+  "info": "A script that handles spinning tile rooms without large combo cycling setups.",
+  "description": "Spinning tiles are a somewhat underutilized feature in ZC due to the massive combo cycling setups they require in order to use. This script provides an alternative method by marking spinning tile patterns with combo flags placed on a higher layer. Whether or not this is easier or more intuitive than combo cycling may depend on the user. Your mileage may vary.",
+  "setup": "Place an FFC on the screen with the script, set its arguments as follows:D0: The layer you're using for placing combo flags to mark the spawn orderD1: The combo to turn the inactive tiles into. This should be of the type Spinning Tile (Immediate). If you leave it at 0, it will offset the combos at those positions by 1 instead of setting them to a fixed one.D2: The cset to turn the inactive tiles into. If you leave it at 0, the CSet will remain unchanged.D3: How long in frames (60ths of a second) to wait before spawning each tile in the sequenceD4: How long in frames to wait after entering the screenD5: If this is >0, the tile pattern only requires one flag specified by this argument. It will spawn the tiles in a preset pseudorandom order.D6: If this is set to 1, the tiles will spawn an additional enemy offscreen that holds shutters closed until they finish spawning.\nTo indicate where and when the tiles spawn in, you need to place combo flags on the layer specified by D0. This should be a layer >2 so the flags don't affect Link. If D5 is set, only that flag needs to be placed. Otherwise the number of the flag relates to the timing with which the tile spawns. If you get a warning when placing flags on a layer, set skip_layer_warning in zquest.cfg to 1.\n\nSince it's not the most widely known how the Spinning Tile (Immediate) combo type works, it spawns enemy 166, Spinning Tile (Combo), and uses the next combo in the list for the enemy's graphics. So if your tiles turn out looking glitchy, that would be why.\n\nThere's also an NPC script that you can assign to the spinning tile enemy to give them an alternate death animation and make them shatter on hitting solids. Constants for that as follows:SPR_SPINNINGTILEBREAK: The sprite in Quest->Graphics->Sprites->Sprite Data for the death animationSIZE_SPINNINTILEBREAK: Set to 2 to make the sprite 2x2.SFX_SPINNINGTILEBREAK: This sound plays when the enemy dies. You can set the death sound in the editor to 0 so it doesn't play sounds when going offscreen.SPINNINGTILE_BREAK_SOLID: If this is set to true, the enemy will also die when hitting something solid.",
+  "has_zip": false,
+  "has_popup": true
+}

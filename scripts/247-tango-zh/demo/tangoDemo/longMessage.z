@@ -1,0 +1,52 @@
+// An NPC variant that shows a long message that can be scrolled up and down.
+//
+// This is a demonstration of what happens when text is too long to fit
+// in its box, chained messages, and how to scroll the text up and down
+// in the script.
+
+ffc script LongMessage
+{
+    void run(int message)
+    {
+        while(true)
+        {
+            if(StartTalking(this))
+            {
+                // Display the assigned message
+                int slot=ShowMessage(message, TANGO_SLOT_NORMAL, STYLE_PLAIN, 32, 32);
+                
+                // If the message was displayed successfully...
+                if(slot!=TANGO_INVALID)
+                {
+                    // Wait for it to be closed
+                    while(Tango_SlotIsActive(slot))
+                    {
+                        if(Link->InputUp)
+                            Tango_ScrollSlot(slot, -1.5);
+                        else if(Link->InputDown)
+                            Tango_ScrollSlot(slot, 1.5);
+                        UnpressButtons();
+                        Waitframe();
+                    }
+                }
+                
+                StopTalking();
+            }
+            
+            Waitframe();
+        }
+    }
+    
+    // Unpress directional inputs
+    void UnpressButtons()
+    {
+        Link->InputUp = false;
+        Link->InputDown = false;
+        Link->InputLeft = false;
+        Link->InputRight = false;
+        Link->PressUp = false;
+        Link->PressDown = false;
+        Link->PressLeft = false;
+        Link->PressRight = false;
+    }
+}

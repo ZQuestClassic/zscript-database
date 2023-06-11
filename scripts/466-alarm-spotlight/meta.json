@@ -1,0 +1,16 @@
+{
+  "name": "Alarm Spotlight",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "09 May 2023",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "14",
+  "info": "\"You are spotted! Run for your...\nMISSION FAILED! BOOM goes explosive leash around your neck.\"\nMade on request by SkyFlare.",
+  "description": "An spotlight, which, if stepped in, plays alarm sound, change all CT_ALARM_SHUTTER combos to next in table and drops enemies from ceiling. If spawned enemies are defeated, secrets open. Can be killed with specific lweapon - hit center spot of FFC to destroy itUodated 9.5.2023 Can be killed by specific LWeapon.",
+  "setup": "Requires ghost.zhPlace FFC the spotlight should start. Move it with FFC settings and changers.D0 - ID of spawned enemiesD1 - number of spawned enemiesD2 - >0 - secrets unlocked, when spawned enemies are killed.D3 - Killer Lweapon IDD4 - Minimum damage of killer lweapon",
+  "has_zip": true,
+  "has_popup": true
+}

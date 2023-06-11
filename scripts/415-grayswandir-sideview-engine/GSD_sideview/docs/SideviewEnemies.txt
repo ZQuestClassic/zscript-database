@@ -1,0 +1,363 @@
++-----------------------------------------+
+|         Sideview Enemies Setup          |
++-----------------------------------------+
+This sideview enemy pack uses Saffith's ghost.zh header, specifically the AutoGhost global script. You can find ghost.zh and a tutorial by Saffith for setting up autoghosted enemies in this post: 
+
+http://www.purezc.net/forums/index.php?showtopic=44087
+
+All enemies in this pack should use the Other enemy type and have their Misc Attr. 11 and 12 in the Data 2 tab set to the combo and FFC script number they use. Since the enemies use combos for graphics, their tiles don't matter and can be set to whatever you want. It's better to at least set them to something so they don't show up invisible in ZQuest. Note that most of the enemy attributes listed here have defaults if you leave them as 0. I only point them out if I feel it's something special or would avoid confusion
+
+
++-----------------------------------------+
+|             Basic Walker                |
++-----------------------------------------+
+This enemy type walks in one direction until it hits a wall, then turns around and walks the other direction. It can be set to turn before walking off the edge of a tile too.
+
+Enemy editor settings:
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: Whether it turns on edges. 0=No, 1=Yes
+Attribute 2: The enemy's starting direction. 0=Left, 1=Right, 2=Random
+Attribute 3: if set to > 0 and the enemy was stomped, the enemy will drop item from given dropset.
+
+Combo Setup:
+Facing Left, Facing Right, Stomped
+
+
++-----------------------------------------+
+|             Basic Jumper                |
++-----------------------------------------+
+This enemy type walks back and forth and occasionally jumps. It turns when it hits a solid object or towards Link depending on attributes.
+
+Enemy editor settings:
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: The enemy's minimum jump speed (pixel per frame x 10)
+Attribute 2: The enemy's maximum jump speed (the value of A1 by default)
+Attribute 3: The minimum delay before the enemy jumps again (60ths of a second)
+Attribute 4: The maximum delay before the enemy jumps again (the value of A3 by default)
+Attribute 5: Whether or not the enemy can move aside from jumping. 0=No, 1=Yes
+Attribute 6: The direction the enemy starts facing. 0=Left, 1=Right, 2=Random, 3=Always face Link
+
+Combo Setup:
+Facing Left Walking, Facing Right Walking, Facing Left Jumping, Facing Right Jumping
+
+
++-----------------------------------------+
+|            Hovering Enemy               |
++-----------------------------------------+
+This enemy type is not affected by gravity and can float around in a variety of patterns.
+
+Enemy editor settings:
+Attribute 1: What type of pattern the enemy uses. 0=Float, 1=Horizontal movement, 2=Vertical  movement, 3 = Parametric movement
+Attribute 2: Misc 1
+Attribute 3: Misc 2
+Attribute 4: Misc 3
+Attribute 5: Misc 4
+
+Horizontal Movement:
+Misc 1: Half width of the space the enemy moves
+Misc 2: How fast the enemy moves along that path
+
+Vertical Movement:
+Misc 1: Half height of the space the enemy moves
+Misc 2: How fast the enemy moves along that path
+
+Parametric Movement:
+Misc 1: Half width of the space the enemy moves
+Misc 2: How fast the enemy moves along the X-axis
+Misc 3: Half height of the space the enemy moves
+Misc 4: How fast the enemy moves along the Y-axis
+
+Combo Setup:
+Uses only one combo
+
+Note: The parametric movement can actually be used for all of these, but I added Attribute 1 to decrease attribute use and confusion.
+
+
++-----------------------------------------+
+|             Wall Crawler                |
++-----------------------------------------+
+This enemy type crawls along solid objects. It stops moving for a bit in place of taking knockback.
+
+Enemy editor settings:
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: Whether the enemy goes clockwise or counterclockwise. 0=Clockwise, 1=Counterclockwise
+Attribute 2: Whether the enemy can walk offscreen. 0=Crawl on screen edge, 1=Move offscreen, 2=Move offscreen and die
+
+Combo Setup:
+Up, Down, Left, Right (Directions are opposite the direction the enemy is clinging to)
+
+Note: This enemy should be placed manually to avoid bugs.
+
+
++-----------------------------------------+
+|               Sine Wave                 |
++-----------------------------------------+
+This enemy type moves in a sine wave and travels across the screen. It can spawn infinitely if set.
+
+Enemy editor settings:
+Homing: How accurate to Link's Y position the enemy appears
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: The Y-scale of the sine wave period
+Attribute 2: The X-scale of the sine wave period
+Attribute 3: The direction the enemy moves. 0=Random, 1=Left, 2=Right, 3=Start furthest from Link
+Attribute 4: The minimum time it takes for the enemy to reappear. (60ths of a second)
+Attribute 5: The maximum time it takes for the enemy to reappear. (Defaults to A4)
+Attribute 6: Whether the enemy respawns when killed. 0=No, 1=Yes
+
+Combo Setup:
+Moving Left, Moving Right
+
+Note: Credit goes to Alucard648 for this enemy.
+
+
++-----------------------------------------+
+|              Wall Bouncer               |
++-----------------------------------------+
+This enemy type travels at an angle and bounces off walls. Instead of being knocked back it stops moving when damaged.
+
+Enemy editor settings:
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: The angle the enemy starts out at (defaults to a random diagonal)
+Attribute 2: 1 - Use extended direction specific animation(defaults to ON).
+
+Combo Setup:
+-1
+EX Animation Tile setup: 4 frames: UpLeft->UpRight->DownLeft->DownRight
+
++-----------------------------------------+
+|              Thwomp/Skree               |
++-----------------------------------------+
+This enemy type falls from its original position when Link steps under it. If set to Skree behavior it explodes into your weapon of choice and dies when it hits the ground.
+
+Enemy editor settings:
+Weapon: What type of weapon it explodes into. (stay away from boomerang)
+WeaponDamage: How much damage the weapons that appear when it dies deal
+Step: How fast the enemy moves when rising after attack (pixel per frame x 100) (defaults to 85)
+Homing Factor: How close to the enemy Link needs to be for it to drop
+Attribute 1: Whether or not the enemy does damage based on fall speed. 0=No, 1=Yes (Ranges from a 1/2 heart to the enemy's base damage)
+Attribute 2: The number of weapons the enemy explodes into. (0 for thwomp behavior)
+Attribute 3: The tile width of the enemy
+Attribute 4: The tile height of the enemy
+Attribute 5: How fast the weapons it explodes into move (pixel per frame x 100) (0, if used explosion)
+Attribute 6: Thwomp solidity. 0-none, 1-solid-on-top, 2-fully solid
+Attribute 7: The sprite the enemy's weapons use (defaults to the default for that weapon)
+Attribute 8: Set to >0 to cause Thwomp to turn into solid pushable block when killed. 
+Attribute 9: Thwomp direction. 0-Up, 1-Down, 2-Left, 3-Right.
+Attribute 10: If Attribute 8 is set to >0, this one will define bracelet level required to push it.
+
+Combo Setup:
+Stationary, Falling, Dead
+
+Note: Credit goes to Alucard648 for this enemy.
+
+
++-----------------------------------------+
+|              Thwomp/Skree (Placed)      |
++-----------------------------------------+
+Alternative variant of Thwomp/Skree enemy that behaves like previous enemy, but has different setup process
+
+Enemy editor settings:
+Weapon: What type of weapon it explodes into. (stay away from boomerang)
+WeaponDamage: How much damage the weapons that appear when it dies deal
+Step: How fast the enemy moves when rising after attack (pixel per frame x 100) (defaults to 85)
+Homing Factor: How close to the enemy Link needs to be for it to drop
+Attribute 11: Script slot. Needed so enemy, when set to be solid, won`t get crushed by FFC it ghosts.
+
+Place FFC where you want the thwomp to be. Assign script slot and TileWidth and TileHeight for size.
+D0 - ID of enemy in Enemy editor.
+D1 - Thwomp direction. 0-Up, 1-Down, 2-Left, 3-Right.
+D2 - Thwomp solidity. 0-none, 1-solid-on-top, 2-fully solid
+D3 - The number of weapons the enemy explodes into. (0 for thwomp behavior)
+D4 - Add 2 numbers together
+    1. Set this flag and Thwomp will deal variable damage depending on the speed in the moment of hitting Link,
+ 		ranging from half a heart to the original damage at terminal velocity.
+    2. Set this flag and thwomp will transform into pushable solid block when killed.
+D5 - How fast the weapons it explodes into move (pixel per frame x 100) (0, if used explosion)
+D6 - What type of weapon it explodes into (override). (stay away from boomerang)
+D7 - Bracelet level needed to push what`t left from thwomp when killed (unused, if D4&2==0)
+
+Combo Setup:
+Stationary, Falling, Dead
+
+Note: Credit goes to Alucard648 for this enemy.
+
+
++-----------------------------------------+
+|            Burrowing Enemy              |
++-----------------------------------------+
+This enemy type appears out of the ground, moves about, then digs down again. It can stay in the same place or teleport around.
+
+Enemy editor settings:
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: Whether the enemy stays in place or moves around after burrowing. 0=Stays in place, 1=Moves around
+Attribute 2: How long the enemy stays underground.
+Attribute 3: How long the enemy stays above ground.
+Attribute 4: The speed of the emerging animation, slower=faster animation. (default 8)
+Attribute 5: Randomness factor. This applies to the boss coming out of and going back into the ground. Higher numbers mean it's less likely to emerge or submerge after the limits for both are reached. 0 results in no randomness.
+Attribute 6: Whether the enemy respawns when killed. 0=No, 1=Yes
+
+Combo Setup:
+Up, Down, Left, Right (Burrowing 1)
+Up, Down, Left, Right (Burrowing 2)
+Up, Down, Left, Right (Above ground)
+
+Note: Try to keep Step fairly normal when using randomness. Randomness relates in part to step and so it's possible to make a leever that never submerges by mistake.
+
+
++-----------------------------------------+
+|             Shooting Enemy              |
++-----------------------------------------+
+This enemy type uses a halting walker pattern with a variety of weapon firing choices. Even with no weapon, this enemy can be handy as it doesn't seem to suffer from some of the solidity detection bugs normal enemies do.
+
+Enemy editor settings:
+Weapon: What type of eweapon it uses (boomerang not recommended for most firing types)
+Weapon Damage: Same as usual
+Random Rate: Same as usual
+Halt Rate: Same as usual
+Homing Factor: Same as usual
+Step: How fast the enemy moves (pixel per frame x 100) (aka same as usual)
+Attribute 1: Shot Type
+Attribute 2: Shot Speed (pixel per frame x 100)
+Attribute 3: Shot Misc1
+Attribute 4: Shot Misc2
+Attribute 5: Shot Sprite (use a special sprite for the weapon, otherwise use the default)
+Attribute 6: Shot Sound (use a special sound for the weapon, otherwise use the default)
+
+Shot Type 0 (Directional Shot)
+Shoots a weapon in the direction the enemy is facing. This is the only shot type I think the boomerang weapon might work with.
+Misc 1: Height of sine wave (0 for no sine wave)
+Misc 2: Width of sine wave
+
+Shot Type 1 (Aimed Shot)
+Shoots an angular weapon aimed at Link. Should turn the enemy accordingly.
+Misc 1: Height of sine wave (0 for no sine wave)
+Misc 2: Width of sine wave
+
+Shot Type 2 (Rapid Fire Aimed Shot)
+Shoots several angular weapons aimed at Link in a row.
+Misc 1: Whether or not to reaim for each weapon. 0=No, 1=Yes
+Misc 2: How many shots to fire
+
+Shot Type 3 (Fire Aimed Spreadshot)
+Shoots a spreadshot of angular weapons aimed at Link.
+Misc 1: The angle for the space between bullets
+Misc 2: The number of bullets
+
+Shot Type 4 (Fire Directional Breath)
+Shoots several weapons in the direction the enemy is facing offset by random angles.
+Misc 1: The angle spread the weapons can fire at
+Misc 2: The number of bullets
+
+Shot Type 5 (Fire Thrown Weapon)
+Throws a weapon in an arc until it hits the ground.
+Misc 1: How fast the weapon should be thrown upward (pixel per frame x 10)
+Misc 2: Whether the weapon bounces upon landing. 0=No, 1=Yes
+
+Shot Type 6 (Summon Enemies)
+Throws a weapon in an arc until it hits the ground.
+Misc 1: ID of the enemy to summon
+Misc 2: Number of enemies to summon
+
+Combo Setup:
+Up, Down, Left, Right (Walking)
+Up, Down, Left, Right (Firing)
+
+Note: Even though this is the most customizable script, I feel like it doesn't have enough firing patterns at the moment, but it is what it is. Use regular enemy editor enemies alongside it if that suits your fancy, just be careful with your 1 tile wide gaps in room design so they don't walk into the walls.
+
+
++-----------------------------------------+
+|                  Boo                    |
++-----------------------------------------+
+This enemy type moves towards the player and becomes vulnerable while their back is turned. It stops moving and becomes invincible when they face it. A clever trick shot can technically hit it, so sword immunity is recommended.
+
+Enemy editor settings:
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: How fast the enemy homes in on Link. (Confusing arbitrary value, 1 is very imprecise and anything above that adds more precision. You'll probably have to play around with it.)
+
+Combo Setup:
+Moving Left, Moving Right, Hiding Left, Hiding Right
+
+
++-----------------------------------------+
+|              Wall Hopper                |
++-----------------------------------------+
+This enemy type hops from one wall to the next. The starting direction depends on positioning and if not next to a wall it will randomize. When Link steps near enough to the enemy's axis, it will hop to the other side.
+
+Enemy editor settings:
+Step: How fast the enemy moves (pixel per frame x 100)
+Attribute 1: Whether it moves horizontally or vertically. 0=Horizontal, 1=Vertical
+Attribute 2: The delay before the enemy Jumps. With a value of -1 the enemy waits for Link to be in position and then waits for him to leave position before moving again. With a value of -2 the enemy jumps back and forth as long as Link is in position. Anything higher and it waits that many frames before jumping again.
+Attribute 3: How close to the enemy's axis Link needs to be to trigger it
+
+Combo Setup:
+Up, Down, Left, Right (Stationary)
+Up, Down, Left, Right (Jumping)
+
+
+
++-----------------------------------------+
+|              Lazy Chase                 |
++-----------------------------------------+
+This enemy type tries to adjust its velocity to be moving towards Link but as long as Link moves, oftentimes misses. You know what they say, the Lazy Chase gets killed off by the Dracus. Ahem, anyways, it can also be used for Metroids.
+
+Enemy editor settings:
+Weapon Damage: The drain damage metroid types use.
+Attribute 1: The enemy's acceleration (pixels per frame per frame * 1000)
+Attribute 2: The enemy's max velocity (pixels per frame * 100)
+Attribute 3: Whether the enemy can fly through walls. 0=No, 1=Yes
+Attribute 4: Type of enemy. 0=Normal, 1=Metroid (HP drain), 2=Metroid (MP drain), 3=Metroid (rupee drain)
+Attribute 5: Frames between each tick of damage from the drain effect.
+Attribute 6: The sound (should be short) that plays every time the drain happens
+
+Combo Setup:
+Uses only one combo
+
+
++-----------------------------------------+
+|             Wizzrobe Fix                |
++-----------------------------------------+
+This script just makes it so an enemy can't fall. 
+It makes floating wizzrobes actually an acceptable enemy in sideview although I don't believe it works for much else.
+
+Enemy editor settings: 
+None
+
+Combo Setup:
+Use -1/GH_INVISIBLE_COMBO
+
++-----------------------------------------+
+|            Cheep Cheep/Fish             |
++-----------------------------------------+
+This enemy swims undrwater (CT_SIDEVIEW_WATER) and has 3 behaviours, depending on Homing Factor. Has no knockback.
+
+Enemy editor settings:
+
+Homing Factor:
+ 0-127 - Swim back and forth, depending on direction.
+ 128-255 - Track Link`s either X coordinate or Y coordinate, depending on direction.
+ 256 - Chase Link via acceleration in all direction.
+
+Attribute 1: Starting direction
+Attribute 2: Bobbing amplitude during horizontal swimming
+
+Combo Setup:
+Use -1
+Tile setup:
+2-frame 2-dir sideways in one row. 4 frames total.
+
++-----------------------------------------+
+|         Blooper/Air Blooper             |
++-----------------------------------------+
+2 enemies, that resemble medusa. Move in sawtooth pattern to chase Link. 
+Normal Blooper is restricted to be underwater. Air Blooper never enters water.
+
+Enemy editor settings:
+
+Homing Factor:
+0-127 -  Chase Link only if Link is swimming. Vice varsa for Air Blooper
+128+ - Always chase Link
+
+Combo Setup:
+Use -1
+Tile setup:
+2-frames 1*2 down-up

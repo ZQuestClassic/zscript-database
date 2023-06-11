@@ -1,0 +1,17 @@
+{
+  "name": "Remastered ALttP and GB Cliffs [2.55]",
+  "author": "Moosh",
+  "added": null,
+  "updated": "09 Mar 2022",
+  "tags": [
+    "#2.55",
+    "#Combo"
+  ],
+  "rating": null,
+  "downloads": "17",
+  "info": "If you're familiar with my GB Cliffs script, this is an extension of that but made with 2.55's new features. The expanded combo editor and combo scripts allow it to be much more versatile and easy to set up. And it can do diagonals now too, if you're one of those rare DoR-using sorts.",
+  "description": "If you're familiar with my GB Cliffs script, this is an extension of that but made with 2.55's new features. The expanded combo editor and combo scripts allow it to be much more versatile and easy to set up. And it can do diagonals now too, if you're one of those rare DoR-using sorts.\n\nUpdate 3/9/22: Changed the animation for south facing GB cliffs and added an example quest for DoR cliffs.",
+  "setup": "This is a combo script that works on layer 0. In order to run it, you'll need to check Combos Run Scripts on Layer 0 (ZScript->Quest Script Settings).\nThis script runs automatically off of combos you place on the screen. All mountain or dungeon wall combos with the script on them can be jumped over, but only the ones at the top adjacent to Link need to be given directions. The InitD[] arguments for the script go as follows:InitD[0]: The direction Link jumps off the cliff0: Not a jump point (Any mountain combo that can be jumped over but isn't a jump point)1: Up2: Down3: Left4: Right5: Left-Up6: Right-Up7: Left-Down8: Right-DownInitD[1]: Height for Gameboy style cliffs. This only affects down, left, and right facing cliffs. On left and right facing cliffs, it represents how many additional combos Link will drop down at the end of the jump. On down facing cliffs it's just 1 to mark it as a Gameboy cliff.\nAdditional Settings\nYou can change these settings in the script to alter how the script behaves for your quest:CLIFF_DEBUG: Set this to true to enable debug draws. This will show the directional settings on all your cliff combos in the ZC player. Helpful if something isn't behaving as intended.CLIFF_BREAK_SLASHABLES: Set this to true if Link should be able to jump down onto bushes and other solid slashable objects to break them. If it's false, they'll just prevent him from jumping down.CLIFF_CHECK_LAYER_BARRIERS: Set this to true if solid combos that don't have the script on layer 1 should prevent Link from jumping through them. This can be useful for having layered barriers along the tops or bottoms of cliffs that prevent jumping at certain points. Layered combos with the cliff script on them will be ignored, but won't actually run the script. If false, all combos on layers will be ignored.CLIFF_JUMP: This affects how high Link jumps, and by extension how fast he jumps down the cliffs. Higher values will result in slower jumps, but may look strange.CLIFF_PUSH_TIME: This affects how many frames Link has to be pushing against a cliff before he jumps down.",
+  "has_zip": true,
+  "has_popup": true
+}

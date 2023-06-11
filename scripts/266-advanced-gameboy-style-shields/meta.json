@@ -1,0 +1,17 @@
+{
+  "name": "Advanced Gameboy Style Shields",
+  "author": "justin",
+  "added": "09 Apr 2017",
+  "updated": null,
+  "tags": [
+    "#Global",
+    "#Item"
+  ],
+  "rating": null,
+  "downloads": "97",
+  "info": "A highly customizable shield script. Shield is equipped by button press (like Gameboy titles). Many options for shield durability and defense.",
+  "description": "By request by guoanaco. Starting point was the Simplified GBShield script by MoscowModder (and others)The script does so much it's almost undescriptionable. You want pancakes? Well it doesn't do that.Check out the script itself and download the test quest to get an idea of the versatility.",
+  "setup": "Just std.zh required.There is one function \"borrowed\" from stdExtra.zh, so if you have that library imported just remove the offender.Detailed setup instructions included in the script file.",
+  "has_zip": true,
+  "has_popup": true
+}

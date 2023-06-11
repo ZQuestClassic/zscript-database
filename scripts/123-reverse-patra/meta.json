@@ -1,0 +1,17 @@
+{
+  "name": "Reverse Patra",
+  "author": "Lejes",
+  "added": null,
+  "updated": "29 Aug 2015",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "69",
+  "info": "A Patra-like enemy whose core must be destroyed first. Comes with adjustable parameters.",
+  "description": "Unlike set-in-stone default Patras, any enemy can be used for both the core and the orbiters. Rotation speed, rotation distance, expansion interval, weapon blocking, death behavior, and X and Y offsets can also be set.",
+  "setup": "Requires std.zh. Attach the script to an FFC in a room with the core enemy. Placing orbiters is unnecessary, as the script creates them itself.D0 is the room index number of the core enemy.D1 is the enemy ID of the orbiter and number of orbiters combined into one argument. Left of the decimal: Enemy ID of orbiter. Right of the decimal: Number of orbiters. 40.0016 would cause 16 Keese to orbit, for example. More than 100 orbiters will break things.D2 is the rotation speed of the orbiters. Use negative values for counter-clockwise rotation.D3 is the distance between the core enemy and the orbiters, in pixels.D4 is the expansion interval, in frames. 60 frames is equal to 1 second. The orbiters will fly out to 2.5 times their original radius three times. Use 0 for no expansion.D5 = Number to the left of the decimal is 2 if orbiters block weapons, 1 if they ignore them, 0 if they keep their old resistances.Number to the right of the decimal is 0001 if all orbiters die along with core enemy, 0000 if they're set free instead.D6 is the X offset of the orbiters' center of rotation. 0 is recommended for 16x16 (one tile) enemies, and 8 for 32x32 (2x2 tile) big enemies.D7 is the Y offset of the orbiters' center of rotation. 0 is recommended for 16x16 (one tile) enemies, and 8 for 32x32 (2x2 tile) big enemies.",
+  "has_zip": true,
+  "has_popup": true
+}

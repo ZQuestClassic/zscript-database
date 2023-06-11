@@ -1,0 +1,63 @@
+// An NPC variant that shows two messages with special styles.
+//
+// This script and its messages demonstrate displaying two messages at once,
+// @sync(), complex backdrops, and a custom function that changes the backdrop.
+
+ffc script Zelda
+{
+    void run(int message1, int message2)
+    {
+        while(true)
+        {
+            if(StartTalking(this))
+            {
+                // Two messages will be displayed at once,
+                //so we need to get two slots
+                int slot1=Tango_GetFreeSlot(TANGO_SLOT_NORMAL);
+                if(slot1==TANGO_INVALID)
+                {
+                    // Didn't get even one slot...
+                    StopTalking();
+                    continue;
+                }
+                
+                // Reserve it so the next call to Tango_GetFreeString()
+                // doesn't return the same one
+                Tango_ReserveSlot(slot1);
+                
+                // Get another one
+                int slot2=Tango_GetFreeSlot(TANGO_SLOT_NORMAL);
+                if(slot2==TANGO_INVALID)
+                {
+                    // Didn't get the second slot; be sure to clear
+                    // the reservation on the first one before returning
+                    Tango_ClearSlot(slot1);
+                    StopTalking();
+                    continue;
+                }
+                
+                ShowMessages(slot1, slot2, message1, message2);
+                while(Tango_SlotIsActive(slot1))
+                    Waitframe();
+                StopTalking();
+            }
+            
+            Waitframe();
+        }
+    }
+    
+    void ShowMessages(int slot1, int slot2, int message1, int message2)
+    {
+        Tango_ClearSlot(slot1);
+        Tango_LoadMessage(slot1, message1);
+        Tango_SetSlotStyle(slot1, STYLE_ZELDA);
+        Tango_SetSlotPosition(slot1, 16, 8);
+        Tango_ActivateSlot(slot1);
+        
+        Tango_ClearSlot(slot2);
+        Tango_LoadMessage(slot2, message2);
+        Tango_SetSlotStyle(slot2, STYLE_LINK);
+        Tango_SetSlotPosition(slot2, 16, 90);
+        Tango_ActivateSlot(slot2);
+    }
+}

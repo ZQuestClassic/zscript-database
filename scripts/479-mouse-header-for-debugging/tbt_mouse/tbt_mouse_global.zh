@@ -1,0 +1,20 @@
+// If you hold R, the mouse changes color.
+global script GLOBAL_EXAMPLE
+{
+	void run()
+	{
+		while(true)
+		{
+			unless(Link->InputR)
+			{
+				render_mouse(MOUSE_LAYER, MOUSE_COLOR, MOUSE_OPACITY, MOUSE_STYLE);
+			}
+			else
+			{
+				render_mouse(MOUSE_LAYER, MOUSE_COLOR + 1, MOUSE_OPACITY, MOUSE_STYLE_REGULAR); // Simple way to choose a different color
+			}
+			
+			Waitframe();
+		}
+	}
+}

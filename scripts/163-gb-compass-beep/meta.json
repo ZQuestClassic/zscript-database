@@ -1,0 +1,18 @@
+{
+  "name": "GB Compass Beep",
+  "author": "Demonlink",
+  "added": null,
+  "updated": "09 Jul 2021",
+  "tags": [
+    "#FFC",
+    "#Item",
+    "#Misc"
+  ],
+  "rating": "5",
+  "downloads": "99",
+  "info": "A simple script that works similar to that of the compass from the GB Zelda Series.",
+  "description": "Update July 8th, 2021: Simplified the code and added a visual cue suggested by Shane.\n\nThis script works similar to the GB compass from the GB Zelda games, where once you collect the dungeon's compass, it plays a beep sound whenever you're in a room that has a key hidden in it. However, this script only checks if the screen's item or special item has been collected. If not, it will play the beep. (Use 2.55 to see the included demo, the script should work in any 2.5x version of ZC).",
+  "setup": "You will only need std.zh for this. Edit the following constants to your likings:COMPASS_SFX is the sfx id of the compass beep sound.COMPASS_VISUAL_CMB is the combo id of the combo drawn when the compass beeps.COMPASS_VISUAL_CSET is the combo's Cset.Add the script to your buffer, compile and assign it. Attach it to an FFC, and set the following D arguments according to your needs:D0 to 1 if you have a normal item on the screen.D1 to 1 if you have a special item on the screen.You can have both items on screen and the script will still work, just make sure both arguments are set to 1.",
+  "has_zip": true,
+  "has_popup": true
+}

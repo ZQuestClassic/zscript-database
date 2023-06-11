@@ -1,0 +1,67 @@
+ffc script SideviewSpringboard{
+	void run (int power1, int power2, int type, int sound){
+		SetSideviewFFCSolidity(this, 2);
+		int cooldown=0;
+		int origdata = this->Data;
+		int origcset = this->CSet;
+		int warntime=0;
+		while(true){
+			if (cooldown==0){
+				this->Data = origdata;
+				if (type==0){
+					if (IsRidden(this)){
+						Game->PlaySound(sound);
+						if (InputJump){
+							if (power1!=power2)HasJumped = true;;
+							LinkVy = -power2;
+						}
+						else{
+							LinkVy = -power1;
+							HasJumped = false;
+						}
+						cooldown = 16;
+					}
+				}
+				if (type==1){
+					if ((IsRidden(this))&&(InputJump)){
+						Game->PlaySound(sound);
+						LinkVy = -power2;
+						HasJumped = true;
+						cooldown=16;
+					}
+				}
+				if (type==2){
+					for (int i=1; i<= Screen->NumLWeapons();i++){
+						if (warntime>0) continue;
+						lweapon l= Screen->LoadLWeapon(i);
+						if (l->ID!=LW_HAMMER)continue;
+						if (Collision(this, l)){
+							Game->PlaySound(42);
+							warntime = 90;
+						}
+					}
+				}
+			}
+			else if (cooldown>0){
+				this->Data = FFCS_INVISIBLE_COMBO;
+				cooldown--;
+				Screen->DrawCombo(3, this->X, this->Y-16, origdata+1, this->TileWidth, this->TileHeight+1, this->CSet, -1, -1, 0, 0, 0, 0, 0, true, OP_OPAQUE);
+			}
+			if (warntime>0){
+				warntime--;
+				int c = cycletimer%8;
+				if (Div(c,4)>0) this->CSet = 8;
+				else this->CSet = origcset;
+				if (warntime==0){
+					Game->PlaySound(sound);
+					cooldown = 16;
+					if (IsRidden(this)){												
+						HasJumped = false;
+						LinkVy = -power2;					
+					}
+				}
+			}
+			Waitframe();
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Laser and Mirrors puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "17 Sep 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "14",
+  "info": "Alternate varioant of laser/mirrors puzzle. Requested by SkyFlareUpdate 9.6.2022 - Fixed stack overflow caused by too many deflectionsUpdate 17.9.2022 - Fixed broken one-sided mirrors, added interacrion with Link`s Mirror Shield.",
+  "description": "Laser that emits colored beam. Beam can bounce off mirrors, be repainted by color changers, and even cause damage to Link. Hit all truggers simultaneously with lasers to open secrets. Mirrors can be one-sided, check out combo solidity in the demo quest.",
+  "setup": "1. Set up CMB_TARGET_HIT_ANIM combo to render animation, when laser passes through trigger.2. Import and compile the script. Assign 2 FFC slots. It requires ghost.zh3. Place and grid-snap FFC, where laser emitter was meant to be.D0 - Laser directionD1 - Laser CsetD2 - Damage dealt to Link, if it touches laser, in 1/4ths of heartD3 - Set to 1, and laser will be able to penetrate solid combos. Without it only ladder/hookshot crossable combos are transparent for laser. You can block laser anyway with Block Magic combo type.4. Flag all targets with CF_LASER_TRIGGER flag (Magic trigger reflected by default).5. Place and grid-snap FFC with LaserTriggers script. No arguments needed.",
+  "has_zip": true,
+  "has_popup": true
+}

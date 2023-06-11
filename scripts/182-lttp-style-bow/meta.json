@@ -1,0 +1,17 @@
+{
+  "name": "LttP Style Bow",
+  "author": "Lejes",
+  "added": null,
+  "updated": "17 May 2016",
+  "tags": [
+    "#FFC",
+    "#Item"
+  ],
+  "rating": "3",
+  "downloads": "81",
+  "info": "Creates a visible bow animation with a slight delay on firing arrows, as seen in Link to the Past.",
+  "description": "Where is Link's bow? Does he just fire those arrows out of a hatch in his chest? Not any more!",
+  "setup": "Requires std.zh (comes with ZC download) and ffcscript.zh (found here).\nBow and arrow tiles cannot exceed 32768!\nYour bow and arrow tiles should be in the order up, down, left, right.\nThis item script should be attached to the Action Script slot of an item that has a custom item class, not an existing bow.\nThe Power of the item is how much damage it does. Most weapons do two times their \"Damage\" stat, but not this one!\nD0: bow tile\nD1: bow CSet\nD2: arrow sprite\nD3: arrow step speed (300 for short bow, 600 for long bow are ZC defaults)\nD4: sparkle sprite number, 0 for none\nD5: charge time (charge bow only)\n\nThe charge bow also has a global component to handle animation and charge interruption. Place BowActive in your global Active slot, or combine it with your existing Active slot script.\nTo give the player piercing arrows, give them the golden arrow item (this will make all arrows from any of the player's weapons pierce).",
+  "has_zip": true,
+  "has_popup": true
+}

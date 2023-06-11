@@ -1,0 +1,16 @@
+{
+  "name": "Ball/Gem Color Sort Puzzle",
+  "author": "Alucard648",
+  "added": "24 Apr 2022",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "11",
+  "info": "ZC adaptation for family of color sorting puzzles for Android mobile phones.",
+  "description": "You have a number of jars. Some of them have colored gems stacked one on top of another. You can grab top grm from jap and drop it into another jar, adding it on top of the stack.If all jars are either empty, or full of same-colored gems, puzzle is solved.Stand in front of the jar and press Ex1 to lift/drop top ball from jar.",
+  "setup": "1. Set up tiles to render jars, balls and goal marks. Tiles must be as tall as COLORSORT_SIZE_PER_UNIT constant, rest should be transparent. Balls must be consecutive.2. Set TILE_COLORSORT_BALL constant to 1 lower than ID of leftmost ball tile.3. Set up combo for bottom part of the jar what looks like, if jar was empty.4. Place jar FFC`s with combo from step 2 as Data and assigned script. Put solid combo underneath FFC. D0 to D5. IDs of ball colors (0-6), starting from bottom. D6 - #####.____ - jar capacity, in units.      _____.#### - >0 - It`s prohibited to place a ball onto different-colored one, unless placed back where it was taken from.",
+  "has_zip": true,
+  "has_popup": true
+}

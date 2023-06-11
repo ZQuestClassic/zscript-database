@@ -1,0 +1,63 @@
+// The TBT Mouse Header
+// V1.00
+// This is supposed to be a simple header for drawing a mouse to the screen for script debugging purposes.
+// One may choose to use this for gameplay, but that would be ill-advised, as the mouse graphic is not very pleasing to the eyes.
+
+// INTERNAL CONSTANTS (I GUESS)
+const int MOUSE_STYLE_REGULAR = 0;
+const int MOUSE_STYLE_THIN = 1;
+
+// USER DEFINED CONSTANTS
+const int MOUSE_STYLE = MOUSE_STYLE_REGULAR;
+const int MOUSE_LAYER = 7;
+const int MOUSE_COLOR = 0x02;
+const int MOUSE_OPACITY = OP_OPAQUE;
+
+void render_mouse(int mouse_layer, int mouse_color, int mouse_opacity, int mouse_style)
+{
+	// Polygon positions are in x,y pairs
+
+	// Regular size mouse
+	int reg_mouse[] = {	0, 0,		
+						3, 10,	
+						5, 8, 	
+						8, 11, 	
+						10, 9, 		
+						7, 6, 		
+						9, 4};	
+	
+	// Thin mouse
+	int thin_mouse[] = {0, 0,    
+						3, 10,    
+						5, 8,    
+						8, 11,    
+						9, 10,    
+						6, 7,    
+						8, 5};
+
+	for(int i = 0; i < SizeOfArray(reg_mouse); i += 1)
+	{
+		// Adds the mouse x position offset on even indices, adds the mouse y position offset on odd indices
+		if(i % 2 == 0)
+		{
+			reg_mouse[i] += Hero->InputMouseX;
+			thin_mouse[i] += Hero->InputMouseX;
+		}
+		else
+		{
+			reg_mouse[i] += Hero->InputMouseY;
+			thin_mouse[i] += Hero->InputMouseY;
+		}
+	}
+	
+	int vertices[] = {reg_mouse, thin_mouse};
+	
+	int num_points = SizeOfArray(vertices[mouse_style]) / 2;
+	
+	Screen->Polygon(mouse_layer, num_points, vertices[mouse_style], mouse_color, mouse_opacity);
+}
+
+void render_mouse()
+{
+	render_mouse(MOUSE_LAYER, MOUSE_COLOR, MOUSE_OPACITY, MOUSE_STYLE);
+}

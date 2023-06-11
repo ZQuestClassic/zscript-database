@@ -1,0 +1,8 @@
+//FlounderMAJ Custom Map Buffer import
+
+//Import this file into the ZQuest script buffer.  Make sure the referenced files are in the same folder as the .qst file.
+//This includes all the files you need.
+
+import "std.zh"
+import "MapHeader.zh"
+import "MapGlobal.z"

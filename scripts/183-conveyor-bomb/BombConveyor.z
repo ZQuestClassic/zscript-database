@@ -1,0 +1,444 @@
+//The Below script intention is to allow Link bombs, and special enemy bombs (Note to self: enemy bombs will have to be faked), to be able to follow conveyors
+//Required headers (delete or comment out if already in script file):
+	import "std.zh"
+
+//Setup
+
+//First, please set the below constants to the correct values, then, place BombConveyor(counter) in your global script, inside of the main loop and an if(Link->Action != LA_SCROLLING){ statement, and before Waitdraw() and Waitframe().
+//Also, make sure you declare a variable, increase it by 1 every frame, and have an if statement that stops it from going past 214748
+//If you do not already
+//have a global script you can just use BombConveyorGlobalExample in your active global slot, otherwise, you can just use it as an example of how to set the script up
+
+//Constants
+const int SPRITE_BOMB = 76; //The sprite id to use for enemy bombs that can ride conveyors. Refer to quest->Graphics->Sprites->Weapons/Misc to find values for this
+const int SPRITE_SBOMB = 77; //The sprite id to use for enemy super bombs that can ride conveyors. Refer to quest->Graphics->Sprites->Weapons/Misc to find values for this
+const int SPRITE_4WAY = 1; //If you would like the sprite to be fliped and rotated according to it's position, set this to 1. Otherwise, set it to 0. Note that if you set it to 1, the script assumes that the sprites tiles (Both Link's AND enemy bomb sprites) are in the pointing 'UP' position
+const int SFX_BOMBSPAWNER = 21; //Sound to play when the BombSpawner ffc script creates a bomb. 21 is the sound of Link placing a bomb
+const int EBOMB_EXPLODE = 3; //This value determines whether or not to explode an enemy conveyor bomb if it makes contact with a solid object or enemy
+const int LBOMB_EXPLODE = 2; //This value determines whether or not to explode a bomb placed by Link if it makes contact with a solid object or enemy - Note: Be careful setting this value so that Link bombs explode on contact with solid objects if you have the quest rule checked to make Link bombs do damage to Link, as you may land up going to blow up a bombable wall only to blow Link up instead!
+//		Set BOMB_EXPLODE to 1 for it to explode ONLY on solid objects
+//		Set BOMB_EXPLODE to 2 for it to explode ONLY on traps (note, this does NOT include damage combos)
+//		Set BOMB_EXPLODE to 3 for it to explode on traps AND solid objects
+//		Set BOMB_EXPLODE to 0 for it to not explode on either of the above.
+//		Note: Regardless of what BOMB_EXPLODE is set too, once the bombs fuse duration is up, it will explode, period.
+const int ECONVEYOR_AUTO_EXPLODE = 1; //Setting this value to 1 will cause enemy bombs to automatically explode if they ride off of a conveyor belt. Set to 0 if you do not wish this behavior
+const int LCONVEYOR_AUTO_EXPLODE = 0; //Setting this value to 1 will cause Link bombs to automatically explode if they ride off of a conveyor belt. Set to 0 if you do not wish this behavior
+const int BOMB_HITBOX_SHIRNK = 4; //The conveyor bomb's default hitbox is 16 by 16 pixels (see figure A at the bottum of this script). This const will shrink the hitbox on all four sides by the amount indicated. For instance, a value of four would create a hitbox of the size 8 by 8 pixels (see figure B)
+//Set the below values up so that they don't conflict with other scripts that may modify enemy weapons
+const int EW_CONVEYORBOMB = 31; //The weapon ID to use for enemy bombs. Please use a value that is in the range of 31 to 40 (the EW_SCRIPT values). As other values are liable to result in bugs
+const int CONVEYORBOMB_MISC_ID = 14; //Which part of the weapon->Misc[] array to access. This will be where the script stores the info that this weapon is a conveyor bomb
+const int CONVEYORBOMB_MISC_FUSE = 0; //Which part of the eweapon->Misc[] array to access. This will be where the script stores the duration of the fuse and how much longer until the bomb will blow up
+
+//the ffc script BombSpawner is used to create enemy bombs that will move on conveyors. They do not move unless they are on a conveyor
+//D0 = the direction in which to place the bomb. 0 = UP, 1 = DOWN, 2 = LEFT, 3 = RIGHT. For instance, if you set this value to 0, the bombs will be placed slightly above the ffc. Use -1 if you wish the bombs to be spawned directly on top of the ffc
+//D1 = the amount of damage for the bomb to do, measured in quarter hearts.
+//D2 = the number of frames (60 frames in a second) before the bomb blows up. Set to -1 for it to never blow up (aside from colliding with Link and stuff determined by BOMB_EXPLODE)
+//D3, the ffc will spawn a bomb every D3 frames. So a value of 60 would mean 1 bomb per second
+//D4 = whether or not to create a super bomb.
+//	 Set to 0 to create a regular bomb,
+//	 set to 1 to create a superbomb,
+//	 set to 2 to create a regular bomb whose explosion effects will line up exactly with the effects of one of Links bombs (secret trigger, damage to enemies, damage to Link based on quest rule, etc)
+//	 set to 3 to create a superbomb whose explosion effects will line up exactly with the effects of one of Links bombs (secret trigger, damage to enemies, damage to Link based on quest rule, etc)
+//D5 = An offset to the counter used for determining when to place bombs. Useful when you have say 2 bomb spawners that spawn at the same rate, but that you don't want spawning at the exact same time.
+ffc script BombSpawner{
+	void run(int dir, int damage, int fuse, int rate, int SuperBomb, int TimeOffset){
+		eweapon w;
+		int counter = TimeOffset;
+		while(true){
+			if(counter%rate == 0 && Screen->NumEWeapons() < 100){ //Create bomb
+				Game->PlaySound(SFX_BOMBSPAWNER);
+				w = CreateEWeaponAt(EW_CONVEYORBOMB, this->X, this->Y);
+				w->CollDetection = false;
+				if(SuperBomb){
+					w->UseSprite(SPRITE_SBOMB);
+				}else{
+					w->UseSprite(SPRITE_BOMB);
+				}
+				w->Dir = dir;
+				w->Damage = damage;
+				w->Misc[CONVEYORBOMB_MISC_ID] = 1 + SuperBomb; //A value of 1 indicates a regular bomb, a value of 2 indicates a super bomb
+				w->Misc[CONVEYORBOMB_MISC_FUSE] = fuse;
+				//Move the bomb based on direction (dir), the idea is to place it so that if BOMB_EXPLODE = 1 (or 3) and the ffc is placed on top of a solid object, the bomb won't immediatly blow up
+				if(dir == DIR_UP){
+					w->Y -= 9;
+					//if(SPRITE_4WAY)
+					//	w->Flip = 0;
+				}else if(dir == DIR_DOWN){
+					w->Y += 9;
+					if(SPRITE_4WAY)
+						w->Flip = 3;
+				}else if(dir == DIR_LEFT){
+					w->X -= 9;
+					if(SPRITE_4WAY)
+						w->Flip = 7;
+				}else if(dir == DIR_RIGHT){
+					w->X += 9;
+					if(SPRITE_4WAY)
+						w->Flip = 4;
+				}
+			}
+			counter++;
+			Waitframe();
+		}
+	}
+}
+
+global script BombConveyorGlobalExample{
+	void run(){
+		int counter = 0; //A counter used by BombConveyor, should be increased by 1 every frame. But make sure you have a if statement that stops it from getting to high
+		while(true){ //Main loop
+			counter++;
+			if(counter > 214740){
+				counter = 0;
+			}
+			if(Link->Action != LA_SCROLLING){
+				BombConveyor(counter);
+			}
+			Waitdraw();
+			Waitframe();
+		}
+	}
+}
+
+//Function for active global script
+void BombConveyor(int counter){
+	if(counter%3 == 0){ //This statement makes the bombs not travel too fast on conveyors
+		return;
+	}
+	//Note the e->Misc[CONVEYORBOMB_MISC_ID] is used to check if an enemy bomb is a conveyor bomb
+	//If the value = 1, then the bomb is a regular bomb
+	//If the value = 2, then the bomb is a super bomb
+	eweapon e;
+	eweapon enew;
+	lweapon l;
+	lweapon lnew;
+	int Dir;
+	//Look for enemy ConveyorBombs
+	for(int i=Screen->NumEWeapons(); i>0; i--){
+		e = Screen->LoadEWeapon(i);
+		if(e->ID == EW_CONVEYORBOMB && e->Misc[CONVEYORBOMB_MISC_ID] > 0){
+			//Found one, now check to see if it's on a conveyor
+			Dir = ConveyorCheck(e);
+			//Movement of bomb
+			if(Dir == DIR_UP){
+				e->Y--;
+				e->Dir = DIR_UP;
+				if(SPRITE_4WAY)
+					e->Flip = 0;
+			}else if(Dir == DIR_DOWN){
+				e->Y++;
+				e->Dir = DIR_DOWN;
+				if(SPRITE_4WAY)
+					e->Flip = 3;
+			}else if(Dir == DIR_LEFT){
+				e->X--;
+				e->Dir = DIR_LEFT;
+				if(SPRITE_4WAY)
+					e->Flip = 7;
+			}else if(Dir == DIR_RIGHT){
+				e->X++;
+				e->Dir = DIR_RIGHT;
+				if(SPRITE_4WAY)
+					e->Flip = 4;
+			}
+			//Consider blowing up:
+			//Case A: Fuse ran out
+			if(e->Misc[CONVEYORBOMB_MISC_FUSE] == 0){
+				if(e->Misc[CONVEYORBOMB_MISC_ID] < 3){ //Create an eweapon explosion
+					enew = CreateEWeaponAt(EW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-1, e->X, e->Y);
+					enew->Damage = e->Damage;
+					enew->Dir = e->Dir;
+				}else{ //Create an lweapon explosion
+					lnew = CreateLWeaponAt(LW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-3, e->X, e->Y);
+					lnew->Damage = e->Damage;
+					lnew->Dir = e->Dir;
+				}
+				e->DeadState = WDS_DEAD; //kill old weapon
+			}else
+			//Case B: Hit a solid object (refer to EBOMB_EXPLODE)
+			if((EBOMB_EXPLODE == 1 || EBOMB_EXPLODE == 3) && ConveyorSolidCheck(e)){
+				if(e->Misc[CONVEYORBOMB_MISC_ID] < 3){ //Create an eweapon explosion
+					enew = CreateEWeaponAt(EW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-1, e->X, e->Y);
+					enew->Damage = e->Damage;
+					enew->Dir = e->Dir;
+				}else{ //Create an lweapon explosion
+					lnew = CreateLWeaponAt(LW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-3, e->X, e->Y);
+					lnew->Damage = e->Damage;
+					lnew->Dir = e->Dir;
+				}
+				e->DeadState = WDS_DEAD; //kill old weapon
+			}else
+			//Case C: Collided with an trap (npc)
+			if((EBOMB_EXPLODE == 2 || EBOMB_EXPLODE == 3) && ConveyorCollision(e)){
+				if(e->Misc[CONVEYORBOMB_MISC_ID] < 3){ //Create an eweapon explosion
+					enew = CreateEWeaponAt(EW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-1, e->X, e->Y);
+					enew->Damage = e->Damage;
+					enew->Dir = e->Dir;
+				}else{ //Create an lweapon explosion
+					lnew = CreateLWeaponAt(LW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-3, e->X, e->Y);
+					lnew->Damage = e->Damage;
+					lnew->Dir = e->Dir;
+				}
+				e->DeadState = WDS_DEAD; //kill old weapon
+			}else
+			//Case D: Collided with Link
+			if(RectCollision(e->X+BOMB_HITBOX_SHIRNK, e->Y+BOMB_HITBOX_SHIRNK, e->X+15-BOMB_HITBOX_SHIRNK, e->Y+15-BOMB_HITBOX_SHIRNK, Link->X+Link->HitXOffset, Link->Y+Link->HitYOffset, Link->X+Link->HitXOffset+Link->HitWidth-1, Link->Y+Link->HitYOffset+Link->HitHeight-1)){
+				if(e->Misc[CONVEYORBOMB_MISC_ID] < 3){ //Create an eweapon explosion
+					enew = CreateEWeaponAt(EW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-1, e->X, e->Y);
+					enew->Damage = e->Damage;
+					enew->Dir = e->Dir;
+				}else{ //Create an lweapon explosion
+					lnew = CreateLWeaponAt(LW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-3, e->X, e->Y);
+					lnew->Damage = e->Damage;
+					lnew->Dir = e->Dir;
+				}
+				e->DeadState = WDS_DEAD; //kill old weapon
+			}else
+			//Case E: Offscreen
+			if(OffScreen(e)){
+				//Note, don't actually blow up in this case, but just die instead
+				e->DeadState = WDS_DEAD;
+			}else
+			//Case F: We were riding a conveyor belt, but we rode off of it
+			if(Dir >= 0 && ECONVEYOR_AUTO_EXPLODE && ConveyorCheck(e) == -1){ //Check 'Dir' to determine if we were riding a conveyor belt this frame, and check ConveyorCheck() to determine if we are no longer on a conveyor belt
+				if(e->Misc[CONVEYORBOMB_MISC_ID] < 3){ //Create an eweapon explosion
+					enew = CreateEWeaponAt(EW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-1, e->X, e->Y);
+					enew->Damage = e->Damage;
+					enew->Dir = e->Dir;
+				}else{ //Create an lweapon explosion
+					lnew = CreateLWeaponAt(LW_BOMBBLAST+e->Misc[CONVEYORBOMB_MISC_ID]-3, e->X, e->Y);
+					lnew->Damage = e->Damage;
+					lnew->Dir = e->Dir;
+				}
+				e->DeadState = WDS_DEAD; //kill old weapon
+			}
+			//Reduce fuse
+			if(e->Misc[CONVEYORBOMB_MISC_FUSE] > 0){
+				e->Misc[CONVEYORBOMB_MISC_FUSE]--;
+			}
+		}
+	}
+	//Look for Link's bombs
+	for(int i=Screen->NumLWeapons(); i>0; i--){
+		l = Screen->LoadLWeapon(i);
+		if(l->ID == LW_BOMB || l->ID == LW_SBOMB){
+			//Found one, now check to see if it's on a conveyor
+			Dir = ConveyorCheck(l);
+			//Movement of bomb
+			if(Dir == DIR_UP){
+				l->Y--;
+				l->Dir = DIR_UP;
+				if(SPRITE_4WAY)
+					l->Flip = 0;
+			}else if(Dir == DIR_DOWN){
+				l->Y++;
+				l->Dir = DIR_DOWN;
+				if(SPRITE_4WAY)
+					l->Flip = 3;
+			}else if(Dir == DIR_LEFT){
+				l->X--;
+				l->Dir = DIR_LEFT;
+				if(SPRITE_4WAY)
+					l->Flip = 7;
+			}else if(Dir == DIR_RIGHT){
+				l->X++;
+				l->Dir = DIR_RIGHT;
+				if(SPRITE_4WAY)
+					l->Flip = 4;
+			}else if(SPRITE_4WAY){
+				l->Flip = 3;
+			}
+			//Consider blowing up:
+			//Case A: Hit a solid object (refer to LBOMB_EXPLODE)
+			if((LBOMB_EXPLODE == 1 || LBOMB_EXPLODE == 3) && ConveyorSolidCheck(l)){
+				lnew = CreateLWeaponAt(LW_BOMBBLAST+l->ID-6, l->X, l->Y);
+				lnew->Damage = l->Damage;
+				lnew->Dir = l->Dir;
+				l->DeadState = WDS_DEAD;
+			}else
+			//Case B: Collided with an trap (npc)
+			if((LBOMB_EXPLODE == 2 || LBOMB_EXPLODE == 3) && ConveyorCollision(l)){
+				lnew = CreateLWeaponAt(LW_BOMBBLAST+l->ID-6, l->X, l->Y);
+				lnew->Damage = l->Damage;
+				lnew->Dir = l->Dir;
+				l->DeadState = WDS_DEAD;
+			}else
+			//Case C: We were riding a conveyor belt, but we rode off of it
+			if(Dir >= 0 && LCONVEYOR_AUTO_EXPLODE && ConveyorCheck(l) == -1){ //Check 'Dir' to determine if we were riding a conveyor belt this frame, and check ConveyorCheck() to determine if we are no longer on a conveyor belt
+				lnew = CreateLWeaponAt(LW_BOMBBLAST+l->ID-6, l->X, l->Y);
+				lnew->Damage = l->Damage;
+				lnew->Dir = l->Dir;
+				l->DeadState = WDS_DEAD;
+			}
+		}
+	}
+}
+
+//Below functions called internally by BombConveyor
+int ConveyorCheck(eweapon w){ //Checks if a bomb is on a conveyor belt. Overloaded for eweapons and lweapons
+	//First, check if there is a conveyor pointed in the same direction as the bomb, if so, return said direction, if not, check the bombs center pixel for a conveyor
+	//If a conveyor is found, return a value matching the DIR_ constants from std.zh so that the value can be put directly into an eweapons direction
+	int Dir = -1; //This value will equal the value of the direction (DIR_ constant) of the conveyor belt the bomb is riding. This will be that variable returned at the end of the function
+	//The below is a check to determine if ANY one of the pixels within the bombs hit box is on a conveyor pointing the same direction as the bomb
+	//This is to stop the bomb from getting caught on corners
+	//Note that we do not check every pixel, but on the ones on the edges of the bombs hitbox - as there is no point in checking the pixels that are actually inside the hitbox
+	int x;//
+	int y;
+	int length = 16-(BOMB_HITBOX_SHIRNK*2); //hitbox length of each side of the bomb
+	x = w->X + BOMB_HITBOX_SHIRNK - 1; //Because the first thing the for loop does is increase this value by 1, we have to start this value 1 lower then the pixels we are actually going to check
+	y = w->Y + BOMB_HITBOX_SHIRNK;
+	//Check each pixel on the top and bottum sides of the bomb
+	for(int i=0; i<length; i++){
+		x++;
+		if(PixelIsConveyor(x,y) == w->Dir || PixelIsConveyor(x,y+length) == w->Dir){ //Check top and bottum sides of bomb
+			Dir = w->Dir;
+			break; //No need to contiune for loop
+		}
+	}
+	y--; //Because the first thing the for loop does is increase this value by 1, we have to start this value 1 lower then the pixels we are actually going to check
+	//Check each pixel on the left and right sides of the bomb
+	for(int i=0; i<length; i++){
+		y++;
+		if(PixelIsConveyor(x,y) == w->Dir || PixelIsConveyor(x,y-length) == w->Dir){ //check left and right sides of bomb
+			Dir = w->Dir;
+			break; //No need to contiune for loop
+		}
+	}
+	//If there are no conveyor belts pointed in the bombs present direction, use the center pixel of the bomb to determine if we are on a conveyor belt and what direction it is pointing
+	if(Dir == -1){
+		Dir = PixelIsConveyor(w->X + 8, w->Y + 8); //Note, this function returns -1 if no conveyor belt is found
+	}
+	return Dir;
+}
+
+int ConveyorCheck(lweapon w){
+	//First, check if there is a conveyor pointed in the same direction as the bomb, if so, return said direction, if not, check the bombs center pixel for a conveyor
+	//If a conveyor is found, return a value matching the DIR_ constants from std.zh so that the value can be put directly into an eweapons direction
+	int Dir = -1; //This value will equal the value of the direction (DIR_ constant) of the conveyor belt the bomb is riding. This will be that variable returned at the end of the function
+	//The below is a check to determine if ANY one of the pixels within the bombs hit box is on a conveyor pointing the same direction as the bomb
+	//This is to stop the bomb from getting caught on corners
+	//Note that we do not check every pixel, but on the ones on the edges of the bombs hitbox - as there is no point in checking the pixels that are actually inside the hitbox
+	int x;//
+	int y;
+	int length = 16-(BOMB_HITBOX_SHIRNK*2); //hitbox length of each side of the bomb
+	x = w->X + BOMB_HITBOX_SHIRNK - 1; //Because the first thing the for loop does is increase this value by 1, we have to start this value 1 lower then the pixels we are actually going to check
+	y = w->Y + BOMB_HITBOX_SHIRNK;
+	//Check each pixel on the top and bottum sides of the bomb
+	for(int i=0; i<length; i++){
+		x++;
+		if(PixelIsConveyor(x,y) == w->Dir || PixelIsConveyor(x,y+length) == w->Dir){ //Check top and bottum sides of bomb
+			Dir = w->Dir;
+			break; //No need to contiune for loop
+		}
+	}
+	y--; //Because the first thing the for loop does is increase this value by 1, we have to start this value 1 lower then the pixels we are actually going to check
+	//Check each pixel on the left and right sides of the bomb
+	for(int i=0; i<length; i++){
+		y++;
+		if(PixelIsConveyor(x,y) == w->Dir || PixelIsConveyor(x,y-length) == w->Dir){ //check left and right sides of bomb
+			Dir = w->Dir;
+			break; //No need to contiune for loop
+		}
+	}
+	//If there are no conveyor belts pointed in the bombs present direction, use the center pixel of the bomb to determine if we are on a conveyor belt and what direction it is pointing
+	if(Dir == -1){
+		Dir = PixelIsConveyor(w->X + 8, w->Y + 8); //Note, this function returns -1 if no conveyor belt is found
+	}
+	return Dir;
+}
+
+int PixelIsConveyor(int x, int y){ //checks if the given pixel is located on a conveyor combo. Returns the direction of that conveyor type (use the DIR_ constants to check or compare this value)
+	int Type = Screen->ComboT[ComboAt(x,y)];
+	if(Type == CT_CVUP || Type == CT_CVDOWN || Type == CT_CVLEFT || Type == CT_CVRIGHT){
+		return Type-14;
+	}else{
+		return -1; //Can't return zero because DIR_UP = 0;
+	}
+}
+
+bool ConveyorSolidCheck(eweapon w){ //Check if a bomb is on a solid object, Overloaded for eweapons and lweapons
+	if(Screen->isSolid(w->X+7, w->Y+7) || Screen->isSolid(w->X+8, w->Y+7) || Screen->isSolid(w->X+7, w->Y+8) || Screen->isSolid(w->X+8, w->Y+8)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+bool ConveyorSolidCheck(lweapon w){
+	if(Screen->isSolid(w->X+7, w->Y+7) || Screen->isSolid(w->X+8, w->Y+7) || Screen->isSolid(w->X+7, w->Y+8) || Screen->isSolid(w->X+8, w->Y+8)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+bool ConveyorCollision(eweapon w){ //Check if a bomb is colliding with an npc. Overloaded for eweapons and lweapons
+	npc e;
+	int s = BOMB_HITBOX_SHIRNK;
+	for(int i=Screen->NumNPCs(); i>0; i--){
+		e = Screen->LoadNPC(i);
+		if(e->Type == NPCT_TRAP && RectCollision(w->X+s, w->Y+s, w->X+15-s, w->Y+15-s, e->X+e->HitXOffset, e->Y+e->HitYOffset, e->X+e->HitXOffset+e->HitWidth-1, e->Y+e->HitYOffset+e->HitHeight-1)){
+			return true;
+		}
+	}
+	return false;
+}
+
+bool ConveyorCollision(lweapon w){
+	npc e;
+	int s = BOMB_HITBOX_SHIRNK;
+	for(int i=Screen->NumNPCs(); i>0; i--){
+		e = Screen->LoadNPC(i);
+		if(e->Type == NPCT_TRAP && RectCollision(w->X+s, w->Y+s, w->X+15-s, w->Y+15-s, e->X+e->HitXOffset, e->Y+e->HitYOffset, e->X+e->HitXOffset+e->HitWidth-1, e->Y+e->HitYOffset+e->HitHeight-1)){
+			return true;
+		}
+	}
+	return false;
+}
+
+//OffScreen() checks if the eweapon is completely offscreen (can't be seen on screen).
+bool OffScreen(eweapon a){
+	if(a->X <= -16){
+		return true;
+	}else if(a->Y <= -16){
+		return true;
+	}else if(a->X >= 256){
+		return true;
+	}else if(a->Y >= 176){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
+// 'X' represents 1 pixel of hitbox. '-' represents space the hitbox does not cover. Each box is 16 by 16 pixels. Figure A hitbox is 16 by 16. Figure B hitbox is 8 by 8
+//			Figure 	A												Figure 	B
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - X X X X X X X X - - - -
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+// X X X X X X X X X X X X X X X X 						- - - - - - - - - - - - - - - -
+
+
+
+
+
+
+
+
+
+
+
+

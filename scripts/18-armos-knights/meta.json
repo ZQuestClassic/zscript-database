@@ -1,0 +1,17 @@
+{
+  "name": "Armos Knights",
+  "author": "Saffith",
+  "added": null,
+  "updated": "26 Apr 2014",
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "4",
+  "downloads": "140",
+  "info": "A recreation of LttP's Armos Knights, boss of the East Palace. Up to six knights jump are spawned. They jump in a circle, then from the top of the screen to the bottom in a row. When only one is left, it will simply try to stomp on Link.",
+  "description": "Import tiles and set up a combo, which should be the top-left corner of the knight.\n\nSet up an enemy as follows:\nType: Other\nAttribute 1: Number of knights\n- Minimum: 1\n- Maximum: 6\n- Default: 6\nAttribute 2: Second CSet\n- When only one knight is left, it will change to this CSet\nAttribute 3: Stomping sound\n- This sound will play whenever a knight hits the ground\nAttribute 4: Jumping sound\n- This sound will play when the remaining knight jumps in the second part of the battle\nAttribute 5: Rumble sound\n- This sound will play as the knights first come to life\nAttribute 6: Death animation\n- 0: None\n- 1: Explode\n- 2: Flash and explode\n- Future versions of ghost.zh will add more animations\nAttribute 11: Armost Knight combo\nAttribute 12: Script slot\n\nOnly one copy of the enemy should be placed on the screen. It will spawn the others automatically.\n\nThe number of FFCs used will be equal to the number of knights plus one. If there aren't that many FFCs available, fewer knights will be created.\n\nRequires ghost.zh, std.zh, and string.zh.\nTiles are here.\nSounds can be found here. In LttP, the Armos Knights use these sounds:\n- Starting up (attribute 5): LTTP_Quake_Double_Stereo\n- Stomping (attribute 3): LTTP_Door_Close\n- Jumping (attribute 4): LTTP_Link_Jump",
+  "setup": "AdmiralJaden\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 25 February 2016 - 03:45 AM\n\t\t\t\n\n\t\t\t\tA very nice script! I had a little trouble setting it up (but only because I had to re-enable ghost.zh as the active script), but it works fantastically, they act just like the ones from ALTTP.",
+  "has_zip": true,
+  "has_popup": true
+}

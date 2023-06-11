@@ -1,0 +1,16 @@
+{
+  "name": "Icicle / Stalactite",
+  "author": "Theryan",
+  "added": "11 Jun 2021",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": null,
+  "downloads": "5",
+  "info": "This FFC script allows you to have icicles that fall from the ceiling when Link gets close. When Link gets within a certain distance, the icicle will fall from the ceiling. When it hits the ground it will shatter and hurt Link.For gameplay purposes it's a good idea to give your FFC a sprite that indicates an icicle is above, such as a shadow.",
+  "description": "Set the following constants to values that work with your quest.ICICLE_BLANK_COMBO - Combo ID of any blank comboICICLE_RADIUS - Used to set the distance Link needs to be from the icicle before it fallsICICLE_DELAY - The number of frames to wait before the icicle actually fallsICICLE_HEIGHT - The Z height that the icicle spawns atICICLE_SPRITE - The sprite ID to be used for the falling icicleICICLE_IMPACT_SPRITE - The sprite ID to be used for the impact effect when the icicle hits the groundICICLE_SHARD_SPRITE - The sprite ID to be used for the ice shards when the icicle hits the groundICICLE_SHARD_STEP - The speed at which the shards will fly out from the shattered icicleICICLE_SHARD_RADIUS - How far the ice shards should travelICICLE_DROP_SOUND - SFX ID to use for when the icicle fallsICICLE_BREAK_SOUND - SFX ID to use for when the icicle shattersFFC Arguments:D0: Amount of damage the FFC will doD1: Falling speed of the icicle. Larger values will fall faster. Values of about 3-4 feel right to me.",
+  "setup": "No reviews found!",
+  "has_zip": true,
+  "has_popup": false
+}

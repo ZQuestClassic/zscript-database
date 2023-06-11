@@ -1,0 +1,16 @@
+{
+  "name": "Water Pouring Puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "11 Mar 2022",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "5",
+  "info": "Script for creating puzzles, like \"measure 6 units of liquid with only 5 and 8 unit jars\".\nhttps://en.wikipedia..._pouring_puzzle",
+  "description": "You have a cuple of jars with different capacity and amounts of liquid in them. Some of them have goal marks. You can pour liquid from one jar to another until only either previous is empty or one filled up to it`s capacity.The goal is to end up with all marked jars having filled exactly up to marks placed on them.Stand in front of jar(from below), press Ex1, then stand on another jar base and press A to pour liquid.Update 11.03.2022 on request by SkyflareOperation button changed from to Ex1Added water pouring animationRedid liquid and goal mark rendering, so it uses tiles, instead of primitives.",
+  "setup": "1. Check out constants at the top of script file. Especially LINK_MISC_JAR_IN_HAND. It should set to avoid conflicts with other scripts.2. Set up tiles to render jars. Tiles are rendered by script from bottom to top using WATERJAR_SIZE_PER_UNIT constant. Water itself is rendered in increments 1 pixel tall.3. Set up combo for bottommost part ofd jar that would look like, if jar is empty.4. Import and compile the script.5. Place jar FFC`s with combo from step 3 as Data and assigned script. 1 jar = 1 FFC. Put solid combos underneath FFCs.// D0 - Jar capacity, in units.// D1 - Initial amount of liquid in jar, in units.// D2 - Target amount of liquid in jar, in units.// - If set to 0, the jar must be empty to solve the puzzle.// - Set to -1 to remove mark at all.",
+  "has_zip": true,
+  "has_popup": true
+}

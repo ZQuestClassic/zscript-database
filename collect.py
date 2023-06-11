@@ -76,9 +76,13 @@ def download_script(id):
         'has_popup': has_popup,
     }
 
-    dest = Path(f'tmp/{id}')
-    dest.mkdir(exist_ok=True, parents=True)
-    (dest / 'meta.json').write_text(json.dumps(meta, indent=2))
+    clean_name = re.sub(r'[^a-z]+', '-', name.lower())
+    if clean_name.endswith('-'):
+        clean_name = clean_name[0:-1]
+    slug = f'{id}-{clean_name}'
+    dest = Path(f'tmp/{slug}')
+    meta_path = dest / 'meta.json'
+    dest.mkdir(parents=True)
 
     images = soup.select('#imagelist2 img')
     image_srcs = [img['src'] for img in images if 'youtube' not in img['src']]
@@ -106,6 +110,7 @@ def download_script(id):
             script_dest.name = 'script-popup.zs'
         script_dest.write_text(script, 'utf-8')
 
+    meta_path.write_text(json.dumps(meta, indent=2))
     return True
 
 
