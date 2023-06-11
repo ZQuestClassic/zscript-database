@@ -1,0 +1,16 @@
+{
+  "name": "Poltergeist Traffic Cone",
+  "author": "Alucard648",
+  "added": "12 Dec 2022",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "1",
+  "downloads": "1",
+  "info": "Straight from Marble Race, a clone ffrom Marble Madness/Hamsterball",
+  "description": "Moves in 4 directions. If Link is close, it stops and becomes invincible and solid, blocking path. Speed boosts when low HP. Best used in cramped areas.",
+  "setup": "Requires SolidFFFC.zh and all it`s dependenciesAnimation - 2 rows. 1 for moving and 1 directly below it for blocking. Attribute 1: Proximity DistanceAttribute 2: Berserk HP thresholdAttribute 3: Tile WidthAttribute 4: Tile HeightAttribute 5:Speed modifier for berserk mode",
+  "has_zip": true,
+  "has_popup": true
+}

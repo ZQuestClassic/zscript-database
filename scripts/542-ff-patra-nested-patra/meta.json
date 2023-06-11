@@ -1,0 +1,16 @@
+{
+  "name": "FF Patra + Nested Patra",
+  "author": "Alucard648",
+  "added": "09 May 2023",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "1",
+  "downloads": "0",
+  "info": "2 orbiter Patra-like enemies made on request by SkyFlare.",
+  "description": "//Orbiter/PatraHas up to 2 rings of enemies circling around. Invincible until all other orbiting enemies are killed. Then becomes more aggressive and faster. Can shoot eweapons.//Nested PatraLike FF Patra, but each time center core is hit for damage, he spawns new rings of orbiters and becomes invincible again.",
+  "setup": "All default enemy movement params are used.Attribute 1: Tile Width & Tile HeightAttribute 2: Orbit rotation speed, reverse for inner orbit.Attribute 3: Delay between shooting, in framesAttribute 4: Number of enemies in outer orbit.Attribute 5: Number of enemies in inner orbit.Attribute 6: ID of enemies in outer orbit.Attribute 7: ID of enemies in inner orbit.Attribute 8: Outer/minimum radius. Half for inner radius.Attribute 9: If orbit radius can expand/shrink, this defines max radius.Attribute 10: And this defines radius fluctuating speed. 0 for disabling grow/shrink.Both Patra variants use the same attributes.",
+  "has_zip": true,
+  "has_popup": true
+}

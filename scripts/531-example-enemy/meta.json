@@ -1,0 +1,17 @@
+{
+  "name": "Example Enemy [2.55]",
+  "author": "Moosh",
+  "added": null,
+  "updated": "16 Apr 2023",
+  "tags": [
+    "#2.55",
+    "#Enemy"
+  ],
+  "rating": null,
+  "downloads": "27",
+  "info": "This is an enemy script I wrote with the intent of showing off certain features and techniques of ghost.zh for those interested in scripting enemies.",
+  "description": "This is an enemy script I wrote with the intent of showing off certain features and techniques of ghost.zh for those interested in scripting enemies. It is rather overcommented as I tried to lay out my whole thought process while structuring a boss fight. If anything's confusing or unclear feel free to let me know, I don't always words good.\n\nAnyways, features of the thing:\n\nExampleEnemyGhost.zs\nThe more complex version of the enemy. This covers:Some basic attack selection logicSome more complex movementWaitframe wrapping and the vars[] arraySome very simple child enemy management\nExampleEnemyGhostMinimal.zs\nThis is a stripped down version of the enemy. It has super basic movement and two very basic attacks. Basically a minimal viable product. For newer scripters this could maybe work as a template script when making enemies.\n\nExampleEnemyNPCAnim.zs\nThis is the first one but ported to my NPCAnim.zh header. Want to use npc scripts instead of ghost? Not afraid of dubious Moosh headers? Here you go.\n\nUpdate 4/16/23: Update for the new version of NPCAnim.zh. Also rewrote the NPCAnim example to use newer features.",
+  "setup": "If you're just looking to set the enemy up it's pretty straightforward. It uses two combos for animations, walking followed by attacking. If you're using the npc script version, it's eight 2x2 tiles instead. Four walking frames, four attacking. Attribute 1 in the enemy editor is the enemy to use for the orbiting hitboxes.In the script, set the SPR_BULLET constant to a right facing bullet sprite.This script uses std.zh and ghost.zh / NPCAnim.zh.",
+  "has_zip": true,
+  "has_popup": false
+}

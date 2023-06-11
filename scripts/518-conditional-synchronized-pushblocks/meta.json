@@ -1,0 +1,16 @@
+{
+  "name": "Conditional + Synchronized Pushblocks",
+  "author": "Alucard648",
+  "added": "14 Jan 2023",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "3",
+  "info": "Combination of Synchronized and Conditional pushblocks.Made on request by SkyFlare.",
+  "description": "Synchronized + Conditional Pushable blocks combo in one script. If Link pushes one, others move in the same direcction, if they can. Works only is specific Sreen D regester is set to specific value.",
+  "setup": "Set up solid combo with blank tile for CMB_SYNC_COND_PUSHBLOCK_SOLID constant.Effect Width and Height used. If TileHeight is greater than EffectHeight / 16, then the script calls SyncCondPush Renderer, so FFC sprite rendering is aligned to bottom edge of FFC`s hitbox. D0 - bracelet level requirement. D1 - allowed push directions. Add together - 1-up, 2-down, 4-left, 8-right. 0 for all directions. D2 - add together: 1 - gets stuck after 1 push, 2 - gets stuck when landing on trigger, 4 - icy block, continue moving in direction until hitting obstacle, 8 - ignore triggers, 16 - require triggers with same CSet as FFC`s Cset, 32 - animation on push (uses next combo in list) D3 - sync ID. Pushblocks with same ID are linked. D4 - Screen D register to track D5 - Target screen D value. //SyncCondPushRender//Renderer for SyncCondPush blocks//Place, gridsnap, and align on bottom with large pushblock.//D0 - ID of pushblock FFC",
+  "has_zip": true,
+  "has_popup": true
+}

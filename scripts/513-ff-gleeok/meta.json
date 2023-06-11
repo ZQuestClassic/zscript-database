@@ -1,0 +1,16 @@
+{
+  "name": "FF Gleeok",
+  "author": "Alucard648",
+  "added": "22 Dec 2022",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "1",
+  "downloads": "7",
+  "info": "Extended variant of Gleeok with more options. Made on request by SkyFlare",
+  "description": "Extended variant of Z1 Gleeok. Can have more customizability, like killable loose heads, different eweapons for intact and loose heads, unhardcoded position. Moving Gleeok also works. Each head is separate NPC. Slice all heads off body to kill Gleeok, as usual.",
+  "setup": "Uses 3 enemies.//Gleeok Body - the enemy that should be p[lace into screen to put FFGleeok here.Step speed, Homing factor, Random Rate and Hunger are used. Damage=0 disables collision detection Set all defenses to Ignore.Attribute 1: Number of heads. Max 16Attribute 2: ID of head enemy. By default, next enemy in ID  listAttribute 3: Number of neck segments per headAttribute 4: Combo used to render neck segmentAttribute 5: ID of loose head NPC to remove, when Gleeok is killed, -1 to disableAttribute 6: Spawning X offset for heads.Attribute 7: Spawning Y offset for heads.Attribute 8: X position of connection between necks and body.Attribute 9: Y position of connection between necks and body.Attribute 10: Body size (square, in tiles) If size==1, bosy does not produse explosion animation, when all heads are dead.//Gleeok Head, moves like in infinity shape, firing eweapons at Link, When killed, spawns Loose Head enemyAttribute 1: Maximum range at X coordinateAttribute 2: Maximum range at Y coordinateAttribute 3: Angular speed for X coordinate, in 1/100th of degree per frame. >=1000 for random speedAttribute 4: Angular speed for Y coordinate, in 1/100th of degree per frame. >=1000 for random speedAttribute 5: Starting angle for X coordinate, >360 for random init angleAttribute 6: Starting angle for Y coordinate, >360 for random init angleAttribute 7: NPC to spawn on death, -1 - no loose head spawningAttribute 8: Number of eweapons to fire per burstAttribute 9: Delay between shots, in frames. Enemy won`t fire , if Weapon Damage is 0.Attribute 10: Eweapon sprite //Loose head. Flies constant 8-way, fires eweapons at Link.Step speed, Homing factor, Random Rate and Hunger are used.Attribute 1: Number of eweapons to fire per burstAttribute 2: Delay between shots, in frames. Enemy won`t fire , if Weapon Damage is 0.Attribute 3: Eweapon sprite",
+  "has_zip": true,
+  "has_popup": true
+}

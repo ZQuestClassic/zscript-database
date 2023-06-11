@@ -1,0 +1,88 @@
+const int SPR_SHELL_FIREBALL = -1;//Sprite used for fireballs
+
+//Hides inside his invicible shell for ambush.
+
+ffc script ShelledTurret{
+	void run(int enemyID){
+		npc ghost = Ghost_InitAutoGhost(this, enemyID);
+		
+		int HF = ghost->Homing;
+		int HR = ghost->Haltrate;
+		int RR = ghost->Rate;
+		int HNG = ghost->Hunger;
+		int SPD = ghost->Step;
+		int WPND = ghost->WeaponDamage;//Weapon Damage->Additional damage cauded by getting stunned by tremors
+		
+		int proximity = Ghost_GetAttribute(ghost, 0, 32);//Proximity radius.
+		int behaviour = Ghost_GetAttribute(ghost, 1, 0);//Baehaviour after shooting. 0 - hide back, 1 - rapid fire, 2 - run around
+		int sizex = Ghost_GetAttribute(ghost, 2, 4);//Tile Width
+		int sizey = Ghost_GetAttribute(ghost, 3, 4);//Tile Height
+		int delay  = Ghost_GetAttribute(ghost, 4, 30);//Delay fetween firing, in frames
+		int walkduration  = Ghost_GetAttribute(ghost, 5, 0);//Walking duration, if attrubute 2 is set to 2. 0 for infinite.
+		
+		ghost->Extend=3;
+		Ghost_SetSize(this, ghost, sizex, sizey);
+		if (sizex>2 && sizey>2)Ghost_SetHitOffsets(ghost, 8, 8, 8, 8);
+		
+		Ghost_SetFlag(GHF_NORMAL);
+		
+		int OrigTile = ghost->OriginalTile;
+		int State = 0;
+		int haltcounter = -1;
+		int statecounter = delay;
+		
+		int defs[18];
+		Ghost_StoreDefenses(ghost,defs);
+		Ghost_SetAllDefenses(ghost, NPCDT_BLOCK);
+		
+		while(true){
+			if (State==0){
+				Ghost_ForceDir(Ghost_FaceLink(ghost));
+				if (statecounter>0) statecounter--;
+				if ((statecounter==0)&&(Distance(Link->X, Link->Y, this->X, this->Y)<=proximity)){
+					statecounter = delay;
+					Ghost_SetDefenses(ghost, defs);
+					State=1;
+				}
+			}
+			if (State==1){
+				if (statecounter == delay)eweapon e =  FireAimedEWeapon(ghost->Weapon, Ghost_X, Ghost_Y, 0, 200, WPND, SPR_SHELL_FIREBALL, -1, 0);
+				if (statecounter>0) statecounter--;
+				if (statecounter==0){
+					statecounter = delay;
+					State=behaviour;
+					if (State==0)Ghost_SetAllDefenses(ghost, NPCDT_BLOCK);
+					if (State==2)statecounter=walkduration;
+				}
+			}
+			if (State==2){
+				haltcounter = Ghost_ConstantWalk4(haltcounter, SPD, RR, HF, HNG);
+				if (walkduration>0){
+					if (statecounter>0) statecounter--;
+					if (statecounter==0){
+						statecounter = delay;
+						State=0;
+						Ghost_SetAllDefenses(ghost, NPCDT_BLOCK);
+					}
+				}
+			}
+			
+			Animation(ghost, OrigTile, State, 2);
+			Ghost_Waitframe(this, ghost);
+		}
+	}
+}
+
+void Animation(npc ghost, int origtile, int State, int numframes){
+	int offset = 20*State;
+	ghost->OriginalTile = origtile + offset;
+}
+
+int Ghost_FaceLink(npc ghost){
+	int cmb = ComboAt (CenterLinkX(), CenterLinkY());
+	int ghostcmb = ComboAt (Ghost_X+8, Ghost_Y+8);
+	if (ComboY(cmb)<ComboY(ghostcmb)) return DIR_UP;
+	else if (ComboY(cmb)>ComboY(ghostcmb)) return DIR_DOWN;
+	else if (ComboX(cmb)<ComboX(ghostcmb))  return DIR_LEFT;
+	else  return DIR_RIGHT;	
+}

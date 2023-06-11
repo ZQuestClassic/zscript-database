@@ -1,0 +1,18 @@
+{
+  "name": "Test Play Init Data Backups",
+  "author": "Moosh",
+  "added": "14 Apr 2023",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Global",
+    "#Misc"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a more powerful version of my other debug script, Test Play Mode Starts With All Items. With it you can have up to 10 different files holding init data for testing different areas.",
+  "description": "This is a more powerful version of my other debug script, Test Play Mode Starts With All Items. With it you can have up to 10 different files holding init data for testing different areas.\n\nUpdate 4/14/23: Made the script not warp the player on load by default (kinda defeats the whole point of Test Play mode). Also fixed up a couple bugs.",
+  "setup": "Set the four color constants at the top of the script to colors that work for your quest. This isn't necessary, but will make the menu more readable.Assign both generic scripts and then go to Quest->Init Data and edit the TestPlayItems script in the GenScript tab. Check Run From Start. The script will now run.When in test play mode, press Ctrl+Shift+T to open the save menu. You can scroll through slots with left and right and change modes between Save/Load/Erase with up and down. The A button confirms and the B button closes the menu. After saving to a slot it will be saved in files/YOURQUESTNAME/InitData as a .zinit file. These save slots will only record your equipment and not other quest dependent stuff like screen states, so keep that in mind.This script only requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "GB Chest DX",
+  "author": "Alucard648",
+  "added": "13 Jan 2023",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "8",
+  "info": "Reworked GB styled treasure chest, originally made by Nimono.",
+  "description": "Works like a treasure chest, but also displays rising item animatian, ala LttP and GameBoy Zelda games.Originally this script made by Nimono, but this refactor, requested by SkyFlare, adds proper support for larger treasure chests, among other features.Credit goes to Nimono for original script.",
+  "setup": "SCREEN_D_GBCHEST_DATA: Which Screen->D[] to use to track the chests. Make sure to pick one not currently in use by other scripts!GBCHEST_PRIZE_RENDER_TIMER //Time to render prize before acquisition, in frames.GBCHEST_PRIZE_RENDER_SPEED //Rising speed of revealed item during display.Place invisible FFC on top left corner of treasure chest. Set TileWidth and TileHeight to match chest sizeD0 chestCombo: The starting combo for your chest. When chest is open, the script changes all combos overlapped by FFC to their next ones in combo data table. If left at 0, it uses combo underneath top left corner of FFC. Otherwise, it cannot be open, until combo underneath top left corner of FFC changes to combo, whose ID is stated in D0, usually via secrets.D1 openSFX: What sound effect ID to play upon opening the chest.D2 receiveSFX: What sound to play upon receiving the item.D3 itemID: The item to give to the player upon opening the chest.D4 receiveMessage: Which message to display upon receiving the item.D5 itemDisplay: Whether or not to display the item rising from the chest. 0 = do not display, anything else = display.D6 lockValue: Whether or not to have the chest be locked. 0 = no lock, 1 = regular key required; 2 = boss key required. Original script had no support for Magic Key, this script allows using Magic Key to unlock GB chests.If you are using ghost.zh, find and uncomment out SuspendGhostZHScripts() and ResumeGhostZHScripts(), so ghosted enemies won`t move during chest opening sequence.",
+  "has_zip": true,
+  "has_popup": true
+}

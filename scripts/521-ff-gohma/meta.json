@@ -1,0 +1,16 @@
+{
+  "name": "FF Gohma",
+  "author": "Alucard648",
+  "added": "14 Jan 2023",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "1",
+  "downloads": "4",
+  "info": "Extended variant of Z1 Gohma. Made on request by SkyFlare.",
+  "description": "Walks around, shooting eweapons. Only hitting his apen eye can deal any damage to boss.",
+  "setup": "1.Set up 2 enemies, 1 for eye and 1 invincible for legs 2.Gohma`s eye anmimation is handled by code and uses 4 frames, animation should be set to \"none\".3. Gohma`s leg animation is 4-frame for left leg and 4-frame right below it for right leg.4. Assign atttributes for eye part of boss.Attribute 1: Facing directionAttribute 2: Delay between opening and closing eye, in framesAttribute 3: Delay between shots, in frames. Enemy won`t fire , if Weapon Damage is 0. -1 - shoot eweapons on opening eye.Attribute 4: Delay between single eweapons in one volley, in frames.Attribute 5: Number of eweapons to fire per burstAttribute 6: ID of enemy used by Gohma`s legsAttribute 7: Eweapon sprite",
+  "has_zip": true,
+  "has_popup": true
+}

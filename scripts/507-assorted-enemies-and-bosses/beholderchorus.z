@@ -1,0 +1,85 @@
+//Chorus of Mysteries Beholder
+
+//Moves like medusa head, bouncing off screen edges and solid terrain. Sometimes stops to spawn enemies. Invincible, while moving.
+
+ffc script BeholderCV{
+	void run(int enemyID){
+		npc ghost = Ghost_InitAutoGhost(this, enemyID);
+		
+		int HF = ghost->Homing;
+		int HR = ghost->Haltrate;
+		int RR = ghost->Rate;
+		int HNG = ghost->Hunger;
+		int SPD = ghost->Step;
+		int WPND = ghost->WeaponDamage;
+		
+		int Amplitude = Ghost_GetAttribute(ghost, 0, 24); //Y-scale of sine wave period. Set to negative for cosine wave motion.
+		int Period = Ghost_GetAttribute(ghost, 1, 96); //X-scale of sine wave period.
+		int sizex = Ghost_GetAttribute(ghost, 2, 1);//Tile Width
+		int sizey = Ghost_GetAttribute(ghost, 3, 1);//Tile Height
+		int delay  = Ghost_GetAttribute(ghost, 4, 180);//Delay between spawning, in frames
+		int enemyspawn = Ghost_GetAttribute(ghost, 5, 42);//Id of enemy to spawn
+		
+		ghost->Extend=3;
+		Ghost_SetSize(this, ghost, sizex, sizey);
+		if (sizex>2 && sizey>2)Ghost_SetHitOffsets(ghost, 8, 8, 8, 8);
+		
+		Ghost_SetFlag(GHF_NORMAL);
+		
+		int OrigTile = ghost->OriginalTile;
+		int State = 0;
+		int haltcounter = -1;
+		int statecounter = delay;
+		int direction = 1;
+		if (Ghost_X>=128) direction=2;
+		int AxisY = Ghost_Y; //Axis of sine wave. 
+		int CurAngle = Rand(360);//Current angular position used for calculating sine wave position.
+		int anglestep = 360/Period; //Used for calculating 
+		
+		int defs[18];
+		Ghost_StoreDefenses(ghost,defs);
+		Ghost_SetAllDefenses(ghost, NPCDT_BLOCK);
+		
+		while(true){
+			if (State==0){
+				if (direction == 1){
+					Ghost_ForceDir(DIR_RIGHT);
+					Ghost_X += SPD/100;
+					if (!(Ghost_CanMove(DIR_RIGHT, 1, 1, true))) direction=2;
+				}
+				else if (direction == 2){
+					Ghost_ForceDir(DIR_LEFT);
+					Ghost_X -= SPD/100;
+					if (!(Ghost_CanMove(DIR_LEFT, 1, 1, true)))	direction=1;
+				}
+				CurAngle += anglestep;
+				Ghost_Y = AxisY+ Amplitude*Sin(CurAngle);
+				statecounter--;
+				if (statecounter<=60){
+					Ghost_SetDefenses(ghost, defs);
+					State=1;
+				}
+			}
+			if (State==1){
+				statecounter--;
+				if (statecounter<=0){
+					Ghost_SetAllDefenses(ghost, NPCDT_BLOCK);
+					State=0;
+					statecounter = delay;
+					Game->PlaySound(SFX_SUMMON);
+					npc r = SpawnNPC(enemyspawn);
+					r->X=Ghost_X;
+					r->Y=Ghost_Y;
+				}
+			}
+			BeholderAnimation(ghost, OrigTile, State, 2);
+			Ghost_Waitframe(this, ghost);
+		}
+	}	
+}
+
+void BeholderAnimation(npc ghost, int origtile, int State, int numframes){
+	int offset = 20 * ghost->TileHeight;
+	if (State==0) offset=0;
+	ghost->OriginalTile = origtile + offset;
+}		

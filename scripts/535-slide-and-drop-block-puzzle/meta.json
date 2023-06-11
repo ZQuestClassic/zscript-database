@@ -1,0 +1,16 @@
+{
+  "name": "Slide and Drop block puzzle",
+  "author": "Alucard648",
+  "added": null,
+  "updated": "12 May 2023",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "0",
+  "info": "Drop stones into colored nests. Made on request by SkyFlare.",
+  "description": "You are given area with solid blocks, some of them, usually at the top are colored. At the bottom of the puzzle area are non-solid colored spots. You can press buttons at the sides of puzzle to slide rows of blocks left and right, but none of solid blocks can leave puzzle area (no wraparound, wrong inputs are disabled). After slide colored blocks fall downwards, if they can. Land all colored blocks on same colored non-solid spots/triggers to solve the puzzle.Stand on input buttons (arrows in the demo) and press Ex1 to perform block shifting.",
+  "setup": "1.Build puzzle area using solid and non-solid blocks, Flag entire area with CF_SLIDEDROP_PUZZLE_AREA combo flags.2.Recolor gravity-affected blocks using CSets 5+;3.Trigger spots. Recolor trigger spots at bottom of the screen (non-solid combos) to CSets 5+4.Place input buttons at the sides of puzzle area, using CF_SLIDEDROP_BUTTON_LEFT and CF_SLIDEDROP_BUTTON_RIGHT combo flags.5. Place invisible FFC with script anywhere in the screen. No arguments needed.",
+  "has_zip": true,
+  "has_popup": true
+}

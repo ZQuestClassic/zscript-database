@@ -1,0 +1,17 @@
+{
+  "name": "FF Ganon",
+  "author": "Alucard648",
+  "added": "22 Dec 2022",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "10",
+  "info": "Expanded and un-hardcoded variant of Z1 ganon. and reworked Ganon Room sequence.",
+  "description": "Expanded and un-hardcoded variant of Z1 ganon. Teleports around, firing eweapons at Link, if brought down to 0 HP, Link needs to hit him one last time with specific lweapon to finish off, otherwise boss fully recovers.",
+  "setup": "Upon compiling, assign 2 FFC script slots//Enemy - FF GanonUses 2 rows of tiles, one below anotherAttribute 1: Duration for near death state, in framesAttribute 2: ID of lweapon needed to finish off GanonAttribute 3: Tile WidthAttribute 4: Tile HeightAttribute 5: Minimum damage of lweapon needed to finish off GanonAttribute 6: CSet used for near death stateAttribute 7: Invisibility: 0 - none, 1 - visible only to Lens of Truth, 2 - completely invisibleAttribute 8: Delay between teleporting, in framesAttribute 9: Eweapon spriteAttribute 10: Tntroduction sequence duration, in frames//FFC Script - Ganon Room sequenceNear perfect recreation of default ZC Ganon Room sequence, like Link holding Triforce, boss dropping stuff on death etc.Place anywhere in the screen. D0 - ID of boss NPC D1 - Tile used for rendering Link holding Triforce at intro D2 - Tile used for rendering Triforce at intro D3 - ID of item dropped by boss, when killed",
+  "has_zip": true,
+  "has_popup": true
+}

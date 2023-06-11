@@ -1,0 +1,18 @@
+{
+  "name": "Status Effects",
+  "author": "Emily",
+  "added": "03 Apr 2023",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Global",
+    "#Weapon"
+  ],
+  "rating": null,
+  "downloads": "4",
+  "info": "A status effect system. Handles managing custom effects, and eweapons having on-hit effects.",
+  "description": "A status effect system for managing engine and custom status effects. Allows eweapons to give any effect (or multiple effects) on-hit.Manages the engine effects 'ItemJinx','SwordJinx','Stun', and 'Bunny'.By default, comes with example custom effects \"Slow\", \"Pegasus\", and \"On Fire\". \"Slow\" reduces your speed, \"Pegasus\" increases your speed (having both at once, reduces your speed only a tiny bit). \"On Fire\" deals a heart of damage every second (silently, no knockback/IFrames).This should serve as a good framework for creating other custom status effects yourself!",
+  "setup": "Import this file, and assign both the 'StatusEffects' and 'HitEffects' generic scripts to slots (as well as the example item script and eweapon scripts, if you would like to use them).In \"Init Data->GenScript\", edit each of these scripts, and check the \"Run from Start\" box.If you want status effects to be cleared when you F6->Continue, check the \"Continue\" box in the \"Reload State\" column for the \"StatusEffects\" script.",
+  "has_zip": true,
+  "has_popup": false
+}

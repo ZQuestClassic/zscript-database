@@ -1,0 +1,16 @@
+{
+  "name": "GBZ Ledge Jumping + Startropics Grid Jumping",
+  "author": "Alucard648",
+  "added": "20 Feb 2023",
+  "updated": null,
+  "tags": [
+    "#Global"
+  ],
+  "rating": "1",
+  "downloads": "4",
+  "info": "LtttP/GBZ styled one-way ledge jumping and Startropics-like grid jumping. Made on request by SkyFlare.",
+  "description": "This global script allows Link to jump off ledges like in TttP and GameBoy Zelda games. Also if Link has specific items, he can perform RPG-styled grid jumping over certain solid combos, ala Startropics/Golden Sun.",
+  "setup": "1. Global script combining: Put this line:\nint gridjump[3]={-1,0,0};\n\nat the start of global script, before main loop. Then put this line:\nGridJumpUpdate(gridjump);\n\nbefore WaitDraw command inside main loop of global scropt.\n2. Set up items with IC_GRIDJUMP item calss needed to perform ledge jumping. Use Power to define max jump distance. Rest of item attributes, including\n3. Use CT_LEDGE_JUMP combo type to define solid ledge combos. Use CF_LEDGE_ONEWAY_UP,CF_LEDGE_ONEWAY_DOWN,CF_LEDGE_ONEWAY_LEFT and CF_LEDGE_ONEWAY_RIGHT to define one-way ledges. Only inherent combo flags work with this script. Or leave inherent flag as 0 for grid-like jumping combos, ala Startropics/Golden Sun.",
+  "has_zip": true,
+  "has_popup": true
+}

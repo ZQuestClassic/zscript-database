@@ -1,0 +1,16 @@
+{
+  "name": "Assorted enemies and bosses 2",
+  "author": "Alucard648",
+  "added": "13 Nov 2022",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "2",
+  "downloads": "7",
+  "info": "CV2 Illusionist (Dracula), Metool-like stone creature and Chorus of Mysteries BeholderMade on request by SkyFlare",
+  "description": "//CV2 Illusionist bossMoves like Rotodisk, creates intangible rotating illusuions, ocassionally stops to fire stuff at Link. If it goes berserk (low HP), it increases rotation speed--//Shelled ShooterHides inside his invicible shell for ambush.--//Chorus of Mysteries BeholderMoves like medusa head, bouncing off screen edges and solid terrain. Sometimes stops to spawn enemies. Invincible, while moving.",
+  "setup": "IllusionistAttribute 1: Rotation radius.Attribute 2: Rotation speed, in degrees per frame. if set to 0, speed rendomizes after every fireball shot.Attribute 3: Starting angle.  0 - randomAttribute 4: Tile WidthAttribute 5: Tile HeightAttribute 6: Delay between shooting fireballsAttribute 7: Number of illusions to create while moving.--Shelled ShooterAttribute 1: Proximity radius.Attribute 2: Baehaviour after shooting. 0 - hide back, 1 - rapid fire, 2 - run aroundAttribute 3: Tile WidthAttribute 4: Tile HeightAttribute 5: Delay fetween firing, in framesAttribute 6: Walking duration, if attrubute 2 is set to 2. 0 for infinite.--Chorus of Mysteries BeholderStep - X-speedAttribute 1: Y-scale of sine wave period. Set to negative for cosine wave motion.Attribute 2: X-scale of sine wave period.Attribute 3: Tile WidthAttribute 4: Tile HeightAttribute 5: Delay between spawning, in framesAttribute 6: ID of enemy to spawn",
+  "has_zip": true,
+  "has_popup": true
+}

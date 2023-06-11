@@ -1,0 +1,16 @@
+{
+  "name": "Aquamentus EX",
+  "author": "Alucard648",
+  "added": "12 Dec 2022",
+  "updated": null,
+  "tags": [
+    "#Enemy"
+  ],
+  "rating": "1",
+  "downloads": "6",
+  "info": "Expanded variant of Aquamentus. Made on request fy SkyFlare",
+  "description": "Moves like normal enemy, or in circle, faces specific direction, Fires triple fireballs. At low HP speed increases and he fires rays of fire at random positions.",
+  "setup": "Attribute 1: Facing directionAttribute 2: Berserk HP thresholdAttribute 3: Tile WidthAttribute 4: Tile HeightAttribute 5: Delay between shooting, in framesAttribute 6: Sprite to use for eweaponsAttribute 7: Movement radius, 0 for ConstantWalk4Attribute 8: Weapon type used for berserk modeAttribute 9: Speed modifier for berserk modeAttribute 10: Berserk eweapon fire speed.Attribute 11: -1Attribute 12: Script SlotUse NoEnemy flags to restrict enemy movement.",
+  "has_zip": true,
+  "has_popup": true
+}

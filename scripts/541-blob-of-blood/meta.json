@@ -1,0 +1,17 @@
+{
+  "name": "Blob of Blood",
+  "author": "Alucard648",
+  "added": "09 May 2023",
+  "updated": null,
+  "tags": [
+    "#Enemy",
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "0",
+  "info": "Giant blob/ slime wall boss. Made on request by SkyFlare.",
+  "description": "A huge wall of red stuff that is really painful to touch. An eye teleports inside blob mass, firing eweapons at Link, spawning enemies. When eye`s HP is low enough, the blob expands ala Demon Wall in attewmpt to fill screen completely. Killing eye destroys entire Slime Wall and all summons.",
+  "setup": "1. Compile the script. 2 FFC slots used.2. Set up BossSlimeWall ghosted enemy script for eye itself Animation - 4 sequences of frames set vertically: teleporting in, charging, firing, teleporting out. Attribute 1: Delay between teleporting Attribute 2: Enemy size, X*X square. Attribute 3: Attack type, add together: +1- 4 shots orthogonally, +2 - 8 shots in orthogonal and diagonal directions, +4 - summon enemies, +8 - nukes the whole screen for damage anywhere! Attribute 4: Eweapon sprite Attribute 5: Enemy count for enemy spawning attack Attribute 6: Berserk HP threshold Attribute 7: Delay between teleporting, if boss went berserk Attribute 8: Enemy ID for enemy spawning attack3. Set up 3 consecutive combos: 1 for edge of slime wall, then damaging slime innards then another slime innards combo with inherent flag #97 2nd combo must cycle into 3rd combo.4. Screen: place FFC with SlimeWallBody script where slime wall edge will be. And put 1 eye enemy. D0 - slot used by eye enemy D1 - Slime wall facing direction, floor that on opposite direction must be filled with 3rd combo from step 3 (all combos above FFC, if D1 is DIR_DOWN etc.), while the rest of arena must have NO_FLYING_ENEMIES combo type to avoid eye spawning outside blob wall. D2 - When The Blob goes berserk once, he starts moving st that speed. D3 - HP threshold for blob expanding. D4 - When HP falls below that threshold, blob expanding speed increases. D5 - Blob expanding speed MULTIPLIER when eye HP is below D4.",
+  "has_zip": true,
+  "has_popup": true
+}

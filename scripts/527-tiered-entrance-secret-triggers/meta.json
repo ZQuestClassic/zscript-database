@@ -1,0 +1,16 @@
+{
+  "name": "Tiered entrance secret triggers.",
+  "author": "Alucard648",
+  "added": "20 Feb 2023",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "1",
+  "info": "3 scripts that trigger screen secrets multiple times depending on circumstances. Made on request by SkyFlare.",
+  "description": "//TierEntranceTriforceTiered secrets, depending on Triforce piece count. Triggers screen secrets once for each Triforce piece in Link`s inventory.//TierEntranceItemsChecks items with the given list and triggers tiered secrets for each one in the list.//TierEntranceCounterCounter-driven Tiered entrance trigger. Works similar to Seashell Mansion in Link`s Remakening.",
+  "setup": "Place invisible FFC with script anywhere in the script.TierEntranceTriforce//D0 - ScreenD to use.//D1 - String to display, when no triforces, or first time entered.TierEntranceItems//D0 - ScreenD to use.//D1 - String to display, when no items, or first time entered.//D2-D7 - Item ID list (6 items).  Multiply by -1 to remove item from Link`s inventory on trigger.TierEntranceCounter//D0 - Screen D tu use//D1 - String to display, when no new counter thresholds achieved..//D2 - Counter to use.//D3-D7 - Thresholds. Like 3, then 5, then 10 etc to trigger. Multiply by -1 to subtract target value from counter on trigger.",
+  "has_zip": true,
+  "has_popup": true
+}

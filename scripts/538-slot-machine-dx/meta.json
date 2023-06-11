@@ -1,0 +1,16 @@
+{
+  "name": "Slot Machine DX",
+  "author": "Alucard648",
+  "added": "09 May 2023",
+  "updated": null,
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "1",
+  "downloads": "0",
+  "info": "Advanced money making game. Made on request by SkyFlare.",
+  "description": "Spin and Win! Come on, Big Money! Features wild symbols, free spins bonus games, item and secret wins and progressive jackpots.Stand on FFC, press Ex2, to view paytable, then Ex1 to insert the stake and pull the handle. Good luck!",
+  "setup": "1. Set up screen for loading symbol pool. Put combos staring from top left corner and left to right then up to down. Flag one combo with CF_SLOTMACHINE_WILD_SYMBOL to set it as wild symbol (Screenshots 2 & 3).2. Set up screen for loading paytable data. For each combination, put the follwoing sequence of 5 combos: 3 symbols forming combination (leave as combo 0 to no checking for position), then combo, whose ID is win amount, paid in multiples of stake, i.e. if stake is 10 rupees and combo ID is 100, actual win on hitting this combination is 1000 rupees. The 5th combo in set is blank, leave as combo 0. Combinations in paytable must be left aligned along combo pos 0, 5 and 10(Screenshot 4). 3. Flag leftmost symbol of combinations with special flags (CF_SLOMACHINE_* constants in script file)(Screenshot 5).4. Place invisible FFC in front of actual slot machine position in the screen. D0 - Map ID where screens with slot machine data is located. D1 - ID of screen (decimal), where symbol pool data is located (step 1). D2 - ID of screen (decimal), where paytable data is located (step 2). D3 - cost per play/ base bet, in rupees. D4 - #####.____ - ID of item to award if combination flagged with CF_SLOTMACHINE_ITEM_AWARD was hit for the first time. D4 - _____.#### - ID of item to award if combination flagged with CF_SLOTMACHINE_ITEM_AWARD was hit for the subsequent times. D5 - #####.____ - all wins are multiplied by this value during free spins bonus game. D5 - _____.#### - Number of free spins to award when bunus game is triggered by hitting combination flagged with CF_SLOTMACHINE_BONUS_SYMBOL. D6 - #####.____ - MIDI to play during free spins bonus game. D6 - _____.#### - String to display, when entering screen with slot machine. D7 - #####.____ - String to display, when winning progressive jackpot. D7 - _____.#### - String to display, when triggering free spins bonus game.5. Place FFC with ProgressiveJackpotTracker script where you want that huge banner that shows the current value of progressive jackpot. Assign combo to rupee icon. D0 - Must matach with alot machine`s D3.",
+  "has_zip": true,
+  "has_popup": true
+}

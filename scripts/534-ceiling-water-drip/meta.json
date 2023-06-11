@@ -1,0 +1,16 @@
+{
+  "name": "Ceiling Water Drip",
+  "author": "Aslion",
+  "added": null,
+  "updated": "26 Apr 2023",
+  "tags": [
+    "#FFC"
+  ],
+  "rating": "2",
+  "downloads": "3",
+  "info": "Simple script to create drips of water falling from the ceiling. Setup instructions in Setup tab and included in script.",
+  "description": "Setup: (pasted from script)\n\nD0 - The Y position on the screen the water will drop from. If set to 0 will default to -16.\nD1 - Amount of frames before the initial drip. If set to 0 will default to 20.\nD2 - Amount of frames before another drip. If set to 0 will defualt to 160.\nD3 - Max amount of random frames added to the D2 delay.\nD4 - Sprite ID to use for the ripple when landing. If set to 0 will default to 137 (for personal reasons deal with it :) )\nD5 - ID of SFX to play when drip lands.\nD6 - Velocity of water drop. If set to 0 will default to 2.\n\nPlace an FFC on the screen with the graphic of your drip in the location it should drip to and assign this script and the variables.\nSet the flag \"Run Script at Screen Init\" to avoid the drip being visible on-screen before it falls. Also recommended to set the \"Draw Over\" flag.",
+  "setup": "Professor Bedwetter\n\u00a0\n\n\n\n\n\n\n\n\n\n\t\t\t\t\n\t\t\t\t\tPosted 26 April 2023 - 07:16 PM\n\t\t\t\n\n\t\t\t\tWoaw good script",
+  "has_zip": true,
+  "has_popup": true
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Ice Floors [Combo] [2.55]",
+  "author": "Moosh",
+  "added": "07 Jun 2023",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Global",
+    "#Combo"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "This is a script for ice combos. It should hopefully be easier to set up than older versions and more powerful as well. It works in sideview too.",
+  "description": "This is a script for ice combos. It should hopefully be easier to set up than older versions and more powerful as well. It works in sideview too.",
+  "setup": "Compile the scripts and assign the combo script IceFloors and the generic scripts IceFloors_HitEvents and IceFloors_Generic to slots. Set the script IceFloors on your ice floor combos.If you want to customize the physics, there are some constants in the script. There's also settings on the combos themselves. See the Flags and Attribs 1 and 2 tabs.If you're a scripter or tinkerer, see the functions at the top of the script. You can use those to more easily add some interconnectivity with your other scripts.This script only requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}

@@ -82,7 +82,7 @@ def download_script(id):
     slug = f'{id}-{clean_name}'
     dest = Path(f'tmp/{slug}')
     meta_path = dest / 'meta.json'
-    dest.mkdir(parents=True)
+    dest.mkdir(exist_ok=True, parents=True)
 
     images = soup.select('#imagelist2 img')
     image_srcs = [img['src'] for img in images if 'youtube' not in img['src']]
@@ -114,6 +114,6 @@ def download_script(id):
     return True
 
 
-for i in range(1, 507):
+for i in range(1, 546):
     print(i)
     download_script(i)

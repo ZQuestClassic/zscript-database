@@ -1,0 +1,19 @@
+{
+  "name": "Pegasus Boots [2.55]",
+  "author": "Moosh",
+  "added": "07 Jun 2023",
+  "updated": null,
+  "tags": [
+    "#2.55",
+    "#Global",
+    "#Item",
+    "#Combo"
+  ],
+  "rating": null,
+  "downloads": null,
+  "info": "A new pegasus boots script rewritten from scratch for 2.55 with new features to boot (heh).",
+  "description": "A new pegasus boots script rewritten from scratch for 2.55 with new features to boot (heh).",
+  "setup": "Compile the scripts and assign the item script PegasusBoots, the generic script PegasusBoots_Generic, and the combo script PegasusCrystal to script slots. Put the PegasusBoots script on your item. \n\nSet up 12 tiles for Link's dash animations. Each animation has three frames and they go in the order of up, down, left, right. Set TIL_LINK_DASHFRAMES to the first of these tiles.\n\nFrom there you're pretty much done with the item. There's plenty of constants you can tweak, here's some of the more important ones:SFX_DASH: The sound that plays on loop while dashingSFX_DASH_BOUNCE: The sound to play when you bonk into a wall.SPR_DASH_DUST: The sprite for dust poofs kicked up while dashing.DASH_STEERING_MULTIPLIER: If >0, you can strafe to the side while dashing by this percent of the dash speed.DASH_ENABLE_SWORD: If true, Link can hold out a sword while dashingDASH_REQUIRE_SWORD_EQUIPPED: If true, the sword only comes out when equippedDASH_USES_LTM: If true, Link's tile modifiers will be added onto the dash tiles.DASH_LOWERS_SHIELD: If true, Link can be hit from the front while dashing. Currently bugged with pit combos due to a ZC bug.DASH_ALLOW_FEATHER: If true, the feather can be used during the dash.\nBreakable combos:\nAny combo with the PegasusCrystal script will be treated as breakable. You can find settings for this in the Flags and Attrib 1 tabs.\n\nIf you're a scripter or tinkerer, see the functions at the top of the script. You can use those to more easily add some interconnectivity with your other scripts.\n\nThis script only requires std.zh.",
+  "has_zip": false,
+  "has_popup": true
+}
